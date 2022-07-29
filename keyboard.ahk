@@ -149,11 +149,16 @@ DisplayAndSetVolume(variation) {
 }
 #Hotif
 
-Run 'brightness-setter'
-OnExit (reason, code) => (
-    ProcessClose('brightness-setter.exe'),
-    ExitApp  ; Idkwb the script takes too long to close without this.
-)
+if not ProcessExist('brightness-setter.exe')
+    Run 'brightness-setter'
+
+OnExit CloseBrightnessSetter
+CloseBrightnessSetter(reason, code) {
+    if ProcessExist('brightness-setter.exe')
+        ProcessClose 'brightness-setter.exe'
+    ProcessWaitClose 'brightness-setter.exe'
+}
+
 /*
 C_BrightnessSetter:
     #PgUp:: C_BrightnessSetter.setBrightness(2)
