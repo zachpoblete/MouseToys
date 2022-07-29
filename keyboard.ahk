@@ -168,11 +168,11 @@ C_BrightnessSetter:
 #F5::
     ProcessCloseOpen(this_hk) {
         WinExist 'A'
-        active_win_pid := TryWinGetPid()
-        closed_win_path := ProcessGetPath(active_win_pid)
+        win_pid := TryWinGetPid()
+        win_path := ProcessGetPath(win_pid)
         WinClose
-        WinWaitClose
-        Run closed_win_path
+        ProcessWaitClose win_pid
+        Run win_path
     }
 
 F9::    Media_Prev
