@@ -200,7 +200,7 @@ AHK:
 */
 
 #Hotif RegExMatch(ControlGetFocus('A'), '^Edit\d+$')
-^BS:: {  ; This hotkey doesn't natively work, so workaround that.
+^BS:: {  ; This hotkey doesn't natively work, so work around that.
     if GetSelected()
         Send '{Del}'
     else
