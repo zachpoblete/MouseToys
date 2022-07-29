@@ -279,6 +279,11 @@ RWin::
 ;====================================================================================================
 ; For each Unicode character sent, the hostring abbreviation is the HTML entity (or something intuitive).
 
+~^z:: {
+    if A_PriorHotkey ~= '^:'  ; Matches hotstrings.
+        Send '{Ctrl Down}z{Ctrl Up}'  ; Send an extra ^z to go back to the abbreviation.
+}
+
 #Hotstring EndChars `n`t
 
 ; Sorry if the hotstrings look weird!
