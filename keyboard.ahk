@@ -288,18 +288,18 @@ RWin::
 ; I've worked around this bug by adding the whitespace after the function name instead.
 ; TODO: When this is fixed, revert the hotstrings back to normal.
 
-:?cx:&deg;::Send        '{U+00B0}'
+:?cx:&deg;::Send    '{U+00B0}'
 
-:?cx:&la;::Send         '{U+2190}'  ; left arrow
-:?cx:&ra;::Send         '{U+2192}'  ; right arrow
+:?cx:&la;::Send     '{U+2190}'  ; left arrow
+:?cx:&ra;::Send     '{U+2192}'  ; right arrow
 
-:?cx:&mdash;::Send      '{U+2014}'
-:?cx:&ndash;::Send      '{U+2013}'
+:?cx:&mdash;::Send  '{U+2014}'
+:?cx:&ndash;::Send  '{U+2013}'
 
-:?cx:&Ntilde;::Send     '{U+00D1}'
-:?cx:&ntilde;::Send     '{U+00F1}'
+:?cx:&Ntilde;::Send '{U+00D1}'
+:?cx:&ntilde;::Send '{U+00F1}'
 
-:?cx:&peso;::Send       '{U+20B1}'
+:?cx:&peso;::Send   '{U+20B1}'
 
 :*?b0c:&tab:: {
     ih := InputHook('L3 V', '{Enter}{Tab}')
