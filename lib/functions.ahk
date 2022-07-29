@@ -150,6 +150,13 @@ TitleMatch(options, win_functor) {
     win_functor
 }
 
+TryWinClose(win_title := '', win_text := '', wait_s := '', excluded_title := '', excluded_text := '') {
+    try
+        return WinClose(win_title, win_text, wait_s, excluded_title, excluded_text)
+    catch
+        return
+}
+
 TryWinGetPid(win_title := '', win_text := '', excluded_title := '', excluded_text := '') {
     try
         return WinGetPID(win_title, win_text, excluded_title, excluded_text)
