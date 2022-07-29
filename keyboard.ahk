@@ -209,6 +209,17 @@ AHK:
 
 */
 
+#InputLevel 1
++Space:: Send '_'
+
++-:: {
+    if WinActive('Desmos ahk_exe msedge.exe') or WinActive('ahk_exe EXCEL.EXE')
+        Send 'sqrt'
+    else
+        Send '{U+221A}'  ; Send square root symbol.
+}
+#InputLevel
+
 #Hotif RegExMatch(ControlGetFocus('A'), '^Edit\d+$')
 ^BS:: {  ; This hotkey doesn't natively work, so work around that.
     if GetSelected()
@@ -264,13 +275,9 @@ RWin::
     }
 
 ;====================================================================================================
-; Special Chars.
+; Hotstrings
 ;====================================================================================================
 ; For each Unicode character sent, the hostring abbreviation is the HTML entity (or something intuitive).
-
-#InputLevel 1
-+Space:: Send '_'
-#InputLevel
 
 #Hotstring EndChars `n`t
 
@@ -318,15 +325,6 @@ RWin::
 ;----------------------------------------------------------------------------------------------------
 ; Math and Science
 ;----------------------------------------------------------------------------------------------------
-
-#InputLevel 1
-+-:: {
-    if WinActive('Desmos ahk_exe msedge.exe') or WinActive('ahk_exe EXCEL.EXE')
-        Send 'sqrt'
-    else
-        Send '{U+221A}'  ; Send square root symbol.
-}
-#InputLevel
 
 :?cx:&bullet;::Send  '{U+2219}'
 
