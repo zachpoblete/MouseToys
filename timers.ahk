@@ -4,8 +4,8 @@
 SetTimer ClosePopUps
 
 ClosePopUps() {
-    TryWinClose 'RAKK Lam-Ang Pro FineTuner ' . CLASSES['DIALOG_BOX'] . ' ahk_exe RAKK Lam-Ang Pro Mechanical Keyboard.exe', 'Failed to activate profile!'  ; When selecting a different profile in RAKK Lam-Ang Pro FineTuner, close the pop-up error
-    TryWinClose 'qBittorrent Update Available ahk_class Qt5152QWindowIcon'  ; When opening qBittorent, close the pop-up update. The website it brings you to to download the new version just looks sus.
+    try WinClose 'RAKK Lam-Ang Pro FineTuner ' . CLASSES['DIALOG_BOX'] . ' ahk_exe RAKK Lam-Ang Pro Mechanical Keyboard.exe', 'Failed to activate profile!'  ; When selecting a different profile in RAKK Lam-Ang Pro FineTuner, close the pop-up error
+    try WinClose 'qBittorrent Update Available ahk_class Qt5152QWindowIcon'  ; When opening qBittorent, close the pop-up update. The website it brings you to to download the new version just looks sus.
 }
 
 #Hotif GetKeyState('LWin', 'P')
