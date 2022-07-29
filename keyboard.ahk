@@ -260,10 +260,11 @@ RWin::
 #Hotstring EndChars `n`t
 
 ; Sorry if the hotstrings look weird!
-; Currently, if you are using the X option,
+; Currently, if you're using the X option,
 ; whitespace isn't allowed before the expression.
 ; In v1, I made heavy use of whitespace to align my Send commands.
 ; I've worked around this bug by adding the whitespace after the function name instead.
+; TODO: When this is fixed, revert the hotstrings back to normal.
 
 :?cx:&deg;::Send        '{U+00B0}'
 
