@@ -165,9 +165,19 @@ C_BrightnessSetter:
     #PgDn:: C_BrightnessSetter.setBrightness(-2)
 */
 
-Pause:: Media_Play_Pause
+#F5::
+    ProcessCloseOpen(this_hk) {
+        WinExist 'A'
+        active_win_pid := TryWinGetPid()
+        closed_win_path := ProcessGetPath(active_win_pid)
+        WinClose
+        WinWaitClose
+        Run closed_win_path
+    }
+
 F9::    Media_Prev
 F10::   Media_Next
+Pause:: Media_Play_Pause
 
 PrintScreen:: Send '{LWin Down}{Alt Down}{PrintScreen}{Alt Up}{LWin Up}'
 
