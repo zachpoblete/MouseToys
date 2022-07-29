@@ -140,7 +140,7 @@ MouseWinActivate(win_title := '', win_text := '', excluded_title := '', excluded
     return WinActive(win_title . ' ahk_id ' . mouse_hwnd, win_text, excluded_title, excluded_text)  ; The mouse_hwnd is there for the case when all the parameters are blank and there is no last found window.
 }
 
-TitleMatch(options, win_functor) {
+MatchTitleAndCallFunc(options, functor) {
     if RegExMatch(options, 'i)1|2|3|RegEx', &match_mode)
         SetTitleMatchMode match_mode[]
     if RegExMatch(options, 'i)Fast|Slow', &speed)
@@ -151,5 +151,5 @@ TitleMatch(options, win_functor) {
     else if InStr(options, 'Visible')
         DetectHiddenWindows false
 
-    win_functor
+    functor()
 }
