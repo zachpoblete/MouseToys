@@ -4,7 +4,7 @@
 #^s:: Suspend
 #SuspendExempt false
 
-#^r:: Reload
+#^r:: Run '*UIAccess "' . A_ScriptName . '"'
 #^p:: Pause -1
 #^x:: ExitApp
 
