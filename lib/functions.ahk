@@ -1,5 +1,9 @@
 #Include default-settings.ahk
 
+TryFunc(functor) {
+    try return functor()
+}
+
 ;====================================================================================================
 ; Clipboard
 ;====================================================================================================
@@ -148,12 +152,4 @@ TitleMatch(options, win_functor) {
         DetectHiddenWindows false
 
     win_functor
-}
-
-TryWinClose(win_title := '', win_text := '', wait_s := '', excluded_title := '', excluded_text := '') {
-    try return WinClose(win_title, win_text, wait_s, excluded_title, excluded_text)
-}
-
-TryWinGetPid(win_title := '', win_text := '', excluded_title := '', excluded_text := '') {
-    try return WinGetPID(win_title, win_text, excluded_title, excluded_text)
 }

@@ -53,7 +53,7 @@ keyboardShortcut-Quarter.js:
 ;----------------------------------------------------------------------------------------------------
 
 #Hotif WinActive(CLASSES['ZOOM']['MEETING']) and WinWaitActive(CLASSES['ZOOM']['TOOLBAR'], , 0.1)
-~#Down:: WinActivate 'Zoom ahk_pid ' . TryWinGetPid()  ; Activate minimized video/control.
+~#Down:: WinActivate 'Zoom ahk_pid ' . WinGetPid()  ; Activate minimized video/control.
 
 #Hotif WinActive(CLASSES['ZOOM']['WAIT_HOST']) or WinActive(CLASSES['ZOOM']['VID_PREVIEW'])
 #Down:: WinMinimize
@@ -64,10 +64,10 @@ keyboardShortcut-Quarter.js:
     ControlClick 'x200 y' . win_h - 30  ; Exit minimized video.
 }
 
-#Hotif WinActive(CLASSES['ZOOM']['HOME']) and not WinExist('Zoom ahk_pid ' . TryWinGetPid(CLASSES['ZOOM']['TOOLBAR']))  ; Check if a visible meeting window exists.
+#Hotif WinActive(CLASSES['ZOOM']['HOME']) and not WinExist('Zoom ahk_pid ' . TryFunc(WinGetPid.Bind(CLASSES['ZOOM']['TOOLBAR'])))  ; Check if a visible meeting window exists.
 !F4:: ProcessClose 'Zoom.exe'  ; Can't use WinClose because that minimizes here.
 
-#Hotif WinActive('ahk_pid ' . TryWinGetPid(CLASSES['ZOOM']['TOOLBAR']))  ; Check if a meeting window is active.
+#Hotif WinActive('ahk_pid ' . TryFunc(WinGetPid.Bind(CLASSES['ZOOM']['TOOLBAR'])))  ; Check if a meeting window is active.
 !=::
     Zoom_GiveThumbsUp(this_hk) {
         Zoom_OpenReactions(this_hk)
@@ -126,7 +126,7 @@ GroupAdd 'ZoomWins', 'ahk_class Z ahk_exe Zoom.exe', , , 'ZPToolBarParentWnd'
     Zoom_ActivateElseRun(this_hk) {
         if not WinExist('ahk_exe Zoom.exe')
             Run 'Zoom', 'C:\Users\Zach Poblete\AppData\Roaming\Zoom\bin'
-        else if WinExist(CLASSES['ZOOM']['HIDDEN_TOOLBAR']) or WinExist('Zoom ahk_pid ' . TryWinGetPid(CLASSES['ZOOM']['TOOLBAR']))  ; Check if a visible Zoom meeting window exists.
+        else if WinExist(CLASSES['ZOOM']['HIDDEN_TOOLBAR']) or WinExist('Zoom ahk_pid ' . TryFunc(WinGetPid.Bind(CLASSES['ZOOM']['TOOLBAR'])))  ; Check if a visible Zoom meeting window exists.
             WinActivate
         else
             TitleMatch('RegEx', () => GroupActivateRelIfExists('ZoomWins'))  ; Activate visible Zoom windows.
@@ -168,7 +168,7 @@ C_BrightnessSetter:
 #F5::
     ProcessCloseOpen(this_hk) {
         WinExist 'A'
-        win_pid := TryWinGetPid()
+        win_pid := WinGetPID()
         win_path := ProcessGetPath(win_pid)
         WinClose
         ProcessWaitClose win_pid

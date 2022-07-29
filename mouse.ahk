@@ -134,7 +134,7 @@ XButton2 & MButton:: {
         Send '{Alt Down}q{Alt Up}'  ; Show 'End Meeting or Leave Meeting?' prompt in the middle of the screen instead of the corner of the window.
     }
     else if WinActive(CLASSES['ZOOM']['HOME']) {
-        if WinExist('Zoom ahk_pid ' . TryWinGetPid(CLASSES['ZOOM']['TOOLBAR'])) ; Check if a visible Zoom meeting window exists.
+        if WinExist('Zoom ahk_pid ' . TryFunc(WinGetPid.Bind(CLASSES['ZOOM']['TOOLBAR']))) ; Check if a visible Zoom meeting window exists.
             ControlSend '{Alt Down}q{Alt Up}', , CLASSES['ZOOM']['MEETING']
         else
             ProcessClose 'Zoom.exe'
