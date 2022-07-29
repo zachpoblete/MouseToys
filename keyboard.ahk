@@ -216,7 +216,7 @@ AHK:
     if WinActive('Desmos ahk_exe msedge.exe') or WinActive('ahk_exe EXCEL.EXE')
         Send 'sqrt'
     else
-        Send '{U+221A}'  ; Send square root symbol.
+        Send '{U+221A}'  ; square root
 }
 #InputLevel
 
@@ -290,8 +290,8 @@ RWin::
 
 :?cx:&deg;::Send        '{U+00B0}'
 
-:?cx:&leftarrow;::Send  '{U+2190}'
-:?cx:&rightarrow;::Send '{U+2192}'
+:?cx:&la;::Send         '{U+2190}'  ; left arrow
+:?cx:&ra;::Send         '{U+2192}'  ; right arrow
 
 :?cx:&mdash;::Send      '{U+2014}'
 :?cx:&ndash;::Send      '{U+2013}'
@@ -330,10 +330,10 @@ RWin::
 
 :?cx:&infin;::Send   '{U+221E}'
 
-:?cx:&ne;::Send      '{U+2260}'
-:?cx:&le;::Send      '{U+2264}'
-:?cx:&ge;::Send      '{U+2265}'
-:?cx:&pm;::Send      '{U+00B1}'
+:?cx:&ne;::Send      '{U+2260}'  ; not equal
+:?cx:&le;::Send      '{U+2264}'  ; lesser than or equal
+:?cx:&ge;::Send      '{U+2265}'  ; greater than or equal
+:?cx:&pm;::Send      '{U+00B1}'  ; plus-minus
 
 :?cx:&radic3;::Send  '{U+221B}'
 :?cx:&radic4;::Send  '{U+221C}'
