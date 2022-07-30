@@ -12,7 +12,8 @@
     if WinExist('ahk_exe Code.exe')
         WinActivate
     else
-        Edit
+        Loop Files '*.code-workspace'
+            Run A_LoopFileName
 }
 
 #^h::
