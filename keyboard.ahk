@@ -64,10 +64,10 @@ keyboardShortcut-Quarter.js:
     ControlClick 'x200 y' . win_h - 30  ; Exit minimized video.
 }
 
-#Hotif WinActive(CLASSES['ZOOM']['HOME']) and not WinExist('Zoom ahk_pid ' . TryFunc(WinGetPid.Bind(CLASSES['ZOOM']['TOOLBAR'])))  ; Check if a visible meeting window exists.
+#Hotif WinActive(CLASSES['ZOOM']['HOME']) and not WinExist('Zoom ahk_pid ' . TryFunc(WinGetPid.bind(CLASSES['ZOOM']['TOOLBAR'])))  ; Check if a visible meeting window exists.
 !F4:: ProcessClose 'Zoom.exe'  ; Can't use WinClose because that minimizes here.
 
-#Hotif WinActive('ahk_pid ' . TryFunc(WinGetPid.Bind(CLASSES['ZOOM']['TOOLBAR'])))  ; Check if a meeting window is active.
+#Hotif WinActive('ahk_pid ' . TryFunc(WinGetPid.bind(CLASSES['ZOOM']['TOOLBAR'])))  ; Check if a meeting window is active.
 !=::
     Zoom_GiveThumbsUp(this_hk) {
         Zoom_OpenReactions(this_hk)
@@ -126,7 +126,7 @@ GroupAdd 'ZoomWins', 'ahk_class Z ahk_exe Zoom.exe', , , 'ZPToolBarParentWnd'
     Zoom_ActivateElseRun(this_hk) {
         if not WinExist('ahk_exe Zoom.exe')
             Run 'Zoom', 'C:\Users\Zach Poblete\AppData\Roaming\Zoom\bin'
-        else if WinExist(CLASSES['ZOOM']['HIDDEN_TOOLBAR']) or WinExist('Zoom ahk_pid ' . TryFunc(WinGetPid.Bind(CLASSES['ZOOM']['TOOLBAR'])))  ; Check if a visible Zoom meeting window exists.
+        else if WinExist(CLASSES['ZOOM']['HIDDEN_TOOLBAR']) or WinExist('Zoom ahk_pid ' . TryFunc(WinGetPid.bind(CLASSES['ZOOM']['TOOLBAR'])))  ; Check if a visible Zoom meeting window exists.
             WinActivate
         else
             MatchTitleAndCallFunc('RegEx', () => GroupActivateRelIfExists('ZoomWins'))  ; Activate visible Zoom windows.
@@ -308,7 +308,7 @@ RWin::
 
 :*?b0c:&tab:: {
     ih := InputHook('L3 V', '{Enter}{Tab}')
-    ih.KeyOpt '{Enter}{Tab}', 'S'
+    ih.keyOpt '{Enter}{Tab}', 'S'
     ih.Start
     ih.Wait
 
@@ -317,7 +317,7 @@ RWin::
 
     tabs := ''
 
-    if ih.Input = ';'
+    if ih.input = ';'
         tabs := A_Tab
     else if RegExMatch(ih.Input, '\A(\d);\z', &match)
         Loop match[1]

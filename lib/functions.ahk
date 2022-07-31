@@ -134,7 +134,7 @@ MouseControlFocus(control := '', win_title := '', win_text := '', excluded_title
     mouse_control_text := ControlGetText(mouse_control_hwnd)
 
     if not control ~= '\A(' mouse_class_nn '|' mouse_control_text '|' mouse_control_hwnd ')\z'
-        if not control.Hwnd = mouse_control_hwnd
+        if not control.hwnd = mouse_control_hwnd
             return
     if not WinActive(win_title . ' ahk_id ' . mouse_hwnd, win_text, excluded_title, excluded_text)
         return

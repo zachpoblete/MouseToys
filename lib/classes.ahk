@@ -42,7 +42,7 @@ class C_Hotkey {
         }
 
         static gotoSelectedFolder(hk, hotif_ex_functor := '') {
-            this.HotifCondition hotif_ex_functor
+            this.hotifCondition hotif_ex_functor
             Hotkey hk, this_hk => logic()
             logic() {
                 selected := GetSelectedElseExit()
@@ -51,7 +51,7 @@ class C_Hotkey {
             Hotif
         }
 
-        static HotifCondition(hotif_ex_functor := '') {
+        static hotifCondition(hotif_ex_functor := '') {
             if hotif_ex_functor
                 Hotif this_hk => this.active() and hotif_ex_functor()
             else
@@ -67,7 +67,7 @@ class C_Hotkey {
                 SetTimer () => Send('{Enter}'), -10
             }
 
-            this.HotifCondition hotif_ex_functor
+            this.hotifCondition hotif_ex_functor
             Hotkey hk, this_hk => searchInTab(true)
             Hotkey '+' . hk, this_hk => searchInTab(false)
             Hotif
@@ -84,11 +84,11 @@ class C_Timer {
     static _labels := []
 
     static get(index := 1) {
-        if this._labels.Has(index) {
+        if this._labels.has(index) {
             return this._labels[index]
         }
         else {
-            this._labels.InsertAt(1, '')
+            this._labels.insertAt(1, '')
             return
         } 
     }
@@ -96,18 +96,18 @@ class C_Timer {
     static set(fn, period := '', priority := '', index := 1) {
         SetTimer fn, period, priority
 
-        if not this._labels.Has(index)
-            this._labels.InsertAt index, fn
+        if not this._labels.has(index)
+            this._labels.insertAt index, fn
 
         if period > 0 {
-            this._labels.RemoveAt index
-            this._labels.InsertAt index, fn
+            this._labels.removeAt index
+            this._labels.insertAt index, fn
         }
         else if period = 0 {
-            this._labels.RemoveAt index
+            this._labels.removeAt index
         }
         else {
-            SetTimer () => this._labels.RemoveAt(index), -period
+            SetTimer () => this._labels.removeAt(index), -period
         }
     }
 }
