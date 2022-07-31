@@ -6,18 +6,18 @@ ClosePopUps() {
     try WinClose 'RAKK Lam-Ang Pro FineTuner ' . CLASSES['DIALOG_BOX'] . ' ahk_exe RAKK Lam-Ang Pro Mechanical Keyboard.exe', 'Failed to activate profile!'  ; When selecting a different profile in RAKK Lam-Ang Pro FineTuner, close the pop-up error
 }
 
-#Hotif GetKeyState('LWin', 'P')
-LButton::  ; Not #LButton because LWin is a hotkey.
+#LButton::
     WinDrag(this_hk) {
+        WinExist 'A'
+        
         if MouseWinActivate('ahk_class WorkerW ahk_exe Explorer.EXE') or WinGetMinMax() != 0
             return
 
         CoordMode 'Mouse', 'Screen'
         MouseGetPos &mouse_start_x, &mouse_start_y
-        WinExist 'A'
         WinGetPos &win_original_x, &win_original_y
 
-        while GetKeyState('LButton', 'P') {
+        while GetKeyState('LButton', 'P') {  ; SetTimer isn't used to retain the last found window.
             if GetKeyState('Esc', 'P') {
                 WinMove win_original_x, win_original_y
                 break
@@ -33,4 +33,3 @@ LButton::  ; Not #LButton because LWin is a hotkey.
             Sleep 10
         }
     }
-#Hotif
