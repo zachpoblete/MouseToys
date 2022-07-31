@@ -312,18 +312,18 @@ RWin::
     ih.Start
     ih.Wait
 
-    if not (ih.Endkey or ih.Input)
+    if not ih.Endkey
         return
 
     tabs := ''
 
     if ih.Input = ';'
-        tabs := '	'
+        tabs := A_Tab
     else if RegExMatch(ih.Input, '\A(\d);\z', &match)
         Loop match[1]
-            tabs .= '	'
+            tabs .= A_Tab
 
-    Send '{Ctrl Down}{Shift Down}{Left}{Ctrl Up}{Left}{Shift Up}'  ; Erase the abbreviation.
+    Send '{Ctrl Down}{Shift Down}{Left 2}{Ctrl Up}{Left}{Shift Up}'  ; Erase the abbreviation.
     SendInstantRaw tabs
 }
 
