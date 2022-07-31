@@ -50,16 +50,16 @@ GetFileExt(file_name) {
     return file_ext
 }
 
-OnFileSave(file_name, function, should_call := true) {
-    funcIfSave(function) {            
+OnFileSave(file_name, fn, should_call := true) {
+    funcIfSave(fn) {            
         if not InStr(FileGetAttrib(file_name), 'A')
             return
         FileSetAttrib '-A', file_name
-        function
+        fn
     }
 
     period_ms := (should_call) ? 1000 : 0
-    SetTimer () => funcIfSave(function), period_ms
+    SetTimer () => funcIfSave(fn), period_ms
 }
 
 ;====================================================================================================

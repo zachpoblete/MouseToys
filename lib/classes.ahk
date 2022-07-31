@@ -93,15 +93,15 @@ class C_Timer {
         } 
     }
 
-    static set(function, period := '', priority := '', index := 1) {
-        SetTimer function, period, priority
+    static set(fn, period := '', priority := '', index := 1) {
+        SetTimer fn, period, priority
 
         if not this._labels.Has(index)
-            this._labels.InsertAt index, function
+            this._labels.InsertAt index, fn
 
         if period > 0 {
             this._labels.RemoveAt index
-            this._labels.InsertAt index, function
+            this._labels.InsertAt index, fn
         }
         else if period = 0 {
             this._labels.RemoveAt index
