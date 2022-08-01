@@ -102,6 +102,7 @@ keyboardShortcut-Quarter.js:
         select() {
             if ImageSearch(&imageX, &imageY, 0, winH - 60, winW, winH, '*60 images\apps.png')
                 Send '{Up}'
+
             Send '{Up}'
             SetTimer () => Send('{Space}'), -10
         }
@@ -163,6 +164,7 @@ OnExit (reason, code) => CloseBrightnessSetter()
 CloseBrightnessSetter() {
     if ProcessExist('brightness-setter.exe')
         ProcessClose 'brightness-setter.exe'
+
     ProcessWaitClose 'brightness-setter.exe'
 }
 
@@ -175,8 +177,10 @@ C_BrightnessSetter:
 #F5::
     ProcessCloseOpen(thisHotkey) {
         WinExist 'A'
+
         winPid := WinGetPID()
         winPath := ProcessGetPath(winPid)
+
         WinClose
         ProcessWaitClose winPid
         Run winPath
@@ -277,6 +281,7 @@ RWin:: {
 
         if A_PriorKey = thisHotkey and A_TimeSinceThisHotkey > 500
             Send '{Ctrl}'
+        
         Send '{' . thisHotkey . ' Up}'
     }
 

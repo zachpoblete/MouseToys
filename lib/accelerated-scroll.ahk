@@ -38,6 +38,7 @@ AcceleratedScroll() {  ; To use effectively, make sure this function is the firs
             _maxSpeed := speed
         else
             speed := _maxSpeed
+        
         speed *= _distance / BOOST
     }
 

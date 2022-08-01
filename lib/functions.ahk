@@ -1,7 +1,8 @@
 #Include default-settings.ahk
 
 TryFunc(fn) {
-    try return fn()
+    try
+        return fn()
 }
 
 TryFuncCatchExit(fn) {
@@ -18,8 +19,10 @@ TryFuncCatchExit(fn) {
 GetSelected() {
     savedClipboard := ClipboardAll()
     A_Clipboard := ''
+
     Send '{Ctrl Down}c{Ctrl Up}'
     ClipWait 0.05
+
     selected := A_Clipboard
     A_Clipboard := savedClipboard
     return selected
@@ -27,8 +30,10 @@ GetSelected() {
 
 GetSelectedElseExit() {
     selected := GetSelected()
+
     if not selected
         exit
+
     return selected
 }
 
@@ -54,6 +59,7 @@ OnFileSave(fileName, fn, shouldCall := true) {
     funcIfSave(fn) {            
         if not InStr(FileGetAttrib(fileName), 'A')
             return
+        
         FileSetAttrib '-A', fileName
         fn
     }
@@ -68,26 +74,32 @@ OnFileSave(fileName, fn, shouldCall := true) {
 
 HotkeyDelModifierSymbols(hk) {
     hk := StrReplace(RegExReplace(hk, ' Up$'), A_Space)
+
     if InStr(hk, '&')
         return StrSplit(hk, '&')
-    return RegExReplace(hk, '[#!^+<>*~$]')
+    else
+        return RegExReplace(hk, '[#!^+<>*~$]')
 }
 
 HotkeyEncloseInBraces(hk) {
     if InStr(hk, '&')
         return '{' . RegExReplace(hk, ' *& *', '}{') . '}'
-    if RegExMatch(hk, ' Up$')
+    else if RegExMatch(hk, ' Up$')
         return '{' . hk . '}'
-    return RegExReplace(hk, '([#!^+<>]*)([*~$]*)([^*~$]+)', '$1{$3}')
+    else
+        return RegExReplace(hk, '([#!^+<>]*)([*~$]*)([^*~$]+)', '$1{$3}')
 }
 
 HotkeyGetPrefixKey(hk) {
     if HotstringGetAbbrev(hk)
         return
+
     hkKeys := HotkeyDelModifierSymbols(hk)
+
     if not IsObject(hkKeys)
         return hkKeys
-    return hkKeys[1]
+    else
+        return hkKeys[1]
 }
 
 HotstringGetAbbrev(hs) {
@@ -122,6 +134,7 @@ ActivateElseRun(toRun, workingDir := '', toActivate := '') {
 GroupActivateRelIfExists(groupName) {
     if not WinExist('ahk_group ' . groupName)
         return
+
     GroupActivate groupName, 'R'
 }
 
@@ -134,10 +147,12 @@ MouseControlFocus(control := '', winTitle := '', winText := '', excludedTitle :=
     mouseControlText := ControlGetText(mouseControlHwnd)
 
     if not control ~= '\A(' mouseClassNn '|' mouseControlText '|' mouseControlHwnd ')\z'
-        if not control.hwnd = mouseControlHwnd
+        if control.hwnd != mouseControlHwnd
             return
+
     if not WinActive(winTitle . ' ahk_id ' . mouseHwnd, winText, excludedTitle, excludedText)
         return
+
     return mouseControlHwnd
 }
 
@@ -150,6 +165,7 @@ MouseWinActivate(winTitle := '', winText := '', excludedTitle := '', excludedTex
 MatchTitleAndCallFunc(options, fn) {
     if RegExMatch(options, 'i)1|2|3|RegEx', &matchMode)
         SetTitleMatchMode matchMode[]
+    
     if RegExMatch(options, 'i)Fast|Slow', &speed)
         SetTitleMatchMode speed[]
 

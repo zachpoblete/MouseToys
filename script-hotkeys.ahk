@@ -21,9 +21,7 @@
         static DIRECTORY := 'https://lexikos.github.io/v2/docs'
 
         if GetKeyState('CapsLock', 'T') {
-            selected := GetSelected()
-            if not selected
-                return
+            selected := GetSelectedElseExit()
             command := StrReplace(selected, '#', '_', , , 1)
             Run DIRECTORY . '/commands/' . command . '.htm'
         }
