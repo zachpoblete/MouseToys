@@ -49,8 +49,8 @@ CLASSES['ZOOM'] := Map(
 
 ConvertClassesAbbrevsToFullForm
 ConvertClassesAbbrevsToFullForm() {
-    for abbrev, full_form in CLASSES['ZOOM']
-        CLASSES['ZOOM'][abbrev] := 'ahk_class ' . full_form
+    for abbrev, fullForm in CLASSES['ZOOM']
+        CLASSES['ZOOM'][abbrev] := 'ahk_class ' . fullForm
 }
 
 ; CONTROL_CODES['TRAY'] := Map(  ; Standard AHK tray menu control codes for the WM_COMMAND

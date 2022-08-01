@@ -16,12 +16,12 @@ TryFuncCatchExit(functor) {
 ;====================================================================================================
 
 GetSelected() {
-    saved_clipboard := ClipboardAll()
+    savedClipboard := ClipboardAll()
     A_Clipboard := ''
     Send '{Ctrl Down}c{Ctrl Up}'
     ClipWait 0.05
     selected := A_Clipboard
-    A_Clipboard := saved_clipboard
+    A_Clipboard := savedClipboard
     return selected
 }
 
@@ -33,33 +33,33 @@ GetSelectedElseExit() {
 }
 
 SendInstantRaw(text) {
-    saved_clipboard := ClipboardAll()
+    savedClipboard := ClipboardAll()
     A_Clipboard := text
     ClipWait 0.05
     Send '{Ctrl Down}v{Ctrl Up}'
     Sleep 1000
-    SetTimer () => A_Clipboard := saved_clipboard, -50
+    SetTimer () => A_Clipboard := savedClipboard, -50
 }
 
 ;====================================================================================================
 ; File
 ;====================================================================================================
 
-GetFileExt(file_name) {
-    RegExMatch file_name, '\.[^.]+$', &file_ext
-    return file_ext
+GetFileExt(fileName) {
+    RegExMatch fileName, '\.[^.]+$', &fileExt
+    return fileExt
 }
 
-OnFileSave(file_name, fn, should_call := true) {
+OnFileSave(fileName, fn, shouldCall := true) {
     funcIfSave(fn) {            
-        if not InStr(FileGetAttrib(file_name), 'A')
+        if not InStr(FileGetAttrib(fileName), 'A')
             return
-        FileSetAttrib '-A', file_name
+        FileSetAttrib '-A', fileName
         fn
     }
 
-    period_ms := (should_call) ? 1000 : 0
-    SetTimer () => funcIfSave(fn), period_ms
+    periodMs := (shouldCall) ? 1000 : 0
+    SetTimer () => funcIfSave(fn), periodMs
 }
 
 ;====================================================================================================
@@ -84,10 +84,10 @@ HotkeyEncloseInBraces(hk) {
 HotkeyGetPrefixKey(hk) {
     if HotstringGetAbbrev(hk)
         return
-    hk_keys := HotkeyDelModifierSymbols(hk)
-    if not IsObject(hk_keys)
-        return hk_keys
-    return hk_keys[1]
+    hkKeys := HotkeyDelModifierSymbols(hk)
+    if not IsObject(hkKeys)
+        return hkKeys
+    return hkKeys[1]
 }
 
 HotstringGetAbbrev(hs) {
@@ -107,49 +107,49 @@ StrDel(haystack, needle, limit := 1) {
 ; Window
 ;====================================================================================================
 
-ActivateElseRun(to_run, working_dir := '', to_activate := '') {
-    if to_activate = ''
-        to_activate := 'ahk_exe ' . to_run
+ActivateElseRun(toRun, workingDir := '', toActivate := '') {
+    if toActivate = ''
+        toActivate := 'ahk_exe ' . toRun
 
-    if not WinExist(to_activate)
-        Run to_run, working_dir
-    else if InStr(to_activate, 'ahk_group')
-        GroupActivate LTrim(StrDel(to_activate, 'ahk_group')), 'R'
+    if not WinExist(toActivate)
+        Run toRun, workingDir
+    else if InStr(toActivate, 'ahk_group')
+        GroupActivate LTrim(StrDel(toActivate, 'ahk_group')), 'R'
     else
-        WinActivate to_activate
+        WinActivate toActivate
 }
 
-GroupActivateRelIfExists(group_name) {
-    if not WinExist('ahk_group ' . group_name)
+GroupActivateRelIfExists(groupName) {
+    if not WinExist('ahk_group ' . groupName)
         return
-    GroupActivate group_name, 'R'
+    GroupActivate groupName, 'R'
 }
 
-MouseControlFocus(control := '', win_title := '', win_text := '', excluded_title := '', excluded_text := '') {
-    MouseGetPos , , &mouse_hwnd, &mouse_control_hwnd, 2
-    WinActivate mouse_hwnd
-    ControlFocus mouse_control_hwnd
+MouseControlFocus(control := '', winTitle := '', winText := '', excludedTitle := '', excludedText := '') {
+    MouseGetPos , , &mouseHwnd, &mouseControlHwnd, 2
+    WinActivate mouseHwnd
+    ControlFocus mouseControlHwnd
 
-    mouse_class_nn := ControlGetClassNN(mouse_control_hwnd)
-    mouse_control_text := ControlGetText(mouse_control_hwnd)
+    mouseClassNn := ControlGetClassNN(mouseControlHwnd)
+    mouseControlText := ControlGetText(mouseControlHwnd)
 
-    if not control ~= '\A(' mouse_class_nn '|' mouse_control_text '|' mouse_control_hwnd ')\z'
-        if not control.hwnd = mouse_control_hwnd
+    if not control ~= '\A(' mouseClassNn '|' mouseControlText '|' mouseControlHwnd ')\z'
+        if not control.hwnd = mouseControlHwnd
             return
-    if not WinActive(win_title . ' ahk_id ' . mouse_hwnd, win_text, excluded_title, excluded_text)
+    if not WinActive(winTitle . ' ahk_id ' . mouseHwnd, winText, excludedTitle, excludedText)
         return
-    return mouse_control_hwnd
+    return mouseControlHwnd
 }
 
-MouseWinActivate(win_title := '', win_text := '', excluded_title := '', excluded_text := '') {
-    MouseGetPos , , &mouse_hwnd
-    WinActivate mouse_hwnd
-    return WinActive(win_title . ' ahk_id ' . mouse_hwnd, win_text, excluded_title, excluded_text)  ; The mouse_hwnd is there for the case when all the parameters are blank and there is no last found window.
+MouseWinActivate(winTitle := '', winText := '', excludedTitle := '', excludedText := '') {
+    MouseGetPos , , &mouseHwnd
+    WinActivate mouseHwnd
+    return WinActive(winTitle . ' ahk_id ' . mouseHwnd, winText, excludedTitle, excludedText)  ; The mouseHwnd is there for the case when all the parameters are blank and there is no last found window.
 }
 
 MatchTitleAndCallFunc(options, functor) {
-    if RegExMatch(options, 'i)1|2|3|RegEx', &match_mode)
-        SetTitleMatchMode match_mode[]
+    if RegExMatch(options, 'i)1|2|3|RegEx', &matchMode)
+        SetTitleMatchMode matchMode[]
     if RegExMatch(options, 'i)Fast|Slow', &speed)
         SetTitleMatchMode speed[]
 

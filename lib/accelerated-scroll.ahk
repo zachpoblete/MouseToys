@@ -15,29 +15,29 @@ AcceleratedScroll() {  ; To use effectively, make sure this function is the firs
 
     ; Session variables:
     _distance,
-    _max_speed
+    _maxSpeed
 
-    time_between_hotkeys_ms := A_TimeSincePriorHotkey or 1
+    timeBetweenHotkeysMs := A_TimeSincePriorHotkey or 1
 
-    if not (A_ThisHotkey = A_PriorHotkey and time_between_hotkeys_ms < TIMEOUT_MS) {
+    if not (A_ThisHotkey = A_PriorHotkey and timeBetweenHotkeysMs < TIMEOUT_MS) {
         ; Combo broken, so reset session variables:
         _distance := 0
-        _max_speed := 1
+        _maxSpeed := 1
 
         MouseClick A_ThisHotkey
         return
     }
 
     _distance++  ; Remember how many times the current direction has been scrolled in.
-    speed := (time_between_hotkeys_ms < 100) ? 250.0/time_between_hotkeys_ms - 1 : 1  ; Calculate acceleration factor using a 1/x curve.
+    speed := (timeBetweenHotkeysMs < 100) ? 250.0/timeBetweenHotkeysMs - 1 : 1  ; Calculate acceleration factor using a 1/x curve.
 
     ; Apply boost:
     if BOOST > 1 and _distance > BOOST {
         ; Hold onto the highest speed achieved during this boost:
-        if speed > _max_speed
-            _max_speed := speed
+        if speed > _maxSpeed
+            _maxSpeed := speed
         else
-            speed := _max_speed
+            speed := _maxSpeed
         speed *= _distance / BOOST
     }
 

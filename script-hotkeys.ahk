@@ -37,14 +37,14 @@
         static WIN_SPY := 'Window Spy ahk_class AutoHotkeyGUI'
         
         try {
-            min_max := WinGetMinMax(WIN_SPY)
+            minMax := WinGetMinMax(WIN_SPY)
         }
         catch TargetError {
             Run 'WindowSpy.ahk', A_ProgramFiles . '\AutoHotkey'
             return
         }
 
-        if min_max = -1 {
+        if minMax = -1 {
             WinActive 'A'
             WinActivate WIN_SPY
             WinActivate

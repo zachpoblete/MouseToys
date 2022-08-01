@@ -8,11 +8,11 @@
 ;====================================================================================================
 
 BrowserHotkeys () => GetKeyState('NumLock', 'T')
-BrowserHotkeys(hotif_ex_functor) {
-    C_Hotkey.Browser.gotoSelectedFolder  'f', hotif_ex_functor
-    C_Hotkey.Browser.searchSelectedAsUrl 'u', , hotif_ex_functor
-    C_Hotkey.Browser.searchSelectedAsUrl 'g', 'https://www.google.com/search?q=', hotif_ex_functor
-    C_Hotkey.Browser.searchSelectedAsUrl 'y', 'https://www.youtube.com/results?search_query=', hotif_ex_functor
+BrowserHotkeys(hotifExFunctor) {
+    C_Hotkey.Browser.gotoSelectedFolder  'f', hotifExFunctor
+    C_Hotkey.Browser.searchSelectedAsUrl 'u', , hotifExFunctor
+    C_Hotkey.Browser.searchSelectedAsUrl 'g', 'https://www.google.com/search?q=', hotifExFunctor
+    C_Hotkey.Browser.searchSelectedAsUrl 'y', 'https://www.youtube.com/results?search_query=', hotifExFunctor
 }
 
 #HotIf WinActive('ahk_exe msedge.exe')
@@ -60,8 +60,8 @@ keyboardShortcut-Quarter.js:
 
 #HotIf WinActive(CLASSES['ZOOM']['MIN_VID']) or WinActive(CLASSES['ZOOM']['MIN_CONTROL'])
 #Up:: {
-    WinGetPos , , , &win_h
-    ControlClick 'x200 y' . win_h - 30  ; Exit minimized video.
+    WinGetPos , , , &winH
+    ControlClick 'x200 y' . winH - 30  ; Exit minimized video.
 }
 
 #HotIf WinActive(CLASSES['ZOOM']['HOME']) and not WinExist('Zoom ahk_pid ' . TryFunc(WinGetPid.bind(CLASSES['ZOOM']['TOOLBAR'])))  ; Check if a visible meeting window exists.
@@ -73,9 +73,9 @@ keyboardShortcut-Quarter.js:
         Zoom_OpenReactions(thisHotkey)
         SetTimer select, -50
         select() {
-            WinGetPos , , &win_w, &win_h, CLASSES['ZOOM']['REACTION']
-            ImageSearch &image_x, &image_y, 0, 0, win_w, win_h, '*60 images\thumbs up.png'
-            ControlClick 'x' . image_x . ' y' image_y, CLASSES['ZOOM']['MEETING']
+            WinGetPos , , &winW, &winH, CLASSES['ZOOM']['REACTION']
+            ImageSearch &imageX, &imageY, 0, 0, winW, winH, '*60 images\thumbs up.png'
+            ControlClick 'x' . imageX . ' y' imageY, CLASSES['ZOOM']['MEETING']
         }
     }
 
@@ -90,18 +90,18 @@ keyboardShortcut-Quarter.js:
         }
 
         WinActivate
-        WinGetPos , , &win_w, &win_h
+        WinGetPos , , &winW, &winH
 
-        if not ImageSearch(&image_x, &image_y, 0, win_h - 60, win_w, win_h, '*60 images\reactions.png') {
-            ControlClick 'x' . image_x . ' y' image_y, CLASSES['ZOOM']['MEETING']  ; Search meeting controls region.
+        if not ImageSearch(&imageX, &imageY, 0, winH - 60, winW, winH, '*60 images\reactions.png') {
+            ControlClick 'x' . imageX . ' y' imageY, CLASSES['ZOOM']['MEETING']  ; Search meeting controls region.
             return
         }
-        ImageSearch &image_x, &image_y, 0, win_h - 60, win_w, win_h, '*60 images\more.png'
-        ControlClick 'x' . image_x . ' y' image_y, CLASSES['ZOOM']['MEETING']
+        ImageSearch &imageX, &imageY, 0, winH - 60, winW, winH, '*60 images\more.png'
+        ControlClick 'x' . imageX . ' y' imageY, CLASSES['ZOOM']['MEETING']
 
         SetTimer select, -150
         select() {
-            if ImageSearch(&image_x, &image_y, 0, win_h - 60, win_w, win_h, '*60 images\apps.png')
+            if ImageSearch(&imageX, &imageY, 0, winH - 60, winW, winH, '*60 images\apps.png')
                 Send '{Up}'
             Send '{Up}'
             SetTimer () => Send('{Space}'), -10
@@ -141,11 +141,11 @@ $Volume_Up::   DisplayAndSetVolume 1
 $Volume_Down:: DisplayAndSetVolume -1
 
 DisplayAndSetVolume(variation) {
-    new_vol := SoundGetVolume() + variation
-    vol_direction := (variation > 0 or Round(new_vol) = 1) ? 'Up' : 'Down'  ; Idkwb Round(new_vol) before this point doesn't work.
+    newVol := SoundGetVolume() + variation
+    volDirection := (variation > 0 or Round(newVol) = 1) ? 'Up' : 'Down'  ; Idkwb Round(newVol) before this point doesn't work.
 
-    Send '{Volume_' . vol_direction . '}'  ; Vary volume by 2, and, importantly, display volume slider (and media overlay).
-    SoundSetVolume new_vol  ; Override that normal variation of 2.
+    Send '{Volume_' . volDirection . '}'  ; Vary volume by 2, and, importantly, display volume slider (and media overlay).
+    SoundSetVolume newVol  ; Override that normal variation of 2.
 }
 #HotIf
 
@@ -168,11 +168,11 @@ C_BrightnessSetter:
 #F5::
     ProcessCloseOpen(thisHotkey) {
         WinExist 'A'
-        win_pid := WinGetPID()
-        win_path := ProcessGetPath(win_pid)
+        winPid := WinGetPID()
+        winPath := ProcessGetPath(winPid)
         WinClose
-        ProcessWaitClose win_pid
-        Run win_path
+        ProcessWaitClose winPid
+        Run winPath
     }
 
 F9::    Media_Prev

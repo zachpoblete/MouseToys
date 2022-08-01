@@ -8,10 +8,10 @@ class C_KeyWait {
         return this._states[key][options]
     }
 
-    static set(key, options, is_waiting) {
-        this._states[key][options] := is_waiting
+    static set(key, options, isWaiting) {
+        this._states[key][options] := isWaiting
 
-        if not is_waiting
+        if not isWaiting
             return
 
         KeyWait key, options
@@ -20,14 +20,14 @@ class C_KeyWait {
 }
 
 class C_Hotkey {
-    static ctrlTab(hk, should_press_shift) {
+    static ctrlTab(hk, shouldPressShift) {
         sendFirstAndLast(thisHotkey) {
             Send '{Ctrl Down}' . tab
             KeyWait HotkeyGetPrefixKey(thisHotkey)
             Send '{Ctrl Up}'
         }
 
-        tab := (should_press_shift) ? '{Shift Down}{Tab}{Shift Up}' : '{Tab}'
+        tab := (shouldPressShift) ? '{Shift Down}{Tab}{Shift Up}' : '{Tab}'
 
         HotIf thisHotkey => GetKeyState('Ctrl')
         Hotkey hk, thisHotkey => Send(tab)
@@ -41,8 +41,8 @@ class C_Hotkey {
             return WinActive('ahk_exe msedge.exe') or WinActive('ahk_exe firefox.exe') or WinActive('ahk_exe chrome.exe')
         }
 
-        static gotoSelectedFolder(hk, hotif_ex_functor := '') {
-            this.hotIfCondition hotif_ex_functor
+        static gotoSelectedFolder(hk, hotifExFunctor := '') {
+            this.hotIfCondition hotifExFunctor
             Hotkey hk, thisHotkey => logic()
             logic() {
                 selected := GetSelectedElseExit()
@@ -51,23 +51,23 @@ class C_Hotkey {
             HotIf
         }
 
-        static hotIfCondition(hotif_ex_functor := '') {
-            if hotif_ex_functor
-                HotIf thisHotkey => this.active() and hotif_ex_functor()
+        static hotIfCondition(hotifExFunctor := '') {
+            if hotifExFunctor
+                HotIf thisHotkey => this.active() and hotifExFunctor()
             else
                 HotIf thisHotkey => this.active()
         }
 
-        static searchSelectedAsUrl(hk, engine := '', hotif_ex_functor := '') {
-            searchInTab(in_new) {
+        static searchSelectedAsUrl(hk, engine := '', hotifExFunctor := '') {
+            searchInTab(inNew) {
                 query := GetSelectedElseExit()
 
-                Send '{Ctrl Down}' . (in_new ? 't' : 'l') . '{Ctrl Up}'
+                Send '{Ctrl Down}' . (inNew ? 't' : 'l') . '{Ctrl Up}'
                 SendInstantRaw (engine) ? this.queryToUrl(query, engine) : query
                 SetTimer () => Send('{Enter}'), -10
             }
 
-            this.hotIfCondition hotif_ex_functor
+            this.hotIfCondition hotifExFunctor
             Hotkey hk, thisHotkey => searchInTab(true)
             Hotkey '+' . hk, thisHotkey => searchInTab(false)
             HotIf

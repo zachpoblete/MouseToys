@@ -14,21 +14,21 @@ ClosePopUps() {
             return
 
         CoordMode 'Mouse', 'Screen'
-        MouseGetPos &mouse_start_x, &mouse_start_y
-        WinGetPos &win_original_x, &win_original_y
+        MouseGetPos &mouseStartX, &mouseStartY
+        WinGetPos &winOriginalX, &winOriginalY
 
         while GetKeyState('LButton', 'P') {  ; SetTimer isn't used to retain the last found window.
             if GetKeyState('Esc', 'P') {
-                WinMove win_original_x, win_original_y
+                WinMove winOriginalX, winOriginalY
                 break
             }
 
-            MouseGetPos &mouse_x, &mouse_y
-            WinGetPos &win_x, &win_y
-            WinMove win_x + (mouse_x - mouse_start_x), win_y + (mouse_y - mouse_start_y)
+            MouseGetPos &mouseX, &mouseY
+            WinGetPos &winX, &winY
+            WinMove winX + (mouseX - mouseStartX), winY + (mouseY - mouseStartY)
 
-            mouse_start_x := mouse_x
-            mouse_start_y := mouse_y
+            mouseStartX := mouseX
+            mouseStartY := mouseY
 
             Sleep 10
         }
