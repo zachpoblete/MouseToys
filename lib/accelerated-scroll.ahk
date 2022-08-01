@@ -36,8 +36,7 @@ AcceleratedScroll() {  ; To use effectively, make sure this function is the firs
         ; Hold onto the highest speed achieved during this boost:
         if speed > _maxSpeed {
             _maxSpeed := speed
-        }
-        else {
+        } else {
             speed := _maxSpeed
         }
 

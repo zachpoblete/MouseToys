@@ -11,8 +11,7 @@
 #^e:: {
     if WinExist('ahk_exe Code.exe') {
         WinActivate
-    }
-    else {
+    } else {
         Loop Files '*.code-workspace'
             Run A_LoopFileName
     }
@@ -26,8 +25,7 @@
             selected := GetSelectedElseExit()
             command := StrReplace(selected, '#', '_', , , 1)
             Run DIRECTORY . '/commands/' . command . '.htm'
-        }
-        else {
+        } else {
             Run DIRECTORY . '/AutoHotkey.htm'
         }
     }
@@ -38,16 +36,13 @@
         
         try {
             minMax := WinGetMinMax(WIN_SPY)
-        }
-        catch TargetError {
+        } catch TargetError {
             Run 'WindowSpy.ahk', A_ProgramFiles . '\AutoHotkey'
-        }
-        else if minMax = -1 {
+        } else if minMax = -1 {
             WinActive 'A'
             WinActivate WIN_SPY
             WinActivate
-        }
-        else {
+        } else {
             WinClose WIN_SPY
         }
     }

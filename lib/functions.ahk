@@ -9,8 +9,7 @@ TryFunc(fn) {
 TryFuncCatchExit(fn) {
     try {
         return fn()
-    }
-    catch {
+    } catch {
         exit
     }
 }
@@ -82,8 +81,7 @@ HotkeyDelModifierSymbols(hk) {
 
     if InStr(hk, '&') {
         return StrSplit(hk, '&')
-    }
-    else {
+    } else {
         return RegExReplace(hk, '[#!^+<>*~$]')
     }
 }
@@ -91,11 +89,9 @@ HotkeyDelModifierSymbols(hk) {
 HotkeyEncloseInBraces(hk) {
     if InStr(hk, '&') {
         return '{' . RegExReplace(hk, ' *& *', '}{') . '}'
-    }
-    else if RegExMatch(hk, ' Up$') {
+    } else if RegExMatch(hk, ' Up$') {
         return '{' . hk . '}'
-    }
-    else {
+    } else {
         return RegExReplace(hk, '([#!^+<>]*)([*~$]*)([^*~$]+)', '$1{$3}')
     }
 }
@@ -109,8 +105,7 @@ HotkeyGetPrefixKey(hk) {
 
     if not IsObject(hkKeys) {
         return hkKeys
-    }
-    else {
+    } else {
         return hkKeys[1]
     }
 }
@@ -139,11 +134,9 @@ ActivateElseRun(toRun, workingDir := '', toActivate := '') {
 
     if not WinExist(toActivate) {
         Run toRun, workingDir
-    }
-    else if InStr(toActivate, 'ahk_group') {
+    } else if InStr(toActivate, 'ahk_group') {
         GroupActivate LTrim(StrDel(toActivate, 'ahk_group')), 'R'
-    }
-    else {
+    } else {
         WinActivate toActivate
     }
 }
@@ -193,8 +186,7 @@ MatchTitleAndCallFunc(options, fn) {
 
     if InStr(options, 'Hidden') {
         DetectHiddenWindows true
-    }
-    else if InStr(options, 'Visible') {
+    } else if InStr(options, 'Visible') {
         DetectHiddenWindows false
     }
 

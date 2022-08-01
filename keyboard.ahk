@@ -83,8 +83,7 @@ keyboardShortcut-Quarter.js:
         if WinExist(CLASSES['ZOOM']['REACTION']) {
             WinActivate
             return
-        }
-        else if not WinExist(CLASSES['ZOOM']['MEETING']) {
+        } else if not WinExist(CLASSES['ZOOM']['MEETING']) {
             return
         }
 
@@ -135,11 +134,9 @@ GroupAdd 'ZoomWins', 'ahk_class Z ahk_exe Zoom.exe', , , 'ZPToolBarParentWnd'
     Zoom_ActivateElseRun(thisHotkey) {
         if not WinExist('ahk_exe Zoom.exe') {
             Run 'Zoom', 'C:\Users\Zach Poblete\AppData\Roaming\Zoom\bin'
-        }
-        else if WinExist(CLASSES['ZOOM']['HIDDEN_TOOLBAR']) or WinExist('Zoom ahk_pid ' . TryFunc(WinGetPid.bind(CLASSES['ZOOM']['TOOLBAR']))) {  ; Check if a visible Zoom meeting window exists.
+        } else if WinExist(CLASSES['ZOOM']['HIDDEN_TOOLBAR']) or WinExist('Zoom ahk_pid ' . TryFunc(WinGetPid.bind(CLASSES['ZOOM']['TOOLBAR']))) {  ; Check if a visible Zoom meeting window exists.
             WinActivate
-        }
-        else {
+        } else {
             MatchTitleAndCallFunc('RegEx', () => GroupActivateRelIfExists('ZoomWins'))  ; Activate visible Zoom windows.
         }
     }
@@ -232,8 +229,7 @@ AHK:
 +-:: {
     if WinActive('Desmos ahk_exe msedge.exe') or WinActive('ahk_exe EXCEL.EXE') {
         Send 'sqrt'
-    }
-    else {
+    } else {
         Send '{U+221A}'  ; square root
     }
 }
@@ -243,8 +239,7 @@ AHK:
 ^BS:: {  ; This hotkey doesn't natively work, so work around that.
     if GetSelected() {
         Send '{Del}'
-    }
-    else {
+    } else {
         Send '{Ctrl Down}{Shift Down}{Left}{Del}{Shift Up}{Ctrl Up}'  ; Delete last word typed.
     }
 }
@@ -272,8 +267,7 @@ if GetKeyState('NumLock', 'T') {
 
         if GetKeyState('NumLock', 'T') {
             SetTimer toolTipNumLock, 10
-        }
-        else {
+        } else {
             SetTimer toolTipNumLock, 0
             ToolTip
         }
@@ -345,8 +339,7 @@ RWin:: {
 
     if ih.input = ';' {
         tabs := A_Tab
-    }
-    else if RegExMatch(ih.Input, '\A(\d);\z', &match) {
+    } else if RegExMatch(ih.Input, '\A(\d);\z', &match) {
         Loop match[1]
             tabs .= A_Tab
     }

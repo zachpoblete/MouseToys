@@ -45,8 +45,7 @@ class C_Hotkey {
         static hotIfCondition(hotifExFn := '') {
             if hotifExFn {
                 HotIf thisHotkey => this.active() and hotifExFn()
-            }
-            else {
+            } else {
                 HotIf thisHotkey => this.active()
             }
         }
@@ -93,8 +92,7 @@ class C_Timer {
     static get(index := 1) {
         if this._labels.has(index) {
             return this._labels[index]
-        }
-        else {
+        } else {
             this._labels.insertAt 1, ''
             return
         } 
@@ -110,11 +108,9 @@ class C_Timer {
         if period > 0 {
             this._labels.removeAt index
             this._labels.insertAt index, fn
-        }
-        else if period = 0 {
+        } else if period = 0 {
             this._labels.removeAt index
-        }
-        else {
+        } else {
             SetTimer () => this._labels.removeAt(index), -period
         }
     }
