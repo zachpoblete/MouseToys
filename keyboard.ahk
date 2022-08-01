@@ -152,8 +152,8 @@ DisplayAndSetVolume(variation) {
 if not ProcessExist('brightness-setter.exe')
     Run 'brightness-setter'
 
-OnExit CloseBrightnessSetter
-CloseBrightnessSetter(reason, code) {
+OnExit (reason, code) => CloseBrightnessSetter()
+CloseBrightnessSetter() {
     if ProcessExist('brightness-setter.exe')
         ProcessClose 'brightness-setter.exe'
     ProcessWaitClose 'brightness-setter.exe'
