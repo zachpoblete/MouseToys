@@ -41,16 +41,6 @@ class C_Hotkey {
             return WinActive('ahk_exe msedge.exe') or WinActive('ahk_exe firefox.exe') or WinActive('ahk_exe chrome.exe')
         }
 
-        static runSelectedAsFolder(hk, hotifExFn := '') {
-            this.hotIfCondition hotifExFn
-            Hotkey hk, thisHotkey => logic()
-            logic() {
-                selected := GetSelectedElseExit()
-                Run 'explore ' . selected
-            }
-            HotIf
-        }
-
         static hotIfCondition(hotifExFn := '') {
             if hotifExFn
                 HotIf thisHotkey => this.active() and hotifExFn()
@@ -58,18 +48,32 @@ class C_Hotkey {
                 HotIf thisHotkey => this.active()
         }
 
-        static runSelectedAsUrl(hk, engine := '', hotifExFn := '') {
-            searchInTab(inNew) {
-                query := GetSelectedElseExit()
+        static searchSelectedAsUrl(hk, engine := '', hotifExFn := '') {
+            searchUrlInTab(inNew) {
+                url := getUrlFromSelectedElseExit()
 
-                Send '{Ctrl Down}' . (inNew ? 't' : 'l') . '{Ctrl Up}'
-                SendInstantRaw (engine) ? this.queryToUrl(query, engine) : query
+                letter := (inNew) ? 't' : 'l'
+                Send '{Ctrl Down}' . letter . '{Ctrl Up}'
+
+                SendInstantRaw url
+                
                 SetTimer () => Send('{Enter}'), -10
+            }
+            runUrl() {
+                url := getUrlFromSelectedElseExit()
+                Run url
+            }
+            getUrlFromSelectedElseExit() {
+                query := GetSelectedElseExit()
+                return (engine) ? this.queryToUrl(query, engine) : query
             }
 
             this.hotIfCondition hotifExFn
-            Hotkey hk, thisHotkey => searchInTab(true)
-            Hotkey '+' . hk, thisHotkey => searchInTab(false)
+            Hotkey hk, thisHotkey => searchUrlInTab(true)
+            Hotkey '+' . hk, thisHotkey => searchUrlInTab(false)
+
+            HotIf thisHotkey => hotifExFn()
+            hotkey hk, thisHotkey => runUrl()
             HotIf
         }
         

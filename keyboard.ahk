@@ -9,10 +9,9 @@
 
 BrowserHotkeys () => GetKeyState('NumLock', 'T')
 BrowserHotkeys(hotifExFn) {
-    C_Hotkey.Browser.runSelectedAsFolder 'f', hotifExFn
-    C_Hotkey.Browser.runSelectedAsUrl 'u', , hotifExFn
-    C_Hotkey.Browser.runSelectedAsUrl 'g', 'https://www.google.com/search?q=', hotifExFn
-    C_Hotkey.Browser.runSelectedAsUrl 'y', 'https://www.youtube.com/results?search_query=', hotifExFn
+    C_Hotkey.Browser.searchSelectedAsUrl 'u', , hotifExFn
+    C_Hotkey.Browser.searchSelectedAsUrl 'g', 'https://www.google.com/search?q=', hotifExFn
+    C_Hotkey.Browser.searchSelectedAsUrl 'y', 'https://www.youtube.com/results?search_query=', hotifExFn
 }
 
 #HotIf WinActive('ahk_exe msedge.exe')
@@ -110,8 +109,16 @@ keyboardShortcut-Quarter.js:
 #HotIf
 
 ;====================================================================================================
-; Activate
+; Run and Activate
 ;====================================================================================================
+
+#HotIf GetKeyState('NumLock', 'T')
+f::
+    RunSelectedAsFolder(thisHotkey) {
+        selected := GetSelectedElseExit()
+        Run 'explore ' . selected
+    }
+#HotIf
 
 #!c:: ActivateElseRun 'C:\Users\Zach Poblete\Pictures\Camera Roll'
 #!v:: Run 'App volume and device preferences', 'C:\Windows'
