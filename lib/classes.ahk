@@ -11,8 +11,9 @@ class C_KeyWait {
     static set(key, options, isWaiting) {
         this._states[key][options] := isWaiting
 
-        if not isWaiting
+        if not isWaiting {
             return
+        }
 
         KeyWait key, options
         this._states[key][options] := false
@@ -42,10 +43,12 @@ class C_Hotkey {
         }
 
         static hotIfCondition(hotifExFn := '') {
-            if hotifExFn
+            if hotifExFn {
                 HotIf thisHotkey => this.active() and hotifExFn()
-            else
+            }
+            else {
                 HotIf thisHotkey => this.active()
+            }
         }
 
         static searchSelectedAsUrl(hk, engine := '', hotifExFn := '') {
@@ -100,8 +103,9 @@ class C_Timer {
     static set(fn, period := '', priority := '', index := 1) {
         SetTimer fn, period, priority
 
-        if not this._labels.has(index)
+        if not this._labels.has(index) {
             this._labels.insertAt index, fn
+        }
 
         if period > 0 {
             this._labels.removeAt index

@@ -9,11 +9,13 @@
 #^x:: ExitApp
 
 #^e:: {
-    if WinExist('ahk_exe Code.exe')
+    if WinExist('ahk_exe Code.exe') {
         WinActivate
-    else
+    }
+    else {
         Loop Files '*.code-workspace'
             Run A_LoopFileName
+    }
 }
 
 #^h::

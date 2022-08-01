@@ -1,15 +1,18 @@
 #Include default-settings.ahk
 
 TryFunc(fn) {
-    try
+    try {
         return fn()
+    }
 }
 
 TryFuncCatchExit(fn) {
-    try
+    try {
         return fn()
-    catch
+    }
+    catch {
         exit
+    }
 }
 
 ;====================================================================================================
@@ -31,8 +34,9 @@ GetSelected() {
 GetSelectedElseExit() {
     selected := GetSelected()
 
-    if not selected
+    if not selected {
         exit
+    }
 
     return selected
 }
@@ -57,8 +61,9 @@ GetFileExt(fileName) {
 
 OnFileSave(fileName, fn, shouldCall := true) {
     funcIfSave(fn) {            
-        if not InStr(FileGetAttrib(fileName), 'A')
+        if not InStr(FileGetAttrib(fileName), 'A') {
             return
+        }
         
         FileSetAttrib '-A', fileName
         fn
@@ -75,31 +80,39 @@ OnFileSave(fileName, fn, shouldCall := true) {
 HotkeyDelModifierSymbols(hk) {
     hk := StrReplace(RegExReplace(hk, ' Up$'), A_Space)
 
-    if InStr(hk, '&')
+    if InStr(hk, '&') {
         return StrSplit(hk, '&')
-    else
+    }
+    else {
         return RegExReplace(hk, '[#!^+<>*~$]')
+    }
 }
 
 HotkeyEncloseInBraces(hk) {
-    if InStr(hk, '&')
+    if InStr(hk, '&') {
         return '{' . RegExReplace(hk, ' *& *', '}{') . '}'
-    else if RegExMatch(hk, ' Up$')
+    }
+    else if RegExMatch(hk, ' Up$') {
         return '{' . hk . '}'
-    else
+    }
+    else {
         return RegExReplace(hk, '([#!^+<>]*)([*~$]*)([^*~$]+)', '$1{$3}')
+    }
 }
 
 HotkeyGetPrefixKey(hk) {
-    if HotstringGetAbbrev(hk)
+    if HotstringGetAbbrev(hk) {
         return
+    }
 
     hkKeys := HotkeyDelModifierSymbols(hk)
 
-    if not IsObject(hkKeys)
+    if not IsObject(hkKeys) {
         return hkKeys
-    else
+    }
+    else {
         return hkKeys[1]
+    }
 }
 
 HotstringGetAbbrev(hs) {
@@ -120,20 +133,25 @@ StrDel(haystack, needle, limit := 1) {
 ;====================================================================================================
 
 ActivateElseRun(toRun, workingDir := '', toActivate := '') {
-    if toActivate = ''
+    if toActivate = '' {
         toActivate := 'ahk_exe ' . toRun
+    }
 
-    if not WinExist(toActivate)
+    if not WinExist(toActivate) {
         Run toRun, workingDir
-    else if InStr(toActivate, 'ahk_group')
+    }
+    else if InStr(toActivate, 'ahk_group') {
         GroupActivate LTrim(StrDel(toActivate, 'ahk_group')), 'R'
-    else
+    }
+    else {
         WinActivate toActivate
+    }
 }
 
 GroupActivateRelIfExists(groupName) {
-    if not WinExist('ahk_group ' . groupName)
+    if not WinExist('ahk_group ' . groupName) {
         return
+    }
 
     GroupActivate groupName, 'R'
 }
@@ -146,12 +164,14 @@ MouseControlFocus(control := '', winTitle := '', winText := '', excludedTitle :=
     mouseClassNn := ControlGetClassNN(mouseControlHwnd)
     mouseControlText := ControlGetText(mouseControlHwnd)
 
-    if not control ~= '\A(' mouseClassNn '|' mouseControlText '|' mouseControlHwnd ')\z'
-        if control.hwnd != mouseControlHwnd
+    if not control ~= '\A(' mouseClassNn '|' mouseControlText '|' mouseControlHwnd ')\z' {
+        if control.hwnd != mouseControlHwnd {
             return
-
-    if not WinActive(winTitle . ' ahk_id ' . mouseHwnd, winText, excludedTitle, excludedText)
+        }
+    }
+    if not WinActive(winTitle . ' ahk_id ' . mouseHwnd, winText, excludedTitle, excludedText) {
         return
+    }
 
     return mouseControlHwnd
 }
@@ -163,16 +183,20 @@ MouseWinActivate(winTitle := '', winText := '', excludedTitle := '', excludedTex
 }
 
 MatchTitleAndCallFunc(options, fn) {
-    if RegExMatch(options, 'i)1|2|3|RegEx', &matchMode)
+    if RegExMatch(options, 'i)1|2|3|RegEx', &matchMode) {
         SetTitleMatchMode matchMode[]
+    }
     
-    if RegExMatch(options, 'i)Fast|Slow', &speed)
+    if RegExMatch(options, 'i)Fast|Slow', &speed) {
         SetTitleMatchMode speed[]
+    }
 
-    if InStr(options, 'Hidden')
+    if InStr(options, 'Hidden') {
         DetectHiddenWindows true
-    else if InStr(options, 'Visible')
+    }
+    else if InStr(options, 'Visible') {
         DetectHiddenWindows false
+    }
 
     fn
 }

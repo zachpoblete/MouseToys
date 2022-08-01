@@ -34,10 +34,12 @@ AcceleratedScroll() {  ; To use effectively, make sure this function is the firs
     ; Apply boost:
     if BOOST > 1 and _distance > BOOST {
         ; Hold onto the highest speed achieved during this boost:
-        if speed > _maxSpeed
+        if speed > _maxSpeed {
             _maxSpeed := speed
-        else
+        }
+        else {
             speed := _maxSpeed
+        }
 
         speed *= _distance / BOOST
     }

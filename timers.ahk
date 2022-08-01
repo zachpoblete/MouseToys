@@ -3,16 +3,18 @@
 
 SetTimer ClosePopUps
 ClosePopUps() {
-    try
+    try {
         WinClose 'RAKK Lam-Ang Pro FineTuner ' . CLASSES['DIALOG_BOX'] . ' ahk_exe RAKK Lam-Ang Pro Mechanical Keyboard.exe', 'Failed to activate profile!'  ; When selecting a different profile in RAKK Lam-Ang Pro FineTuner, close the pop-up error
+    }
 }
 
 #LButton::
     WinDrag(thisHotkey) {
         WinExist 'A'
         
-        if MouseWinActivate('ahk_class WorkerW ahk_exe Explorer.EXE') or WinGetMinMax() != 0
+        if MouseWinActivate('ahk_class WorkerW ahk_exe Explorer.EXE') or WinGetMinMax() != 0 {
             return
+        }
 
         CoordMode 'Mouse', 'Screen'
         MouseGetPos &mouseStartX, &mouseStartY

@@ -100,8 +100,9 @@ keyboardShortcut-Quarter.js:
 
         SetTimer select, -150
         select() {
-            if ImageSearch(&imageX, &imageY, 0, winH - 60, winW, winH, '*60 images\apps.png')
+            if ImageSearch(&imageX, &imageY, 0, winH - 60, winW, winH, '*60 images\apps.png') {
                 Send '{Up}'
+            }
 
             Send '{Up}'
             SetTimer () => Send('{Space}'), -10
@@ -132,12 +133,15 @@ GroupAdd 'ZoomWins', 'ahk_class Z ahk_exe Zoom.exe', , , 'ZPToolBarParentWnd'
 #+p:: MatchTitleAndCallFunc 'RegEx', () => GroupActivateRelIfExists('PhotoWins')
 #+z::
     Zoom_ActivateElseRun(thisHotkey) {
-        if not WinExist('ahk_exe Zoom.exe')
+        if not WinExist('ahk_exe Zoom.exe') {
             Run 'Zoom', 'C:\Users\Zach Poblete\AppData\Roaming\Zoom\bin'
-        else if WinExist(CLASSES['ZOOM']['HIDDEN_TOOLBAR']) or WinExist('Zoom ahk_pid ' . TryFunc(WinGetPid.bind(CLASSES['ZOOM']['TOOLBAR'])))  ; Check if a visible Zoom meeting window exists.
+        }
+        else if WinExist(CLASSES['ZOOM']['HIDDEN_TOOLBAR']) or WinExist('Zoom ahk_pid ' . TryFunc(WinGetPid.bind(CLASSES['ZOOM']['TOOLBAR']))) {  ; Check if a visible Zoom meeting window exists.
             WinActivate
-        else
+        }
+        else {
             MatchTitleAndCallFunc('RegEx', () => GroupActivateRelIfExists('ZoomWins'))  ; Activate visible Zoom windows.
+        }
     }
 
 ;====================================================================================================
@@ -157,13 +161,15 @@ DisplayAndSetVolume(variation) {
 }
 #HotIf
 
-if not ProcessExist('brightness-setter.exe')
+if not ProcessExist('brightness-setter.exe') {
     Run 'brightness-setter'
+}
 
 OnExit (reason, code) => CloseBrightnessSetter()
 CloseBrightnessSetter() {
-    if ProcessExist('brightness-setter.exe')
+    if ProcessExist('brightness-setter.exe') {
         ProcessClose 'brightness-setter.exe'
+    }
 
     ProcessWaitClose 'brightness-setter.exe'
 }
@@ -224,19 +230,23 @@ AHK:
 +Space:: Send '_'
 
 +-:: {
-    if WinActive('Desmos ahk_exe msedge.exe') or WinActive('ahk_exe EXCEL.EXE')
+    if WinActive('Desmos ahk_exe msedge.exe') or WinActive('ahk_exe EXCEL.EXE') {
         Send 'sqrt'
-    else
+    }
+    else {
         Send '{U+221A}'  ; square root
+    }
 }
 #InputLevel
 
 #HotIf RegExMatch(ControlGetFocus('A'), '^Edit\d+$')
 ^BS:: {  ; This hotkey doesn't natively work, so work around that.
-    if GetSelected()
+    if GetSelected() {
         Send '{Del}'
-    else
+    }
+    else {
         Send '{Ctrl Down}{Shift Down}{Left}{Del}{Shift Up}{Ctrl Up}'  ; Delete last word typed.
+    }
 }
 
 #HotIf
@@ -247,8 +257,9 @@ AHK:
 ; Modifiers
 ;====================================================================================================
 
-if GetKeyState('NumLock', 'T')
+if GetKeyState('NumLock', 'T') {
     ToolTip 'NumLock On'
+}
 
 #InputLevel 1
 ^Pause:: Send '{NumLock}'  ; When Ctrl is down, NumLock produces the key code of Pause while Pause produces CtrlBreak.
@@ -270,8 +281,9 @@ if GetKeyState('NumLock', 'T')
 }
 
 ~*Alt:: {
-    if not MatchTitleAndCallFunc('RegEx', () => WinActive('ahk_exe .EXE$'))  ; Check if an Office app isn't active.
+    if not MatchTitleAndCallFunc('RegEx', () => WinActive('ahk_exe .EXE$')) {  ; Check if an Office app isn't active.
         Send '{Ctrl}'
+    }
 }
 
 LWin::
@@ -279,8 +291,9 @@ RWin:: {
         Send '{' . thisHotkey . ' Down}'
         KeyWait thisHotkey
 
-        if A_PriorKey = thisHotkey and A_TimeSinceThisHotkey > 500
+        if A_PriorKey = thisHotkey and A_TimeSinceThisHotkey > 500 {
             Send '{Ctrl}'
+        }
 
         Send '{' . thisHotkey . ' Up}'
     }
@@ -291,8 +304,9 @@ RWin:: {
 ; For each Unicode character sent, the hostring abbreviation is the HTML entity (or something intuitive).
 
 ~^z:: {
-    if A_PriorHotkey ~= '^:'  ; Matches hotstrings.
+    if A_PriorHotkey ~= '^:' {  ; Matches hotstrings.
         Send '{Ctrl Down}z{Ctrl Up}'  ; Send an extra ^z to go back to the abbreviation.
+    }
 }
 
 #Hotstring EndChars `n`t
@@ -323,17 +337,19 @@ RWin:: {
     ih.Start
     ih.Wait
 
-    if not ih.Endkey
+    if not ih.Endkey {
         return
+    }
 
     tabs := ''
 
-    if ih.input = ';'
+    if ih.input = ';' {
         tabs := A_Tab
-    else if RegExMatch(ih.Input, '\A(\d);\z', &match)
+    }
+    else if RegExMatch(ih.Input, '\A(\d);\z', &match) {
         Loop match[1]
             tabs .= A_Tab
-
+    }
     Send '{Ctrl Down}{Shift Down}{Left 2}{Ctrl Up}{Left}{Shift Up}'  ; Erase the abbreviation.
     SendInstantRaw tabs
 }
