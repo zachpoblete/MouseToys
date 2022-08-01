@@ -17,7 +17,7 @@
 }
 
 #^h::
-    OpenDocs(this_hk) {
+    OpenDocs(thisHotkey) {
         static DIRECTORY := 'https://lexikos.github.io/v2/docs'
 
         if GetKeyState('CapsLock', 'T') {
@@ -33,7 +33,7 @@
     }
 
 #^w::
-    WinSpy(this_hk) {
+    WinSpy(thisHotkey) {
         static WIN_SPY := 'Window Spy ahk_class AutoHotkeyGUI'
         
         try {

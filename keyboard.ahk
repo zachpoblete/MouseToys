@@ -69,8 +69,8 @@ keyboardShortcut-Quarter.js:
 
 #HotIf WinActive('ahk_pid ' . TryFunc(WinGetPid.bind(CLASSES['ZOOM']['TOOLBAR'])))  ; Check if a meeting window is active.
 !=::
-    Zoom_GiveThumbsUp(this_hk) {
-        Zoom_OpenReactions(this_hk)
+    Zoom_GiveThumbsUp(thisHotkey) {
+        Zoom_OpenReactions(thisHotkey)
         SetTimer select, -50
         select() {
             WinGetPos , , &win_w, &win_h, CLASSES['ZOOM']['REACTION']
@@ -80,7 +80,7 @@ keyboardShortcut-Quarter.js:
     }
 
 !e::
-    Zoom_OpenReactions(this_hk) {
+    Zoom_OpenReactions(thisHotkey) {
         if WinExist(CLASSES['ZOOM']['REACTION']) {
             WinActivate
             return
@@ -123,7 +123,7 @@ GroupAdd 'ZoomWins', 'ahk_class Z ahk_exe Zoom.exe', , , 'ZPToolBarParentWnd'
 #+e:: ActivateElseRun 'explorer.exe', , 'ahk_group ExplorerWins'
 #+p:: MatchTitleAndCallFunc 'RegEx', () => GroupActivateRelIfExists('PhotoWins')
 #+z::
-    Zoom_ActivateElseRun(this_hk) {
+    Zoom_ActivateElseRun(thisHotkey) {
         if not WinExist('ahk_exe Zoom.exe')
             Run 'Zoom', 'C:\Users\Zach Poblete\AppData\Roaming\Zoom\bin'
         else if WinExist(CLASSES['ZOOM']['HIDDEN_TOOLBAR']) or WinExist('Zoom ahk_pid ' . TryFunc(WinGetPid.bind(CLASSES['ZOOM']['TOOLBAR'])))  ; Check if a visible Zoom meeting window exists.
@@ -166,7 +166,7 @@ C_BrightnessSetter:
 */
 
 #F5::
-    ProcessCloseOpen(this_hk) {
+    ProcessCloseOpen(thisHotkey) {
         WinExist 'A'
         win_pid := WinGetPID()
         win_path := ProcessGetPath(win_pid)
@@ -264,14 +264,13 @@ if GetKeyState('NumLock', 'T')
 }
 
 LWin::
-RWin:: 
-    WinKey(win_key) {
-        Send '{' . win_key . ' Down}'
-        KeyWait win_key
+RWin:: {
+        Send '{' . thisHotkey . ' Down}'
+        KeyWait thisHotkey
 
-        if A_PriorKey = win_key and A_TimeSinceThisHotkey > 500
+        if A_PriorKey = thisHotkey and A_TimeSinceThisHotkey > 500
             Send '{Ctrl}'
-        Send '{' . win_key . ' Up}'
+        Send '{' . thisHotkey . ' Up}'
     }
 
 ;====================================================================================================

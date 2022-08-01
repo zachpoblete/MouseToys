@@ -21,19 +21,19 @@ class C_KeyWait {
 
 class C_Hotkey {
     static ctrlTab(hk, should_press_shift) {
-        sendFirstAndLast(this_hk) {
+        sendFirstAndLast(thisHotkey) {
             Send '{Ctrl Down}' . tab
-            KeyWait HotkeyGetPrefixKey(this_hk)
+            KeyWait HotkeyGetPrefixKey(thisHotkey)
             Send '{Ctrl Up}'
         }
 
         tab := (should_press_shift) ? '{Shift Down}{Tab}{Shift Up}' : '{Tab}'
 
-        HotIf this_hk => GetKeyState('Ctrl')
-        Hotkey hk, this_hk => Send(tab)
+        HotIf thisHotkey => GetKeyState('Ctrl')
+        Hotkey hk, thisHotkey => Send(tab)
 
         HotIf
-        Hotkey hk, this_hk => sendFirstAndLast(this_hk)
+        Hotkey hk, thisHotkey => sendFirstAndLast(thisHotkey)
     }
 
     class Browser {
@@ -43,7 +43,7 @@ class C_Hotkey {
 
         static gotoSelectedFolder(hk, hotif_ex_functor := '') {
             this.hotifCondition hotif_ex_functor
-            Hotkey hk, this_hk => logic()
+            Hotkey hk, thisHotkey => logic()
             logic() {
                 selected := GetSelectedElseExit()
                 Run 'explore ' . selected
@@ -53,9 +53,9 @@ class C_Hotkey {
 
         static hotIfCondition(hotif_ex_functor := '') {
             if hotif_ex_functor
-                HotIf this_hk => this.active() and hotif_ex_functor()
+                HotIf thisHotkey => this.active() and hotif_ex_functor()
             else
-                HotIf this_hk => this.active()
+                HotIf thisHotkey => this.active()
         }
 
         static searchSelectedAsUrl(hk, engine := '', hotif_ex_functor := '') {
@@ -68,8 +68,8 @@ class C_Hotkey {
             }
 
             this.hotifCondition hotif_ex_functor
-            Hotkey hk, this_hk => searchInTab(true)
-            Hotkey '+' . hk, this_hk => searchInTab(false)
+            Hotkey hk, thisHotkey => searchInTab(true)
+            Hotkey '+' . hk, thisHotkey => searchInTab(false)
             HotIf
         }
         
