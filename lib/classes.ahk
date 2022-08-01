@@ -42,7 +42,7 @@ class C_Hotkey {
         }
 
         static gotoSelectedFolder(hk, hotif_ex_functor := '') {
-            this.hotifCondition hotif_ex_functor
+            this.hotIfCondition hotif_ex_functor
             Hotkey hk, thisHotkey => logic()
             logic() {
                 selected := GetSelectedElseExit()
@@ -67,7 +67,7 @@ class C_Hotkey {
                 SetTimer () => Send('{Enter}'), -10
             }
 
-            this.hotifCondition hotif_ex_functor
+            this.hotIfCondition hotif_ex_functor
             Hotkey hk, thisHotkey => searchInTab(true)
             Hotkey '+' . hk, thisHotkey => searchInTab(false)
             HotIf
