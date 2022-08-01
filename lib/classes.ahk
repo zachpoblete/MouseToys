@@ -29,10 +29,10 @@ class C_Hotkey {
 
         tab := (should_press_shift) ? '{Shift Down}{Tab}{Shift Up}' : '{Tab}'
 
-        Hotif this_hk => GetKeyState('Ctrl')
+        HotIf this_hk => GetKeyState('Ctrl')
         Hotkey hk, this_hk => Send(tab)
 
-        Hotif
+        HotIf
         Hotkey hk, this_hk => sendFirstAndLast(this_hk)
     }
 
@@ -48,14 +48,14 @@ class C_Hotkey {
                 selected := GetSelectedElseExit()
                 Run 'explore ' . selected
             }
-            Hotif
+            HotIf
         }
 
-        static hotifCondition(hotif_ex_functor := '') {
+        static hotIfCondition(hotif_ex_functor := '') {
             if hotif_ex_functor
-                Hotif this_hk => this.active() and hotif_ex_functor()
+                HotIf this_hk => this.active() and hotif_ex_functor()
             else
-                Hotif this_hk => this.active()
+                HotIf this_hk => this.active()
         }
 
         static searchSelectedAsUrl(hk, engine := '', hotif_ex_functor := '') {
@@ -70,7 +70,7 @@ class C_Hotkey {
             this.hotifCondition hotif_ex_functor
             Hotkey hk, this_hk => searchInTab(true)
             Hotkey '+' . hk, this_hk => searchInTab(false)
-            Hotif
+            HotIf
         }
         
         static queryToUrl(query, engine) {

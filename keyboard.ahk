@@ -15,13 +15,13 @@ BrowserHotkeys(hotif_ex_functor) {
     C_Hotkey.Browser.searchSelectedAsUrl 'y', 'https://www.youtube.com/results?search_query=', hotif_ex_functor
 }
 
-#Hotif WinActive('ahk_exe msedge.exe')
+#HotIf WinActive('ahk_exe msedge.exe')
 ^e:: Send '{Ctrl Down}{Shift Down},{Shift Up}{Ctrl Up}'  ; Toggle vertical tabs.
 
-#Hotif WinActive('ahk_exe Notion.exe')
+#HotIf WinActive('ahk_exe Notion.exe')
 ^+f:: Send '{Ctrl Down}{Shift Down}h{Shift Up}{Ctrl Up}'  ; Apply last text or highlight color used.
 
-#Hotif WinActive('ahk_exe Spotify.exe')
+#HotIf WinActive('ahk_exe Spotify.exe')
 ; I switched the keyboard shortcuts for varying the navigation bar and friend activity widths.
 ; because when you increase the navigation bar width, the cover art grows taller
 ; hence assigning Down and Up to it
@@ -46,28 +46,28 @@ keyboardShortcut-Quarter.js:
 !+2:: Send '{Alt Down}{Shift Down}3{Shift Up}{Alt Up}'  ; Go to your artists.
 !+3:: Send '{Alt Down}{Shift Down}4{Shift Up}{Alt Up}'  ; Go to your albums.
 !+4:: return
-#Hotif
+#HotIf
 
 ;----------------------------------------------------------------------------------------------------
 ; Zoom
 ;----------------------------------------------------------------------------------------------------
 
-#Hotif WinActive(CLASSES['ZOOM']['MEETING']) and WinWaitActive(CLASSES['ZOOM']['TOOLBAR'], , 0.1)
+#HotIf WinActive(CLASSES['ZOOM']['MEETING']) and WinWaitActive(CLASSES['ZOOM']['TOOLBAR'], , 0.1)
 ~#Down:: WinActivate 'Zoom ahk_pid ' . WinGetPid()  ; Activate minimized video/control.
 
-#Hotif WinActive(CLASSES['ZOOM']['WAIT_HOST']) or WinActive(CLASSES['ZOOM']['VID_PREVIEW'])
+#HotIf WinActive(CLASSES['ZOOM']['WAIT_HOST']) or WinActive(CLASSES['ZOOM']['VID_PREVIEW'])
 #Down:: WinMinimize
 
-#Hotif WinActive(CLASSES['ZOOM']['MIN_VID']) or WinActive(CLASSES['ZOOM']['MIN_CONTROL'])
+#HotIf WinActive(CLASSES['ZOOM']['MIN_VID']) or WinActive(CLASSES['ZOOM']['MIN_CONTROL'])
 #Up:: {
     WinGetPos , , , &win_h
     ControlClick 'x200 y' . win_h - 30  ; Exit minimized video.
 }
 
-#Hotif WinActive(CLASSES['ZOOM']['HOME']) and not WinExist('Zoom ahk_pid ' . TryFunc(WinGetPid.bind(CLASSES['ZOOM']['TOOLBAR'])))  ; Check if a visible meeting window exists.
+#HotIf WinActive(CLASSES['ZOOM']['HOME']) and not WinExist('Zoom ahk_pid ' . TryFunc(WinGetPid.bind(CLASSES['ZOOM']['TOOLBAR'])))  ; Check if a visible meeting window exists.
 !F4:: ProcessClose 'Zoom.exe'  ; Can't use WinClose because that minimizes here.
 
-#Hotif WinActive('ahk_pid ' . TryFunc(WinGetPid.bind(CLASSES['ZOOM']['TOOLBAR'])))  ; Check if a meeting window is active.
+#HotIf WinActive('ahk_pid ' . TryFunc(WinGetPid.bind(CLASSES['ZOOM']['TOOLBAR'])))  ; Check if a meeting window is active.
 !=::
     Zoom_GiveThumbsUp(this_hk) {
         Zoom_OpenReactions(this_hk)
@@ -107,7 +107,7 @@ keyboardShortcut-Quarter.js:
             SetTimer () => Send('{Space}'), -10
         }
     }
-#Hotif
+#HotIf
 
 ;====================================================================================================
 ; Activate
@@ -136,7 +136,7 @@ GroupAdd 'ZoomWins', 'ahk_class Z ahk_exe Zoom.exe', , , 'ZPToolBarParentWnd'
 ; Multimedia
 ;====================================================================================================
 
-#Hotif GetKeyState('CapsLock', 'T')
+#HotIf GetKeyState('CapsLock', 'T')
 $Volume_Up::   DisplayAndSetVolume 1
 $Volume_Down:: DisplayAndSetVolume -1
 
@@ -147,7 +147,7 @@ DisplayAndSetVolume(variation) {
     Send '{Volume_' . vol_direction . '}'  ; Vary volume by 2, and, importantly, display volume slider (and media overlay).
     SoundSetVolume new_vol  ; Override that normal variation of 2.
 }
-#Hotif
+#HotIf
 
 if not ProcessExist('brightness-setter.exe')
     Run 'brightness-setter'
@@ -220,7 +220,7 @@ AHK:
 }
 #InputLevel
 
-#Hotif RegExMatch(ControlGetFocus('A'), '^Edit\d+$')
+#HotIf RegExMatch(ControlGetFocus('A'), '^Edit\d+$')
 ^BS:: {  ; This hotkey doesn't natively work, so work around that.
     if GetSelected()
         Send '{Del}'
@@ -228,7 +228,7 @@ AHK:
         Send '{Ctrl Down}{Shift Down}{Left}{Del}{Shift Up}{Ctrl Up}'  ; Delete last word typed.
 }
 
-#Hotif
+#HotIf
 +BS::  Send '{Del}'
 ^+BS:: Send '{Ctrl Down}{Del}{Ctrl Up}'
 

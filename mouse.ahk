@@ -72,7 +72,7 @@ MButton:: {
 ; XButton1
 ;====================================================================================================
 
-#Hotif MouseWinActivate('ahk_exe msedge.exe')
+#HotIf MouseWinActivate('ahk_exe msedge.exe')
 XButton1 & WheelDown:: {
     if GetKeyState('Ctrl')
         Send '{Ctrl Up}'
@@ -80,11 +80,11 @@ XButton1 & WheelDown:: {
 }
 XButton1 & WheelUp:: Send '{Esc}'
 
-#Hotif WinActive('ahk_exe AcroRd32.exe')
+#HotIf WinActive('ahk_exe AcroRd32.exe')
 XButton1 & WheelDown:: Send '{Ctrl Down}{PgDn}{Ctrl Up}'
 XButton1 & WheelUp::   Send '{Ctrl Down}{PgUp}{Ctrl Up}'
 
-#Hotif
+#HotIf
 C_Hotkey.ctrlTab "XButton1 & WheelDown", false
 C_Hotkey.ctrlTab "XButton1 & WheelUp", true
 
