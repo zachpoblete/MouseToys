@@ -1,12 +1,12 @@
 #Include default-settings.ahk
 
-TryFunc(functor) {
-    try return functor()
+TryFunc(fn) {
+    try return fn()
 }
 
-TryFuncCatchExit(functor) {
+TryFuncCatchExit(fn) {
     try
-        return functor()
+        return fn()
     catch
         exit
 }
@@ -147,7 +147,7 @@ MouseWinActivate(winTitle := '', winText := '', excludedTitle := '', excludedTex
     return WinActive(winTitle . ' ahk_id ' . mouseHwnd, winText, excludedTitle, excludedText)  ; The mouseHwnd is there for the case when all the parameters are blank and there is no last found window.
 }
 
-MatchTitleAndCallFunc(options, functor) {
+MatchTitleAndCallFunc(options, fn) {
     if RegExMatch(options, 'i)1|2|3|RegEx', &matchMode)
         SetTitleMatchMode matchMode[]
     if RegExMatch(options, 'i)Fast|Slow', &speed)
@@ -158,5 +158,5 @@ MatchTitleAndCallFunc(options, functor) {
     else if InStr(options, 'Visible')
         DetectHiddenWindows false
 
-    functor()
+    fn
 }

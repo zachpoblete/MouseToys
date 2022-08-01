@@ -41,8 +41,8 @@ class C_Hotkey {
             return WinActive('ahk_exe msedge.exe') or WinActive('ahk_exe firefox.exe') or WinActive('ahk_exe chrome.exe')
         }
 
-        static runSelectedAsFolder(hk, hotifExFunctor := '') {
-            this.hotIfCondition hotifExFunctor
+        static runSelectedAsFolder(hk, hotifExFn := '') {
+            this.hotIfCondition hotifExFn
             Hotkey hk, thisHotkey => logic()
             logic() {
                 selected := GetSelectedElseExit()
@@ -51,14 +51,14 @@ class C_Hotkey {
             HotIf
         }
 
-        static hotIfCondition(hotifExFunctor := '') {
-            if hotifExFunctor
-                HotIf thisHotkey => this.active() and hotifExFunctor()
+        static hotIfCondition(hotifExFn := '') {
+            if hotifExFn
+                HotIf thisHotkey => this.active() and hotifExFn()
             else
                 HotIf thisHotkey => this.active()
         }
 
-        static runSelectedAsUrl(hk, engine := '', hotifExFunctor := '') {
+        static runSelectedAsUrl(hk, engine := '', hotifExFn := '') {
             searchInTab(inNew) {
                 query := GetSelectedElseExit()
 
@@ -67,7 +67,7 @@ class C_Hotkey {
                 SetTimer () => Send('{Enter}'), -10
             }
 
-            this.hotIfCondition hotifExFunctor
+            this.hotIfCondition hotifExFn
             Hotkey hk, thisHotkey => searchInTab(true)
             Hotkey '+' . hk, thisHotkey => searchInTab(false)
             HotIf
@@ -88,7 +88,7 @@ class C_Timer {
             return this._labels[index]
         }
         else {
-            this._labels.insertAt(1, '')
+            this._labels.insertAt 1, ''
             return
         } 
     }
