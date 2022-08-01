@@ -41,7 +41,7 @@ class C_Hotkey {
             return WinActive('ahk_exe msedge.exe') or WinActive('ahk_exe firefox.exe') or WinActive('ahk_exe chrome.exe')
         }
 
-        static gotoSelectedFolder(hk, hotifExFunctor := '') {
+        static runSelectedAsFolder(hk, hotifExFunctor := '') {
             this.hotIfCondition hotifExFunctor
             Hotkey hk, thisHotkey => logic()
             logic() {
@@ -58,7 +58,7 @@ class C_Hotkey {
                 HotIf thisHotkey => this.active()
         }
 
-        static searchSelectedAsUrl(hk, engine := '', hotifExFunctor := '') {
+        static runSelectedAsUrl(hk, engine := '', hotifExFunctor := '') {
             searchInTab(inNew) {
                 query := GetSelectedElseExit()
 
