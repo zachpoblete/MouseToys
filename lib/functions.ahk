@@ -64,7 +64,7 @@ OnFileSave(fileName, fn, shouldCall := true) {
         fn
     }
 
-    periodMs := (shouldCall) ? 1000 : 0
+    periodMs := (shouldCall)? 1000 : 0
     SetTimer () => funcIfSave(fn), periodMs
 }
 

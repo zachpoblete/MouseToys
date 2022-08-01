@@ -27,7 +27,7 @@ class C_Hotkey {
             Send '{Ctrl Up}'
         }
 
-        tab := (shouldPressShift) ? '{Shift Down}{Tab}{Shift Up}' : '{Tab}'
+        tab := (shouldPressShift)? '{Shift Down}{Tab}{Shift Up}' : '{Tab}'
 
         HotIf thisHotkey => GetKeyState('Ctrl')
         Hotkey hk, thisHotkey => Send(tab)
@@ -52,7 +52,7 @@ class C_Hotkey {
             searchUrlInTab(inNew) {
                 url := getUrlFromSelectedElseExit()
 
-                letter := (inNew) ? 't' : 'l'
+                letter := (inNew)? 't' : 'l'
                 Send '{Ctrl Down}' . letter . '{Ctrl Up}'
 
                 SendInstantRaw url
@@ -65,7 +65,7 @@ class C_Hotkey {
             }
             getUrlFromSelectedElseExit() {
                 query := GetSelectedElseExit()
-                return (engine) ? this.queryToUrl(query, engine) : query
+                return (engine)? this.queryToUrl(query, engine) : query
             }
 
             this.hotIfCondition hotifExFn
