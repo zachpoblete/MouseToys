@@ -39,10 +39,8 @@
         }
         catch TargetError {
             Run 'WindowSpy.ahk', A_ProgramFiles . '\AutoHotkey'
-            return
         }
-
-        if minMax = -1 {
+        else if minMax = -1 {
             WinActive 'A'
             WinActivate WIN_SPY
             WinActivate
