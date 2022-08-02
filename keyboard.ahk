@@ -126,7 +126,7 @@ GroupAdd('ExplorerWins', 'ahk_class CabinetWClass')
 GroupAdd('PhotoWins', A_Space CHARS["LEFT_TO_RIGHT_MARK"] "- Photos$ ahk_exe ApplicationFrameHost.exe")
 GroupAdd('ZoomWins', 'ahk_class Z ahk_exe Zoom.exe', , , 'ZPToolBarParentWnd')
 
-#+e:: ActivateElseRun('explorer.exe', , 'ahk_group ExplorerWins')
+#+e:: ActivateElseRun('explorer', , 'ahk_group ExplorerWins')
 #+p:: MatchTitleAndCallFunc('RegEx', () => GroupActivateRelIfExists('PhotoWins'))
 #+z::
     Zoom_ActivateElseRun(thisHotkey) {
