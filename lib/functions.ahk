@@ -134,7 +134,7 @@ ActivateElseRun(toRun, workingDir := '', toActivate := '') {
         groupName := LTrim(StrDel(toActivate, 'ahk_group'))
         GroupActivate(groupName, 'R')
     } else {
-        WinActivate(toActivate)
+        WinActivate
     }
 }
 
