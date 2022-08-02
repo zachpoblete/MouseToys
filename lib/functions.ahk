@@ -131,7 +131,8 @@ ActivateElseRun(toRun, workingDir := '', toActivate := '') {
     if not WinExist(toActivate) {
         Run(toRun, workingDir)
     } else if InStr(toActivate, 'ahk_group') {
-        GroupActivate(LTrim(StrDel(toActivate, 'ahk_group')), 'R')
+        groupName := LTrim(StrDel(toActivate, 'ahk_group'))
+        GroupActivate(groupName, 'R')
     } else {
         WinActivate(toActivate)
     }
