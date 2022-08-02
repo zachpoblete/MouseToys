@@ -28,7 +28,7 @@
             docs := StrReplace(docs, 'AutoHotkey', 'commands/' command)
         }
 
-        Run docs
+        Run(docs)
     }
 
 #^w::
