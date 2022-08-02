@@ -124,25 +124,31 @@ StrDel(haystack, needle, limit := 1) {
 ; Window
 ;====================================================================================================
 
-ActivateElseRun(toRun, workingDir := '', toActivate := '') {
-    if toActivate = '' {
-        toActivate := toRun
-    }
-    if not WinExist(toActivate) {
-        Run(toRun, workingDir)
-    } else if InStr(toActivate, 'ahk_group') {
-        groupName := LTrim(StrDel(toActivate, 'ahk_group'))
+ActivateRecent(winTitle := '', winText := '', excludedTitle := '', excludedText := '') {
+    if InStr(winTitle, 'ahk_group') {
+        groupName := LTrim(StrDel(winTitle, 'ahk_group'))
         GroupActivate(groupName, 'R')
     } else {
-        WinActivate
+        WinActivate(winTitle, winText, excludedTitle, excludedText)
     }
 }
 
-GroupActivateRelIfExists(groupName) {
-    if not WinExist('ahk_group ' groupName) {
+ActivateRecentElseRun(target, workingDir := '', winTitle := '', winText := '', excludedTitle := '', excludedText := '') {
+    if winTitle = '' and winText = '' and excludedTitle = '' and excludedText = '' {
+        winTitle := target
+    }
+    if not WinExist(winTitle, winText, excludedTitle, excludedText) {
+        Run(target, workingDir)
+    } else {
+        ActivateRecent(winTitle, winText, excludedTitle, excludedText)
+    }
+}
+
+ActivateRecentIfExists(winTitle := '', winText := '', excludedTitle := '', excludedText := '') {
+    if not WinExist(winTitle, winText, excludedTitle, excludedText) {
         return
     }
-    GroupActivate(groupName, 'R')
+    ActivateRecent(winTitle, winText, excludedTitle, excludedText)
 }
 
 MouseControlFocus(control := '', winTitle := '', winText := '', excludedTitle := '', excludedText := '') {
