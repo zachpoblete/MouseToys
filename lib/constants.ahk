@@ -50,7 +50,7 @@ CLASSES['ZOOM'] := Map(
 ConvertClassesAbbrevsToFullForm
 ConvertClassesAbbrevsToFullForm() {
     for abbrev, fullForm in CLASSES['ZOOM'] {
-        CLASSES['ZOOM'][abbrev] := 'ahk_class ' . fullForm
+        CLASSES['ZOOM'][abbrev] := 'ahk_class ' fullForm
     }
 }
 

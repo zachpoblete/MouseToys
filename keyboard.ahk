@@ -52,7 +52,7 @@ keyboardShortcut-Quarter.js:
 ;----------------------------------------------------------------------------------------------------
 
 #HotIf WinActive(CLASSES['ZOOM']['MEETING']) and WinWaitActive(CLASSES['ZOOM']['TOOLBAR'], , 0.1)
-~#Down:: WinActivate 'Zoom ahk_pid ' . WinGetPid()  ; Activate minimized video/control.
+~#Down:: WinActivate 'Zoom ahk_pid ' WinGetPid()  ; Activate minimized video/control.
 
 #HotIf WinActive(CLASSES['ZOOM']['WAIT_HOST']) or WinActive(CLASSES['ZOOM']['VID_PREVIEW'])
 #Down:: WinMinimize
@@ -60,13 +60,13 @@ keyboardShortcut-Quarter.js:
 #HotIf WinActive(CLASSES['ZOOM']['MIN_VID']) or WinActive(CLASSES['ZOOM']['MIN_CONTROL'])
 #Up:: {
     WinGetPos , , , &winH
-    ControlClick 'x200 y' . winH - 30  ; Exit minimized video.
+    ControlClick 'x200 y' (winH - 30)  ; Exit minimized video.
 }
 
-#HotIf WinActive(CLASSES['ZOOM']['HOME']) and not WinExist('Zoom ahk_pid ' . TryFunc(WinGetPid.bind(CLASSES['ZOOM']['TOOLBAR'])))  ; Check if a visible meeting window exists.
+#HotIf WinActive(CLASSES['ZOOM']['HOME']) and not WinExist('Zoom ahk_pid ' TryFunc(WinGetPid.bind(CLASSES['ZOOM']['TOOLBAR'])))  ; Check if a visible meeting window exists.
 !F4:: ProcessClose 'Zoom.exe'  ; Can't use WinClose because that minimizes here.
 
-#HotIf WinActive('ahk_pid ' . TryFunc(WinGetPid.bind(CLASSES['ZOOM']['TOOLBAR'])))  ; Check if a meeting window is active.
+#HotIf WinActive('ahk_pid ' TryFunc(WinGetPid.bind(CLASSES['ZOOM']['TOOLBAR'])))  ; Check if a meeting window is active.
 !=::
     Zoom_GiveThumbsUp(thisHotkey) {
         Zoom_OpenReactions(thisHotkey)
@@ -74,7 +74,7 @@ keyboardShortcut-Quarter.js:
         select() {
             WinGetPos , , &winW, &winH, CLASSES['ZOOM']['REACTION']
             ImageSearch &imageX, &imageY, 0, 0, winW, winH, '*60 images\thumbs up.png'
-            ControlClick 'x' . imageX . ' y' imageY, CLASSES['ZOOM']['MEETING']
+            ControlClick 'x' imageX ' y' imageY, CLASSES['ZOOM']['MEETING']
         }
     }
 
@@ -90,11 +90,11 @@ keyboardShortcut-Quarter.js:
         WinGetPos , , &winW, &winH
 
         if not ImageSearch(&imageX, &imageY, 0, winH - 60, winW, winH, '*60 images\reactions.png') {
-            ControlClick 'x' . imageX . ' y' imageY, CLASSES['ZOOM']['MEETING']  ; Search meeting controls region.
+            ControlClick 'x' imageX ' y' imageY, CLASSES['ZOOM']['MEETING']  ; Search meeting controls region.
             return
         }
         ImageSearch &imageX, &imageY, 0, winH - 60, winW, winH, '*60 images\more.png'
-        ControlClick 'x' . imageX . ' y' imageY, CLASSES['ZOOM']['MEETING']
+        ControlClick 'x' imageX ' y' imageY, CLASSES['ZOOM']['MEETING']
 
         SetTimer select, -150
         select() {
@@ -115,7 +115,7 @@ keyboardShortcut-Quarter.js:
 f::
     RunSelectedAsFolder(thisHotkey) {
         selected := GetSelectedElseExit()
-        Run 'explore ' . selected
+        Run 'explore ' selected
     }
 #HotIf
 
@@ -123,7 +123,7 @@ f::
 #!v:: Run 'App volume and device preferences', 'C:\Windows'
 
 GroupAdd 'ExplorerWins', 'ahk_class CabinetWClass'
-GroupAdd 'PhotoWins', A_Space . CHARS["LEFT_TO_RIGHT_MARK"] . "- Photos$ ahk_exe ApplicationFrameHost.exe"
+GroupAdd 'PhotoWins', A_Space CHARS["LEFT_TO_RIGHT_MARK"] "- Photos$ ahk_exe ApplicationFrameHost.exe"
 GroupAdd 'ZoomWins', 'ahk_class Z ahk_exe Zoom.exe', , , 'ZPToolBarParentWnd'
 
 #+e:: ActivateElseRun 'explorer.exe', , 'ahk_group ExplorerWins'
@@ -132,7 +132,7 @@ GroupAdd 'ZoomWins', 'ahk_class Z ahk_exe Zoom.exe', , , 'ZPToolBarParentWnd'
     Zoom_ActivateElseRun(thisHotkey) {
         if not WinExist('ahk_exe Zoom.exe') {
             Run 'Zoom', 'C:\Users\Zach Poblete\AppData\Roaming\Zoom\bin'
-        } else if WinExist(CLASSES['ZOOM']['HIDDEN_TOOLBAR']) or WinExist('Zoom ahk_pid ' . TryFunc(WinGetPid.bind(CLASSES['ZOOM']['TOOLBAR']))) {  ; Check if a visible Zoom meeting window exists.
+        } else if WinExist(CLASSES['ZOOM']['HIDDEN_TOOLBAR']) or WinExist('Zoom ahk_pid ' TryFunc(WinGetPid.bind(CLASSES['ZOOM']['TOOLBAR']))) {  ; Check if a visible Zoom meeting window exists.
             WinActivate
         } else {
             MatchTitleAndCallFunc('RegEx', () => GroupActivateRelIfExists('ZoomWins'))  ; Activate visible Zoom windows.
@@ -151,7 +151,7 @@ DisplayAndSetVolume(variation) {
     newVol := SoundGetVolume() + variation
     volDirection := (variation > 0 or Round(newVol) = 1)? 'Up' : 'Down'  ; Idkwb Round(newVol) before this point doesn't work.
 
-    Send '{Volume_' . volDirection . '}'  ; Vary volume by 2, and, importantly, display volume slider (and media overlay).
+    Send '{Volume_' volDirection '}'  ; Vary volume by 2, and, importantly, display volume slider (and media overlay).
     SoundSetVolume newVol  ; Override that normal variation of 2.
 }
 #HotIf
@@ -279,13 +279,13 @@ if GetKeyState('NumLock', 'T') {
 
 LWin::
 RWin:: {
-        Send '{' . thisHotkey . ' Down}'
+        Send '{' thisHotkey ' Down}'
         KeyWait thisHotkey
 
         if A_PriorKey = thisHotkey and A_TimeSinceThisHotkey > 500 {
             Send '{Ctrl}'
         }
-        Send '{' . thisHotkey . ' Up}'
+        Send '{' thisHotkey ' Up}'
     }
 
 ;====================================================================================================

@@ -22,7 +22,7 @@ class C_KeyWait {
 class C_Hotkey {
     static ctrlTab(hk, shouldPressShift) {
         sendFirstAndLast(thisHotkey) {
-            Send '{Ctrl Down}' . tab
+            Send '{Ctrl Down}' tab
             KeyWait HotkeyGetPrefixKey(thisHotkey)
             Send '{Ctrl Up}'
         }
@@ -54,7 +54,7 @@ class C_Hotkey {
                 url := getUrlFromSelectedElseExit()
 
                 letter := (inNew)? 't' : 'l'
-                Send '{Ctrl Down}' . letter . '{Ctrl Up}'
+                Send '{Ctrl Down}' letter '{Ctrl Up}'
 
                 SendInstantRaw url
 
@@ -71,7 +71,7 @@ class C_Hotkey {
 
             this.hotIfCondition hotifExFn
             Hotkey hk, thisHotkey => searchUrlInTab(true)
-            Hotkey '+' . hk, thisHotkey => searchUrlInTab(false)
+            Hotkey '+' hk, thisHotkey => searchUrlInTab(false)
 
             HotIf thisHotkey => hotifExFn()
             hotkey hk, thisHotkey => runUrl()
@@ -80,7 +80,7 @@ class C_Hotkey {
 
         static queryToUrl(query, engine) {
             query := StrReplace(StrReplace(StrReplace(query, '&', '&26'), '+', '%2B'), A_Space, '+')
-            return engine . query  ; URL encoding is used to encode special characters in query strings.
+            return engine query  ; URL encoding is used to encode special characters in query strings.
         }
     }
 }

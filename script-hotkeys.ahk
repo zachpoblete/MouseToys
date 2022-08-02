@@ -4,7 +4,7 @@
 #^s:: Suspend
 #SuspendExempt false
 
-#^r:: Run '*UIAccess "' . A_ScriptName . '"'
+#^r:: Run '*UIAccess "' A_ScriptName '"'
 #^p:: Pause -1
 #^x:: ExitApp
 
@@ -24,9 +24,9 @@
         if GetKeyState('CapsLock', 'T') {
             selected := GetSelectedElseExit()
             command := StrReplace(selected, '#', '_', , , 1)
-            Run DIRECTORY . '/commands/' . command . '.htm'
+            Run DIRECTORY '/commands/' command '.htm'
         } else {
-            Run DIRECTORY . '/AutoHotkey.htm'
+            Run DIRECTORY '/AutoHotkey.htm'
         }
     }
 
@@ -37,7 +37,7 @@
         try {
             minMax := WinGetMinMax(WIN_SPY)
         } catch TargetError {
-            Run 'WindowSpy.ahk', A_ProgramFiles . '\AutoHotkey'
+            Run 'WindowSpy.ahk', A_ProgramFiles '\AutoHotkey'
         } else if minMax = -1 {
             WinActive 'A'
             WinActivate WIN_SPY

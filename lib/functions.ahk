@@ -86,9 +86,9 @@ HotkeyDelModifierSymbols(hk) {
 
 HotkeyEncloseInBraces(hk) {
     if InStr(hk, '&') {
-        return '{' . RegExReplace(hk, ' *& *', '}{') . '}'
+        return '{' RegExReplace(hk, ' *& *', '}{') '}'
     } else if RegExMatch(hk, ' Up$') {
-        return '{' . hk . '}'
+        return '{' hk '}'
     } else {
         return RegExReplace(hk, '([#!^+<>]*)([*~$]*)([^*~$]+)', '$1{$3}')
     }
@@ -126,7 +126,7 @@ StrDel(haystack, needle, limit := 1) {
 
 ActivateElseRun(toRun, workingDir := '', toActivate := '') {
     if toActivate = '' {
-        toActivate := 'ahk_exe ' . toRun
+        toActivate := 'ahk_exe ' toRun
     }
     if not WinExist(toActivate) {
         Run toRun, workingDir
@@ -138,7 +138,7 @@ ActivateElseRun(toRun, workingDir := '', toActivate := '') {
 }
 
 GroupActivateRelIfExists(groupName) {
-    if not WinExist('ahk_group ' . groupName) {
+    if not WinExist('ahk_group ' groupName) {
         return
     }
     GroupActivate groupName, 'R'
@@ -157,7 +157,7 @@ MouseControlFocus(control := '', winTitle := '', winText := '', excludedTitle :=
             return
         }
     }
-    if not WinActive(winTitle . ' ahk_id ' . mouseHwnd, winText, excludedTitle, excludedText) {
+    if not WinActive(winTitle ' ahk_id ' mouseHwnd, winText, excludedTitle, excludedText) {
         return
     }
     return mouseControlHwnd
@@ -166,7 +166,7 @@ MouseControlFocus(control := '', winTitle := '', winText := '', excludedTitle :=
 MouseWinActivate(winTitle := '', winText := '', excludedTitle := '', excludedText := '') {
     MouseGetPos , , &mouseHwnd
     WinActivate mouseHwnd
-    return WinActive(winTitle . ' ahk_id ' . mouseHwnd, winText, excludedTitle, excludedText)  ; The mouseHwnd is there for the case when all the parameters are blank and there is no last found window.
+    return WinActive(winTitle ' ahk_id ' mouseHwnd, winText, excludedTitle, excludedText)  ; The mouseHwnd is there for the case when all the parameters are blank and there is no last found window.
 }
 
 MatchTitleAndCallFunc(options, fn) {

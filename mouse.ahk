@@ -98,7 +98,7 @@ XButton1 & RButton:: X1LR ']', 'X2'
 
 X1LR(states*) {
     if MouseWinActivate('ahk_exe Notion.exe') {
-        Send '{Ctrl Down}' . states[1] . '{Ctrl Up}'
+        Send '{Ctrl Down}' states[1] '{Ctrl Up}'
     } else {
         Click states[2]
     }
@@ -118,13 +118,13 @@ XButton2 & WheelUp::   X2DU '{Up}',   '{PgUp}', '{Shift Down}{Tab}{Shift Up}', '
 
 X2DU(states*) {
     if MouseWinActivate('ahk_exe Discord.exe') or WinActive('ahk_exe Messenger.exe') {
-        Send '{Alt Down}' . states[1] . '{Alt Up}'
+        Send '{Alt Down}' states[1] '{Alt Up}'
     } else if WinActive('ahk_exe POWERPNT.EXE') {
         Send states[2]
     } else if WinActive('ahk_exe AcroRd32.exe') {
-        Send '{Ctrl Down}' . states[3] . '{Ctrl Up}'
+        Send '{Ctrl Down}' states[3] '{Ctrl Up}'
     } else {
-        Send '{Ctrl Down}' . states[4] . '{Ctrl Up}'
+        Send '{Ctrl Down}' states[4] '{Ctrl Up}'
     }
 }
 
@@ -133,14 +133,14 @@ XButton2 & RButton:: X2LR 'w'
 
 X2LR(states*) {
     MouseWinActivate
-    Send '{Ctrl Down}' . states[1] . '{Ctrl Up}'
+    Send '{Ctrl Down}' states[1] '{Ctrl Up}'
 }
 
 XButton2 & MButton:: {
     if MouseWinActivate(CLASSES['ZOOM']['MEETING']) {
         Send '{Alt Down}q{Alt Up}'  ; Show 'End Meeting or Leave Meeting?' prompt in the middle of the screen instead of the corner of the window.
     } else if WinActive(CLASSES['ZOOM']['HOME']) {
-        if WinExist('Zoom ahk_pid ' . TryFunc(WinGetPid.bind(CLASSES['ZOOM']['TOOLBAR']))) {  ; Check if a visible Zoom meeting window exists.
+        if WinExist('Zoom ahk_pid ' TryFunc(WinGetPid.bind(CLASSES['ZOOM']['TOOLBAR']))) {  ; Check if a visible Zoom meeting window exists.
             ControlSend '{Alt Down}q{Alt Up}', , CLASSES['ZOOM']['MEETING']
         } else {
             ProcessClose 'Zoom.exe'
