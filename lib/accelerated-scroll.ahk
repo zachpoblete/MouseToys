@@ -27,7 +27,6 @@ AcceleratedScroll() {  ; To use effectively, make sure this function is the firs
         MouseClick A_ThisHotkey
         return
     }
-
     _distance++  ; Remember how many times the current direction has been scrolled in.
     speed := (timeBetweenHotkeysMs < 100)? 250.0/timeBetweenHotkeysMs - 1 : 1  ; Calculate acceleration factor using a 1/x curve.
 
@@ -39,10 +38,8 @@ AcceleratedScroll() {  ; To use effectively, make sure this function is the firs
         } else {
             speed := _maxSpeed
         }
-
         speed *= _distance / BOOST
     }
-
     speed := (speed > MAX_SCROLLS)? MAX_SCROLLS : Floor(speed)
     MouseClick A_ThisHotkey, , , speed
 }

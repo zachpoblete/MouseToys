@@ -14,7 +14,6 @@ class C_KeyWait {
         if not isWaiting {
             return
         }
-
         KeyWait key, options
         this._states[key][options] := false
     }
@@ -58,7 +57,7 @@ class C_Hotkey {
                 Send '{Ctrl Down}' . letter . '{Ctrl Up}'
 
                 SendInstantRaw url
-                
+
                 SetTimer () => Send('{Enter}'), -10
             }
             runUrl() {
@@ -78,7 +77,7 @@ class C_Hotkey {
             hotkey hk, thisHotkey => runUrl()
             HotIf
         }
-        
+
         static queryToUrl(query, engine) {
             query := StrReplace(StrReplace(StrReplace(query, '&', '&26'), '+', '%2B'), A_Space, '+')
             return engine . query  ; URL encoding is used to encode special characters in query strings.
@@ -104,7 +103,6 @@ class C_Timer {
         if not this._labels.has(index) {
             this._labels.insertAt index, fn
         }
-
         if period > 0 {
             this._labels.removeAt index
             this._labels.insertAt index, fn

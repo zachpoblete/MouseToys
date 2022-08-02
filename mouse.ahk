@@ -81,7 +81,6 @@ XButton1 & WheelDown:: {
     if GetKeyState('Ctrl') {
         Send '{Ctrl Up}'
     }
-    
     Send '{Ctrl Down}{Shift Down}a{Shift Up}{Ctrl Up}'
 }
 XButton1 & WheelUp:: Send '{Esc}'

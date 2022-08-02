@@ -86,7 +86,6 @@ keyboardShortcut-Quarter.js:
         } else if not WinExist(CLASSES['ZOOM']['MEETING']) {
             return
         }
-
         WinActivate
         WinGetPos , , &winW, &winH
 
@@ -102,7 +101,6 @@ keyboardShortcut-Quarter.js:
             if ImageSearch(&imageX, &imageY, 0, winH - 60, winW, winH, '*60 images\apps.png') {
                 Send '{Up}'
             }
-
             Send '{Up}'
             SetTimer () => Send('{Space}'), -10
         }
@@ -167,7 +165,6 @@ CloseBrightnessSetter() {
     if ProcessExist('brightness-setter.exe') {
         ProcessClose 'brightness-setter.exe'
     }
-
     ProcessWaitClose 'brightness-setter.exe'
 }
 
@@ -288,7 +285,6 @@ RWin:: {
         if A_PriorKey = thisHotkey and A_TimeSinceThisHotkey > 500 {
             Send '{Ctrl}'
         }
-
         Send '{' . thisHotkey . ' Up}'
     }
 
@@ -334,7 +330,6 @@ RWin:: {
     if not ih.Endkey {
         return
     }
-
     tabs := ''
 
     if ih.input = ';' {

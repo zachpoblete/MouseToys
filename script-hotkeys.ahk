@@ -33,7 +33,7 @@
 #^w::
     WinSpy(thisHotkey) {
         static WIN_SPY := 'Window Spy ahk_class AutoHotkeyGUI'
-        
+
         try {
             minMax := WinGetMinMax(WIN_SPY)
         } catch TargetError {

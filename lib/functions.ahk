@@ -36,7 +36,6 @@ GetSelectedElseExit() {
     if not selected {
         exit
     }
-
     return selected
 }
 
@@ -63,7 +62,6 @@ OnFileSave(fileName, fn, shouldCall := true) {
         if not InStr(FileGetAttrib(fileName), 'A') {
             return
         }
-        
         FileSetAttrib '-A', fileName
         fn
     }
@@ -100,7 +98,6 @@ HotkeyGetPrefixKey(hk) {
     if HotstringGetAbbrev(hk) {
         return
     }
-
     hkKeys := HotkeyDelModifierSymbols(hk)
 
     if not IsObject(hkKeys) {
@@ -131,7 +128,6 @@ ActivateElseRun(toRun, workingDir := '', toActivate := '') {
     if toActivate = '' {
         toActivate := 'ahk_exe ' . toRun
     }
-
     if not WinExist(toActivate) {
         Run toRun, workingDir
     } else if InStr(toActivate, 'ahk_group') {
@@ -145,7 +141,6 @@ GroupActivateRelIfExists(groupName) {
     if not WinExist('ahk_group ' . groupName) {
         return
     }
-
     GroupActivate groupName, 'R'
 }
 
@@ -165,7 +160,6 @@ MouseControlFocus(control := '', winTitle := '', winText := '', excludedTitle :=
     if not WinActive(winTitle . ' ahk_id ' . mouseHwnd, winText, excludedTitle, excludedText) {
         return
     }
-
     return mouseControlHwnd
 }
 
@@ -179,16 +173,13 @@ MatchTitleAndCallFunc(options, fn) {
     if RegExMatch(options, 'i)1|2|3|RegEx', &matchMode) {
         SetTitleMatchMode matchMode[]
     }
-    
     if RegExMatch(options, 'i)Fast|Slow', &speed) {
         SetTitleMatchMode speed[]
     }
-
     if InStr(options, 'Hidden') {
         DetectHiddenWindows true
     } else if InStr(options, 'Visible') {
         DetectHiddenWindows false
     }
-
     fn
 }

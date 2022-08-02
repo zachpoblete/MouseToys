@@ -11,11 +11,10 @@ ClosePopUps() {
 #LButton::
     WinDrag(thisHotkey) {
         WinExist 'A'
-        
+
         if MouseWinActivate('ahk_class WorkerW ahk_exe Explorer.EXE') or WinGetMinMax() != 0 {
             return
         }
-
         CoordMode 'Mouse', 'Screen'
         MouseGetPos &mouseStartX, &mouseStartY
         WinGetPos &winOriginalX, &winOriginalY
