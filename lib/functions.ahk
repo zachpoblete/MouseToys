@@ -126,7 +126,7 @@ StrDel(haystack, needle, limit := 1) {
 
 ActivateElseRun(toRun, workingDir := '', toActivate := '') {
     if toActivate = '' {
-        toActivate := 'ahk_exe ' toRun
+        toActivate := toRun
     }
     if not WinExist(toActivate) {
         Run(toRun, workingDir)
