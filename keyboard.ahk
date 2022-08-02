@@ -127,7 +127,7 @@ GroupAdd('PhotoWins', A_Space CHARS["LEFT_TO_RIGHT_MARK"] "- Photos$ ahk_exe App
 GroupAdd('ZoomWins', 'ahk_class Z ahk_exe Zoom.exe', , , 'ZPToolBarParentWnd')
 
 #+e:: ActivateElseRun('explorer', , 'ahk_group ExplorerWins')
-#+p:: MatchTitleAndCallFunc('RegEx', () => GroupActivateRelIfExists('PhotoWins'))
+#+p:: MatchTitleAndCall('RegEx', () => GroupActivateRelIfExists('PhotoWins'))
 #+z::
     Zoom_ActivateElseRun(thisHotkey) {
         if not WinExist('ahk_exe Zoom.exe') {
@@ -135,7 +135,7 @@ GroupAdd('ZoomWins', 'ahk_class Z ahk_exe Zoom.exe', , , 'ZPToolBarParentWnd')
         } else if WinExist(CLASSES['ZOOM']['HIDDEN_TOOLBAR']) or WinExist('Zoom ahk_pid ' TryFunc(WinGetPid.bind(CLASSES['ZOOM']['TOOLBAR']))) {  ; Check if a visible Zoom meeting window exists.
             WinActivate()
         } else {
-            MatchTitleAndCallFunc('RegEx', () => GroupActivateRelIfExists('ZoomWins'))  ; Activate visible Zoom windows.
+            MatchTitleAndCall('RegEx', () => GroupActivateRelIfExists('ZoomWins'))  ; Activate visible Zoom windows.
         }
     }
 
@@ -270,7 +270,7 @@ if GetKeyState('NumLock', 'T') {
 }
 
 ~*Alt:: {
-    if not MatchTitleAndCallFunc('RegEx', () => WinActive('ahk_exe .EXE$')) {  ; Check if an Office app isn't active.
+    if not MatchTitleAndCall('RegEx', () => WinActive('ahk_exe .EXE$')) {  ; Check if an Office app isn't active.
         Send('{Ctrl}')
     }
 }

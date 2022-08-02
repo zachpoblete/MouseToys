@@ -170,7 +170,7 @@ MouseWinActivate(winTitle := '', winText := '', excludedTitle := '', excludedTex
     return WinActive(winTitle ' ahk_id ' mouseHwnd, winText, excludedTitle, excludedText)  ; The mouseHwnd is there for the case when all the parameters are blank and there is no last found window.
 }
 
-MatchTitleAndCallFunc(options, fn) {
+MatchTitleAndCall(options, fn) {
     if RegExMatch(options, 'i)1|2|3|RegEx', &matchMode) {
         SetTitleMatchMode(matchMode[])
     }

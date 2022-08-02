@@ -65,7 +65,7 @@ MButton & RButton:: Send('{Ctrl Down}{Shift Down}{Click}{Shift Up}{Ctrl Up}')
 MButton:: {
     if MouseWinActivate(CLASSES['ZOOM']['MEETING']) {
         Send('{LWin Down}{Alt Down}{PrintScreen}{Alt Up}{LWin Up}')
-    } else if MatchTitleAndCallFunc(2, () => WinActive('AutoHotkey Community ahk_exe msedge.exe')) or MatchTitleAndCallFunc('RegEx', () => WinActive('ahk_exe .EXE$')) {  ; Check if an Office app is active.
+    } else if MatchTitleAndCall(2, () => WinActive('AutoHotkey Community ahk_exe msedge.exe')) or MatchTitleAndCall('RegEx', () => WinActive('ahk_exe .EXE$')) {  ; Check if an Office app is active.
         Send('{Ctrl Down}{Click}{Ctrl Up}')
     } else {
         Click('M')
