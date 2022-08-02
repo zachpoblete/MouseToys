@@ -8,10 +8,10 @@
 ;====================================================================================================
 
 BrowserHotkeys(() => GetKeyState('NumLock', 'T'))
-BrowserHotkeys(hotifExFn) {
-    C_Hotkey.Browser.searchSelectedAsUrl('u', , hotifExFn)
-    C_Hotkey.Browser.searchSelectedAsUrl('g', 'https://www.google.com/search?q=', hotifExFn)
-    C_Hotkey.Browser.searchSelectedAsUrl('y', 'https://www.youtube.com/results?search_query=', hotifExFn)
+BrowserHotkeys(hotIfExFn) {
+    C_Hotkey.Browser.searchSelectedAsUrl('u', , hotIfExFn)
+    C_Hotkey.Browser.searchSelectedAsUrl('g', 'https://www.google.com/search?q=', hotIfExFn)
+    C_Hotkey.Browser.searchSelectedAsUrl('y', 'https://www.youtube.com/results?search_query=', hotIfExFn)
 }
 
 #HotIf WinActive('ahk_exe msedge.exe')

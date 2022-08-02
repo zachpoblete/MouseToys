@@ -41,15 +41,15 @@ class C_Hotkey {
             return WinActive('ahk_exe msedge.exe') or WinActive('ahk_exe firefox.exe') or WinActive('ahk_exe chrome.exe')
         }
 
-        static hotIfCondition(hotifExFn := '') {
-            if hotifExFn {
-                HotIf(thisHotkey => this.active() and hotifExFn())
+        static hotIfCondition(hotIfExFn := '') {
+            if hotIfExFn {
+                HotIf(thisHotkey => this.active() and hotIfExFn())
             } else {
                 HotIf(thisHotkey => this.active())
             }
         }
 
-        static searchSelectedAsUrl(hk, engine := '', hotifExFn := '') {
+        static searchSelectedAsUrl(hk, engine := '', hotIfExFn := '') {
             searchUrlInTab(inNew) {
                 url := getUrlFromSelectedElseExit()
 
@@ -69,11 +69,11 @@ class C_Hotkey {
                 return (engine)? this.queryToUrl(query, engine) : query
             }
 
-            this.hotIfCondition(hotifExFn)
+            this.hotIfCondition(hotIfExFn)
             Hotkey(hk, thisHotkey => searchUrlInTab(true))
             Hotkey('+' hk, thisHotkey => searchUrlInTab(false))
 
-            HotIf(thisHotkey => hotifExFn())
+            HotIf(thisHotkey => hotIfExFn())
             hotkey(hk, thisHotkey => runUrl())
             HotIf()
         }
