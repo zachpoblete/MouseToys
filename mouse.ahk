@@ -22,8 +22,8 @@ WheelDown:: {
 ; RButton
 ;====================================================================================================
 
-RButton & WheelDown:: AltTab()
-RButton & WheelUp::   ShiftAltTab()
+RButton & WheelDown:: AltTab
+RButton & WheelUp::   ShiftAltTab
 
 RButton & LButton:: {
     if GetKeyState('Shift', 'P') {
