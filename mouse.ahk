@@ -90,8 +90,8 @@ XButton1 & WheelDown:: Send('{Ctrl Down}{PgDn}{Ctrl Up}')
 XButton1 & WheelUp::   Send('{Ctrl Down}{PgUp}{Ctrl Up}')
 
 #HotIf
-C_Hotkey.ctrlTab("XButton1 & WheelDown", false)
-C_Hotkey.ctrlTab("XButton1 & WheelUp", true)
+C_Hotkey.ctrlTab('XButton1 & WheelDown', false)
+C_Hotkey.ctrlTab('XButton1 & WheelUp', true)
 
 XButton1 & LButton:: X1LR('[', 'X1')
 XButton1 & RButton:: X1LR(']', 'X2')

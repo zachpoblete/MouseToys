@@ -123,7 +123,7 @@ f::
 #!v:: Run('App volume and device preferences', 'C:\Windows')
 
 GroupAdd('ExplorerWins', 'ahk_class CabinetWClass')
-GroupAdd('PhotoWins', A_Space CHARS["LEFT_TO_RIGHT_MARK"] "- Photos$ ahk_exe ApplicationFrameHost.exe")
+GroupAdd('PhotoWins', A_Space CHARS['LEFT_TO_RIGHT_MARK'] '- Photos$ ahk_exe ApplicationFrameHost.exe')
 GroupAdd('ZoomWins', 'ahk_class Z ahk_exe Zoom.exe', , , 'ZPToolBarParentWnd')
 
 #+e:: ActivateRecentElseRun('explorer', , 'ahk_group ExplorerWins')
