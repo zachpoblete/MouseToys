@@ -3,5 +3,5 @@
 #WinActivateForce
 #SingleInstance
 
-SetWinDelay 0
-SetControlDelay 0
+SetWinDelay(0)
+SetControlDelay(0)

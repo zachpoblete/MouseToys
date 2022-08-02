@@ -22,8 +22,8 @@ GetSelected() {
     savedClipboard := ClipboardAll()
     A_Clipboard := ''
 
-    Send '{Ctrl Down}c{Ctrl Up}'
-    ClipWait 0.05
+    Send('{Ctrl Down}c{Ctrl Up}')
+    ClipWait(0.05)
 
     selected := A_Clipboard
     A_Clipboard := savedClipboard
@@ -42,10 +42,10 @@ GetSelectedElseExit() {
 SendInstantRaw(text) {
     savedClipboard := ClipboardAll()
     A_Clipboard := text
-    ClipWait 0.05
-    Send '{Ctrl Down}v{Ctrl Up}'
-    Sleep 1000
-    SetTimer () => A_Clipboard := savedClipboard, -50
+    ClipWait(0.05)
+    Send('{Ctrl Down}v{Ctrl Up}')
+    Sleep(1000)
+    SetTimer(() => A_Clipboard := savedClipboard, -50)
 }
 
 ;====================================================================================================
@@ -53,7 +53,7 @@ SendInstantRaw(text) {
 ;====================================================================================================
 
 GetFileExt(fileName) {
-    RegExMatch fileName, '\.[^.]+$', &fileExt
+    RegExMatch(fileName, '\.[^.]+$', &fileExt)
     return fileExt
 }
 
@@ -62,12 +62,12 @@ OnFileSave(fileName, fn, shouldCall := true) {
         if not InStr(FileGetAttrib(fileName), 'A') {
             return
         }
-        FileSetAttrib '-A', fileName
-        fn
+        FileSetAttrib('-A', fileName)
+        fn()
     }
 
     periodMs := (shouldCall)? 1000 : 0
-    SetTimer () => funcIfSave(fn), periodMs
+    SetTimer(() => funcIfSave(fn), periodMs)
 }
 
 ;====================================================================================================
@@ -108,7 +108,7 @@ HotkeyGetPrefixKey(hk) {
 }
 
 HotstringGetAbbrev(hs) {
-    RegExMatch hs, '^:[^:]*:\K.+', &abbrev
+    RegExMatch(hs, '^:[^:]*:\K.+', &abbrev)
     return abbrev
 }
 
@@ -129,11 +129,11 @@ ActivateElseRun(toRun, workingDir := '', toActivate := '') {
         toActivate := 'ahk_exe ' toRun
     }
     if not WinExist(toActivate) {
-        Run toRun, workingDir
+        Run(toRun, workingDir)
     } else if InStr(toActivate, 'ahk_group') {
-        GroupActivate LTrim(StrDel(toActivate, 'ahk_group')), 'R'
+        GroupActivate(LTrim(StrDel(toActivate, 'ahk_group')), 'R')
     } else {
-        WinActivate toActivate
+        WinActivate(toActivate)
     }
 }
 
@@ -141,13 +141,13 @@ GroupActivateRelIfExists(groupName) {
     if not WinExist('ahk_group ' groupName) {
         return
     }
-    GroupActivate groupName, 'R'
+    GroupActivate(groupName, 'R')
 }
 
 MouseControlFocus(control := '', winTitle := '', winText := '', excludedTitle := '', excludedText := '') {
-    MouseGetPos , , &mouseHwnd, &mouseControlHwnd, 2
-    WinActivate mouseHwnd
-    ControlFocus mouseControlHwnd
+    MouseGetPos(, , &mouseHwnd, &mouseControlHwnd, 2)
+    WinActivate(mouseHwnd)
+    ControlFocus(mouseControlHwnd)
 
     mouseClassNn := ControlGetClassNN(mouseControlHwnd)
     mouseControlText := ControlGetText(mouseControlHwnd)
@@ -164,22 +164,22 @@ MouseControlFocus(control := '', winTitle := '', winText := '', excludedTitle :=
 }
 
 MouseWinActivate(winTitle := '', winText := '', excludedTitle := '', excludedText := '') {
-    MouseGetPos , , &mouseHwnd
-    WinActivate mouseHwnd
+    MouseGetPos(, , &mouseHwnd)
+    WinActivate(mouseHwnd)
     return WinActive(winTitle ' ahk_id ' mouseHwnd, winText, excludedTitle, excludedText)  ; The mouseHwnd is there for the case when all the parameters are blank and there is no last found window.
 }
 
 MatchTitleAndCallFunc(options, fn) {
     if RegExMatch(options, 'i)1|2|3|RegEx', &matchMode) {
-        SetTitleMatchMode matchMode[]
+        SetTitleMatchMode(matchMode[])
     }
     if RegExMatch(options, 'i)Fast|Slow', &speed) {
-        SetTitleMatchMode speed[]
+        SetTitleMatchMode(speed[])
     }
     if InStr(options, 'Hidden') {
-        DetectHiddenWindows true
+        DetectHiddenWindows(true)
     } else if InStr(options, 'Visible') {
-        DetectHiddenWindows false
+        DetectHiddenWindows(false)
     }
-    fn
+    fn()
 }

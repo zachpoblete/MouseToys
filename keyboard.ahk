@@ -7,18 +7,18 @@
 ; In-App
 ;====================================================================================================
 
-BrowserHotkeys () => GetKeyState('NumLock', 'T')
+BrowserHotkeys(() => GetKeyState('NumLock', 'T'))
 BrowserHotkeys(hotifExFn) {
-    C_Hotkey.Browser.searchSelectedAsUrl 'u', , hotifExFn
-    C_Hotkey.Browser.searchSelectedAsUrl 'g', 'https://www.google.com/search?q=', hotifExFn
-    C_Hotkey.Browser.searchSelectedAsUrl 'y', 'https://www.youtube.com/results?search_query=', hotifExFn
+    C_Hotkey.Browser.searchSelectedAsUrl('u', , hotifExFn)
+    C_Hotkey.Browser.searchSelectedAsUrl('g', 'https://www.google.com/search?q=', hotifExFn)
+    C_Hotkey.Browser.searchSelectedAsUrl('y', 'https://www.youtube.com/results?search_query=', hotifExFn)
 }
 
 #HotIf WinActive('ahk_exe msedge.exe')
-^e:: Send '{Ctrl Down}{Shift Down},{Shift Up}{Ctrl Up}'  ; Toggle vertical tabs.
+^e:: Send('{Ctrl Down}{Shift Down},{Shift Up}{Ctrl Up}')  ; Toggle vertical tabs.
 
 #HotIf WinActive('ahk_exe Notion.exe')
-^+f:: Send '{Ctrl Down}{Shift Down}h{Shift Up}{Ctrl Up}'  ; Apply last text or highlight color used.
+^+f:: Send('{Ctrl Down}{Shift Down}h{Shift Up}{Ctrl Up}')  ; Apply last text or highlight color used.
 
 #HotIf WinActive('ahk_exe Spotify.exe')
 ; I switched the keyboard shortcuts for varying the navigation bar and friend activity widths.
@@ -26,24 +26,24 @@ BrowserHotkeys(hotifExFn) {
 ; hence assigning Down and Up to it
 ; and when you increase the friend activity width, the bar grows fatter
 ; hence assigning Left and Right to it:
-!+Down::  Send '{Alt Down}{Shift Down}{Left}{Shift Up}{Alt Up}'   ; Decrease navigation bar width.
-!+Up::    Send '{Alt Down}{Shift Down}{Right}{Shift Up}{Alt Up}'  ; Increase navigation bar width.
-!+Left::  Send '{Alt Down}{Shift Down}{Down}{Shift Up}{Alt Up}'   ; Increase friend activity width.
-!+Right:: Send '{Alt Down}{Shift Down}{Up}{Shift Up}{Alt Up}'     ; Decrease friend activity width.
+!+Down::  Send('{Alt Down}{Shift Down}{Left}{Shift Up}{Alt Up}')   ; Decrease navigation bar width.
+!+Up::    Send('{Alt Down}{Shift Down}{Right}{Shift Up}{Alt Up}')  ; Increase navigation bar width.
+!+Left::  Send('{Alt Down}{Shift Down}{Down}{Shift Up}{Alt Up}')   ; Increase friend activity width.
+!+Right:: Send('{Alt Down}{Shift Down}{Up}{Shift Up}{Alt Up}')     ; Decrease friend activity width.
 
 ; Spicetify:
 /*
 keyboardShortcut-Quarter.js:
-    !+l:: toggleLyrics
-    !+q:: toggleQueue
-    !+m:: openSpicetifyMarketPlace
+    !+l:: toggleLyrics()
+    !+q:: toggleQueue()
+    !+m:: openSpicetifyMarketPlace()
 */
 
 ; !+2 goes to Your Podcasts, but because of the Hide Podcasts extension,
 ; Your Podcasts isn't listed in Your Library, so !+2 should redirect to Your Artists instead.
 ; The same logic applies to !+3 and !+4:
-!+2:: Send '{Alt Down}{Shift Down}3{Shift Up}{Alt Up}'  ; Go to your artists.
-!+3:: Send '{Alt Down}{Shift Down}4{Shift Up}{Alt Up}'  ; Go to your albums.
+!+2:: Send('{Alt Down}{Shift Down}3{Shift Up}{Alt Up}')  ; Go to your artists.
+!+3:: Send('{Alt Down}{Shift Down}4{Shift Up}{Alt Up}')  ; Go to your albums.
 !+4:: return
 #HotIf
 
@@ -52,57 +52,57 @@ keyboardShortcut-Quarter.js:
 ;----------------------------------------------------------------------------------------------------
 
 #HotIf WinActive(CLASSES['ZOOM']['MEETING']) and WinWaitActive(CLASSES['ZOOM']['TOOLBAR'], , 0.1)
-~#Down:: WinActivate 'Zoom ahk_pid ' WinGetPid()  ; Activate minimized video/control.
+~#Down:: WinActivate('Zoom ahk_pid ' WinGetPid())  ; Activate minimized video/control.
 
 #HotIf WinActive(CLASSES['ZOOM']['WAIT_HOST']) or WinActive(CLASSES['ZOOM']['VID_PREVIEW'])
-#Down:: WinMinimize
+#Down:: WinMinimize()
 
 #HotIf WinActive(CLASSES['ZOOM']['MIN_VID']) or WinActive(CLASSES['ZOOM']['MIN_CONTROL'])
 #Up:: {
-    WinGetPos , , , &winH
-    ControlClick 'x200 y' (winH - 30)  ; Exit minimized video.
+    WinGetPos(, , , &winH)
+    ControlClick('x200 y' (winH - 30))  ; Exit minimized video.
 }
 
 #HotIf WinActive(CLASSES['ZOOM']['HOME']) and not WinExist('Zoom ahk_pid ' TryFunc(WinGetPid.bind(CLASSES['ZOOM']['TOOLBAR'])))  ; Check if a visible meeting window exists.
-!F4:: ProcessClose 'Zoom.exe'  ; Can't use WinClose because that minimizes here.
+!F4:: ProcessClose('Zoom.exe')  ; Can't use WinClose because that minimizes here.
 
 #HotIf WinActive('ahk_pid ' TryFunc(WinGetPid.bind(CLASSES['ZOOM']['TOOLBAR'])))  ; Check if a meeting window is active.
 !=::
     Zoom_GiveThumbsUp(thisHotkey) {
-        Zoom_OpenReactions thisHotkey
-        SetTimer select, -50
+        Zoom_OpenReactions(thisHotkey)
+        SetTimer(select, -50)
         select() {
-            WinGetPos , , &winW, &winH, CLASSES['ZOOM']['REACTION']
-            ImageSearch &imageX, &imageY, 0, 0, winW, winH, '*60 images\thumbs up.png'
-            ControlClick 'x' imageX ' y' imageY, CLASSES['ZOOM']['MEETING']
+            WinGetPos(, , &winW, &winH, CLASSES['ZOOM']['REACTION'])
+            ImageSearch(&imageX, &imageY, 0, 0, winW, winH, '*60 images\thumbs up.png')
+            ControlClick('x' imageX ' y' imageY, CLASSES['ZOOM']['MEETING'])
         }
     }
 
 !e::
     Zoom_OpenReactions(thisHotkey) {
         if WinExist(CLASSES['ZOOM']['REACTION']) {
-            WinActivate
+            WinActivate()
             return
         } else if not WinExist(CLASSES['ZOOM']['MEETING']) {
             return
         }
-        WinActivate
-        WinGetPos , , &winW, &winH
+        WinActivate()
+        WinGetPos(, , &winW, &winH)
 
         if not ImageSearch(&imageX, &imageY, 0, winH - 60, winW, winH, '*60 images\reactions.png') {
-            ControlClick 'x' imageX ' y' imageY, CLASSES['ZOOM']['MEETING']  ; Search meeting controls region.
+            ControlClick('x' imageX ' y' imageY, CLASSES['ZOOM']['MEETING'])  ; Search meeting controls region.
             return
         }
-        ImageSearch &imageX, &imageY, 0, winH - 60, winW, winH, '*60 images\more.png'
-        ControlClick 'x' imageX ' y' imageY, CLASSES['ZOOM']['MEETING']
+        ImageSearch(&imageX, &imageY, 0, winH - 60, winW, winH, '*60 images\more.png')
+        ControlClick('x' imageX ' y' imageY, CLASSES['ZOOM']['MEETING'])
 
-        SetTimer select, -150
+        SetTimer(select, -150)
         select() {
             if ImageSearch(&imageX, &imageY, 0, winH - 60, winW, winH, '*60 images\apps.png') {
-                Send '{Up}'
+                Send('{Up}')
             }
-            Send '{Up}'
-            SetTimer () => Send('{Space}'), -10
+            Send('{Up}')
+            SetTimer(() => Send('{Space}'), -10)
         }
     }
 #HotIf
@@ -115,27 +115,27 @@ keyboardShortcut-Quarter.js:
 f::
     RunSelectedAsFolder(thisHotkey) {
         selected := GetSelectedElseExit()
-        Run 'explore ' selected
+        Run('explore ' selected)
     }
 #HotIf
 
-#!c:: ActivateElseRun 'C:\Users\Zach Poblete\Pictures\Camera Roll'
-#!v:: Run 'App volume and device preferences', 'C:\Windows'
+#!c:: ActivateElseRun('C:\Users\Zach Poblete\Pictures\Camera Roll')
+#!v:: Run('App volume and device preferences', 'C:\Windows')
 
-GroupAdd 'ExplorerWins', 'ahk_class CabinetWClass'
-GroupAdd 'PhotoWins', A_Space CHARS["LEFT_TO_RIGHT_MARK"] "- Photos$ ahk_exe ApplicationFrameHost.exe"
-GroupAdd 'ZoomWins', 'ahk_class Z ahk_exe Zoom.exe', , , 'ZPToolBarParentWnd'
+GroupAdd('ExplorerWins', 'ahk_class CabinetWClass')
+GroupAdd('PhotoWins', A_Space CHARS["LEFT_TO_RIGHT_MARK"] "- Photos$ ahk_exe ApplicationFrameHost.exe")
+GroupAdd('ZoomWins', 'ahk_class Z ahk_exe Zoom.exe', , , 'ZPToolBarParentWnd')
 
-#+e:: ActivateElseRun 'explorer.exe', , 'ahk_group ExplorerWins'
-#+p:: MatchTitleAndCallFunc 'RegEx', () => GroupActivateRelIfExists('PhotoWins')
+#+e:: ActivateElseRun('explorer.exe', , 'ahk_group ExplorerWins')
+#+p:: MatchTitleAndCallFunc('RegEx', () => GroupActivateRelIfExists('PhotoWins'))
 #+z::
     Zoom_ActivateElseRun(thisHotkey) {
         if not WinExist('ahk_exe Zoom.exe') {
-            Run 'Zoom', 'C:\Users\Zach Poblete\AppData\Roaming\Zoom\bin'
+            Run('Zoom', 'C:\Users\Zach Poblete\AppData\Roaming\Zoom\bin')
         } else if WinExist(CLASSES['ZOOM']['HIDDEN_TOOLBAR']) or WinExist('Zoom ahk_pid ' TryFunc(WinGetPid.bind(CLASSES['ZOOM']['TOOLBAR']))) {  ; Check if a visible Zoom meeting window exists.
-            WinActivate
+            WinActivate()
         } else {
-            MatchTitleAndCallFunc 'RegEx', () => GroupActivateRelIfExists('ZoomWins')  ; Activate visible Zoom windows.
+            MatchTitleAndCallFunc('RegEx', () => GroupActivateRelIfExists('ZoomWins'))  ; Activate visible Zoom windows.
         }
     }
 
@@ -144,28 +144,28 @@ GroupAdd 'ZoomWins', 'ahk_class Z ahk_exe Zoom.exe', , , 'ZPToolBarParentWnd'
 ;====================================================================================================
 
 #HotIf GetKeyState('CapsLock', 'T')
-$Volume_Up::   DisplayAndSetVolume 1
-$Volume_Down:: DisplayAndSetVolume -1
+$Volume_Up::   DisplayAndSetVolume(1)
+$Volume_Down:: DisplayAndSetVolume(-1)
 
 DisplayAndSetVolume(variation) {
     newVol := SoundGetVolume() + variation
     volDirection := (variation > 0 or Round(newVol) = 1)? 'Up' : 'Down'  ; Idkwb Round(newVol) before this point doesn't work.
 
-    Send '{Volume_' volDirection '}'  ; Vary volume by 2, and, importantly, display volume slider (and media overlay).
-    SoundSetVolume newVol  ; Override that normal variation of 2.
+    Send('{Volume_' volDirection '}')  ; Vary volume by 2, and, importantly, display volume slider (and media overlay).
+    SoundSetVolume(newVol)  ; Override that normal variation of 2.
 }
 #HotIf
 
 if not ProcessExist('brightness-setter.exe') {
-    Run 'brightness-setter'
+    Run('brightness-setter')
 }
 
-OnExit (reason, code) => CloseBrightnessSetter()
+OnExit((reason, code) => CloseBrightnessSetter())
 CloseBrightnessSetter() {
     if ProcessExist('brightness-setter.exe') {
-        ProcessClose 'brightness-setter.exe'
+        ProcessClose('brightness-setter.exe')
     }
-    ProcessWaitClose 'brightness-setter.exe'
+    ProcessWaitClose('brightness-setter.exe')
 }
 
 /*
@@ -176,21 +176,21 @@ C_BrightnessSetter:
 
 #F5::
     ProcessCloseOpen(thisHotkey) {
-        WinExist 'A'
+        WinExist('A')
 
         winPid := WinGetPID()
         winPath := ProcessGetPath(winPid)
 
-        WinClose
-        ProcessWaitClose winPid
-        Run winPath
+        WinClose()
+        ProcessWaitClose(winPid)
+        Run(winPath)
     }
 
 F9::    Media_Prev
 F10::   Media_Next
 Pause:: Media_Play_Pause
 
-PrintScreen:: Send '{LWin Down}{Alt Down}{PrintScreen}{Alt Up}{LWin Up}'
+PrintScreen:: Send('{LWin Down}{Alt Down}{PrintScreen}{Alt Up}{LWin Up}')
 
 ;====================================================================================================
 ; Remap
@@ -201,33 +201,31 @@ PrintScreen:: Send '{LWin Down}{Alt Down}{PrintScreen}{Alt Up}{LWin Up}'
 (In order of decreasing input level)
 
 RAKK Lam-Ang Pro FineTuner:
-    Fn::       CapsLock
-    Capslock:: BS
-    BS::       `
-    `::        NumLock
+    Fn::         CapsLock
+    Capslock::   BS
+    BS::         `
+    `::          NumLock
 
-    Ins::      Home
-    Home::     PgUp
-    PgUp::     Ins
+    Ins::        Home
+    Home::       PgUp
+    PgUp::       Ins
 
 KeyTweak:
-    AppsKey::  RWin
+    AppsKey::    RWin
 
 PowerToys:
     ScrollLock:: AppsKey
 
-AHK:
-
 */
 
 #InputLevel 1
-+Space:: Send '_'
++Space:: Send('_')
 
 +-:: {
     if WinActive('Desmos ahk_exe msedge.exe') or WinActive('ahk_exe EXCEL.EXE') {
-        Send 'sqrt'
+        Send('sqrt')
     } else {
-        Send '{U+221A}'  ; square root
+        Send('{U+221A}')  ; square root
     }
 }
 #InputLevel
@@ -235,57 +233,57 @@ AHK:
 #HotIf RegExMatch(ControlGetFocus('A'), '^Edit\d+$')
 ^BS:: {  ; This hotkey doesn't natively work, so work around that.
     if GetSelected() {
-        Send '{Del}'
+        Send('{Del}')
     } else {
-        Send '{Ctrl Down}{Shift Down}{Left}{Del}{Shift Up}{Ctrl Up}'  ; Delete last word typed.
+        Send('{Ctrl Down}{Shift Down}{Left}{Del}{Shift Up}{Ctrl Up}')  ; Delete last word typed.
     }
 }
 
 #HotIf
-+BS::  Send '{Del}'
-^+BS:: Send '{Ctrl Down}{Del}{Ctrl Up}'
++BS::  Send('{Del}')
+^+BS:: Send('{Ctrl Down}{Del}{Ctrl Up}')
 
 ;====================================================================================================
 ; Modifiers
 ;====================================================================================================
 
 if GetKeyState('NumLock', 'T') {
-    ToolTip 'NumLock On'
+    ToolTip('NumLock On')
 }
 
 #InputLevel 1
-^Pause:: Send '{NumLock}'  ; When Ctrl is down, NumLock produces the key code of Pause while Pause produces CtrlBreak.
+^Pause:: Send('{NumLock}')  ; When Ctrl is down, NumLock produces the key code of Pause while Pause produces CtrlBreak.
 #InputLevel
 
 ~*NumLock:: {
-    SetTimer logic, -10
+    SetTimer(logic, -10)
     logic() {
         toolTipNumLock() => ToolTip('NumLock On')
 
         if GetKeyState('NumLock', 'T') {
-            SetTimer toolTipNumLock, 10
+            SetTimer(toolTipNumLock, 10)
         } else {
-            SetTimer toolTipNumLock, 0
-            ToolTip
+            SetTimer(toolTipNumLock, 0)
+            ToolTip()
         }
     }
 }
 
 ~*Alt:: {
     if not MatchTitleAndCallFunc('RegEx', () => WinActive('ahk_exe .EXE$')) {  ; Check if an Office app isn't active.
-        Send '{Ctrl}'
+        Send('{Ctrl}')
     }
 }
 
 LWin::
 RWin:: {
-        Send '{' thisHotkey ' Down}'
-        KeyWait thisHotkey
+        Send('{' thisHotkey ' Down}')
+        KeyWait(thisHotkey)
 
         if A_PriorKey = thisHotkey and A_TimeSinceThisHotkey > 500 {
-            Send '{Ctrl}'
+            Send('{Ctrl}')
         }
-        Send '{' thisHotkey ' Up}'
+        Send('{' thisHotkey ' Up}')
     }
 
 ;====================================================================================================
@@ -295,7 +293,7 @@ RWin:: {
 
 ~^z:: {
     if A_PriorHotkey ~= '^:' {  ; Matches hotstrings.
-        Send '{Ctrl Down}z{Ctrl Up}'  ; Send an extra ^z to go back to the abbreviation.
+        Send('{Ctrl Down}z{Ctrl Up}')  ; Send an extra ^z to go back to the abbreviation.
     }
 }
 
@@ -323,9 +321,9 @@ RWin:: {
 
 :*?b0c:&tab:: {
     ih := InputHook('L3 V', '{Enter}{Tab}')
-    ih.keyOpt '{Enter}{Tab}', 'S'
-    ih.Start
-    ih.Wait
+    ih.keyOpt('{Enter}{Tab}', 'S')
+    ih.Start()
+    ih.Wait()
 
     if not ih.Endkey {
         return
@@ -339,8 +337,8 @@ RWin:: {
             tabs .= A_Tab
         }
     }
-    Send '{Ctrl Down}{Shift Down}{Left 2}{Ctrl Up}{Left}{Shift Up}'  ; Erase the abbreviation.
-    SendInstantRaw tabs
+    Send('{Ctrl Down}{Shift Down}{Left 2}{Ctrl Up}{Left}{Shift Up}')  ; Erase the abbreviation.
+    SendInstantRaw(tabs)
 }
 
 ;----------------------------------------------------------------------------------------------------

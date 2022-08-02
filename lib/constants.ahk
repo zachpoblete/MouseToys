@@ -47,7 +47,7 @@ CLASSES['ZOOM'] := Map(
     'WAIT_HOST',      'zWaitHostWndClass'
 )
 
-ConvertClassesAbbrevsToFullForm
+ConvertClassesAbbrevsToFullForm()
 ConvertClassesAbbrevsToFullForm() {
     for abbrev, fullForm in CLASSES['ZOOM'] {
         CLASSES['ZOOM'][abbrev] := 'ahk_class ' fullForm

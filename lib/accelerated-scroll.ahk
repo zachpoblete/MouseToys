@@ -24,7 +24,7 @@ AcceleratedScroll() {  ; To use effectively, make sure this function is the firs
         _distance := 0
         _maxSpeed := 1
 
-        MouseClick A_ThisHotkey
+        MouseClick(A_ThisHotkey)
         return
     }
     _distance++  ; Remember how many times the current direction has been scrolled in.
@@ -41,5 +41,5 @@ AcceleratedScroll() {  ; To use effectively, make sure this function is the firs
         speed *= _distance / BOOST
     }
     speed := (speed > MAX_SCROLLS)? MAX_SCROLLS : Floor(speed)
-    MouseClick A_ThisHotkey, , , speed
+    MouseClick(A_ThisHotkey, , , speed)
 }

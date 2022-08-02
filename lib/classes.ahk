@@ -14,7 +14,7 @@ class C_KeyWait {
         if not isWaiting {
             return
         }
-        KeyWait key, options
+        KeyWait(key, options)
         this._states[key][options] := false
     }
 }
@@ -22,18 +22,18 @@ class C_KeyWait {
 class C_Hotkey {
     static ctrlTab(hk, shouldPressShift) {
         sendFirstAndLast(thisHotkey) {
-            Send '{Ctrl Down}' tab
-            KeyWait HotkeyGetPrefixKey(thisHotkey)
-            Send '{Ctrl Up}'
+            Send('{Ctrl Down}' tab)
+            KeyWait(HotkeyGetPrefixKey(thisHotkey))
+            Send('{Ctrl Up}')
         }
 
         tab := (shouldPressShift)? '{Shift Down}{Tab}{Shift Up}' : '{Tab}'
 
-        HotIf thisHotkey => GetKeyState('Ctrl')
-        Hotkey hk, thisHotkey => Send(tab)
+        HotIf(thisHotkey => GetKeyState('Ctrl'))
+        Hotkey(hk, thisHotkey => Send(tab))
 
-        HotIf
-        Hotkey hk, thisHotkey => sendFirstAndLast(thisHotkey)
+        HotIf()
+        Hotkey(hk, thisHotkey => sendFirstAndLast(thisHotkey))
     }
 
     class Browser {
@@ -43,9 +43,9 @@ class C_Hotkey {
 
         static hotIfCondition(hotifExFn := '') {
             if hotifExFn {
-                HotIf thisHotkey => this.active() and hotifExFn()
+                HotIf(thisHotkey => this.active() and hotifExFn())
             } else {
-                HotIf thisHotkey => this.active()
+                HotIf(thisHotkey => this.active())
             }
         }
 
@@ -54,28 +54,28 @@ class C_Hotkey {
                 url := getUrlFromSelectedElseExit()
 
                 letter := (inNew)? 't' : 'l'
-                Send '{Ctrl Down}' letter '{Ctrl Up}'
+                Send('{Ctrl Down}' letter '{Ctrl Up}')
 
-                SendInstantRaw url
+                SendInstantRaw(url)
 
-                SetTimer () => Send('{Enter}'), -10
+                SetTimer(() => Send('{Enter}'), -10)
             }
             runUrl() {
                 url := getUrlFromSelectedElseExit()
-                Run url
+                Run(url)
             }
             getUrlFromSelectedElseExit() {
                 query := GetSelectedElseExit()
                 return (engine)? this.queryToUrl(query, engine) : query
             }
 
-            this.hotIfCondition hotifExFn
-            Hotkey hk, thisHotkey => searchUrlInTab(true)
-            Hotkey '+' hk, thisHotkey => searchUrlInTab(false)
+            this.hotIfCondition(hotifExFn)
+            Hotkey(hk, thisHotkey => searchUrlInTab(true))
+            Hotkey('+' hk, thisHotkey => searchUrlInTab(false))
 
-            HotIf thisHotkey => hotifExFn()
-            hotkey hk, thisHotkey => runUrl()
-            HotIf
+            HotIf(thisHotkey => hotifExFn())
+            hotkey(hk, thisHotkey => runUrl())
+            HotIf()
         }
 
         static queryToUrl(query, engine) {
@@ -92,24 +92,24 @@ class C_Timer {
         if this._labels.has(index) {
             return this._labels[index]
         } else {
-            this._labels.insertAt 1, ''
+            this._labels.insertAt(1, '')
             return
         } 
     }
 
     static set(fn, period := '', priority := '', index := 1) {
-        SetTimer fn, period, priority
+        SetTimer(fn, period, priority)
 
         if not this._labels.has(index) {
-            this._labels.insertAt index, fn
+            this._labels.insertAt(index, fn)
         }
         if period > 0 {
-            this._labels.removeAt index
-            this._labels.insertAt index, fn
+            this._labels.removeAt(index)
+            this._labels.insertAt(index, fn)
         } else if period = 0 {
-            this._labels.removeAt index
+            this._labels.removeAt(index)
         } else {
-            SetTimer () => this._labels.removeAt(index), -period
+            SetTimer(() => this._labels.removeAt(index), -period)
         }
     }
 }
