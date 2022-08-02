@@ -12,8 +12,9 @@
     if WinExist('ahk_exe Code.exe') {
         WinActivate
     } else {
-        Loop Files '*.code-workspace'
+        Loop Files '*.code-workspace' {
             Run A_LoopFileName
+        }
     }
 }
 

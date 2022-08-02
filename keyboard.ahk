@@ -335,8 +335,9 @@ RWin:: {
     if ih.input = ';' {
         tabs := A_Tab
     } else if RegExMatch(ih.Input, '\A(\d);\z', &match) {
-        Loop match[1]
+        Loop match[1] {
             tabs .= A_Tab
+        }
     }
     Send '{Ctrl Down}{Shift Down}{Left 2}{Ctrl Up}{Left}{Shift Up}'  ; Erase the abbreviation.
     SendInstantRaw tabs
