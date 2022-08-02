@@ -69,7 +69,7 @@ keyboardShortcut-Quarter.js:
 #HotIf WinActive('ahk_pid ' TryFunc(WinGetPid.bind(CLASSES['ZOOM']['TOOLBAR'])))  ; Check if a meeting window is active.
 !=::
     Zoom_GiveThumbsUp(thisHotkey) {
-        Zoom_OpenReactions(thisHotkey)
+        Zoom_OpenReactions thisHotkey
         SetTimer select, -50
         select() {
             WinGetPos , , &winW, &winH, CLASSES['ZOOM']['REACTION']
@@ -135,7 +135,7 @@ GroupAdd 'ZoomWins', 'ahk_class Z ahk_exe Zoom.exe', , , 'ZPToolBarParentWnd'
         } else if WinExist(CLASSES['ZOOM']['HIDDEN_TOOLBAR']) or WinExist('Zoom ahk_pid ' TryFunc(WinGetPid.bind(CLASSES['ZOOM']['TOOLBAR']))) {  ; Check if a visible Zoom meeting window exists.
             WinActivate
         } else {
-            MatchTitleAndCallFunc('RegEx', () => GroupActivateRelIfExists('ZoomWins'))  ; Activate visible Zoom windows.
+            MatchTitleAndCallFunc 'RegEx', () => GroupActivateRelIfExists('ZoomWins')  ; Activate visible Zoom windows.
         }
     }
 
