@@ -20,15 +20,15 @@
 
 #^h::
     OpenDocs(thisHotkey) {
-        static DIRECTORY := 'https://lexikos.github.io/v2/docs'
+        docs := 'https://lexikos.github.io/v2/docs/AutoHotkey.htm'
 
         if GetKeyState('CapsLock', 'T') {
             selected := GetSelectedElseExit()
             command := StrReplace(selected, '#', '_', , , 1)
-            Run(DIRECTORY '/commands/' command '.htm')
-        } else {
-            Run(DIRECTORY '/AutoHotkey.htm')
+            docs := StrReplace(docs, 'AutoHotkey', 'commands/' command)
         }
+
+        Run docs
     }
 
 #^w::
