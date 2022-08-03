@@ -188,5 +188,5 @@ MatchTitleAndCall(options, fn) {
     } else if InStr(options, 'Visible') {
         DetectHiddenWindows(false)
     }
-    fn()
+    return fn()
 }
