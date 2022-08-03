@@ -100,7 +100,7 @@ X1LR(states*) {
     if MouseWinActivate('ahk_exe Notion.exe') {
         Send('{Ctrl Down}' states[1] '{Ctrl Up}')
     } else {
-        Click(states[2])
+        Click(states[-1])
     }
 }
 
@@ -124,7 +124,7 @@ X2DU(states*) {
     } else if WinActive('ahk_exe AcroRd32.exe') or WinActive('ahk_exe WindowsTerminal.exe') {
         Send('{Ctrl Down}' states[3] '{Ctrl Up}')
     } else {
-        Send('{Ctrl Down}' states[4] '{Ctrl Up}')
+        Send('{Ctrl Down}' states[-1] '{Ctrl Up}')
     }
 }
 
@@ -133,7 +133,7 @@ XButton2 & RButton:: X2LR('w')
 
 X2LR(states*) {
     MouseWinActivate()
-    Send('{Ctrl Down}' states[1] '{Ctrl Up}')
+    Send('{Ctrl Down}' states[-1] '{Ctrl Up}')
 }
 
 XButton2 & MButton:: {
