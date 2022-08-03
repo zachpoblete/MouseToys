@@ -121,7 +121,7 @@ X2DU(states*) {
         Send('{Alt Down}' states[1] '{Alt Up}')
     } else if WinActive('ahk_exe POWERPNT.EXE') {
         Send(states[2])
-    } else if WinActive('ahk_exe AcroRd32.exe') {
+    } else if WinActive('ahk_exe AcroRd32.exe') or WinActive('ahk_exe WindowsTerminal.exe') {
         Send('{Ctrl Down}' states[3] '{Ctrl Up}')
     } else {
         Send('{Ctrl Down}' states[4] '{Ctrl Up}')
