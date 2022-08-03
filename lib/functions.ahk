@@ -176,17 +176,20 @@ MouseWinActivate(winTitle := '', winText := '', excludedTitle := '', excludedTex
     return WinActive(winTitle ' ahk_id ' mouseHwnd, winText, excludedTitle, excludedText)  ; The mouseHwnd is there for the case when all the parameters are blank and there is no last found window.
 }
 
-MatchTitleAndCall(options, fn) {
-    if RegExMatch(options, 'i)1|2|3|RegEx', &matchMode) {
-        SetTitleMatchMode(matchMode[])
+Func.prototype.defineProp("setWinModeAndCall", {Call: SetWinModeAndCall})
+
+SetWinModeAndCall(this, matchMode := '', matchModeSpeed := '', shouldDetectHiddenWin := '', shouldDetectHiddenText := '') {
+    if matchMode {
+        SetTitleMatchMode(matchMode)
     }
-    if RegExMatch(options, 'i)Fast|Slow', &speed) {
-        SetTitleMatchMode(speed[])
+    if matchModeSpeed {
+        SetTitleMatchMode(matchModeSpeed)
     }
-    if InStr(options, 'Hidden') {
-        DetectHiddenWindows(true)
-    } else if InStr(options, 'Visible') {
-        DetectHiddenWindows(false)
+    if shouldDetectHiddenWin != '' {
+        DetectHiddenWindows(shouldDetectHiddenWin)
     }
-    return fn()
+    if shouldDetectHiddenText != '' {
+        DetectHiddentext(shouldDetectHiddenText)
+    }
+    return this()
 }
