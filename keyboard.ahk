@@ -21,27 +21,29 @@ BrowserHotkeys(hotIfExFn) {
 ^+f:: Send('{Ctrl Down}{Shift Down}h{Shift Up}{Ctrl Up}')  ; Apply last text or highlight color used.
 
 #HotIf WinActive('ahk_exe Spotify.exe')
-; I switched the keyboard shortcuts for varying the navigation bar and friend activity widths.
-; because when you increase the navigation bar width, the cover art grows taller
-; hence assigning Down and Up to it
-; and when you increase the friend activity width, the bar grows fatter
-; hence assigning Left and Right to it:
+/** 
+ * I switched the keyboard shortcuts for varying the navigation bar and friend activity widths.
+ * because when you increase the navigation bar width, the cover art grows taller
+ * hence assigning Down and Up to it
+ * and when you increase the friend activity width, the bar grows fatter
+ * hence assigning Left and Right to it:
+ */
 !+Down::  Send('{Alt Down}{Shift Down}{Left}{Shift Up}{Alt Up}')   ; Decrease navigation bar width.
 !+Up::    Send('{Alt Down}{Shift Down}{Right}{Shift Up}{Alt Up}')  ; Increase navigation bar width.
 !+Left::  Send('{Alt Down}{Shift Down}{Down}{Shift Up}{Alt Up}')   ; Increase friend activity width.
 !+Right:: Send('{Alt Down}{Shift Down}{Up}{Shift Up}{Alt Up}')     ; Decrease friend activity width.
 
-; Spicetify:
-/*
-keyboardShortcut-Quarter.js:
-    !+l:: toggleLyrics()
-    !+q:: toggleQueue()
-    !+m:: openSpicetifyMarketPlace()
-*/
-
-; !+2 goes to Your Podcasts, but because of the Hide Podcasts extension,
-; Your Podcasts isn't listed in Your Library, so !+2 should redirect to Your Artists instead.
-; The same logic applies to !+3 and !+4:
+/**
+ * Spicetify
+ * * keyboardShortcut-Quarter.js:
+ * *     !+l:: toggleLyrics()
+ * *     !+q:: toggleQueue()
+ * *     !+m:: openSpicetifyMarketPlace()
+ *
+ * !+2 goes to Your Podcasts, but because of the Hide Podcasts extension,
+ * Your Podcasts isn't listed in Your Library, so !+2 should redirect to Your Artists instead.
+ * The same logic applies to !+3 and !+4:
+ */
 !+2:: Send('{Alt Down}{Shift Down}3{Shift Up}{Alt Up}')  ; Go to your artists.
 !+3:: Send('{Alt Down}{Shift Down}4{Shift Up}{Alt Up}')  ; Go to your albums.
 !+4:: return
@@ -168,10 +170,10 @@ CloseBrightnessSetter() {
     ProcessWaitClose('brightness-setter.exe')
 }
 
-/*
-C_BrightnessSetter:
-    #PgUp:: C_BrightnessSetter.setBrightness(2)
-    #PgDn:: C_BrightnessSetter.setBrightness(-2)
+/**
+ * * C_BrightnessSetter:
+ * *     #PgUp:: C_BrightnessSetter.setBrightness(2)
+ * *     #PgDn:: C_BrightnessSetter.setBrightness(-2)
 */
 
 #F5::
@@ -196,26 +198,23 @@ PrintScreen:: Send('{LWin Down}{Alt Down}{PrintScreen}{Alt Up}{LWin Up}')
 ; Remap
 ;====================================================================================================
 
-/*
-
-(In order of decreasing input level)
-
-RAKK Lam-Ang Pro FineTuner:
-    Fn::         CapsLock
-    Capslock::   BS
-    BS::         `
-    `::          NumLock
-
-    Ins::        Home
-    Home::       PgUp
-    PgUp::       Ins
-
-KeyTweak:
-    AppsKey::    RWin
-
-PowerToys:
-    ScrollLock:: AppsKey
-
+/**
+ * (In order of decreasing input level)
+ * * RAKK Lam-Ang Pro FineTuner:
+ * *     Fn::         CapsLock
+ * *     Capslock::   BS
+ * *     BS::         `
+ * *     `::          NumLock
+ * * 
+ * *     Ins::        Home
+ * *     Home::       PgUp
+ * *     PgUp::       Ins
+ * * 
+ * * KeyTweak:
+ * *     AppsKey::    RWin
+ * * 
+ * * PowerToys:
+ * *     ScrollLock:: AppsKey
 */
 
 #InputLevel 1
@@ -298,13 +297,14 @@ RWin:: {
 }
 
 #Hotstring EndChars `n`t
-
-; Sorry if the hotstrings look weird!
-; Currently, if you're using the X option,
-; whitespace isn't allowed before the expression.
-; In v1, I made heavy use of whitespace to align my Send commands.
-; I've worked around this bug by adding the whitespace after the function name instead.
-; TODO: When this is fixed, revert the hotstrings back to normal.
+/** 
+ * * Sorry if the hotstrings look weird!
+ * * Currently, if you're using the X option,
+ * * whitespace isn't allowed before the expression.
+ * * In v1, I made heavy use of whitespace to align my Send commands.
+ * * I've worked around this bug by adding the whitespace after the function name instead.
+ * TODO: When this is fixed, revert the hotstrings back to normal.
+ */
 
 :?cx:&deg;::Send    '{U+00B0}'
 
