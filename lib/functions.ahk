@@ -170,7 +170,6 @@ MouseWinActivate(winTitle := '', winText := '', excludedTitle := '', excludedTex
 }
 
 Func.prototype.defineProp('setWinModeAndCall', {Call: SetWinModeAndCall})
-
 SetWinModeAndCall(this, matchMode := '', matchModeSpeed := '', shouldDetectHiddenWin := '', shouldDetectHiddenText := '') {
     if matchMode {
         SetTitleMatchMode(matchMode)
