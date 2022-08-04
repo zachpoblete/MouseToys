@@ -169,7 +169,7 @@ MouseWinActivate(winTitle := '', winText := '', excludedTitle := '', excludedTex
     return WinActive(winTitle ' ahk_id ' mouseHwnd, winText, excludedTitle, excludedText)  ; The mouseHwnd is there for the case when all the parameters are blank and there is no last found window.
 }
 
-Func.prototype.defineProp("setWinModeAndCall", {Call: SetWinModeAndCall})
+Func.prototype.defineProp('setWinModeAndCall', {Call: SetWinModeAndCall})
 
 SetWinModeAndCall(this, matchMode := '', matchModeSpeed := '', shouldDetectHiddenWin := '', shouldDetectHiddenText := '') {
     if matchMode {
