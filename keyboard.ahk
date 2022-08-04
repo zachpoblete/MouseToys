@@ -114,7 +114,15 @@ BrowserHotkeys(hotIfExFn) {
 ;====================================================================================================
 
 #HotIf GetKeyState('NumLock', 'T')
-f::
+d::
+    WinOpenPath(thisHotkey) {
+        winPid := WinGetPID('A')
+        winPath := ProcessGetPath(winPid)
+        winDir := RegExReplace(winPath, '\\[^\\]+$')
+        Run(winDir)
+    }
+
++d::
     RunSelectedAsDir(thisHotkey) {
         dir := GetSelectedElseExit()
 
@@ -122,7 +130,7 @@ f::
             env := EnvGet(match[1])
             dir := StrReplace(dir, match[], env)
         }
-        Run('explore ' dir)
+        Run(dir)
     }
 #HotIf
 
