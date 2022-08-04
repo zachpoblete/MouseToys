@@ -65,10 +65,10 @@ BrowserHotkeys(hotIfExFn) {
     ControlClick('x200 y' (winH - 30))  ; Exit minimized video.
 }
 
-#HotIf WinActive(CLASSES['ZOOM']['HOME']) and not WinExist('Zoom ahk_pid ' TryFunc(WinGetPid.bind(CLASSES['ZOOM']['TOOLBAR'])))  ; Check if a visible meeting window exists.
+#HotIf WinActive(CLASSES['ZOOM']['HOME']) and not WinExist('Zoom ahk_pid ' WinGetPid.tryCall(CLASSES['ZOOM']['TOOLBAR']))  ; Check if a visible meeting window exists.
 !F4:: ProcessClose('Zoom.exe')  ; Can't use WinClose because that minimizes here.
 
-#HotIf WinActive('ahk_pid ' TryFunc(WinGetPid.bind(CLASSES['ZOOM']['TOOLBAR'])))  ; Check if a meeting window is active.
+#HotIf WinActive('ahk_pid ' WinGetPid.tryCall(CLASSES['ZOOM']['TOOLBAR']))  ; Check if a meeting window is active.
 !=::
     Zoom_GiveThumbsUp(thisHotkey) {
         Zoom_OpenReactions(thisHotkey)
@@ -147,7 +147,7 @@ GroupAdd('ZoomWins', 'ahk_class Z ahk_exe Zoom.exe', , , 'ZPToolBarParentWnd')
     Zoom_ActivateElseRun(thisHotkey) {
         if not WinExist('ahk_exe Zoom.exe') {
             Run('Zoom', 'C:\Users\Zach Poblete\AppData\Roaming\Zoom\bin')
-        } else if WinExist(CLASSES['ZOOM']['HIDDEN_TOOLBAR']) or WinExist('Zoom ahk_pid ' TryFunc(WinGetPid.bind(CLASSES['ZOOM']['TOOLBAR']))) {  ; Check if a visible Zoom meeting window exists.
+        } else if WinExist(CLASSES['ZOOM']['HIDDEN_TOOLBAR']) or WinExist('Zoom ahk_pid ' WinGetPid.tryCall(CLASSES['ZOOM']['TOOLBAR'])) {  ; Check if a visible Zoom meeting window exists.
             WinActivate()
         } else {
             ActivateRecentIfExists.bind('ahk_group ZoomWins').setWinModeAndCall('RegEx')  ; Activate visible Zoom windows.

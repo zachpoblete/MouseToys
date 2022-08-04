@@ -1,8 +1,9 @@
 #Include default-settings.ahk
 
-TryFunc(fn) {
+Func.prototype.defineProp('tryCall', {Call: TryCall})
+TryCall(this, params*) {
     try {
-        return fn()
+        return this(params*)
     }
 }
 
