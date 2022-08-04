@@ -115,7 +115,7 @@ BrowserHotkeys(hotIfExFn) {
 
 #HotIf GetKeyState('NumLock', 'T')
 d::
-    WinOpenPath(thisHotkey) {
+    WinOpenDir(thisHotkey) {
         winPid := WinGetPID('A')
         winPath := ProcessGetPath(winPid)
         winDir := RegExReplace(winPath, '\\[^\\]+$')
