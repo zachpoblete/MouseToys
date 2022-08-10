@@ -63,6 +63,17 @@ OnFileSave(fileName, fn, shouldCall := true) {
     SetTimer(() => funcIfSave(fn), periodMs)
 }
 
+StdOut(text, delay := '', delimiter := '') {
+    if delay = '' {
+        FileAppend(text, '*')
+        return
+    }
+    Loop Parse text, delimiter {
+        FileAppend(A_LoopField delimiter, '*')
+        Sleep(delay)
+    }
+}
+
 ;====================================================================================================
 ; Hotkey
 ;====================================================================================================
