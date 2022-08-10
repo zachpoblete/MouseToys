@@ -113,10 +113,10 @@ XButton1 & MButton:: {
 ; XButton2
 ;====================================================================================================
 
-XButton2 & WheelDown:: X2DU('{Down}', '{PgDn}', '{Tab}',                       '{PgDn}')
-XButton2 & WheelUp::   X2DU('{Up}',   '{PgUp}', '{Shift Down}{Tab}{Shift Up}', '{PgUp}')
+XButton2 & WheelDown:: X2W('{Down}', '{PgDn}', '{Tab}',                       '{PgDn}')
+XButton2 & WheelUp::   X2W('{Up}',   '{PgUp}', '{Shift Down}{Tab}{Shift Up}', '{PgUp}')
 
-X2DU(states*) {
+X2W(states*) {
     if MouseWinActivate('ahk_exe Discord.exe') or WinActive('ahk_exe Messenger.exe') {
         Send('{Alt Down}' states[1] '{Alt Up}')
     } else if WinActive('ahk_exe POWERPNT.EXE') {
