@@ -190,7 +190,7 @@ CloseBrightnessSetter() {
 */
 
 #F5::
-    ProcessCloseOpen(thisHotkey) {
+    ProcessRestart(thisHotkey) {
         WinExist('A')
 
         winPid := WinGetPID()
