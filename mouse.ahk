@@ -76,25 +76,14 @@ MButton:: {
 ; XButton1
 ;====================================================================================================
 
-
-#HotIf MouseWinActivate('ahk_exe msedge.exe') and C_KeyWait.get('XButton1')
-XButton1 & WheelDown:: Send('{Down}')
-
 #HotIf MouseWinActivate('ahk_exe msedge.exe')
 XButton1 & WheelDown:: {
     if GetKeyState('Ctrl') {
         Send('{Ctrl Up}')
     }
-    if A_PriorKey ~= 'i)\A(WheelDown|WheelUp)\z' {
-        Send('{Down}')
-        C_KeyWait.set('XButton1')
-        Send('{Enter}')
-    } else {
-        Send('{Ctrl Down}{Shift Down}a{Shift Up}{Ctrl Up}')
-    }
+    Send('{Ctrl Down}{Shift Down}a{Shift Up}{Ctrl Up}')
 }
-
-XButton1 & WheelUp:: Send('{Up}')
+XButton1 & WheelUp:: Send('{Esc}')
 
 #HotIf WinActive('ahk_exe AcroRd32.exe')
 XButton1 & WheelDown:: Send('{Ctrl Down}{PgDn}{Ctrl Up}')
