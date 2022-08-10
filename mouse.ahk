@@ -26,10 +26,12 @@ RButton & WheelDown:: AltTab
 RButton & WheelUp::   ShiftAltTab
 
 RButton & LButton:: {
+    if WinActive('Task Switching ahk_class XamlExplorerHostIslandWindow') {
+        Click()
+        return
+    }
     if GetKeyState('Shift', 'P') {
         Send('{Shift Down}{Del}{Shift Up}')
-    } else if WinActive('Task Switching ahk_class XamlExplorerHostIslandWindow') {
-        Click()
     } else {
         Send('{Del}')
     }
