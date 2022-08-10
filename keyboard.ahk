@@ -70,43 +70,43 @@ BrowserHotkeys(hotIfExFn) {
 
 #HotIf WinActive('ahk_pid ' WinGetPid.tryCall(CLASSES['ZOOM']['TOOLBAR']))  ; Check if a meeting window is active.
 !=::
-    Zoom_GiveThumbsUp(thisHotkey) {
-        Zoom_OpenReactions(thisHotkey)
-        SetTimer(select, -50)
-        select() {
-            WinGetPos(, , &winW, &winH, CLASSES['ZOOM']['REACTION'])
-            ImageSearch(&imageX, &imageY, 0, 0, winW, winH, '*60 images\thumbs up.png')
-            ControlClick('x' imageX ' y' imageY, CLASSES['ZOOM']['MEETING'])
-        }
+Zoom_GiveThumbsUp(thisHotkey) {
+    Zoom_OpenReactions(thisHotkey)
+    SetTimer(select, -50)
+    select() {
+        WinGetPos(, , &winW, &winH, CLASSES['ZOOM']['REACTION'])
+        ImageSearch(&imageX, &imageY, 0, 0, winW, winH, '*60 images\thumbs up.png')
+        ControlClick('x' imageX ' y' imageY, CLASSES['ZOOM']['MEETING'])
     }
+}
 
 !e::
-    Zoom_OpenReactions(thisHotkey) {
-        if WinExist(CLASSES['ZOOM']['REACTION']) {
-            WinActivate()
-            return
-        } else if not WinExist(CLASSES['ZOOM']['MEETING']) {
-            return
-        }
+Zoom_OpenReactions(thisHotkey) {
+    if WinExist(CLASSES['ZOOM']['REACTION']) {
         WinActivate()
-        WinGetPos(, , &winW, &winH)
-
-        if not ImageSearch(&imageX, &imageY, 0, winH - 60, winW, winH, '*60 images\reactions.png') {
-            ControlClick('x' imageX ' y' imageY, CLASSES['ZOOM']['MEETING'])  ; Search meeting controls region.
-            return
-        }
-        ImageSearch(&imageX, &imageY, 0, winH - 60, winW, winH, '*60 images\more.png')
-        ControlClick('x' imageX ' y' imageY, CLASSES['ZOOM']['MEETING'])
-
-        SetTimer(select, -150)
-        select() {
-            if ImageSearch(&imageX, &imageY, 0, winH - 60, winW, winH, '*60 images\apps.png') {
-                Send('{Up}')
-            }
-            Send('{Up}')
-            SetTimer(() => Send('{Space}'), -10)
-        }
+        return
+    } else if not WinExist(CLASSES['ZOOM']['MEETING']) {
+        return
     }
+    WinActivate()
+    WinGetPos(, , &winW, &winH)
+
+    if not ImageSearch(&imageX, &imageY, 0, winH - 60, winW, winH, '*60 images\reactions.png') {
+        ControlClick('x' imageX ' y' imageY, CLASSES['ZOOM']['MEETING'])  ; Search meeting controls region.
+        return
+    }
+    ImageSearch(&imageX, &imageY, 0, winH - 60, winW, winH, '*60 images\more.png')
+    ControlClick('x' imageX ' y' imageY, CLASSES['ZOOM']['MEETING'])
+
+    SetTimer(select, -150)
+    select() {
+        if ImageSearch(&imageX, &imageY, 0, winH - 60, winW, winH, '*60 images\apps.png') {
+            Send('{Up}')
+        }
+        Send('{Up}')
+        SetTimer(() => Send('{Space}'), -10)
+    }
+}
 #HotIf
 
 ;====================================================================================================
@@ -115,23 +115,23 @@ BrowserHotkeys(hotIfExFn) {
 
 #HotIf GetKeyState('NumLock', 'T')
 d::
-    WinOpenDir(thisHotkey) {
-        winPid := WinGetPID('A')
-        winPath := ProcessGetPath(winPid)
-        winDir := RegExReplace(winPath, '\\[^\\]+$')
-        Run(winDir)
-    }
+WinOpenDir(thisHotkey) {
+    winPid := WinGetPID('A')
+    winPath := ProcessGetPath(winPid)
+    winDir := RegExReplace(winPath, '\\[^\\]+$')
+    Run(winDir)
+}
 
 +d::
-    RunSelectedAsDir(thisHotkey) {
-        dir := GetSelectedElseExit()
+RunSelectedAsDir(thisHotkey) {
+    dir := GetSelectedElseExit()
 
-        while RegExMatch(dir, '%(.+?)%', &match) {
-            env := EnvGet(match[1])
-            dir := StrReplace(dir, match[], env)
-        }
-        Run(dir)
+    while RegExMatch(dir, '%(.+?)%', &match) {
+        env := EnvGet(match[1])
+        dir := StrReplace(dir, match[], env)
     }
+    Run(dir)
+}
 #HotIf
 
 #!c:: ActivateRecentElseRun('C:\Users\Zach Poblete\Pictures\Camera Roll')
@@ -144,15 +144,15 @@ GroupAdd('ZoomWins', 'ahk_class Z ahk_exe Zoom.exe', , , 'ZPToolBarParentWnd')
 #+e:: ActivateRecentElseRun('explorer', , 'ahk_group ExplorerWins')
 #+p:: ActivateRecentIfExists.bind('ahk_group PhotoWins').setWinModeAndCall('RegEx')
 #+z::
-    Zoom_ActivateElseRun(thisHotkey) {
-        if not WinExist('ahk_exe Zoom.exe') {
-            Run('Zoom', 'C:\Users\Zach Poblete\AppData\Roaming\Zoom\bin')
-        } else if WinExist(CLASSES['ZOOM']['HIDDEN_TOOLBAR']) or WinExist('Zoom ahk_pid ' WinGetPid.tryCall(CLASSES['ZOOM']['TOOLBAR'])) {  ; Check if a visible Zoom meeting window exists.
-            WinActivate()
-        } else {
-            ActivateRecentIfExists.bind('ahk_group ZoomWins').setWinModeAndCall('RegEx')  ; Activate visible Zoom windows.
-        }
+Zoom_ActivateElseRun(thisHotkey) {
+    if not WinExist('ahk_exe Zoom.exe') {
+        Run('Zoom', 'C:\Users\Zach Poblete\AppData\Roaming\Zoom\bin')
+    } else if WinExist(CLASSES['ZOOM']['HIDDEN_TOOLBAR']) or WinExist('Zoom ahk_pid ' WinGetPid.tryCall(CLASSES['ZOOM']['TOOLBAR'])) {  ; Check if a visible Zoom meeting window exists.
+        WinActivate()
+    } else {
+        ActivateRecentIfExists.bind('ahk_group ZoomWins').setWinModeAndCall('RegEx')  ; Activate visible Zoom windows.
     }
+}
 
 ;====================================================================================================
 ; Multimedia
@@ -190,16 +190,16 @@ CloseBrightnessSetter() {
 */
 
 #F5::
-    ProcessRestart(thisHotkey) {
-        WinExist('A')
+ProcessRestart(thisHotkey) {
+    WinExist('A')
 
-        winPid := WinGetPID()
-        winPath := ProcessGetPath(winPid)
+    winPid := WinGetPID()
+    winPath := ProcessGetPath(winPid)
 
-        WinClose()
-        ProcessWaitClose(winPid)
-        Run(winPath)
-    }
+    WinClose()
+    ProcessWaitClose(winPid)
+    Run(winPath)
+}
 
 F9::    Media_Prev
 F10::   Media_Next

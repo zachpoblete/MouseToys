@@ -52,19 +52,19 @@ RButton:: Click('R')
 ;====================================================================================================
 
 MButton & WheelUp::
-    MouseWinMaximize(thisHotkey) {
-        MouseWinActivate()
-        WinMaximize('A')
-    }
+MouseWinMaximize(thisHotkey) {
+    MouseWinActivate()
+    WinMaximize('A')
+}
 
 MButton & WheelDown::
-    MouseWinMinimize(ThisHotkey) {
-        if MouseWinActivate(CLASSES['ZOOM']['WAIT_HOST']) or WinActive(CLASSES['ZOOM']['VID_PREVIEW']) {
-            WinMinimize()
-        } else {
-            Send('{LWin Down}{Down}{LWin Up}')
-        }
+MouseWinMinimize(ThisHotkey) {
+    if MouseWinActivate(CLASSES['ZOOM']['WAIT_HOST']) or WinActive(CLASSES['ZOOM']['VID_PREVIEW']) {
+        WinMinimize()
+    } else {
+        Send('{LWin Down}{Down}{LWin Up}')
     }
+}
 
 MButton & RButton:: 
     MouseWinMove(thisHotkey) {
@@ -149,10 +149,10 @@ X1LR(states*) {
 }
 
 XButton1 & MButton::
-    MouseWinReload(thisHotkey) {
-        MouseWinActivate()
-        Send('{F5}')
-    }
+MouseWinReload(thisHotkey) {
+    MouseWinActivate()
+    Send('{F5}')
+}
 
 ;====================================================================================================
 ; XButton2
@@ -182,18 +182,18 @@ X2LR(states*) {
 }
 
 XButton2 & MButton::
-    MouseWinClose(thisHotkey) {
-        if MouseWinActivate(CLASSES['ZOOM']['MEETING']) {
-            Send('{Alt Down}q{Alt Up}')  ; Show 'End Meeting or Leave Meeting?' prompt in the middle of the screen instead of the corner of the window.
-        } else if WinActive(CLASSES['ZOOM']['HOME']) {
-            if WinExist('Zoom ahk_pid ' WinGetPid.tryCall(CLASSES['ZOOM']['TOOLBAR'])) {  ; Check if a visible Zoom meeting window exists.
-                ControlSend('{Alt Down}q{Alt Up}', , CLASSES['ZOOM']['MEETING'])
-            } else {
-                ProcessClose('Zoom.exe')
-            }
-        } else if WinActive('ahk_exe PowerToys.Settings.exe') {
-            WinClose()
+MouseWinClose(thisHotkey) {
+    if MouseWinActivate(CLASSES['ZOOM']['MEETING']) {
+        Send('{Alt Down}q{Alt Up}')  ; Show 'End Meeting or Leave Meeting?' prompt in the middle of the screen instead of the corner of the window.
+    } else if WinActive(CLASSES['ZOOM']['HOME']) {
+        if WinExist('Zoom ahk_pid ' WinGetPid.tryCall(CLASSES['ZOOM']['TOOLBAR'])) {  ; Check if a visible Zoom meeting window exists.
+            ControlSend('{Alt Down}q{Alt Up}', , CLASSES['ZOOM']['MEETING'])
         } else {
-            Send('{Alt Down}{F4}{Alt Up}')
+            ProcessClose('Zoom.exe')
         }
+    } else if WinActive('ahk_exe PowerToys.Settings.exe') {
+        WinClose()
+    } else {
+        Send('{Alt Down}{F4}{Alt Up}')
     }
+}
