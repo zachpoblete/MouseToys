@@ -4,13 +4,19 @@
 class C_KeyWait {
     static _states := Map()
 
-    static get(key, options) {
+    static get(key, options := '') {
+        if not (this._states.has(key) and this._states[key].has(options)) {
+            return
+        }
         return this._states[key][options]
     }
 
-    static set(key, options, isWaiting) {
-        this._states[key][options] := isWaiting
-
+    static set(key, options := '', isWaiting := true) {
+        if this._states.has(key) {
+            this._states[key][options] := isWaiting
+        } else {
+            this._states[key] := Map(options, isWaiting)
+        }
         if not isWaiting {
             return
         }
