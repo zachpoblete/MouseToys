@@ -205,7 +205,7 @@ F9::    Media_Prev
 F10::   Media_Next
 Pause:: Media_Play_Pause
 
-PrintScreen:: Send('{LWin Down}{Alt Down}{PrintScreen}{Alt Up}{LWin Up}')
+PrintScreen:: Send('{LWin Down}{Alt Down}{PrintScreen}{Alt Up}{LWin Up}')  ; Save screenshot of window.
 
 ;====================================================================================================
 ; Remap
@@ -233,7 +233,7 @@ PrintScreen:: Send('{LWin Down}{Alt Down}{PrintScreen}{Alt Up}{LWin Up}')
 #InputLevel 1
 +Space:: Send('_')
 
-+-:: {
++-:: {  ; Send square root symbol.
     if WinActive('Desmos ahk_exe msedge.exe') or WinActive('ahk_exe EXCEL.EXE') {
         Send('sqrt')
     } else {
@@ -267,7 +267,7 @@ if GetKeyState('NumLock', 'T') {
 ^Pause:: Send('{NumLock}')  ; When Ctrl is down, NumLock produces the key code of Pause while Pause produces CtrlBreak.
 #InputLevel
 
-~*NumLock:: {
+~*NumLock:: {  ; Display ToolTip while NumLock is on.
     SetTimer(logic, -10)
     logic() {
         toolTipNumLock() => ToolTip('NumLock On')
@@ -288,7 +288,7 @@ if GetKeyState('NumLock', 'T') {
 }
 
 LWin::
-RWin:: {
+RWin:: {  ; Don't open the Start Menu if held down for longer than 500 ms.
         Send('{' thisHotkey ' Down}')
         KeyWait(thisHotkey)
 

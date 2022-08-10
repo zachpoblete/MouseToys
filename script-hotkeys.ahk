@@ -8,7 +8,7 @@
 #^p:: Pause(-1)
 #^x:: ExitApp()
 
-#^e:: {
+#^e:: {  ; Edit.
     if WinExist('ahk_exe Code.exe') {
         WinActivate()
     } else {

@@ -25,7 +25,7 @@ WheelDown:: {
 RButton & WheelDown:: AltTab
 RButton & WheelUp::   ShiftAltTab
 
-RButton & LButton:: {
+RButton & LButton:: {  ; Delete.
     if WinActive('Task Switching ahk_class XamlExplorerHostIslandWindow') {
         Click()
         return
@@ -37,7 +37,7 @@ RButton & LButton:: {
     }
 }
 
-RButton & MButton:: {
+RButton & MButton:: {  ; Click link, open it in a new tab, and switch to that tab.
     if WinActive('Task Switching ahk_class XamlExplorerHostIslandWindow') {
         Click('M')
         return
@@ -106,7 +106,7 @@ MButton & RButton::
         }
     }
 
-MButton:: {
+MButton:: {  ; Click link, and open it in a new tab.
     if MouseWinActivate(CLASSES['ZOOM']['MEETING']) {
         Send('{LWin Down}{Alt Down}{PrintScreen}{Alt Up}{LWin Up}')
     } else if WinActive('AutoHotkey Community ahk_exe msedge.exe') or WinActive.bind('ahk_exe .EXE$').setWinModeAndCall('RegEx') {  ; Check if an Office app is active.
@@ -121,7 +121,7 @@ MButton:: {
 ;====================================================================================================
 
 #HotIf MouseWinActivate('ahk_exe msedge.exe')
-XButton1 & WheelDown:: {
+XButton1 & WheelDown:: {  ; Search tabs.
     if GetKeyState('Ctrl') {
         Send('{Ctrl Up}')
     }
@@ -130,15 +130,15 @@ XButton1 & WheelDown:: {
 XButton1 & WheelUp:: Send('{Esc}')
 
 #HotIf WinActive('ahk_exe AcroRd32.exe')
-XButton1 & WheelDown:: Send('{Ctrl Down}{PgDn}{Ctrl Up}')
-XButton1 & WheelUp::   Send('{Ctrl Down}{PgUp}{Ctrl Up}')
+XButton1 & WheelDown:: Send('{Ctrl Down}{PgDn}{Ctrl Up}')  ; Jump one page down.
+XButton1 & WheelUp::   Send('{Ctrl Down}{PgUp}{Ctrl Up}')  ; Jump one page up.
 
 #HotIf
 C_Hotkey.ctrlTab('XButton1 & WheelDown', false)
 C_Hotkey.ctrlTab('XButton1 & WheelUp', true)
 
-XButton1 & LButton:: X1LR('[', 'X1')
-XButton1 & RButton:: X1LR(']', 'X2')
+XButton1 & LButton:: X1LR('[', 'X1')  ; Go back.
+XButton1 & RButton:: X1LR(']', 'X2')  ; Go forward.
 
 X1LR(states*) {
     if MouseWinActivate('ahk_exe Notion.exe') {
@@ -148,17 +148,18 @@ X1LR(states*) {
     }
 }
 
-XButton1 & MButton:: {
-    MouseWinActivate()
-    Send('{F5}')
-}
+XButton1 & MButton::
+    MouseWinReload(thisHotkey) {
+        MouseWinActivate()
+        Send('{F5}')
+    }
 
 ;====================================================================================================
 ; XButton2
 ;====================================================================================================
 
-XButton2 & WheelDown:: X2W('{Down}', '{PgDn}', '{Tab}',                       '{PgDn}')
-XButton2 & WheelUp::   X2W('{Up}',   '{PgUp}', '{Shift Down}{Tab}{Shift Up}', '{PgUp}')
+XButton2 & WheelDown:: X2W('{Down}', '{PgDn}', '{Tab}',                       '{PgDn}')  ; Switch to next tab.
+XButton2 & WheelUp::   X2W('{Up}',   '{PgUp}', '{Shift Down}{Tab}{Shift Up}', '{PgUp}')  ; Switch to previous tab.
 
 X2W(states*) {
     if MouseWinActivate('ahk_exe Discord.exe') or WinActive('ahk_exe Messenger.exe') {
@@ -172,26 +173,27 @@ X2W(states*) {
     }
 }
 
-XButton2 & LButton:: X2LR('{Shift Down}t{Shift Up}')
-XButton2 & RButton:: X2LR('w')
+XButton2 & LButton:: X2LR('{Shift Down}t{Shift Up}')  ; Reopen last closed tab, and switch to it.
+XButton2 & RButton:: X2LR('w')  ; Close current tab.
 
 X2LR(states*) {
     MouseWinActivate()
     Send('{Ctrl Down}' states[-1] '{Ctrl Up}')
 }
 
-XButton2 & MButton:: {
-    if MouseWinActivate(CLASSES['ZOOM']['MEETING']) {
-        Send('{Alt Down}q{Alt Up}')  ; Show 'End Meeting or Leave Meeting?' prompt in the middle of the screen instead of the corner of the window.
-    } else if WinActive(CLASSES['ZOOM']['HOME']) {
-        if WinExist('Zoom ahk_pid ' WinGetPid.tryCall(CLASSES['ZOOM']['TOOLBAR'])) {  ; Check if a visible Zoom meeting window exists.
-            ControlSend('{Alt Down}q{Alt Up}', , CLASSES['ZOOM']['MEETING'])
+XButton2 & MButton::
+    MouseWinClose(thisHotkey) {
+        if MouseWinActivate(CLASSES['ZOOM']['MEETING']) {
+            Send('{Alt Down}q{Alt Up}')  ; Show 'End Meeting or Leave Meeting?' prompt in the middle of the screen instead of the corner of the window.
+        } else if WinActive(CLASSES['ZOOM']['HOME']) {
+            if WinExist('Zoom ahk_pid ' WinGetPid.tryCall(CLASSES['ZOOM']['TOOLBAR'])) {  ; Check if a visible Zoom meeting window exists.
+                ControlSend('{Alt Down}q{Alt Up}', , CLASSES['ZOOM']['MEETING'])
+            } else {
+                ProcessClose('Zoom.exe')
+            }
+        } else if WinActive('ahk_exe PowerToys.Settings.exe') {
+            WinClose()
         } else {
-            ProcessClose('Zoom.exe')
+            Send('{Alt Down}{F4}{Alt Up}')
         }
-    } else if WinActive('ahk_exe PowerToys.Settings.exe') {
-        WinClose()
-    } else {
-        Send('{Alt Down}{F4}{Alt Up}')
     }
-}
