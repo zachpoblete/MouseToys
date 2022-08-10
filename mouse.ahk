@@ -40,7 +40,9 @@ RButton & LButton:: {
 RButton & MButton:: {
     if WinActive('Task Switching ahk_class XamlExplorerHostIslandWindow') {
         Click('M')
+        return
     }
+    Send('{Ctrl Down}{Shift Down}{Click}{Shift Up}{Ctrl Up}')
 }
 
 RButton:: Click('R')
@@ -49,20 +51,60 @@ RButton:: Click('R')
 ; MButton
 ;====================================================================================================
 
-MButton & WheelUp:: {
-    MouseWinActivate()
-    WinMaximize('A')
-}
-
-MButton & WheelDown:: {
-    if MouseWinActivate(CLASSES['ZOOM']['WAIT_HOST']) or WinActive(CLASSES['ZOOM']['VID_PREVIEW']) {
-        WinMinimize()
-    } else {
-        Send('{LWin Down}{Down}{LWin Up}')
+MButton & WheelUp::
+    MouseWinMaximize(thisHotkey) {
+        MouseWinActivate()
+        WinMaximize('A')
     }
-}
 
-MButton & RButton:: Send('{Ctrl Down}{Shift Down}{Click}{Shift Up}{Ctrl Up}')
+MButton & WheelDown::
+    MouseWinMinimize(ThisHotkey) {
+        if MouseWinActivate(CLASSES['ZOOM']['WAIT_HOST']) or WinActive(CLASSES['ZOOM']['VID_PREVIEW']) {
+            WinMinimize()
+        } else {
+            Send('{LWin Down}{Down}{LWin Up}')
+        }
+    }
+
+MButton & RButton:: 
+    MouseWinMove(thisHotkey) {
+        WinExist('A')
+        
+        if MouseWinActivate('ahk_class WorkerW ahk_exe Explorer.EXE') {
+            return
+        }
+        winMinMax := WinGetMinMax()
+
+        if winMinMax != 0 {
+            return
+        }
+        CoordMode('Mouse', 'Screen')
+        MouseGetPos(&mouseStartX, &mouseStartY)
+        WinGetPos(&winOriginalX, &winOriginalY)
+
+        while GetKeyState('MButton', 'P') {  ; SetTimer isn't used to retain the last found window.
+            if GetKeyState('Esc', 'P') {
+                WinMove(winOriginalX, winOriginalY)
+                break
+            }
+            switch A_ThisHotkey {
+            case 'WheelUp':
+                MouseWinMaximize(thisHotkey)
+                break
+            case 'WheelDown':
+                MouseWinMinimize(thisHotkey)
+                break
+            }
+            MouseGetPos(&mouseX, &mouseY)
+            WinGetPos(&winX, &winY)
+            WinMove(winX + (mouseX - mouseStartX), winY + (mouseY - mouseStartY))
+
+            mouseStartX := mouseX
+            mouseStartY := mouseY
+
+            Sleep(10)
+        }
+    }
 
 MButton:: {
     if MouseWinActivate(CLASSES['ZOOM']['MEETING']) {
