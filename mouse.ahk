@@ -93,6 +93,7 @@ XButton1 & WheelDown:: {
         Send('{Ctrl Down}{Shift Down}a{Shift Up}{Ctrl Up}')
     }
 }
+
 XButton1 & WheelUp:: Send('{Up}')
 
 #HotIf WinActive('ahk_exe AcroRd32.exe')
