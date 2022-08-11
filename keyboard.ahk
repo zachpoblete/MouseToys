@@ -201,8 +201,8 @@ ProcessRestart(thisHotkey) {
     Run(winPath)
 }
 
-F9::    Media_Prev
-F10::   Media_Next
+#F11::  Media_Prev
+#F12::  Media_Next
 Pause:: Media_Play_Pause
 
 PrintScreen:: Send('{LWin Down}{Alt Down}{PrintScreen}{Alt Up}{LWin Up}')  ; Save screenshot of window.
