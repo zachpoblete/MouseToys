@@ -309,7 +309,7 @@ RWin:: {  ; Don't open the Start Menu if held down for longer than 500 ms.
     }
 }
 
-#Hotstring EndChars `n`t
+#Hotstring EndChars `t
 /** 
  * * Sorry if the hotstrings look weird!
  * * Currently, if you're using the X option,
@@ -333,8 +333,8 @@ RWin:: {  ; Don't open the Start Menu if held down for longer than 500 ms.
 :?cx:&peso;::Send   '{U+20B1}'
 
 :*?b0c:&tab:: {
-    ih := InputHook('L3 V', '{Enter}{Tab}')
-    ih.keyOpt('{Enter}{Tab}', 'S')
+    ih := InputHook('L3 V', '{Tab}')
+    ih.keyOpt('{Tab}', 'S')
     ih.Start()
     ih.Wait()
 
