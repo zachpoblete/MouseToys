@@ -21,9 +21,9 @@ CHARS := Map(
 ;     'DEFAULT_BACKGROUND', '-E0x200'
 ; )
 
-; KEYS := Map(
-
-; )
+KEYS := Map(
+    'MENU_MASK', '{vkFF}'  ; No mapping.
+)
 
 ; WIN32_CONSTS := Map(
 ;     'EM_SETSEL',     0x00B1,

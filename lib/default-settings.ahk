@@ -5,3 +5,4 @@
 
 SetWinDelay(0)
 SetControlDelay(0)
+A_MenuMaskKey := 'vkFF'
