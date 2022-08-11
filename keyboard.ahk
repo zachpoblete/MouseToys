@@ -284,6 +284,7 @@ if GetKeyState('NumLock', 'T') {
 ~*Alt:: {
     if not WinActive.bind('ahk_exe .EXE$').setWinModeAndCall('RegEx') {  ; Check if an Office app isn't active.
         Send('{Ctrl}')
+        KeyWait('Alt')  ; This prevents the masking key from being repeatedly sent.
     }
 }
 
