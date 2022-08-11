@@ -38,7 +38,7 @@ WinSpy(thisHotkey) {
 
     try {
         minMax := WinGetMinMax(WIN_SPY)
-    } catch TargetError {
+    } catch {
         Run('WindowSpy.ahk', A_ProgramFiles '\AutoHotkey')
     } else if minMax = -1 {
         WinExist('A')
