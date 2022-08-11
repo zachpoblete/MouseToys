@@ -160,8 +160,12 @@ MouseControlFocus(control := '', winTitle := '', winText := '', excludedTitle :=
     WinActivate(mouseHwnd)
     ControlFocus(mouseControlHwnd)
 
-    mouseControlClassNn := ControlGetClassNN(mouseControlHwnd)
-    mouseControlText := ControlGetText(mouseControlHwnd)
+    try {
+        mouseControlClassNn := ControlGetClassNN(mouseControlHwnd)
+        mouseControlText := ControlGetText(mouseControlHwnd)
+    } catch {
+        return
+    }
 
     if not control ~= '\A(' mouseControlClassNn '|' mouseControlText '|' mouseControlHwnd ')\z' {
         if control.hwnd != mouseControlHwnd {
