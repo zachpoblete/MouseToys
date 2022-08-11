@@ -242,7 +242,7 @@ PrintScreen:: Send('{LWin Down}{Alt Down}{PrintScreen}{Alt Up}{LWin Up}')  ; Sav
 }
 #InputLevel
 
-#HotIf RegExMatch(ControlGetFocus('A'), '^Edit\d+$')
+#HotIf RegExMatch(ControlGetFocus.tryCall('A'), '^Edit\d+$')
 ^BS:: {  ; This hotkey doesn't natively work, so work around that.
     if GetSelected() {
         Send('{Del}')
