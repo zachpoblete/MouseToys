@@ -1,14 +1,14 @@
 #Include <default-settings>
 #Include <constants>
 
-SetTimer(CloseRakkPopup)
+SetTimer(CloseRakkPopup, 1000)
 CloseRakkPopup() {
     try {
         WinClose('RAKK Lam-Ang Pro FineTuner ' CLASSES['DIALOG_BOX'] ' ahk_exe RAKK Lam-Ang Pro Mechanical Keyboard.exe', 'Failed to activate profile!')  ; When selecting a different profile in RAKK Lam-Ang Pro FineTuner, close the pop-up error
     }
 }
 
-SetTimer(CloseMonokaiPopup)
+SetTimer(CloseMonokaiPopup, 1000)
 CloseMonokaiPopup() {
     static monokaiMsg :=
     (Join`r`n
