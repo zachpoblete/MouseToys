@@ -312,10 +312,10 @@ RWin:: {  ; Don't open the Start Menu if held down for longer than 500 ms.
 #Hotstring EndChars `t
 /** 
  * * Sorry if the hotstrings look weird!
- * * Currently, if you're using the X option,
+ * * Currently, when using the X option,
  * * whitespace isn't allowed before the expression.
  * * In v1, I made heavy use of whitespace to align my Send commands.
- * * I've worked around this bug by adding the whitespace after the function name instead.
+ * * I've worked around this bug by adding the whitespace after the function's open parenthesis.
  * TODO: When this is fixed, revert the hotstrings back to normal.
  */
 
