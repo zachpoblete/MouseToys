@@ -3,6 +3,6 @@
 #WinActivateForce
 #SingleInstance
 
-SetWinDelay(0)
-SetControlDelay(0)
+A_WinDelay := 0
+A_ControlDelay := 0
 A_MenuMaskKey := 'vkFF'
