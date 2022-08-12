@@ -81,6 +81,7 @@ MButton & RButton::
         CoordMode('Mouse', 'Screen')
         MouseGetPos(&mouseStartX, &mouseStartY)
         WinGetPos(&winOriginalX, &winOriginalY)
+        SetWinDelay(0)
 
         while GetKeyState('MButton', 'P') {  ; SetTimer isn't used to retain the last found window.
             if GetKeyState('Esc', 'P') {
