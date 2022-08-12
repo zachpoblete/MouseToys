@@ -91,8 +91,8 @@ Zoom_OpenReactions(thisHotkey) {
     WinActivate()
     WinGetPos(, , &winW, &winH)
 
-    if not ImageSearch(&imageX, &imageY, 0, winH - 60, winW, winH, '*60 images\reactions.png') {
-        ControlClick('x' imageX ' y' imageY, K_CLASSES['ZOOM']['MEETING'])  ; Search meeting controls region.
+    if not ImageSearch(&imageX, &imageY, 0, winH - 60, winW, winH, '*60 images\reactions.png') {  ; Search meeting controls region.
+        ControlClick('x' imageX ' y' imageY, K_CLASSES['ZOOM']['MEETING'])
         return
     }
     ImageSearch(&imageX, &imageY, 0, winH - 60, winW, winH, '*60 images\more.png')
