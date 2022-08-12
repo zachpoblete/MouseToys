@@ -4,7 +4,7 @@
 SetTimer(CloseRakkPopup, 1000)
 CloseRakkPopup() {
     try {
-        WinClose('RAKK Lam-Ang Pro FineTuner ' CLASSES['DIALOG_BOX'] ' ahk_exe RAKK Lam-Ang Pro Mechanical Keyboard.exe', 'Failed to activate profile!')  ; When selecting a different profile in RAKK Lam-Ang Pro FineTuner, close the pop-up error
+        WinClose('RAKK Lam-Ang Pro FineTuner ' K_CLASSES['DIALOG_BOX'] ' ahk_exe RAKK Lam-Ang Pro Mechanical Keyboard.exe', 'Failed to activate profile!')  ; When selecting a different profile in RAKK Lam-Ang Pro FineTuner, close the pop-up error
     }
 }
 
@@ -21,7 +21,7 @@ CloseMonokaiPopup() {
         [OK] [Cancel]'
     )
 
-    if not WinActive('Visual Studio Code ' CLASSES['DIALOG_BOX'] ' ahk_exe Code.exe') {
+    if not WinActive('Visual Studio Code ' K_CLASSES['DIALOG_BOX'] ' ahk_exe Code.exe') {
         return
     }
     try {

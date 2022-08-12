@@ -59,7 +59,7 @@ MouseWinMaximize(thisHotkey) {
 
 MButton & WheelDown::
 MouseWinMinimize(ThisHotkey) {
-    if MouseWinActivate(CLASSES['ZOOM']['WAIT_HOST']) or WinActive(CLASSES['ZOOM']['VID_PREVIEW']) {
+    if MouseWinActivate(K_CLASSES['ZOOM']['WAIT_HOST']) or WinActive(K_CLASSES['ZOOM']['VID_PREVIEW']) {
         WinMinimize()
     } else {
         Send('{LWin Down}{Down}{LWin Up}')
@@ -107,7 +107,7 @@ MButton & RButton::
     }
 
 MButton:: {  ; Click link, and open it in a new tab.
-    if MouseWinActivate(CLASSES['ZOOM']['MEETING']) {
+    if MouseWinActivate(K_CLASSES['ZOOM']['MEETING']) {
         Send('{LWin Down}{Alt Down}{PrintScreen}{Alt Up}{LWin Up}')
     } else if WinActive('AutoHotkey Community ahk_exe msedge.exe') or WinActive.bind('ahk_exe .EXE$').setWinModeAndCall('RegEx') {  ; Check if an Office app is active.
         Send('{Ctrl Down}{Click}{Ctrl Up}')
@@ -183,11 +183,11 @@ X2LR(states*) {
 
 XButton2 & MButton::
 MouseWinClose(thisHotkey) {
-    if MouseWinActivate(CLASSES['ZOOM']['MEETING']) {
+    if MouseWinActivate(K_CLASSES['ZOOM']['MEETING']) {
         Send('{Alt Down}q{Alt Up}')  ; Show 'End Meeting or Leave Meeting?' prompt in the middle of the screen instead of the corner of the window.
-    } else if WinActive(CLASSES['ZOOM']['HOME']) {
-        if WinExist('Zoom ahk_pid ' WinGetPid.tryCall(CLASSES['ZOOM']['TOOLBAR'])) {  ; Check if a visible Zoom meeting window exists.
-            ControlSend('{Alt Down}q{Alt Up}', , CLASSES['ZOOM']['MEETING'])
+    } else if WinActive(K_CLASSES['ZOOM']['HOME']) {
+        if WinExist('Zoom ahk_pid ' WinGetPid.tryCall(K_CLASSES['ZOOM']['TOOLBAR'])) {  ; Check if a visible Zoom meeting window exists.
+            ControlSend('{Alt Down}q{Alt Up}', , K_CLASSES['ZOOM']['MEETING'])
         } else {
             ProcessClose('Zoom.exe')
         }

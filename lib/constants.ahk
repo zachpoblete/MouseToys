@@ -4,28 +4,28 @@
 ; Maps
 ;====================================================================================================
 
-CLASSES := Map(
+K_CLASSES := Map(
     'DIALOG_BOX', 'ahk_class #32770'
 )
 
-CHARS := Map(
+K_CHARS := Map(
     'LEFT_TO_RIGHT_MARK', Chr(0x200E)
 )
 
-; CONTROL_CODES := Map(
+; K_CONTROL_CODES := Map(
 
 ; )
 
-; GUI_OPTIONS := Map(
+; K_GUI_OPTIONS := Map(
 ;     'LBS_NOINTEGRALHEIGHT',  'x100',
 ;     'DEFAULT_BACKGROUND', '-E0x200'
 ; )
 
-KEYS := Map(
+K_KEYS := Map(
     'MENU_MASK', '{vkFF}'  ; No mapping.
 )
 
-; WIN32_CONSTS := Map(
+; K_WIN32_CONSTS := Map(
 ;     'EM_SETSEL',     0x00B1,
 ;     'EM_LINESCROLL', 0x00B6,
 ;     'WM_COMMAND',    0x0111
@@ -35,7 +35,7 @@ KEYS := Map(
 ; Submaps
 ;====================================================================================================
 
-CLASSES['ZOOM'] := Map(
+K_CLASSES['ZOOM'] := Map(
     'HOME',           'ZPPTMainFrmWndClassEx',
     'HIDDEN_TOOLBAR', 'ZPFloatToolbarClass',
     'MEETING',        'ZPContentViewWndClass',
@@ -49,12 +49,12 @@ CLASSES['ZOOM'] := Map(
 
 ConvertClassesAbbrevsToFullForm()
 ConvertClassesAbbrevsToFullForm() {
-    for abbrev, fullForm in CLASSES['ZOOM'] {
-        CLASSES['ZOOM'][abbrev] := 'ahk_class ' fullForm
+    for abbrev, fullForm in K_CLASSES['ZOOM'] {
+        K_CLASSES['ZOOM'][abbrev] := 'ahk_class ' fullForm
     }
 }
 
-; CONTROL_CODES['TRAY'] := Map(  ; Standard AHK tray menu control codes for the WM_COMMAND
+; K_CONTROL_CODES['TRAY'] := Map(  ; Standard AHK tray menu control codes for the WM_COMMAND
 ;     'OPEN',    65300,
 ;     'HELP',    65301,
 ;     'SPY',     65302,

@@ -53,50 +53,50 @@ BrowserHotkeys(hotIfExFn) {
 ; Zoom
 ;----------------------------------------------------------------------------------------------------
 
-#HotIf WinActive(CLASSES['ZOOM']['MEETING']) and WinWaitActive(CLASSES['ZOOM']['TOOLBAR'], , 0.1)
+#HotIf WinActive(K_CLASSES['ZOOM']['MEETING']) and WinWaitActive(K_CLASSES['ZOOM']['TOOLBAR'], , 0.1)
 ~#Down:: WinActivate('Zoom ahk_pid ' WinGetPid())  ; Activate minimized video/control.
 
-#HotIf WinActive(CLASSES['ZOOM']['WAIT_HOST']) or WinActive(CLASSES['ZOOM']['VID_PREVIEW'])
+#HotIf WinActive(K_CLASSES['ZOOM']['WAIT_HOST']) or WinActive(K_CLASSES['ZOOM']['VID_PREVIEW'])
 #Down:: WinMinimize()
 
-#HotIf WinActive(CLASSES['ZOOM']['MIN_VID']) or WinActive(CLASSES['ZOOM']['MIN_CONTROL'])
+#HotIf WinActive(K_CLASSES['ZOOM']['MIN_VID']) or WinActive(K_CLASSES['ZOOM']['MIN_CONTROL'])
 #Up:: {
     WinGetPos(, , , &winH)
     ControlClick('x200 y' (winH - 30))  ; Exit minimized video.
 }
 
-#HotIf WinActive(CLASSES['ZOOM']['HOME']) and not WinExist('Zoom ahk_pid ' WinGetPid.tryCall(CLASSES['ZOOM']['TOOLBAR']))  ; Check if a visible meeting window exists.
+#HotIf WinActive(K_CLASSES['ZOOM']['HOME']) and not WinExist('Zoom ahk_pid ' WinGetPid.tryCall(K_CLASSES['ZOOM']['TOOLBAR']))  ; Check if a visible meeting window exists.
 !F4:: ProcessClose('Zoom.exe')  ; Can't use WinClose because that minimizes here.
 
-#HotIf WinActive('ahk_pid ' WinGetPid.tryCall(CLASSES['ZOOM']['TOOLBAR']))  ; Check if a meeting window is active.
+#HotIf WinActive('ahk_pid ' WinGetPid.tryCall(K_CLASSES['ZOOM']['TOOLBAR']))  ; Check if a meeting window is active.
 !=::
 Zoom_GiveThumbsUp(thisHotkey) {
     Zoom_OpenReactions(thisHotkey)
     SetTimer(select, -50)
     select() {
-        WinGetPos(, , &winW, &winH, CLASSES['ZOOM']['REACTION'])
+        WinGetPos(, , &winW, &winH, K_CLASSES['ZOOM']['REACTION'])
         ImageSearch(&imageX, &imageY, 0, 0, winW, winH, '*60 images\thumbs up.png')
-        ControlClick('x' imageX ' y' imageY, CLASSES['ZOOM']['MEETING'])
+        ControlClick('x' imageX ' y' imageY, K_CLASSES['ZOOM']['MEETING'])
     }
 }
 
 !e::
 Zoom_OpenReactions(thisHotkey) {
-    if WinExist(CLASSES['ZOOM']['REACTION']) {
+    if WinExist(K_CLASSES['ZOOM']['REACTION']) {
         WinActivate()
         return
-    } else if not WinExist(CLASSES['ZOOM']['MEETING']) {
+    } else if not WinExist(K_CLASSES['ZOOM']['MEETING']) {
         return
     }
     WinActivate()
     WinGetPos(, , &winW, &winH)
 
     if not ImageSearch(&imageX, &imageY, 0, winH - 60, winW, winH, '*60 images\reactions.png') {
-        ControlClick('x' imageX ' y' imageY, CLASSES['ZOOM']['MEETING'])  ; Search meeting controls region.
+        ControlClick('x' imageX ' y' imageY, K_CLASSES['ZOOM']['MEETING'])  ; Search meeting controls region.
         return
     }
     ImageSearch(&imageX, &imageY, 0, winH - 60, winW, winH, '*60 images\more.png')
-    ControlClick('x' imageX ' y' imageY, CLASSES['ZOOM']['MEETING'])
+    ControlClick('x' imageX ' y' imageY, K_CLASSES['ZOOM']['MEETING'])
 
     SetTimer(select, -150)
     select() {
@@ -138,7 +138,7 @@ RunSelectedAsDir(thisHotkey) {
 #!v:: Run('App volume and device preferences', 'C:\Windows')
 
 GroupAdd('ExplorerWins', 'ahk_class CabinetWClass')
-GroupAdd('PhotoWins', A_Space CHARS['LEFT_TO_RIGHT_MARK'] '- Photos$ ahk_exe ApplicationFrameHost.exe')
+GroupAdd('PhotoWins', A_Space K_CHARS['LEFT_TO_RIGHT_MARK'] '- Photos$ ahk_exe ApplicationFrameHost.exe')
 GroupAdd('ZoomWins', 'ahk_class Z ahk_exe Zoom.exe', , , 'ZPToolBarParentWnd')
 
 #+e:: ActivateRecentElseRun('explorer', , 'ahk_group ExplorerWins')
@@ -147,7 +147,7 @@ GroupAdd('ZoomWins', 'ahk_class Z ahk_exe Zoom.exe', , , 'ZPToolBarParentWnd')
 Zoom_ActivateElseRun(thisHotkey) {
     if not WinExist('ahk_exe Zoom.exe') {
         Run('Zoom', 'C:\Users\Zach Poblete\AppData\Roaming\Zoom\bin')
-    } else if WinExist(CLASSES['ZOOM']['HIDDEN_TOOLBAR']) or WinExist('Zoom ahk_pid ' WinGetPid.tryCall(CLASSES['ZOOM']['TOOLBAR'])) {  ; Check if a visible Zoom meeting window exists.
+    } else if WinExist(K_CLASSES['ZOOM']['HIDDEN_TOOLBAR']) or WinExist('Zoom ahk_pid ' WinGetPid.tryCall(K_CLASSES['ZOOM']['TOOLBAR'])) {  ; Check if a visible Zoom meeting window exists.
         WinActivate()
     } else {
         ActivateRecentIfExists.bind('ahk_group ZoomWins').setWinModeAndCall('RegEx')  ; Activate visible Zoom windows.
@@ -283,7 +283,7 @@ if GetKeyState('NumLock', 'T') {
 
 ~*Alt:: {
     if not WinActive.bind('ahk_exe .EXE$').setWinModeAndCall('RegEx') {  ; Check if an Office app isn't active.
-        Send(KEYS['MENU_MASK'])
+        Send(K_KEYS['MENU_MASK'])
         KeyWait('Alt')  ; This prevents the masking key from being repeatedly sent.
     }
 }
@@ -294,7 +294,7 @@ RWin:: {  ; Don't open the Start Menu if held down for longer than 500 ms.
         KeyWait(thisHotkey)
 
         if A_PriorKey = thisHotkey and A_TimeSinceThisHotkey > 500 {
-            Send(KEYS['MENU_MASK'])
+            Send(K_KEYS['MENU_MASK'])
         }
         Send('{' thisHotkey ' Up}')
     }
