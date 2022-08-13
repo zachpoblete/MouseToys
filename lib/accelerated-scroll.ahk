@@ -28,7 +28,7 @@ AcceleratedScroll() {  ; To use effectively, make sure this function is the firs
         return
     }
     _distance++  ; Remember how many times the current direction has been scrolled in.
-    speed := (timeBetweenHotkeysMs < 100)? 250.0/timeBetweenHotkeysMs - 1 : 1  ; Calculate acceleration factor using a 1/x curve.
+    speed := (timeBetweenHotkeysMs < 100)? (250.0 / timeBetweenHotkeysMs) - 1 : 1  ; Calculate acceleration factor using a 1/x curve.
 
     ; Apply boost:
     if BOOST > 1 and _distance > BOOST {
