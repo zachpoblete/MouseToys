@@ -179,8 +179,8 @@ OnExit((reason, code) => CloseBrightnessSetter())
 CloseBrightnessSetter() {
     if ProcessExist('brightness-setter.exe') {
         ProcessClose('brightness-setter.exe')
+        ProcessWaitClose('brightness-setter.exe')
     }
-    ProcessWaitClose('brightness-setter.exe')
 }
 
 /**
