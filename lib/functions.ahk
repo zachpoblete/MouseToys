@@ -79,7 +79,7 @@ StdOut(text, delay := '', delimiter := '') {
 ;====================================================================================================
 
 HotkeyDelModifierSymbols(hk) {
-    hk := StrReplace(RegExReplace(hk, ' Up$'), A_Space)
+    hk := StrReplace(RegExReplace(hk, ' Up$'), ' ')
 
     if InStr(hk, '&') {
         return StrSplit(hk, '&')

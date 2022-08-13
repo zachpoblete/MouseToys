@@ -85,7 +85,7 @@ class C_Hotkey {
         }
 
         static queryToUrl(query, engine) {
-            query := StrReplace(StrReplace(StrReplace(query, '&', '&26'), '+', '%2B'), A_Space, '+')
+            query := StrReplace(StrReplace(StrReplace(query, '&', '&26'), '+', '%2B'), ' ', '+')
             return engine query  ; URL encoding is used to encode special characters in query strings.
         }
     }
