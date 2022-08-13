@@ -164,7 +164,7 @@ $Volume_Down:: DisplayAndSetVolume(-1)
 
 DisplayAndSetVolume(variation) {
     newVol := SoundGetVolume() + variation
-    volDirection := (variation > 0 or Round(newVol) = 1)? 'Up' : 'Down'  ; Idkwb Round(newVol) before this point doesn't work.
+    volDirection := (variation > 0 or Round(newVol) = 1)? 'Up' : 'Down'  ; Fsr Round(newVol) before this point doesn't work.
 
     Send('{Volume_' volDirection '}')  ; Vary volume by 2, and, importantly, display volume slider (and media overlay).
     SoundSetVolume(newVol)  ; Override that normal variation of 2.
