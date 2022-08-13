@@ -18,6 +18,9 @@ BrowserHotkeys(hotIfExFn) {
 ^e:: Send('{Ctrl Down}{Shift Down},{Shift Up}{Ctrl Up}')  ; Toggle vertical tabs.
 
 #HotIf WinActive('ahk_exe Notion.exe')
+!Left::  Send('{Ctrl Down}[{Ctrl Up}')  ; Go back.
+!Right:: Send('{Ctrl Down}]{Ctrl Up}')  ; Go forward.
+
 ^+f:: Send('{Ctrl Down}{Shift Down}h{Shift Up}{Ctrl Up}')  ; Apply last text or highlight color used.
 
 #HotIf WinActive('ahk_exe Spotify.exe')
