@@ -68,11 +68,11 @@ MouseWinMinimize(ThisHotkey) {
 
 MButton & RButton:: 
     MouseWinMove(thisHotkey) {
-        WinExist('A')
-        
         if MouseWinActivate('ahk_class WorkerW ahk_exe Explorer.EXE') {
             return
         }
+        WinExist('A')
+        
         winMinMax := WinGetMinMax()
 
         if winMinMax != 0 {
