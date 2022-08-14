@@ -187,10 +187,10 @@ CloseBrightnessSetter() {
 }
 
 /**
- * * C_BrightnessSetter:
+ * * brightness-setter.exe:
  * *     #PgUp:: C_BrightnessSetter.setBrightness(2)
  * *     #PgDn:: C_BrightnessSetter.setBrightness(-2)
-*/
+ */
 
 #F5::
 ProcessRestart(thisHotkey) {
