@@ -218,7 +218,7 @@ PrintScreen:: Send('{LWin Down}{Alt Down}{PrintScreen}{Alt Up}{LWin Up}')  ; Sav
  * (In order of decreasing input level)
  * * RAKK Lam-Ang Pro FineTuner:
  * *     Fn::         CapsLock
- * *     Capslock::   BS
+ * *     CapsLock::   BS
  * *     BS::         `
  * *     `::          NumLock
  * * 
@@ -305,7 +305,7 @@ RWin:: {  ; Don't open the Start Menu if held down for longer than 500 ms.
 ;====================================================================================================
 ; Hotstrings
 ;====================================================================================================
-; For each Unicode character sent, the hostring abbreviation is the HTML entity (or something intuitive).
+; For each Unicode character sent, the hotstring abbreviation is the HTML entity (or something intuitive).
 
 ~^z:: {
     if A_PriorHotkey ~= '^:' {  ; Matches hotstrings.

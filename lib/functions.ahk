@@ -196,7 +196,7 @@ FuncPrototype_SetWinModeAndCall(this, matchMode := '', matchModeSpeed := '', sho
         DetectHiddenWindows(shouldDetectHiddenWin)
     }
     if shouldDetectHiddenText != '' {
-        DetectHiddentext(shouldDetectHiddenText)
+        DetectHiddenText(shouldDetectHiddenText)
     }
     return this()
 }
