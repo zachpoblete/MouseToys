@@ -25,7 +25,7 @@ BrowserHotkeys(hotIfExFn) {
 
 #HotIf WinActive('ahk_exe Spotify.exe')
 /** 
- * I switched the keyboard shortcuts for varying the navigation bar and friend activity widths.
+ * I switched the keyboard shortcuts for varying the navigation bar and friend activity widths
  * because when you increase the navigation bar width, the cover art grows taller
  * hence assigning Down and Up to it
  * and when you increase the friend activity width, the bar grows fatter
