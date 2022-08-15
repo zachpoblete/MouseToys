@@ -1,6 +1,8 @@
-; Originally by BoffinbraiN.
-; For full details, visit the forum thread:
-; https://autohotkey.com/board/topic/48426-accelerated-scrolling-script
+/**
+ * Originally by BoffinbraiN.
+ * For full details, visit the forum thread:
+ * https://autohotkey.com/board/topic/48426-accelerated-scrolling-script
+ */
 
 #Include default-settings.ahk
 

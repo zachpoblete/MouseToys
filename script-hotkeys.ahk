@@ -9,7 +9,10 @@
 #^x:: ExitApp()
 
 GroupAdd('VsCodeWins', 'ahk_exe Code.exe')
-#^e:: {  ; Edit.
+/**
+ * Edit.
+ */
+#^e:: {
     if WinExist('ahk_group VsCodeWins') {
         GroupActivate('VsCodeWins', 'R')
     } else {

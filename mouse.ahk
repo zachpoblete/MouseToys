@@ -25,7 +25,10 @@ WheelDown:: {
 RButton & WheelDown:: AltTab
 RButton & WheelUp::   ShiftAltTab
 
-RButton & LButton:: {  ; Delete.
+/**
+ * Delete.
+ */
+RButton & LButton:: {
     if WinActive('Task Switching ahk_class XamlExplorerHostIslandWindow') {
         Click()
         return
@@ -37,7 +40,12 @@ RButton & LButton:: {  ; Delete.
     }
 }
 
-RButton & MButton:: {  ; Click link, open it in a new tab, and switch to that tab.
+/**
+ * Click link,
+ * open it in a new tab,
+ * and switch to that tab.
+ */
+RButton & MButton:: {
     if WinActive('Task Switching ahk_class XamlExplorerHostIslandWindow') {
         Click('M')
         return
@@ -107,7 +115,11 @@ MouseWinMove(thisHotkey) {
     }
 }
 
-MButton:: {  ; Click link, and open it in a new tab.
+/**
+ * Click link,
+ * and open it in a new tab.
+ */
+MButton:: {
     if MouseWinActivate(K_CLASSES['ZOOM']['MEETING']) {
         Send('{LWin Down}{Alt Down}{PrintScreen}{Alt Up}{LWin Up}')
     } else if WinActive('AutoHotkey Community ahk_exe msedge.exe') or WinActive.bind('ahk_exe .EXE$').setWinModeAndCall('RegEx') {  ; Check if an Office app is active.
@@ -122,7 +134,10 @@ MButton:: {  ; Click link, and open it in a new tab.
 ;====================================================================================================
 
 #HotIf MouseWinActivate('ahk_exe msedge.exe')
-XButton1 & WheelDown:: {  ; Search tabs.
+/**
+ * Search tabs.
+ */
+XButton1 & WheelDown:: {
     if GetKeyState('Ctrl') {
         Send('{Ctrl Up}')
     }

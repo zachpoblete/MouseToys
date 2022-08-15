@@ -284,17 +284,24 @@ PrintScreen:: Send('{LWin Down}{Alt Down}{PrintScreen}{Alt Up}{LWin Up}')  ; Sav
 #InputLevel 1
 +Space:: Send('_')
 
-+-:: {  ; Send square root symbol.
+/**
+ * Send square root symbol.
+ */
++-:: {
     if WinActive('Desmos ahk_exe msedge.exe') or WinActive('ahk_exe EXCEL.EXE') {
         Send('sqrt')
     } else {
-        Send('{U+221A}')  ; square root
+        Send('{U+221A}')
     }
 }
 #InputLevel
 
 #HotIf RegExMatch(ControlGetFocus.tryCall('A'), '^Edit\d+$')
-^BS:: {  ; This hotkey doesn't natively work, so work around that.
+/**
+ * ^BS doesn't natively work,
+ * so work around that.
+ */
+^BS:: {
     if GetSelected() {
         Send('{Del}')
     } else {
@@ -318,7 +325,10 @@ if GetKeyState('NumLock', 'T') {
 ^Pause:: Send('{NumLock}')  ; When Ctrl is down, NumLock produces the key code of Pause while Pause produces CtrlBreak.
 #InputLevel
 
-~*NumLock:: {  ; Display ToolTip while NumLock is on.
+/**
+ * Display ToolTip while NumLock is on.
+ */
+~*NumLock:: {
     SetTimer(logic, -10)
     logic() {
         toolTipNumLock() => ToolTip('NumLock On')
@@ -339,8 +349,12 @@ if GetKeyState('NumLock', 'T') {
     }
 }
 
+/**
+ * Don't open the Start Menu
+ * if Win key is held down for longer than 500 ms.
+ */
 LWin::
-RWin:: {  ; Don't open the Start Menu if held down for longer than 500 ms.
+RWin:: {
         Send('{' thisHotkey ' Down}')
         KeyWait(thisHotkey)
 
