@@ -78,7 +78,7 @@ MButton & RButton::
         if winMinMax != 0 {
             return
         }
-        CoordMode('Mouse', 'Screen')
+        CoordMode('Mouse')
         MouseGetPos(&mouseStartX, &mouseStartY)
         WinGetPos(&winOriginalX, &winOriginalY)
         SetWinDelay(0)
