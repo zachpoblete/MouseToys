@@ -57,7 +57,7 @@ BrowserHotkeys(hotIfExFn) {
 ;----------------------------------------------------------------------------------------------------
 
 #HotIf WinActive(K_CLASSES['ZOOM']['MEETING']) and WinWaitActive(K_CLASSES['ZOOM']['TOOLBAR'], , 0.1)
-~#Down:: WinActivate('Zoom ahk_pid ' WinGetPid())  ; Activate minimized video/control.
+~#Down:: WinActivate('Zoom ahk_pid ' WinGetPid())  ; Activate minimized video/control window.
 
 #HotIf WinActive(K_CLASSES['ZOOM']['WAIT_HOST']) or WinActive(K_CLASSES['ZOOM']['VID_PREVIEW'])
 #Down:: WinMinimize()
@@ -65,7 +65,7 @@ BrowserHotkeys(hotIfExFn) {
 #HotIf WinActive(K_CLASSES['ZOOM']['MIN_VID']) or WinActive(K_CLASSES['ZOOM']['MIN_CONTROL'])
 #Up:: {
     WinGetPos(, , , &winH)
-    ControlClick('x200 y' (winH - 30))  ; Exit minimized video.
+    ControlClick('x200 y' (winH - 30))  ; Exit minimized video window.
 }
 
 #HotIf WinActive(K_CLASSES['ZOOM']['HOME']) and not WinExist('Zoom ahk_pid ' WinGetPid.tryCall(K_CLASSES['ZOOM']['TOOLBAR']))  ; Check if a visible meeting window exists.
