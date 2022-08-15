@@ -73,42 +73,90 @@ BrowserHotkeys(hotIfExFn) {
 
 #HotIf WinActive('ahk_pid ' WinGetPid.tryCall(K_CLASSES['ZOOM']['TOOLBAR']))  ; Check if a meeting window is active.
 !=::
-Zoom_GiveThumbsUp(thisHotkey) {
+Zoom_ThumbsUpReact(thisHotkey) {
     Zoom_OpenReactions(thisHotkey)
-    SetTimer(select, -50)
-    select() {
-        WinGetPos(, , &winW, &winH, K_CLASSES['ZOOM']['REACTION'])
-        ImageSearch(&imageX, &imageY, 0, 0, winW, winH, '*60 images\thumbs up.png')
-        ControlClick('x' imageX ' y' imageY, K_CLASSES['ZOOM']['MEETING'])
-    }
+    Sleep(50)
+    
+    CoordMode('Mouse', 'Client')
+    CoordMode('Pixel', 'Client')
+    
+    WinExist('A')
+            ; reaction window
+    WinGetPos(, , &winW, &winH)
+    ImageSearch(&imageX, &imageY, 0, 0, winW, winH, '*50 images\thumbs-up-icon.png')
+    ControlClick('x' imageX ' y' imageY)
+    WinActivate(K_CLASSES['ZOOM']['MEETING'])
+            ; Prevent the activation of the most recent window
+            ; when the reaction disappears.
 }
 
 !e::
 Zoom_OpenReactions(thisHotkey) {
+    iconClick(imageFileName) {
+        ImageSearch(&imageX, &imageY, controlX, controlY, controlX + controlW, controlY + controlH, '*50 images\' imageFileName '-icon.png')
+        ControlClick('x' imageX ' y' imageY)
+    }
+
+    if not WinExist(K_CLASSES['ZOOM']['MEETING']) {
+        return
+    }
     if WinExist(K_CLASSES['ZOOM']['REACTION']) {
         WinActivate()
         return
-    } else if not WinExist(K_CLASSES['ZOOM']['MEETING']) {
-        return
     }
-    WinActivate()
-    WinGetPos(, , &winW, &winH)
-
-    if not ImageSearch(&imageX, &imageY, 0, winH - 60, winW, winH, '*60 images\reactions.png') {  ; Search meeting controls region.
-        ControlClick('x' imageX ' y' imageY, K_CLASSES['ZOOM']['MEETING'])
-        return
+    if not WinActive() {
+            ; Check if the meeting window is active.
+        WinActivate()
     }
-    ImageSearch(&imageX, &imageY, 0, winH - 60, winW, winH, '*60 images\more.png')
-    ControlClick('x' imageX ' y' imageY, K_CLASSES['ZOOM']['MEETING'])
 
-    SetTimer(select, -150)
-    select() {
-        if ImageSearch(&imageX, &imageY, 0, winH - 60, winW, winH, '*60 images\apps.png') {
-            Send('{Up}')
+    if not ControlGetVisible(K_CONTROLS['ZOOM']['MEETING_TOOLS']) {
+        ControlShow(K_CONTROLS['ZOOM']['MEETING_TOOLS'])
+    }
+    ControlGetPos(&controlX, &controlY, &controlW, &controlH, K_CONTROLS['ZOOM']['MEETING_TOOLS'])
+
+    Loop {
+        try {
+            iconClick('reactions')
+        } catch {
+        } else {
+            return
         }
-        Send('{Up}')
-        SetTimer(() => Send('{Space}'), -10)
+        try {
+            iconClick('more')
+        } catch {
+        } else {
+            break
+        }
+        if A_Index = 2 {
+            exit
+        }
+        Send('{Tab}')
+                ; Maybe the reason the icon wasn't found was because there was a dotted rectangle surrounding it,
+                ; so Send('{Tab}') to move the rectangle to a different item.
     }
+    Sleep(150)
+
+    /**
+     * I want my coordinates to be relative to the menu window
+     * because that's where the Reactions menu item is,
+     * but fsr, when I activate or ControlClick the window,
+     * I lose it.
+     * As a work around, use Click, and make it relative to the virtual screen.
+     * Do the same with ImageSearch.
+     */
+
+    CoordMode('Mouse')
+    CoordMode('Pixel')
+
+    MouseGetPos(&mouseX, &mouseY)
+
+    virtualScreenW := SysGet(78)
+    virtualScreenH := SysGet(79)
+    ImageSearch(&imageX, &imageY, 0, 0, virtualScreenW, virtualScreenH, '*50 images\reactions-menu-item.png')
+    
+    Click(imageX ' ' imageY)
+    Sleep(10)
+    MouseMove(mouseX, mouseY)
 }
 #HotIf
 

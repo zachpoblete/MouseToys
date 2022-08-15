@@ -4,12 +4,16 @@
 ; Maps
 ;====================================================================================================
 
+K_CHARS := Map(
+    'LEFT_TO_RIGHT_MARK', Chr(0x200E)
+)
+
 K_CLASSES := Map(
     'DIALOG_BOX', 'ahk_class #32770'
 )
 
-K_CHARS := Map(
-    'LEFT_TO_RIGHT_MARK', Chr(0x200E)
+K_CONTROLS := Map(
+
 )
 
 ; K_CONTROL_CODES := Map(
@@ -53,6 +57,10 @@ ConvertClassesAbbrevsToFullForm() {
         K_CLASSES['ZOOM'][abbrev] := 'ahk_class ' fullForm
     }
 }
+
+K_CONTROLS['ZOOM'] := Map(
+    'MEETING_TOOLS', 'ZPControlPanelClass1'
+)
 
 ; K_CONTROL_CODES['TRAY'] := Map(  ; Standard AHK tray menu control codes for the WM_COMMAND
 ;     'OPEN',    65300,
