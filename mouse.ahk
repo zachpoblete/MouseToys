@@ -66,46 +66,46 @@ MouseWinMinimize(ThisHotkey) {
     }
 }
 
-MButton & RButton:: 
-    MouseWinMove(thisHotkey) {
-        if MouseWinActivate('ahk_class WorkerW ahk_exe Explorer.EXE') {
-            return
-        }
-        WinExist('A')
-        
-        winMinMax := WinGetMinMax()
-
-        if winMinMax != 0 {
-            return
-        }
-        CoordMode('Mouse')
-        MouseGetPos(&mouseStartX, &mouseStartY)
-        WinGetPos(&winOriginalX, &winOriginalY)
-        SetWinDelay(0)
-
-        while GetKeyState('MButton', 'P') {  ; SetTimer isn't used to retain the last found window.
-            if GetKeyState('Esc', 'P') {
-                WinMove(winOriginalX, winOriginalY)
-                break
-            }
-            switch A_ThisHotkey {
-            case 'WheelUp':
-                MouseWinMaximize(thisHotkey)
-                break
-            case 'WheelDown':
-                MouseWinMinimize(thisHotkey)
-                break
-            }
-            MouseGetPos(&mouseX, &mouseY)
-            WinGetPos(&winX, &winY)
-            WinMove(winX + (mouseX - mouseStartX), winY + (mouseY - mouseStartY))
-
-            mouseStartX := mouseX
-            mouseStartY := mouseY
-
-            Sleep(10)
-        }
+MButton & RButton::
+MouseWinMove(thisHotkey) {
+    if MouseWinActivate('ahk_class WorkerW ahk_exe Explorer.EXE') {
+        return
     }
+    WinExist('A')
+    
+    winMinMax := WinGetMinMax()
+
+    if winMinMax != 0 {
+        return
+    }
+    CoordMode('Mouse')
+    MouseGetPos(&mouseStartX, &mouseStartY)
+    WinGetPos(&winOriginalX, &winOriginalY)
+    SetWinDelay(0)
+
+    while GetKeyState('MButton', 'P') {  ; SetTimer isn't used to retain the last found window.
+        if GetKeyState('Esc', 'P') {
+            WinMove(winOriginalX, winOriginalY)
+            break
+        }
+        switch A_ThisHotkey {
+        case 'WheelUp':
+            MouseWinMaximize(thisHotkey)
+            break
+        case 'WheelDown':
+            MouseWinMinimize(thisHotkey)
+            break
+        }
+        MouseGetPos(&mouseX, &mouseY)
+        WinGetPos(&winX, &winY)
+        WinMove(winX + (mouseX - mouseStartX), winY + (mouseY - mouseStartY))
+
+        mouseStartX := mouseX
+        mouseStartY := mouseY
+
+        Sleep(10)
+    }
+}
 
 MButton:: {  ; Click link, and open it in a new tab.
     if MouseWinActivate(K_CLASSES['ZOOM']['MEETING']) {
