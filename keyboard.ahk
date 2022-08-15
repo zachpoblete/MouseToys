@@ -29,7 +29,7 @@ BrowserHotkeys(hotIfExFn) {
  * because when you increase the navigation bar width, the cover art grows taller
  * hence assigning Down and Up to it
  * and when you increase the friend activity width, the bar grows fatter
- * hence assigning Left and Right to it:
+ * hence assigning Left and Right to it.
  */
 !+Down::  Send('{Alt Down}{Shift Down}{Left}{Shift Up}{Alt Up}')   ; Decrease navigation bar width.
 !+Up::    Send('{Alt Down}{Shift Down}{Right}{Shift Up}{Alt Up}')  ; Increase navigation bar width.
@@ -45,7 +45,7 @@ BrowserHotkeys(hotIfExFn) {
  *
  * !+2 goes to Your Podcasts, but because of the Hide Podcasts extension,
  * Your Podcasts isn't listed in Your Library, so !+2 should redirect to Your Artists instead.
- * The same logic applies to !+3 and !+4:
+ * The same logic applies to !+3 and !+4.
  */
 !+2:: Send('{Alt Down}{Shift Down}3{Shift Up}{Alt Up}')  ; Go to your artists.
 !+3:: Send('{Alt Down}{Shift Down}4{Shift Up}{Alt Up}')  ; Go to your albums.
