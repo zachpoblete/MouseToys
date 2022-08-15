@@ -91,7 +91,7 @@ MouseWinMove(thisHotkey) {
     WinGetPos(&winOriginalX, &winOriginalY)
     SetWinDelay(0)
 
-    while GetKeyState('MButton', 'P') {  ; SetTimer isn't used to retain the last found window.
+    while GetKeyState('MButton', 'P') {  ; SetTimer isn't used to preserve the last found window.
         if GetKeyState('Esc', 'P') {
             WinMove(winOriginalX, winOriginalY)
             break

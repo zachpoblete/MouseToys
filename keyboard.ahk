@@ -47,8 +47,8 @@ BrowserHotkeys(hotIfExFn) {
  * Your Podcasts isn't listed in Your Library, so !+2 should redirect to Your Artists instead.
  * The same logic applies to !+3 and !+4.
  */
-!+2:: Send('{Alt Down}{Shift Down}3{Shift Up}{Alt Up}')  ; Go to your artists.
-!+3:: Send('{Alt Down}{Shift Down}4{Shift Up}{Alt Up}')  ; Go to your albums.
+!+2:: Send('{Alt Down}{Shift Down}3{Shift Up}{Alt Up}')  ; Go to Your Artists.
+!+3:: Send('{Alt Down}{Shift Down}4{Shift Up}{Alt Up}')  ; Go to Your Albums.
 !+4:: return
 #HotIf
 
@@ -105,7 +105,7 @@ Zoom_OpenReactions(thisHotkey) {
         return
     }
     if not WinActive() {
-            ; Check if the meeting window is active.
+            ; Check if the meeting window isn't active.
         WinActivate()
     }
 
@@ -198,10 +198,10 @@ GroupAdd('ZoomWins', 'ahk_class Z ahk_exe Zoom.exe', , , 'ZPToolBarParentWnd')
 Zoom_ActivateElseRun(thisHotkey) {
     if not WinExist('ahk_exe Zoom.exe') {
         Run('Zoom', 'C:\Users\Zach Poblete\AppData\Roaming\Zoom\bin')
-    } else if WinExist(K_CLASSES['ZOOM']['HIDDEN_TOOLBAR']) or WinExist('Zoom ahk_pid ' WinGetPid.tryCall(K_CLASSES['ZOOM']['TOOLBAR'])) {  ; Check if a visible Zoom meeting window exists.
+    } else if WinExist(K_CLASSES['ZOOM']['HIDDEN_TOOLBAR']) or WinExist('Zoom ahk_pid ' WinGetPid.tryCall(K_CLASSES['ZOOM']['TOOLBAR'])) {  ; Check if a visible meeting window exists.
         WinActivate()
     } else {
-        ActivateRecentIfExists.bind('ahk_group ZoomWins').setWinModeAndCall('RegEx')  ; Activate visible Zoom windows.
+        ActivateRecentIfExists.bind('ahk_group ZoomWins').setWinModeAndCall('RegEx')  ; Activate most recent visible Zoom window.
     }
 }
 
@@ -345,7 +345,7 @@ if GetKeyState('NumLock', 'T') {
 ~*Alt:: {
     if not WinActive.bind('ahk_exe .EXE$').setWinModeAndCall('RegEx') {  ; Check if an Office app isn't active.
         Send(K_KEYS['MENU_MASK'])
-        KeyWait('Alt')  ; This prevents the masking key from being repeatedly sent.
+        KeyWait('Alt')  ; Prevent the masking key from being repeatedly sent.
     }
 }
 
@@ -370,7 +370,7 @@ RWin:: {
 ; For each Unicode character sent, the hotstring abbreviation is the HTML entity (or something intuitive).
 
 ~^z:: {
-    if A_PriorHotkey ~= '^:' {  ; Matches hotstrings.
+    if A_PriorHotkey ~= '^:' {  ; Match hotstrings.
         Send('{Ctrl Down}z{Ctrl Up}')  ; Send an extra ^z to go back to the abbreviation.
     }
 }
