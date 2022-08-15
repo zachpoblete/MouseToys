@@ -81,7 +81,7 @@ Zoom_ThumbsUpReact(thisHotkey) {
     CoordMode('Pixel', 'Client')
     
     WinExist('A')
-            ; reaction window
+            ; Reaction window.
     WinGetPos(, , &winW, &winH)
     ImageSearch(&imageX, &imageY, 0, 0, winW, winH, '*50 images\thumbs-up-icon.png')
     ControlClick('x' imageX ' y' imageY)
@@ -387,8 +387,8 @@ RWin:: {
 
 :?cx:&deg;::Send(   '{U+00B0}')
 
-:?cx:&la;::Send(    '{U+2190}')  ; left arrow
-:?cx:&ra;::Send(    '{U+2192}')  ; right arrow
+:?cx:&la;::Send(    '{U+2190}')  ; Left arrow.
+:?cx:&ra;::Send(    '{U+2192}')  ; Right arrow.
 
 :?cx:&mdash;::Send( '{U+2014}')
 :?cx:&ndash;::Send( '{U+2013}')
@@ -428,10 +428,10 @@ RWin:: {
 
 :?cx:&infin;::Send(  '{U+221E}')
 
-:?cx:&ne;::Send(     '{U+2260}')  ; not equal
-:?cx:&le;::Send(     '{U+2264}')  ; lesser than or equal
-:?cx:&ge;::Send(     '{U+2265}')  ; greater than or equal
-:?cx:&pm;::Send(     '{U+00B1}')  ; plus-minus
+:?cx:&ne;::Send(     '{U+2260}')  ; Not equal.
+:?cx:&le;::Send(     '{U+2264}')  ; Lesser than or equal.
+:?cx:&ge;::Send(     '{U+2265}')  ; Greater than or equal.
+:?cx:&pm;::Send(     '{U+00B1}')  ; Plus-minus.
 
 :?cx:&radic3;::Send( '{U+221B}')
 :?cx:&radic4;::Send( '{U+221C}')
