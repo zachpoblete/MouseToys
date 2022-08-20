@@ -255,10 +255,11 @@ if not ProcessExist('brightness-setter.exe') {
 
 OnExit((reason, code) => CloseBrightnessSetter())
 CloseBrightnessSetter() {
-    if ProcessExist('brightness-setter.exe') {
-        ProcessClose('brightness-setter.exe')
-        ProcessWaitClose('brightness-setter.exe')
+    if not ProcessExist('brightness-setter.exe') {
+        return
     }
+    ProcessClose('brightness-setter.exe')
+    ProcessWaitClose('brightness-setter.exe')
 }
 
 /**
