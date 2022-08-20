@@ -83,8 +83,8 @@ MouseWinMove(thisHotkey) {
     
     winMinMax := WinGetMinMax()
 
-    if winMinMax != 0 {
-        return
+    if winMinMax = 1 {
+        WinRestore()
     }
     CoordMode('Mouse')
     MouseGetPos(&mouseStartX, &mouseStartY)
