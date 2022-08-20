@@ -119,7 +119,7 @@ class C_Timer {
         } else if period = 0 {
             this._labels.removeAt(index)
         } else {
-            SetTimer(() => this._labels.removeAt(index), -period)
+            SetTimer(() => this._labels.removeAt(index), period)
         }
     }
 }
