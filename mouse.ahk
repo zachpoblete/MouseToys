@@ -77,7 +77,9 @@ MouseWinMinimizeOrRestore(ThisHotkey) {
 
 MButton & RButton::
 MouseWinMove(thisHotkey) {
-    if MouseWinActivate('ahk_class WorkerW ahk_exe Explorer.EXE') {
+    MouseWinActivate()
+
+    if WinActive('ahk_class WorkerW ahk_exe Explorer.EXE') {
         return
     }
     WinExist('A')
@@ -122,7 +124,9 @@ MouseWinMove(thisHotkey) {
  * and open it in a new tab.
  */
 MButton:: {
-    if MouseWinActivate(K_CLASSES['ZOOM']['MEETING']) {
+    MouseWinActivate()
+
+    if WinActive(K_CLASSES['ZOOM']['MEETING']) {
         Send('{LWin Down}{Alt Down}{PrintScreen}{Alt Up}{LWin Up}')
     } else if WinActive('AutoHotkey Community ahk_exe msedge.exe')
             or WinActive.bind('ahk_exe .EXE$').setWinModeAndCall('RegEx') {
@@ -165,7 +169,9 @@ XButton1 & RButton:: X1LR(']', 'X2')
         ; Go forward.
 
 X1LR(states*) {
-    if MouseWinActivate('ahk_exe Notion.exe') {
+    MouseWinActivate()
+
+    if WinActive('ahk_exe Notion.exe') {
         Send('{Ctrl Down}' states[1] '{Ctrl Up}')
     } else {
         Click(states[-1])
@@ -188,7 +194,9 @@ XButton2 & WheelUp::   X2W('{Up}',   '{PgUp}', '{Shift Down}{Tab}{Shift Up}', '{
         ; Switch to previous tab.
 
 X2W(states*) {
-    if MouseWinActivate('ahk_exe Discord.exe') or WinActive('ahk_exe Messenger.exe') {
+    MouseWinActivate()
+
+    if WinActive('ahk_exe Discord.exe') or WinActive('ahk_exe Messenger.exe') {
         Send('{Alt Down}' states[1] '{Alt Up}')
     } else if WinActive('ahk_exe POWERPNT.EXE') {
         Send(states[2])
@@ -212,7 +220,9 @@ X2LR(states*) {
 
 XButton2 & MButton::
 MouseWinClose(thisHotkey) {
-    if MouseWinActivate(K_CLASSES['ZOOM']['MEETING']) {
+    MouseWinActivate()
+
+    if WinActive(K_CLASSES['ZOOM']['MEETING']) {
         Send('{Alt Down}q{Alt Up}')
                 ; Show 'End Meeting or Leave Meeting?' prompt in the middle of the screen
                 ; instead of the corner of the window.
