@@ -155,29 +155,6 @@ ActivateRecentIfExists(winTitle := '', winText := '', excludedTitle := '', exclu
     ActivateRecent(winTitle, winText, excludedTitle, excludedText)
 }
 
-MouseControlFocus(control := '', winTitle := '', winText := '', excludedTitle := '', excludedText := '') {
-    MouseGetPos(, , &mouseHwnd, &mouseControlHwnd, 2)
-    WinActivate(mouseHwnd)
-    ControlFocus(mouseControlHwnd)
-
-    try {
-        mouseControlClassNn := ControlGetClassNN(mouseControlHwnd)
-        mouseControlText := ControlGetText(mouseControlHwnd)
-    } catch {
-        return
-    }
-
-    if not control ~= '\A(' mouseControlClassNn '|' mouseControlText '|' mouseControlHwnd ')\z' {
-        if control.hwnd != mouseControlHwnd {
-            return
-        }
-    }
-    if not WinActive(winTitle ' ahk_id ' mouseHwnd, winText, excludedTitle, excludedText) {
-        return
-    }
-    return mouseControlHwnd
-}
-
 MouseWinActivate(winTitle := '', winText := '', excludedTitle := '', excludedText := '') {
     MouseGetPos(, , &mouseHwnd)
     WinActivate(mouseHwnd)
@@ -199,4 +176,45 @@ FuncPrototype_SetWinModeAndCall(this, matchMode := '', matchModeSpeed := '', sho
         DetectHiddenText(shouldDetectHiddenText)
     }
     return this()
+}
+
+;----------------------------------------------------------------------------------------------------
+; Control
+;----------------------------------------------------------------------------------------------------
+
+ControlGetHwndFromClassNnAndTextElseExit(controlClassNn, controlText) {
+    try {
+        controlHwnd := ControlGetHwnd(controlClassNn)
+    } catch {
+        exit
+    }
+    controlTextFromClassNn := ControlGetText(controlClassNn)
+
+    if controlText != controlTextFromClassNn {
+        exit
+    }
+    return controlHwnd
+}
+
+MouseControlFocus(control := '', winTitle := '', winText := '', excludedTitle := '', excludedText := '') {
+    MouseGetPos(, , &mouseHwnd, &mouseControlHwnd, 2)
+    WinActivate(mouseHwnd)
+    ControlFocus(mouseControlHwnd)
+
+    try {
+        mouseControlClassNn := ControlGetClassNN(mouseControlHwnd)
+        mouseControlText := ControlGetText(mouseControlHwnd)
+    } catch {
+        return
+    }
+
+    if not control ~= '\A(' mouseControlClassNn '|' mouseControlText '|' mouseControlHwnd ')\z' {
+        if control.hwnd != mouseControlHwnd {
+            return
+        }
+    }
+    if not WinActive(winTitle ' ahk_id ' mouseHwnd, winText, excludedTitle, excludedText) {
+        return
+    }
+    return mouseControlHwnd
 }
