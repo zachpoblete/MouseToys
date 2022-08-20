@@ -66,11 +66,12 @@ MouseWinMaximize(thisHotkey) {
 }
 
 MButton & WheelDown::
-MouseWinMinimize(ThisHotkey) {
-    if MouseWinActivate(K_CLASSES['ZOOM']['WAIT_HOST']) or WinActive(K_CLASSES['ZOOM']['VID_PREVIEW']) {
+MouseWinMinimizeOrRestore(ThisHotkey) {
+    MouseWinActivate()
+    if WinActive(K_CLASSES['ZOOM']['WAIT_HOST']) or WinActive(K_CLASSES['ZOOM']['VID_PREVIEW']) {
         WinMinimize()
     } else {
-        Send('{LWin Down}{Down}{LWin Up}')
+        WinRestore()
     }
 }
 
@@ -102,7 +103,7 @@ MouseWinMove(thisHotkey) {
             MouseWinMaximize(thisHotkey)
             break
         case 'WheelDown':
-            MouseWinMinimize(thisHotkey)
+            MouseWinMinimizeOrRestore(thisHotkey)
             break
         }
         MouseGetPos(&mouseX, &mouseY)
