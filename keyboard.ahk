@@ -69,8 +69,11 @@ BrowserHotkeys(hotIfExFn) {
 ;-------------------------------------------------------------------------------
 
 #HotIf WinActive(K_CLASSES['ZOOM']['MEETING']) and WinWaitActive(K_CLASSES['ZOOM']['TOOLBAR'], , 0.1)
-~#Down:: WinActivate('Zoom ahk_pid ' WinGetPid())
+~#Down:: {
+    winPid := WinGetPid()
+    WinActivate('Zoom ahk_pid ' winPid)
         ; Activate minimized video/control window.
+}
 
 #HotIf WinActive(K_CLASSES['ZOOM']['WAIT_HOST']) or WinActive(K_CLASSES['ZOOM']['VID_PREVIEW'])
 #Down:: WinMinimize()

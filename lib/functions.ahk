@@ -51,8 +51,9 @@ GetFileExt(fileName) {
 }
 
 OnFileSave(fileName, fn, shouldCall := true) {
-    funcIfSave(fn) {            
-        if not InStr(FileGetAttrib(fileName), 'A') {
+    funcIfSave(fn) {
+        fileAttrib := FileGetAttrib(fileName)
+        if not InStr(fileAttrib, 'A') {
             return
         }
         FileSetAttrib('-A', fileName)
@@ -79,7 +80,8 @@ StdOut(text, delay := '', delimiter := '') {
 ;===============================================================================
 
 HotkeyDelModifierSymbols(hk) {
-    hk := StrReplace(RegExReplace(hk, ' Up$'), ' ')
+    hk := RegExReplace(hk, ' Up$')
+    hk := StrReplace(hk, ' ')
 
     if InStr(hk, '&') {
         return StrSplit(hk, '&')
@@ -130,7 +132,8 @@ StrDel(haystack, needle, limit := 1) {
 
 ActivateRecent(winTitle := '', winText := '', excludedTitle := '', excludedText := '') {
     if InStr(winTitle, 'ahk_group') {
-        groupName := LTrim(StrDel(winTitle, 'ahk_group'))
+        groupName := StrDel(winTitle, 'ahk_group')
+        groupName := LTrim(groupName)
         GroupActivate(groupName, 'R')
     } else {
         WinActivate(winTitle, winText, excludedTitle, excludedText)

@@ -29,7 +29,8 @@ class C_Hotkey {
     static ctrlTab(hk, shouldPressShift) {
         sendFirstAndLast(thisHotkey) {
             Send('{Ctrl Down}' tab)
-            KeyWait(HotkeyGetPrefixKey(thisHotkey))
+            hkPrefixKey := HotkeyGetPrefixKey(thisHotkey)
+            KeyWait(hkPrefixKey)
             Send('{Ctrl Up}')
         }
 
@@ -85,7 +86,9 @@ class C_Hotkey {
         }
 
         static queryToUrl(query, engine) {
-            query := StrReplace(StrReplace(StrReplace(query, '&', '&26'), '+', '%2B'), ' ', '+')
+            query := StrReplace(query, '&', '&26')
+            query := StrReplace(query, '+', '%2B')
+            query := StrReplace(query, ' ', '+')
                     ; URL encoding is used to encode special characters in query strings.
             return engine query
         }
