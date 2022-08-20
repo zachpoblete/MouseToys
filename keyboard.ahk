@@ -83,7 +83,7 @@ BrowserHotkeys(hotIfExFn) {
 }
 
 #HotIf WinActive(K_CLASSES['ZOOM']['HOME']) and not WinExist('Zoom ahk_pid ' WinGetPid.tryCall(K_CLASSES['ZOOM']['TOOLBAR']))
-        ; Check if a visible meeting window exists.
+        ; Check if a visible meeting window doesn't exist.
 !F4:: ProcessClose('Zoom.exe')
         ; Can't use WinClose because that minimizes here.
 
