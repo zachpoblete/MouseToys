@@ -204,21 +204,21 @@ ControlGetHwndFromClassNnAndTextElseExit(controlClassNn, controlText) {
 MouseControlFocus(control := '', winTitle := '', winText := '', excludedTitle := '', excludedText := '') {
     MouseGetPos(, , &mouseHwnd, &mouseControlHwnd, 2)
     WinActivate(mouseHwnd)
+
+    if not WinActive(winTitle ' ahk_id ' mouseHwnd, winText, excludedTitle, excludedText) {
+        return
+    }
     ControlFocus(mouseControlHwnd)
 
+    if control := '' {
+        return mouseControlHwnd
+    }
     try {
-        mouseControlClassNn := ControlGetClassNN(mouseControlHwnd)
-        mouseControlText := ControlGetText(mouseControlHwnd)
+        controlHwnd := ControlGetHwnd(control)
     } catch {
         return
     }
-
-    if not control ~= '\A(' mouseControlClassNn '|' mouseControlText '|' mouseControlHwnd ')\z' {
-        if control.hwnd != mouseControlHwnd {
-            return
-        }
-    }
-    if not WinActive(winTitle ' ahk_id ' mouseHwnd, winText, excludedTitle, excludedText) {
+    if controlHwnd != mouseControlHwnd {
         return
     }
     return mouseControlHwnd
