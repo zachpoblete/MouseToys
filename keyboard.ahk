@@ -450,7 +450,7 @@ RWin:: {
             tabs .= A_Tab
         }
     }
-    Send('{Ctrl Down}{Shift Down}{Left 2}{Ctrl Up}{Left}{Shift Up}')
+    Send('{Ctrl Down}{Shift Down}{Left}{Ctrl Up}{Left}{Shift Up}')
             ; Erase the abbreviation.
     SendInstantRaw(tabs)
 }
