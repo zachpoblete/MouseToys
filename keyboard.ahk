@@ -435,8 +435,8 @@ RWin:: {
 :*?b0c:&tab:: {
     ih := InputHook('L3 V', '{Tab}')
     ih.keyOpt('{Tab}', 'S')
-    ih.Start()
-    ih.Wait()
+    ih.start()
+    ih.wait()
 
     if not ih.Endkey {
         return
