@@ -26,7 +26,8 @@ K_CONTROLS := Map(
 ; )
 
 K_KEYS := Map(
-    'MENU_MASK', '{vkFF}'  ; No mapping.
+    'MENU_MASK', '{vkFF}'
+            ; No mapping.
 )
 
 ; K_WIN32_CONSTS := Map(
@@ -62,7 +63,8 @@ K_CONTROLS['ZOOM'] := Map(
     'MEETING_TOOLS', 'ZPControlPanelClass1'
 )
 
-; K_CONTROL_CODES['TRAY'] := Map(  ; Standard AHK tray menu control codes for the WM_COMMAND
+; K_CONTROL_CODES['TRAY'] := Map(
+;        ; Standard AHK tray menu control codes for the WM_COMMAND
 ;     'OPEN',    65300,
 ;     'HELP',    65301,
 ;     'SPY',     65302,

@@ -15,13 +15,17 @@ BrowserHotkeys(hotIfExFn) {
 }
 
 #HotIf WinActive('ahk_exe msedge.exe')
-^e:: Send('{Ctrl Down}{Shift Down},{Shift Up}{Ctrl Up}')  ; Toggle vertical tabs.
+^e:: Send('{Ctrl Down}{Shift Down},{Shift Up}{Ctrl Up}')
+        ; Toggle vertical tabs.
 
 #HotIf WinActive('ahk_exe Notion.exe')
-!Left::  Send('{Ctrl Down}[{Ctrl Up}')  ; Go back.
-!Right:: Send('{Ctrl Down}]{Ctrl Up}')  ; Go forward.
+!Left::  Send('{Ctrl Down}[{Ctrl Up}')
+        ; Go back.
+!Right:: Send('{Ctrl Down}]{Ctrl Up}')
+        ; Go forward.
 
-^+f:: Send('{Ctrl Down}{Shift Down}h{Shift Up}{Ctrl Up}')  ; Apply last text or highlight color used.
+^+f:: Send('{Ctrl Down}{Shift Down}h{Shift Up}{Ctrl Up}')
+        ; Apply last text or highlight color used.
 
 #HotIf WinActive('ahk_exe Spotify.exe')
 /** 
@@ -31,10 +35,14 @@ BrowserHotkeys(hotIfExFn) {
  * When you increase the friend activity width, the bar grows fatter,
  * so assign Left and Right to it.
  */
-!+Down::  Send('{Alt Down}{Shift Down}{Left}{Shift Up}{Alt Up}')   ; Decrease navigation bar width.
-!+Up::    Send('{Alt Down}{Shift Down}{Right}{Shift Up}{Alt Up}')  ; Increase navigation bar width.
-!+Left::  Send('{Alt Down}{Shift Down}{Down}{Shift Up}{Alt Up}')   ; Increase friend activity width.
-!+Right:: Send('{Alt Down}{Shift Down}{Up}{Shift Up}{Alt Up}')     ; Decrease friend activity width.
+!+Down::  Send('{Alt Down}{Shift Down}{Left}{Shift Up}{Alt Up}')
+        ; Decrease navigation bar width.
+!+Up::    Send('{Alt Down}{Shift Down}{Right}{Shift Up}{Alt Up}')
+        ; Increase navigation bar width.
+!+Left::  Send('{Alt Down}{Shift Down}{Down}{Shift Up}{Alt Up}')
+        ; Increase friend activity width.
+!+Right:: Send('{Alt Down}{Shift Down}{Up}{Shift Up}{Alt Up}')
+        ; Decrease friend activity width.
 
 /**
  * Spicetify
@@ -49,8 +57,10 @@ BrowserHotkeys(hotIfExFn) {
  * so !+2 should redirect to Your Artists instead.
  * The same logic applies to !+3 and !+4.
  */
-!+2:: Send('{Alt Down}{Shift Down}3{Shift Up}{Alt Up}')  ; Go to Your Artists.
-!+3:: Send('{Alt Down}{Shift Down}4{Shift Up}{Alt Up}')  ; Go to Your Albums.
+!+2:: Send('{Alt Down}{Shift Down}3{Shift Up}{Alt Up}')
+        ; Go to Your Artists.
+!+3:: Send('{Alt Down}{Shift Down}4{Shift Up}{Alt Up}')
+        ; Go to Your Albums.
 !+4:: return
 #HotIf
 
@@ -59,7 +69,8 @@ BrowserHotkeys(hotIfExFn) {
 ;----------------------------------------------------------------------------------------------------
 
 #HotIf WinActive(K_CLASSES['ZOOM']['MEETING']) and WinWaitActive(K_CLASSES['ZOOM']['TOOLBAR'], , 0.1)
-~#Down:: WinActivate('Zoom ahk_pid ' WinGetPid())  ; Activate minimized video/control window.
+~#Down:: WinActivate('Zoom ahk_pid ' WinGetPid())
+        ; Activate minimized video/control window.
 
 #HotIf WinActive(K_CLASSES['ZOOM']['WAIT_HOST']) or WinActive(K_CLASSES['ZOOM']['VID_PREVIEW'])
 #Down:: WinMinimize()
@@ -67,13 +78,17 @@ BrowserHotkeys(hotIfExFn) {
 #HotIf WinActive(K_CLASSES['ZOOM']['MIN_VID']) or WinActive(K_CLASSES['ZOOM']['MIN_CONTROL'])
 #Up:: {
     WinGetPos(, , , &winH)
-    ControlClick('x200 y' (winH - 30))  ; Exit minimized video window.
+    ControlClick('x200 y' (winH - 30))
+            ; Exit minimized video window.
 }
 
-#HotIf WinActive(K_CLASSES['ZOOM']['HOME']) and not WinExist('Zoom ahk_pid ' WinGetPid.tryCall(K_CLASSES['ZOOM']['TOOLBAR']))  ; Check if a visible meeting window exists.
-!F4:: ProcessClose('Zoom.exe')  ; Can't use WinClose because that minimizes here.
+#HotIf WinActive(K_CLASSES['ZOOM']['HOME']) and not WinExist('Zoom ahk_pid ' WinGetPid.tryCall(K_CLASSES['ZOOM']['TOOLBAR']))
+        ; Check if a visible meeting window exists.
+!F4:: ProcessClose('Zoom.exe')
+        ; Can't use WinClose because that minimizes here.
 
-#HotIf WinActive('ahk_pid ' WinGetPid.tryCall(K_CLASSES['ZOOM']['TOOLBAR']))  ; Check if a meeting window is active.
+#HotIf WinActive('ahk_pid ' WinGetPid.tryCall(K_CLASSES['ZOOM']['TOOLBAR']))
+        ; Check if a meeting window is active.
 !=::
 Zoom_ThumbsUpReact(thisHotkey) {
     Zoom_OpenReactions(thisHotkey)
@@ -199,10 +214,12 @@ GroupAdd('ZoomWins', 'ahk_class Z ahk_exe Zoom.exe', , , 'ZPToolBarParentWnd')
 Zoom_ActivateElseRun(thisHotkey) {
     if not WinExist('ahk_exe Zoom.exe') {
         Run('Zoom', 'C:\Users\Zach Poblete\AppData\Roaming\Zoom\bin')
-    } else if WinExist(K_CLASSES['ZOOM']['HIDDEN_TOOLBAR']) or WinExist('Zoom ahk_pid ' WinGetPid.tryCall(K_CLASSES['ZOOM']['TOOLBAR'])) {  ; Check if a visible meeting window exists.
+    } else if WinExist(K_CLASSES['ZOOM']['HIDDEN_TOOLBAR']) or WinExist('Zoom ahk_pid ' WinGetPid.tryCall(K_CLASSES['ZOOM']['TOOLBAR'])) {
+            ; Check if a visible meeting window exists.
         WinActivate()
     } else {
-        ActivateRecentIfExists.bind('ahk_group ZoomWins').setWinModeAndCall('RegEx')  ; Activate most recent visible Zoom window.
+        ActivateRecentIfExists.bind('ahk_group ZoomWins').setWinModeAndCall('RegEx')
+                ; Activate most recent visible Zoom window.
     }
 }
 
@@ -216,12 +233,14 @@ $Volume_Down:: DisplayAndSetVolume(-1)
 
 DisplayAndSetVolume(variation) {
     newVol := SoundGetVolume() + variation
-    volDirection := (variation > 0 or Round(newVol) = 1)? 'Up' : 'Down'  ; Fsr Round(newVol) before this point doesn't work.
+    volDirection := (variation > 0 or Round(newVol) = 1)? 'Up' : 'Down'
+            ; Fsr Round(newVol) before this point doesn't work.
 
     Send('{Volume_' volDirection '}')
             ; Vary volume by 2,
             ; and, importantly, display volume slider (and media overlay).
-    SoundSetVolume(newVol)  ; Override that normal variation of 2.
+    SoundSetVolume(newVol)
+            ; Override that normal variation of 2.
 }
 #HotIf
 
@@ -259,7 +278,8 @@ ProcessRestart(thisHotkey) {
 #F12::  Media_Next
 Pause:: Media_Play_Pause
 
-PrintScreen:: Send('{LWin Down}{Alt Down}{PrintScreen}{Alt Up}{LWin Up}')  ; Save screenshot of window.
+PrintScreen:: Send('{LWin Down}{Alt Down}{PrintScreen}{Alt Up}{LWin Up}')
+        ; Save screenshot of window.
 
 ;====================================================================================================
 ; Remap
@@ -308,7 +328,8 @@ PrintScreen:: Send('{LWin Down}{Alt Down}{PrintScreen}{Alt Up}{LWin Up}')  ; Sav
     if GetSelected() {
         Send('{Del}')
     } else {
-        Send('{Ctrl Down}{Shift Down}{Left}{Del}{Shift Up}{Ctrl Up}')  ; Delete last word typed.
+        Send('{Ctrl Down}{Shift Down}{Left}{Del}{Shift Up}{Ctrl Up}')
+                ; Delete last word typed.
     }
 }
 
@@ -325,7 +346,8 @@ if GetKeyState('NumLock', 'T') {
 }
 
 #InputLevel 1
-^Pause:: Send('{NumLock}')  ; When Ctrl is down, NumLock produces the key code of Pause while Pause produces CtrlBreak.
+^Pause:: Send('{NumLock}')
+        ; When Ctrl is down, NumLock produces the key code of Pause while Pause produces CtrlBreak.
 #InputLevel
 
 /**
@@ -346,9 +368,11 @@ if GetKeyState('NumLock', 'T') {
 }
 
 ~*Alt:: {
-    if not WinActive.bind('ahk_exe .EXE$').setWinModeAndCall('RegEx') {  ; Check if an Office app isn't active.
+    if not WinActive.bind('ahk_exe .EXE$').setWinModeAndCall('RegEx') {
+            ; Check if an Office app isn't active.
         Send(K_KEYS['MENU_MASK'])
-        KeyWait('Alt')  ; Prevent the masking key from being repeatedly sent.
+        KeyWait('Alt')
+                ; Prevent the masking key from being repeatedly sent.
     }
 }
 
@@ -372,8 +396,10 @@ RWin:: {
 ; For each Unicode character sent, the hotstring abbreviation is the HTML entity (or something intuitive).
 
 ~^z:: {
-    if A_PriorHotkey ~= '^:' {  ; Match hotstrings.
-        Send('{Ctrl Down}z{Ctrl Up}')  ; Send an extra ^z to go back to the abbreviation.
+    if A_PriorHotkey ~= '^:' {
+            ; Match hotstrings.
+        Send('{Ctrl Down}z{Ctrl Up}')
+                ; Send an extra ^z to go back to the abbreviation.
     }
 }
 
@@ -388,8 +414,10 @@ RWin:: {
 
 :?cx:&deg;::Send(   '{U+00B0}')
 
-:?cx:&la;::Send(    '{U+2190}')  ; Left arrow.
-:?cx:&ra;::Send(    '{U+2192}')  ; Right arrow.
+:?cx:&la;::Send(    '{U+2190}')
+        ; Left arrow.
+:?cx:&ra;::Send(    '{U+2192}')
+        ; Right arrow.
 
 :?cx:&mdash;::Send( '{U+2014}')
 :?cx:&ndash;::Send( '{U+2013}')
@@ -417,7 +445,8 @@ RWin:: {
             tabs .= A_Tab
         }
     }
-    Send('{Ctrl Down}{Shift Down}{Left 2}{Ctrl Up}{Left}{Shift Up}')  ; Erase the abbreviation.
+    Send('{Ctrl Down}{Shift Down}{Left 2}{Ctrl Up}{Left}{Shift Up}')
+            ; Erase the abbreviation.
     SendInstantRaw(tabs)
 }
 
@@ -429,10 +458,14 @@ RWin:: {
 
 :?cx:&infin;::Send(  '{U+221E}')
 
-:?cx:&ne;::Send(     '{U+2260}')  ; Not equal.
-:?cx:&le;::Send(     '{U+2264}')  ; Lesser than or equal.
-:?cx:&ge;::Send(     '{U+2265}')  ; Greater than or equal.
-:?cx:&pm;::Send(     '{U+00B1}')  ; Plus-minus.
+:?cx:&ne;::Send(     '{U+2260}')
+        ; Not equal.
+:?cx:&le;::Send(     '{U+2264}')
+        ; Lesser than or equal.
+:?cx:&ge;::Send(     '{U+2265}')
+        ; Greater than or equal.
+:?cx:&pm;::Send(     '{U+00B1}')
+        ; Plus-minus.
 
 :?cx:&radic3;::Send( '{U+221B}')
 :?cx:&radic4;::Send( '{U+221C}')
