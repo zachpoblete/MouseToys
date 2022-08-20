@@ -70,8 +70,14 @@ MouseWinMinimizeOrRestore(ThisHotkey) {
     MouseWinActivate()
     if WinActive(K_CLASSES['ZOOM']['WAIT_HOST']) or WinActive(K_CLASSES['ZOOM']['VID_PREVIEW']) {
         WinMinimize()
-    } else {
+        return
+    }
+    winMinMax := WinGetMinMax()
+
+    if winMinMax {
         WinRestore()
+    } else {
+        WinMinimize()
     }
 }
 
