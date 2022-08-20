@@ -123,8 +123,9 @@ MouseWinMove(thisHotkey) {
 MButton:: {
     if MouseWinActivate(K_CLASSES['ZOOM']['MEETING']) {
         Send('{LWin Down}{Alt Down}{PrintScreen}{Alt Up}{LWin Up}')
-    } else if WinActive('AutoHotkey Community ahk_exe msedge.exe') or WinActive.bind('ahk_exe .EXE$').setWinModeAndCall('RegEx') {
-            ; Check if an Office app is active.
+    } else if WinActive('AutoHotkey Community ahk_exe msedge.exe')
+            or WinActive.bind('ahk_exe .EXE$').setWinModeAndCall('RegEx') {
+                    ; Check if an Office app is active.
         Send('{Ctrl Down}{Click}{Ctrl Up}')
     } else {
         Click('M')
