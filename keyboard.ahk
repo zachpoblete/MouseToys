@@ -255,7 +255,7 @@ if not ProcessExist('brightness-setter.exe') {
 
 OnExit((reason, code) => CloseBrightnessSetter())
 CloseBrightnessSetter() {
-    if not ProcessExist('brightness-setter.exe') {
+    if G_WillReload or not ProcessExist('brightness-setter.exe') {
         return
     }
     ProcessClose('brightness-setter.exe')

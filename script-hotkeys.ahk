@@ -4,7 +4,14 @@
 #^s:: Suspend()
 #SuspendExempt false
 
-#^r:: Run('*UIAccess "' A_ScriptName '"')
+/**
+ * Reload.
+ */
+#^r:: {
+    global G_WillReload := true
+    Run('*UIAccess "' A_ScriptName '"')
+}
+
 #^p:: Pause(-1)
 #^x:: ExitApp()
 

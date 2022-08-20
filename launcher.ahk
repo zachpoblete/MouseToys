@@ -1,6 +1,7 @@
 ﻿#Requires AutoHotkey v2.0-beta.7
 
 #Include <default-settings>
+#Include <globals>
 #Include <constants>
 #Include <functions>
 #Include <classes>
