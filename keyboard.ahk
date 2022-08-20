@@ -386,14 +386,14 @@ if GetKeyState('NumLock', 'T') {
  */
 LWin::
 RWin:: {
-        Send('{' thisHotkey ' Down}')
-        KeyWait(thisHotkey)
+    Send('{' thisHotkey ' Down}')
+    KeyWait(thisHotkey)
 
-        if A_PriorKey = thisHotkey and A_TimeSinceThisHotkey > 500 {
-            Send(K_KEYS['MENU_MASK'])
-        }
-        Send('{' thisHotkey ' Up}')
+    if A_PriorKey = thisHotkey and A_TimeSinceThisHotkey > 500 {
+        Send(K_KEYS['MENU_MASK'])
     }
+    Send('{' thisHotkey ' Up}')
+}
 
 ;===============================================================================
 ; Hotstrings
