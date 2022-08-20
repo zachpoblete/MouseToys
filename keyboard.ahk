@@ -43,8 +43,10 @@ BrowserHotkeys(hotIfExFn) {
  * *     !+q:: toggleQueue()
  * *     !+m:: openSpicetifyMarketPlace()
  *
- * !+2 goes to Your Podcasts, but because of the Hide Podcasts extension,
- * Your Podcasts isn't listed in Your Library, so !+2 should redirect to Your Artists instead.
+ * !+2 goes to Your Podcasts,
+ * but because of the Hide Podcasts extension,
+ * Your Podcasts isn't listed in Your Library,
+ * so !+2 should redirect to Your Artists instead.
  * The same logic applies to !+3 and !+4.
  */
 !+2:: Send('{Alt Down}{Shift Down}3{Shift Up}{Alt Up}')  ; Go to Your Artists.
@@ -86,8 +88,7 @@ Zoom_ThumbsUpReact(thisHotkey) {
     ImageSearch(&imageX, &imageY, 0, 0, winW, winH, '*50 images\thumbs-up-icon.png')
     ControlClick('x' imageX ' y' imageY)
     WinActivate(K_CLASSES['ZOOM']['MEETING'])
-            ; Prevent the activation of the most recent window
-            ; when the reaction disappears.
+            ; Prevent the activation of the most recent window when the reaction disappears.
 }
 
 !e::
@@ -139,9 +140,9 @@ Zoom_OpenReactions(thisHotkey) {
     /**
      * I want my coordinates to be relative to the menu window
      * because that's where the Reactions menu item is,
-     * but fsr, when I activate or ControlClick the window,
-     * I lose it.
-     * As a work around, use Click, and make it relative to the virtual screen.
+     * but fsr, when I activate or ControlClick the window, I lose it.
+     * As a work around, use Click,
+     * and make it relative to the virtual screen.
      * Do the same with ImageSearch.
      */
 
@@ -217,7 +218,9 @@ DisplayAndSetVolume(variation) {
     newVol := SoundGetVolume() + variation
     volDirection := (variation > 0 or Round(newVol) = 1)? 'Up' : 'Down'  ; Fsr Round(newVol) before this point doesn't work.
 
-    Send('{Volume_' volDirection '}')  ; Vary volume by 2, and, importantly, display volume slider (and media overlay).
+    Send('{Volume_' volDirection '}')
+            ; Vary volume by 2,
+            ; and, importantly, display volume slider (and media overlay).
     SoundSetVolume(newVol)  ; Override that normal variation of 2.
 }
 #HotIf
@@ -350,8 +353,7 @@ if GetKeyState('NumLock', 'T') {
 }
 
 /**
- * Don't open the Start Menu
- * if Win key is held down for longer than 500 ms.
+ * Don't open the Start Menu if Win key is held down for longer than 500 ms.
  */
 LWin::
 RWin:: {
@@ -378,8 +380,7 @@ RWin:: {
 #Hotstring EndChars `t
 /** 
  * * Sorry if the hotstrings look weird!
- * * Currently, when using the X option,
- * * whitespace isn't allowed before the expression.
+ * * Currently, when using the X option, whitespace isn't allowed before the expression.
  * * In v1, I made heavy use of whitespace to align my Send commands.
  * * I've worked around this bug by adding the whitespace after the function's open parenthesis.
  * TODO: When this is fixed, revert the hotstrings back to normal.

@@ -158,7 +158,9 @@ ActivateRecentIfExists(winTitle := '', winText := '', excludedTitle := '', exclu
 MouseWinActivate(winTitle := '', winText := '', excludedTitle := '', excludedText := '') {
     MouseGetPos(, , &mouseHwnd)
     WinActivate(mouseHwnd)
-    return WinActive(winTitle ' ahk_id ' mouseHwnd, winText, excludedTitle, excludedText)  ; The mouseHwnd is there for the case when all the parameters are blank and there is no last found window.
+    return WinActive(winTitle ' ahk_id ' mouseHwnd, winText, excludedTitle, excludedText)
+        ; mouseHwnd is there for the case
+        ; when all the parameters are blank and there is no last found window.
 }
 
 Func.prototype.defineProp('setWinModeAndCall', {call: FuncPrototype_SetWinModeAndCall})

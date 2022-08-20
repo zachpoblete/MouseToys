@@ -91,7 +91,7 @@ MouseWinMove(thisHotkey) {
     WinGetPos(&winOriginalX, &winOriginalY)
     SetWinDelay(0)
 
-    while GetKeyState('MButton', 'P') {  ; SetTimer isn't used to preserve the last found window.
+    while GetKeyState('MButton', 'P') {  ; A loop is used instead of SetTimer to preserve the last found window.
         if GetKeyState('Esc', 'P') {
             WinMove(winOriginalX, winOriginalY)
             break
@@ -189,7 +189,9 @@ X2W(states*) {
     }
 }
 
-XButton2 & LButton:: X2LR('{Shift Down}t{Shift Up}')  ; Reopen last closed tab, and switch to it.
+XButton2 & LButton:: X2LR('{Shift Down}t{Shift Up}')
+        ; Reopen last closed tab,
+        ; and switch to it.
 XButton2 & RButton:: X2LR('w')  ; Close current tab.
 
 X2LR(states*) {
@@ -200,7 +202,9 @@ X2LR(states*) {
 XButton2 & MButton::
 MouseWinClose(thisHotkey) {
     if MouseWinActivate(K_CLASSES['ZOOM']['MEETING']) {
-        Send('{Alt Down}q{Alt Up}')  ; Show 'End Meeting or Leave Meeting?' prompt in the middle of the screen instead of the corner of the window.
+        Send('{Alt Down}q{Alt Up}')
+                ; Show 'End Meeting or Leave Meeting?' prompt in the middle of the screen
+                ; instead of the corner of the window.
     } else if WinActive(K_CLASSES['ZOOM']['HOME']) {
         if WinExist('Zoom ahk_pid ' WinGetPid.tryCall(K_CLASSES['ZOOM']['TOOLBAR'])) {  ; Check if a visible Zoom meeting window exists.
             ControlSend('{Alt Down}q{Alt Up}', , K_CLASSES['ZOOM']['MEETING'])
