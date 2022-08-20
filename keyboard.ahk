@@ -206,7 +206,19 @@ RunSelectedAsDir(thisHotkey) {
 #HotIf
 
 #!c:: ActivateRecentElseRun('C:\Users\Zach Poblete\Pictures\Camera Roll')
-#!v:: Run('App volume and device preferences', 'C:\Windows')
+
+#i:: {
+    ih := InputHook('L1')
+    ih.start()
+    ih.wait()
+
+    switch ih.input {
+    case 'i':
+        Send('{LWin Down}i{LWin Up}')
+    case 'v':
+        Run('App volume and device preferences', 'C:\Windows')
+    }
+}
 
 GroupAdd('ExplorerWins', 'ahk_class CabinetWClass')
 GroupAdd('PhotoWins', ' ' K_CHARS['LEFT_TO_RIGHT_MARK'] '- Photos$ ahk_exe ApplicationFrameHost.exe')
@@ -372,6 +384,7 @@ if GetKeyState('NumLock', 'T') {
     }
 }
 
+#InputLevel 1
 ~*Alt:: {
     if not WinActive.bind('ahk_exe .EXE$').setWinModeAndCall('RegEx') {
             ; Check if an Office app isn't active.
@@ -394,6 +407,7 @@ RWin:: {
     }
     Send('{' thisHotkey ' Up}')
 }
+#InputLevel
 
 ;===============================================================================
 ; Hotstrings
