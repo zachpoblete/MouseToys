@@ -64,14 +64,14 @@ OnFileSave(fileName, fn, shouldCall := true) {
     SetTimer(() => funcIfSave(fn), periodMs)
 }
 
-StdOut(text, delay := '', delimiter := '') {
-    if delay = '' {
+StdOut(text, delayMs := '', delimiter := '') {
+    if delayMs = '' {
         FileAppend(text, '*')
         return
     }
     Loop Parse text, delimiter {
         FileAppend(A_LoopField delimiter, '*')
-        Sleep(delay)
+        Sleep(delayMs)
     }
 }
 

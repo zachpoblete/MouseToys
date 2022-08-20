@@ -108,19 +108,19 @@ class C_Timer {
         } 
     }
 
-    static set(fn, period := 250, priority := 0, index := 1) {
-        SetTimer(fn, period, priority)
+    static set(fn, periodMs := 250, priority := 0, index := 1) {
+        SetTimer(fn, periodMs, priority)
 
         if not this._labels.has(index) {
             this._labels.insertAt(index, fn)
         }
-        if period > 0 {
+        if periodMs > 0 {
             this._labels.removeAt(index)
             this._labels.insertAt(index, fn)
-        } else if period = 0 {
+        } else if periodMs = 0 {
             this._labels.removeAt(index)
         } else {
-            SetTimer(() => this._labels.removeAt(index), period)
+            SetTimer(() => this._labels.removeAt(index), periodMs)
         }
     }
 }
