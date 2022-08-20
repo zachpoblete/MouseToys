@@ -48,15 +48,15 @@ class C_Hotkey {
             return WinActive('ahk_exe msedge.exe') or WinActive('ahk_exe firefox.exe') or WinActive('ahk_exe chrome.exe')
         }
 
-        static hotIfCondition(hotIfExFn := '') {
-            if hotIfExFn {
+        static hotIfCondition(hotIfExFn) {
+            if HasProp(hotIfExFn, 'call') {
                 HotIf((thisHotkey) => this.active() and hotIfExFn())
             } else {
                 HotIf((thisHotkey) => this.active())
             }
         }
 
-        static searchSelectedAsUrl(hk, engine := '', hotIfExFn := '') {
+        static searchSelectedAsUrl(hk, engine := '', hotIfExFn := {}) {
             searchUrlInTab(inNew) {
                 url := getUrlFromSelectedElseExit()
 
@@ -107,7 +107,7 @@ class C_Timer {
         } 
     }
 
-    static set(fn, period := '', priority := '', index := 1) {
+    static set(fn, period := 250, priority := 0, index := 1) {
         SetTimer(fn, period, priority)
 
         if not this._labels.has(index) {
