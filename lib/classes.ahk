@@ -65,7 +65,8 @@ class C_Hotkey {
 
                 SendInstantRaw(url)
 
-                SetTimer(() => Send('{Enter}'), -10)
+                Sleep(10)
+                Send('{Enter}')
             }
             runUrl() {
                 url := getUrlFromSelectedElseExit()

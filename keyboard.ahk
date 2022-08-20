@@ -359,16 +359,15 @@ if GetKeyState('NumLock', 'T') {
  * Display ToolTip while NumLock is on.
  */
 ~*NumLock:: {
-    SetTimer(logic, -10)
-    logic() {
-        toolTipNumLock() => ToolTip('NumLock On')
+    toolTipNumLock() => ToolTip('NumLock On')
 
-        if GetKeyState('NumLock', 'T') {
-            SetTimer(toolTipNumLock, 10)
-        } else {
-            SetTimer(toolTipNumLock, 0)
-            ToolTip()
-        }
+    Sleep(10)
+
+    if GetKeyState('NumLock', 'T') {
+        SetTimer(toolTipNumLock, 10)
+    } else {
+        SetTimer(toolTipNumLock, 0)
+        ToolTip()
     }
 }
 
