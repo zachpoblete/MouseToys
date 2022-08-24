@@ -19,9 +19,6 @@
  * Edit.
  */
 #^e:: {
-    if WinExist('ahk_group VsCodeWins') {
-        return
-    }
     Loop Files '*.code-workspace' {
         Run(A_LoopFileName)
     }
