@@ -207,7 +207,8 @@ RunSelectedAsDir(thisHotkey) {
 
 #!c:: ActivateRecentElseRun('C:\Users\Zach Poblete\Pictures\Camera Roll')
 
-#i:: {
+#i::
+OpenSettings(thisHotkey) {
     Send('{Blind}{' A_PriorKey 'Up}')
             ; Release the Win key to not affect the input.
 
