@@ -79,6 +79,9 @@ BrowserHotkeys(hotIfExFn) {
 #Down:: WinMinimize()
 
 #HotIf WinActive(K_CLASSES['ZOOM']['MIN_VID']) or WinActive(K_CLASSES['ZOOM']['MIN_CONTROL'])
+/**
+ * * Doesn't work when coming from #Down.
+ */
 #Up:: {
     WinGetPos(, , , &winH)
     ControlClick('x200 y' (winH - 30))
