@@ -208,6 +208,23 @@ RunSelectedAsDir(thisHotkey) {
 }
 #HotIf
 
+#i::
+OpenSettings(thisHotkey) {
+    Send('{Blind}{' A_PriorKey 'Up}')
+            ; Release the Win key to not affect the input.
+
+    ih := InputHook('L1 M')
+    ih.start()
+    ih.wait()
+
+    switch ih.input {
+    case 'i':
+        Send('{LWin Down}i{LWin Up}')
+    case 'v':
+        Run('App volume and device preferences', 'C:\Windows')
+    }
+}
+
 ; A_TitleMatchMode = 2:
 GroupAdd('ExplorerWins', 'ahk_class CabinetWClass')
 
@@ -239,23 +256,6 @@ IntraSwitchActiveGroup(thisHotkey) {
     
     GroupAdd(groupName, 'ahk_exe ' processName)
     GroupActivate(groupName, 'R')
-}
-
-#i::
-OpenSettings(thisHotkey) {
-    Send('{Blind}{' A_PriorKey 'Up}')
-            ; Release the Win key to not affect the input.
-
-    ih := InputHook('L1 M')
-    ih.start()
-    ih.wait()
-
-    switch ih.input {
-    case 'i':
-        Send('{LWin Down}i{LWin Up}')
-    case 'v':
-        Run('App volume and device preferences', 'C:\Windows')
-    }
 }
 
 ;===============================================================================
