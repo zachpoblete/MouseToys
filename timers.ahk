@@ -23,7 +23,7 @@ CloseMonokaiPopup() {
         [OK] [Cancel]'
     )
 
-    if not WinActive('Visual Studio Code ' K_CLASSES['DIALOG_BOX'] ' ahk_exe Code.exe') {
+    if not WinExist('Visual Studio Code ' K_CLASSES['DIALOG_BOX'] ' ahk_exe Code.exe') {
         return
     }
     okButtonHwnd     := ControlGetHwndFromClassNnAndTextElseExit('Button1', 'OK')
