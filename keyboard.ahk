@@ -208,7 +208,10 @@ RunSelectedAsDir(thisHotkey) {
 #!c:: ActivateRecentElseRun('C:\Users\Zach Poblete\Pictures\Camera Roll')
 
 #i:: {
-    ih := InputHook('L1')
+    Send('{Blind}{' A_PriorKey 'Up}')
+            ; Release the Win key to not affect the input.
+
+    ih := InputHook('L1 M')
     ih.start()
     ih.wait()
 
@@ -384,7 +387,6 @@ if GetKeyState('NumLock', 'T') {
     }
 }
 
-#InputLevel 1
 ~*Alt:: {
     if not WinActive.bind('ahk_exe .EXE$').setWinModeAndCall('RegEx') {
             ; Check if an Office app isn't active.
@@ -407,7 +409,6 @@ RWin:: {
     }
     Send('{' thisHotkey ' Up}')
 }
-#InputLevel
 
 ;===============================================================================
 ; Hotstrings
