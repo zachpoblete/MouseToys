@@ -208,7 +208,7 @@ RunSelectedAsDir(thisHotkey) {
 GlobalGroupAdd('ExplorerWins', 'ahk_class CabinetWClass')
 GlobalGroupAdd('PhotoWins', ' ' K_CHARS['LEFT_TO_RIGHT_MARK'] '- Photos$ ahk_exe ApplicationFrameHost.exe')
 GlobalGroupAdd('VsCodeWins', 'ahk_exe Code.exe')
-GlobalGroupAdd('ZoomWins', 'ahk_class Z ahk_exe Zoom.exe', , , 'ZPToolBarParentWnd')
+GlobalGroupAdd('ZoomWins', 'ahk_class ^Z ahk_exe Zoom.exe')
 
 GlobalGroupAdd(groupName, winTitle := '', winText := '', excludedTitle := '', excludedText := '') {
     global G_GroupNames
