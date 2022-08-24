@@ -208,27 +208,37 @@ RunSelectedAsDir(thisHotkey) {
 }
 #HotIf
 
-GlobalGroupAdd('ExplorerWins', 'ahk_class CabinetWClass')
-GlobalGroupAdd('PhotoWins', ' ' K_CHARS['LEFT_TO_RIGHT_MARK'] '- Photos$ ahk_exe ApplicationFrameHost.exe')
-GlobalGroupAdd('VsCodeWins', 'ahk_exe Code.exe')
-GlobalGroupAdd('ZoomWins', 'ahk_class ^Z ahk_exe Zoom.exe')
+; A_TitleMatchMode = 2:
+GroupAdd('ExplorerWins', 'ahk_class CabinetWClass')
 
-GlobalGroupAdd(groupName, winTitle := '', winText := '', excludedTitle := '', excludedText := '') {
-    global G_GroupNames
-    G_GroupNames.push(groupName)
-
-    GroupAdd(groupName, winTitle, winText, excludedTitle, excludedText)
-}
+; A_TitleMatchMode = 'RegEx':
+GroupAdd('PhotoWins', ' ' K_CHARS['LEFT_TO_RIGHT_MARK'] '- Photos$ ahk_exe ApplicationFrameHost.exe')
+GroupAdd('ZoomWins', 'ahk_class ^Z ahk_exe Zoom.exe')
 
 ^!Tab::
-GroupSwitcher(thisHotkey) {
-    for groupName in G_GroupNames {
+IntraSwitchActiveGroup(thisHotkey) {
+    check(groupName) {
         if not WinActive('ahk_group ' groupName) {
-            continue
+            return
         }
         GroupActivate(groupName, 'R')
-        break
+        exit
     }
+    
+    check('ExplorerWins')
+
+    SetTitleMatchMode('RegEx')
+    check('PhotoWins')
+    check('ZoomWins')
+
+    SetTitleMatchMode(2)
+
+    processName := WinGetProcessName('A')
+    groupName := StrReplace(processName, '.exe')
+    groupName := StrReplace(groupName, ' ', '_')
+    
+    GroupAdd(groupName, 'ahk_exe ' processName)
+    GroupActivate(groupName, 'R')
 }
 
 #i::
