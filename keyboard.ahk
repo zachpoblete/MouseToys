@@ -205,7 +205,28 @@ RunSelectedAsDir(thisHotkey) {
 }
 #HotIf
 
-#!c:: ActivateRecentElseRun('C:\Users\Zach Poblete\Pictures\Camera Roll')
+GlobalGroupAdd('ExplorerWins', 'ahk_class CabinetWClass')
+GlobalGroupAdd('PhotoWins', ' ' K_CHARS['LEFT_TO_RIGHT_MARK'] '- Photos$ ahk_exe ApplicationFrameHost.exe')
+GlobalGroupAdd('VsCodeWins', 'ahk_exe Code.exe')
+GlobalGroupAdd('ZoomWins', 'ahk_class Z ahk_exe Zoom.exe', , , 'ZPToolBarParentWnd')
+
+GlobalGroupAdd(groupName, winTitle := '', winText := '', excludedTitle := '', excludedText := '') {
+    global G_GroupNames
+    G_GroupNames.push(groupName)
+
+    GroupAdd(groupName, winTitle, winText, excludedTitle, excludedText)
+}
+
+^!Tab::
+GroupSwitcher(thisHotkey) {
+    for groupName in G_GroupNames {
+        if not WinActive('ahk_group ' groupName) {
+            continue
+        }
+        GroupActivate(groupName, 'R')
+        break
+    }
+}
 
 #i::
 OpenSettings(thisHotkey) {
@@ -221,26 +242,6 @@ OpenSettings(thisHotkey) {
         Send('{LWin Down}i{LWin Up}')
     case 'v':
         Run('App volume and device preferences', 'C:\Windows')
-    }
-}
-
-GroupAdd('ExplorerWins', 'ahk_class CabinetWClass')
-GroupAdd('PhotoWins', ' ' K_CHARS['LEFT_TO_RIGHT_MARK'] '- Photos$ ahk_exe ApplicationFrameHost.exe')
-GroupAdd('ZoomWins', 'ahk_class Z ahk_exe Zoom.exe', , , 'ZPToolBarParentWnd')
-
-#+e:: ActivateRecentElseRun('explorer', , 'ahk_group ExplorerWins')
-#+p:: ActivateRecentIfExists.bind('ahk_group PhotoWins').setWinModeAndCall('RegEx')
-#+z::
-Zoom_ActivateElseRun(thisHotkey) {
-    if not WinExist('ahk_exe Zoom.exe') {
-        Run('Zoom', 'C:\Users\Zach Poblete\AppData\Roaming\Zoom\bin')
-    } else if WinExist(K_CLASSES['ZOOM']['HIDDEN_TOOLBAR'])
-            or WinExist('Zoom ahk_pid ' WinGetPid.tryCall(K_CLASSES['ZOOM']['TOOLBAR'])) {
-                    ; Check if a visible meeting window exists.
-        WinActivate()
-    } else {
-        ActivateRecentIfExists.bind('ahk_group ZoomWins').setWinModeAndCall('RegEx')
-                ; Activate most recent visible Zoom window.
     }
 }
 

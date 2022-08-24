@@ -130,34 +130,6 @@ StrDel(haystack, needle, limit := 1) {
 ; Window
 ;===============================================================================
 
-ActivateRecent(winTitle := '', winText := '', excludedTitle := '', excludedText := '') {
-    if InStr(winTitle, 'ahk_group') {
-        groupName := StrDel(winTitle, 'ahk_group')
-        groupName := LTrim(groupName)
-        GroupActivate(groupName, 'R')
-    } else {
-        WinActivate(winTitle, winText, excludedTitle, excludedText)
-    }
-}
-
-ActivateRecentElseRun(target, workingDir := '', winTitle := '', winText := '', excludedTitle := '', excludedText := '') {
-    if winTitle = '' and winText = '' and excludedTitle = '' and excludedText = '' {
-        winTitle := target
-    }
-    if not WinExist(winTitle, winText, excludedTitle, excludedText) {
-        Run(target, workingDir)
-    } else {
-        ActivateRecent(winTitle, winText, excludedTitle, excludedText)
-    }
-}
-
-ActivateRecentIfExists(winTitle := '', winText := '', excludedTitle := '', excludedText := '') {
-    if not WinExist(winTitle, winText, excludedTitle, excludedText) {
-        return
-    }
-    ActivateRecent(winTitle, winText, excludedTitle, excludedText)
-}
-
 MouseWinActivate(winTitle := '', winText := '', excludedTitle := '', excludedText := '') {
     MouseGetPos(, , &mouseHwnd)
     WinActivate(mouseHwnd)

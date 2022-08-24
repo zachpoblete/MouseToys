@@ -15,17 +15,15 @@
 #^p:: Pause(-1)
 #^x:: ExitApp()
 
-GroupAdd('VsCodeWins', 'ahk_exe Code.exe')
 /**
  * Edit.
  */
 #^e:: {
     if WinExist('ahk_group VsCodeWins') {
-        GroupActivate('VsCodeWins', 'R')
-    } else {
-        Loop Files '*.code-workspace' {
-            Run(A_LoopFileName)
-        }
+        return
+    }
+    Loop Files '*.code-workspace' {
+        Run(A_LoopFileName)
     }
 }
 
