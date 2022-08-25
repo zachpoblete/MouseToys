@@ -1,7 +1,7 @@
 #Include default-settings.ahk
 
-Func.prototype.defineProp('tryCall', {call: FuncPrototype_TryCall})
-FuncPrototype_TryCall(this, params*) {
+Func.prototype.defineProp('tryCall', {call: FuncProto_TryCall})
+FuncProto_TryCall(this, params*) {
     try {
         return this(params*)
     }
@@ -138,8 +138,8 @@ MouseWinActivate(winTitle := '', winText := '', excludedTitle := '', excludedTex
         ; when all the parameters are blank and there is no last found window.
 }
 
-Func.prototype.defineProp('setWinModeAndCall', {call: FuncPrototype_SetWinModeAndCall})
-FuncPrototype_SetWinModeAndCall(this, titleMatchMode := '', titleMatchModeSpeed := '', shouldDetectHiddenWin := '', shouldDetectHiddenText := '') {
+Func.prototype.defineProp('setWinModeAndCall', {call: FuncProto_SetWinModeAndCall})
+FuncProto_SetWinModeAndCall(this, titleMatchMode := '', titleMatchModeSpeed := '', shouldDetectHiddenWin := '', shouldDetectHiddenText := '') {
     originalTitleMatchMode := A_TitleMatchMode
     originalTitleMatchModeSpeed := A_TitleMatchModeSpeed
     originalShouldDetectHiddenWin := A_DetectHiddenWindows
