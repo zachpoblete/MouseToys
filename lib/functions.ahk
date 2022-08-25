@@ -139,12 +139,17 @@ MouseWinActivate(winTitle := '', winText := '', excludedTitle := '', excludedTex
 }
 
 Func.prototype.defineProp('setWinModeAndCall', {call: FuncPrototype_SetWinModeAndCall})
-FuncPrototype_SetWinModeAndCall(this, matchMode := '', matchModeSpeed := '', shouldDetectHiddenWin := '', shouldDetectHiddenText := '') {
-    if matchMode {
-        SetTitleMatchMode(matchMode)
+FuncPrototype_SetWinModeAndCall(this, titleMatchMode := '', titleMatchModeSpeed := '', shouldDetectHiddenWin := '', shouldDetectHiddenText := '') {
+    originalTitleMatchMode := A_TitleMatchMode
+    originalTitleMatchModeSpeed := A_TitleMatchModeSpeed
+    originalShouldDetectHiddenWin := A_DetectHiddenWindows
+    originalShouldDetectHiddenText := A_DetectHiddenText
+
+    if titleMatchMode {
+        SetTitleMatchMode(titleMatchMode)
     }
-    if matchModeSpeed {
-        SetTitleMatchMode(matchModeSpeed)
+    if titleMatchModeSpeed {
+        SetTitleMatchMode(titleMatchModeSpeed)
     }
     if shouldDetectHiddenWin != '' {
         DetectHiddenWindows(shouldDetectHiddenWin)
@@ -152,7 +157,14 @@ FuncPrototype_SetWinModeAndCall(this, matchMode := '', matchModeSpeed := '', sho
     if shouldDetectHiddenText != '' {
         DetectHiddenText(shouldDetectHiddenText)
     }
-    return this()
+    val := this()
+
+    A_TitleMatchMode := originalTitleMatchMode
+    A_TitleMatchModeSpeed := originalTitleMatchModeSpeed
+    A_DetectHiddenWindows := originalShouldDetectHiddenWin
+    A_DetectHiddenText := originalShouldDetectHiddenText
+
+    return val
 }
 
 ;-------------------------------------------------------------------------------
