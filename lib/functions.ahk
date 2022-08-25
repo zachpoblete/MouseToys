@@ -146,16 +146,16 @@ FuncProto_SetWinModeAndCall(this, titleMatchMode := '', titleMatchModeSpeed := '
     originalShouldDetectHiddenText := A_DetectHiddenText
 
     if titleMatchMode {
-        SetTitleMatchMode(titleMatchMode)
+        A_TitleMatchMode := titleMatchMode
     }
     if titleMatchModeSpeed {
-        SetTitleMatchMode(titleMatchModeSpeed)
+        A_TitleMatchModeSpeed := titleMatchModeSpeed
     }
     if shouldDetectHiddenWin != '' {
-        DetectHiddenWindows(shouldDetectHiddenWin)
+        A_DetectHiddenWindows := shouldDetectHiddenWin
     }
     if shouldDetectHiddenText != '' {
-        DetectHiddenText(shouldDetectHiddenText)
+        A_DetectHiddenText := shouldDetectHiddenText
     }
     val := this()
 
