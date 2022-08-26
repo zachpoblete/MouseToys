@@ -310,9 +310,30 @@ ProcessRestart(thisHotkey) {
     Run(winPath)
 }
 
-#F11::  Media_Prev
-#F12::  Media_Next
-Pause:: Media_Play_Pause
+Pause::
+OneButtonRemote(thisHotkey) {
+    static pressCount := 0
+    
+    if pressCount > 0 {
+        pressCount += 1
+        return
+    }
+    pressCount += 1
+    
+    SetTimer(chooseMediaControl, -400)
+
+    chooseMediaControl() {
+        switch pressCount {
+        case 1:
+            Send('{Media_Play_Pause}')
+        case 2:
+            Send('{Media_Next}')
+        case 3:
+            Send('{Media_Prev}')
+        }
+        pressCount := 0
+    }
+}
 
 PrintScreen:: Send('{LWin Down}{Alt Down}{PrintScreen}{Alt Up}{LWin Up}')
         ; Save screenshot of window.
