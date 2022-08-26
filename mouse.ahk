@@ -98,7 +98,6 @@ MouseWinMove(thisHotkey) {
     CoordMode('Mouse')
     MouseGetPos(&mouseStartX, &mouseStartY)
     WinGetPos(&winOriginalX, &winOriginalY)
-    SetWinDelay(0)
 
     while GetKeyState('MButton', 'P') {
             ; A loop is used instead of SetTimer to preserve the last found window.
