@@ -315,10 +315,10 @@ OneButtonRemote(thisHotkey) {
     static pressCount := 0
     
     if pressCount > 0 {
-        pressCount += 1
+        pressCount++
         return
     }
-    pressCount += 1
+    pressCount++
     
     SetTimer(chooseMediaControl, -400)
 
