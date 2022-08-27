@@ -330,6 +330,21 @@ IntraSwitchActiveGroup(thisHotkey) {
     GroupActivate(groupName, 'R')
 }
 
+/**
+ * Switch to an open window by typing its name.
+ */
+#;::
+WinWalker(thisHotkey) {
+    DetectHiddenWindows(true)
+
+    if not WinExist('ahk_exe PowerToys.PowerLauncher.exe') {
+        return
+    }
+    Send('{LWin Down} {LWin Up}')  ; Activate PowerToys Run.
+    WinWaitActive()
+    Send('< ')  ; Directly activate Window Walker.
+}
+
 ;===============================================================================
 ; Multimedia
 ;===============================================================================
