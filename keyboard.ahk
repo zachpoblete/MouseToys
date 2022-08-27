@@ -216,10 +216,8 @@ OpenSettings(thisHotkey) {
             ; This needs to be done because of the WinKey hotkey.
 
     switch Chord().input {
-    case 'i':
-        Send('{LWin Down}i{LWin Up}')
-    case 'v':
-        Run('App volume and device preferences', 'C:\Windows')
+    case 'i': Send('{LWin Down}i{LWin Up}')
+    case 'v': Run('App volume and device preferences', 'C:\Windows')
     }
 }
 
@@ -324,10 +322,8 @@ OneButtonRemote(thisHotkey) {
 
     chooseMediaControl() {
         switch pressCount {
-        case 2:
-            Send('{Media_Next}')
-        case 3:
-            Send('{Media_Prev}')
+        case 2: Send('{Media_Next}')
+        case 3: Send('{Media_Prev}')
         }
         pressCount := 0
     }
