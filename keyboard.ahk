@@ -252,10 +252,7 @@ Zoom_OpenReactions(thisHotkey) {
     CoordMode('Pixel')
 
     MouseGetPos(&mouseX, &mouseY)
-
-    virtualScreenW := SysGet(78)
-    virtualScreenH := SysGet(79)
-    ImageSearch(&imageX, &imageY, 0, 0, virtualScreenW, virtualScreenH, '*50 images\reactions-menu-item.png')
+    ImageSearch(&imageX, &imageY, 0, 0, G_.virtualScreenW, G_.virtualScreenH, '*50 images\reactions-menu-item.png')
     
     Click(imageX ' ' imageY)
     Sleep(10)
