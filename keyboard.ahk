@@ -211,7 +211,9 @@ RunSelectedAsDir(thisHotkey) {
 #i::
 OpenSettings(thisHotkey) {
     Send('{Blind}{' A_PriorKey 'Up}')
-            ; Release the Win key to not affect the input.
+            ; Release the Win key,
+            ; so "i" can be registered as an input.
+            ; This needs to be done because of the WinKey hotkey.
 
     ih := InputHook('L1 M')
     ih.start()
