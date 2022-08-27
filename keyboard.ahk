@@ -314,12 +314,11 @@ Pause::
 OneButtonRemote(thisHotkey) {
     static pressCount := 0
     
-    if pressCount > 0 {
-        pressCount++
+    pressCount++
+
+    if pressCount > 1 {
         return
     }
-    pressCount++
-    
     SetTimer(chooseMediaControl, -400)
 
     chooseMediaControl() {
