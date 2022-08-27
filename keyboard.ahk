@@ -394,6 +394,15 @@ PrintScreen:: Send('{LWin Down}{Alt Down}{PrintScreen}{Alt Up}{LWin Up}')
 +BS::  Send('{Del}')
 ^+BS:: Send('{Ctrl Down}{Del}{Ctrl Up}')
 
+MapF13UntilF24()
+MapF13untilF24() {
+    remap := (num, thisHotkey) => Send('{Blind}{Alt Up}{Ctrl Up}{F' (num + 12) '}')
+
+    Loop 12 {
+        Hotkey('#^!F' A_Index, remap.bind(A_Index))
+    }
+}
+
 ;===============================================================================
 ; Modifiers
 ;===============================================================================
