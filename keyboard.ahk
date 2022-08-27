@@ -318,14 +318,14 @@ OneButtonRemote(thisHotkey) {
 
     if pressCount > 2 {
         return
+    } else {
+        Send('{Media_Play_Pause}')
     }
     period := RegRead('HKEY_CURRENT_USER\Control Panel\Mouse', 'DoubleClickSpeed')
     SetTimer(chooseMediaControl, -period)
 
     chooseMediaControl() {
         switch pressCount {
-        case 1:
-            Send('{Media_Play_Pause}')
         case 2:
             Send('{Media_Next}')
         case 3:
