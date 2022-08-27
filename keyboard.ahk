@@ -319,7 +319,8 @@ OneButtonRemote(thisHotkey) {
     if pressCount > 2 {
         return
     }
-    SetTimer(chooseMediaControl, -400)
+    period := RegRead('HKEY_CURRENT_USER\Control Panel\Mouse', 'DoubleClickSpeed')
+    SetTimer(chooseMediaControl, -period)
 
     chooseMediaControl() {
         switch pressCount {
