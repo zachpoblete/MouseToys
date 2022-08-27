@@ -517,20 +517,20 @@ if GetKeyState('NumLock', 'T') {
     }
 }
 
-~*Alt:: {
+*Alt::
+MaskAlt(thisHotkey) {
     if not WinActive.bind('ahk_exe .EXE$').setWinModeAndCall('RegEx') {
             ; Check if an Office app isn't active.
+        Send('{Alt Down}')
         Send(K_KEYS['MENU_MASK'])
         KeyWait('Alt')
-                ; Prevent the masking key from being repeatedly sent.
+        Send('{Alt Up}')
     }
 }
 
-/**
- * Don't open the Start Menu if Win key is held down for longer than 500 ms.
- */
 LWin::
-RWin:: {
+RWin::
+MaskWin(thisHotkey) {
     Send('{' thisHotkey ' Down}')
     KeyWait(thisHotkey)
 
