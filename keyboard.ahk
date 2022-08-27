@@ -194,11 +194,6 @@ Zoom_ThumbsUpReact(thisHotkey) {
 
 !e::
 Zoom_OpenReactions(thisHotkey) {
-    iconClick(imageFileName) {
-        ImageSearch(&imageX, &imageY, controlX, controlY, controlX + controlW, controlY + controlH, '*50 images\' imageFileName '-icon.png')
-        ControlClick('x' imageX ' y' imageY)
-    }
-
     if not WinExist(K_CLASSES['ZOOM']['MEETING']) {
         return
     }
@@ -215,6 +210,11 @@ Zoom_OpenReactions(thisHotkey) {
         ControlShow(K_CONTROLS['ZOOM']['MEETING_TOOLS'])
     }
     ControlGetPos(&controlX, &controlY, &controlW, &controlH, K_CONTROLS['ZOOM']['MEETING_TOOLS'])
+    
+    iconClick(imageFileName) {
+        ImageSearch(&imageX, &imageY, controlX, controlY, controlX + controlW, controlY + controlH, '*50 images\' imageFileName '-icon.png')
+        ControlClick('x' imageX ' y' imageY)
+    }
 
     Loop {
         try {
