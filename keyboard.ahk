@@ -75,8 +75,7 @@ BrowserHotkeys(hotIfExFn) {
 /**
  * Shortcut Forwarding Tool and Vimium C
  * These hotkeys activate the global browser shortcuts.
- * The reason some numbers are missing is
- * because some combinations of Ctrl, Alt, Shift, and F[1-12] are
+ * The reason some numbers are missing is because some combinations of Ctrl, Alt, Shift, and F[1-12] are
  * built-in to Firefox and are intercepted by Firefox first and not AutoHotkey;
  * thus, I've opted to leave their shortcuts in Firefox blank unless I choose
  * to supply a different shortcut from the Send pattern in Firefox_CustomShortcut.
