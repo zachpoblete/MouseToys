@@ -39,15 +39,14 @@
 
 #^h::
 OpenDocs(thisHotkey) {
-    docs := 'https://lexikos.github.io/v2/docs/AutoHotkey.htm'
-
-    if GetKeyState('CapsLock', 'T') {
-        selected := GetSelectedElseExit()
-        command := StrReplace(selected, '#', '_', , , 1)
-        docs := StrReplace(docs, 'AutoHotkey', 'commands/' command)
+    if not GetKeyState('CapsLock', 'T') {
+        Run('https://lexikos.github.io/v2/docs/AutoHotkey.htm')
+        return
     }
-
-    Run(docs)
+    query := GetSelectedElseExit()
+    query := QueryToUrl(query, 'https://www.google.com/search?q=')
+    query .= ' site:https://lexikos.github.io/v2/docs'
+    Run(query)
 }
 
 #^w::

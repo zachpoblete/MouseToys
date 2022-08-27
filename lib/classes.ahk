@@ -74,7 +74,7 @@ class C_Hotkey {
             }
             getUrlFromSelectedElseExit() {
                 query := GetSelectedElseExit()
-                return (engine)? this.queryToUrl(query, engine) : query
+                return (engine)? QueryToUrl(query, engine) : query
             }
 
             this.hotIfCondition(hotIfExFn)
@@ -84,14 +84,6 @@ class C_Hotkey {
             HotIf((thisHotkey) => hotIfExFn())
             hotkey(hk, (thisHotkey) => runUrl())
             HotIf()
-        }
-
-        static queryToUrl(query, engine) {
-            query := StrReplace(query, '&', '&26')
-            query := StrReplace(query, '+', '%2B')
-            query := StrReplace(query, ' ', '+')
-                    ; URL encoding is used to encode special characters in query strings.
-            return engine query
         }
     }
 }
