@@ -7,17 +7,6 @@
 ; In-App
 ;===============================================================================
 
-BrowserHotkeys(() => GetKeyState('NumLock', 'T'))
-BrowserHotkeys(hotIfExFn) {
-    C_Hotkey.Browser.searchSelectedAsUrl('u', , hotIfExFn)
-    C_Hotkey.Browser.searchSelectedAsUrl('g', 'https://www.google.com/search?q=', hotIfExFn)
-    C_Hotkey.Browser.searchSelectedAsUrl('y', 'https://www.youtube.com/results?search_query=', hotIfExFn)
-}
-
-#HotIf WinActive('ahk_exe msedge.exe')
-^e:: Send('{Ctrl Down}{Shift Down},{Shift Up}{Ctrl Up}')
-        ; Toggle vertical tabs.
-
 #HotIf WinActive('ahk_exe Notion.exe')
 !Left::  Send('{Ctrl Down}[{Ctrl Up}')
         ; Go back.
@@ -62,6 +51,96 @@ BrowserHotkeys(hotIfExFn) {
 !+3:: Send('{Alt Down}{Shift Down}4{Shift Up}{Alt Up}')
         ; Go to Your Albums.
 !+4:: return
+#HotIf
+
+;-------------------------------------------------------------------------------
+; Browsers
+;-------------------------------------------------------------------------------
+
+BrowserHotkeys(() => GetKeyState('NumLock', 'T'))
+BrowserHotkeys(hotIfExFn) {
+    C_Hotkey.Browser.searchSelectedAsUrl('u', , hotIfExFn)
+    C_Hotkey.Browser.searchSelectedAsUrl('g', 'https://www.google.com/search?q=', hotIfExFn)
+    C_Hotkey.Browser.searchSelectedAsUrl('y', 'https://www.youtube.com/results?search_query=', hotIfExFn)
+}
+
+#HotIf WinActive('ahk_exe msedge.exe')
+^e:: Send('{Ctrl Down}{Shift Down},{Shift Up}{Ctrl Up}')
+        ; Toggle vertical tabs.
+
+#HotIf WinActive('ahk_exe firefox.exe')
+^e:: Send('{F1}')
+        ; Toggle Tree Style Tab.
+
+/**
+ * Shortcut Forwarding Tool and Vimium C
+ * These hotkeys activate the global browser shortcuts.
+ * The reason some numbers are missing is
+ * because some combinations of Ctrl, Alt, Shift, and F[1-12] are
+ * built-in to Firefox and are intercepted by Firefox first and not AutoHotkey;
+ * thus, I've opted to leave their shortcuts in Firefox blank unless I choose
+ * to supply a different shortcut from the Send pattern in Firefox_CustomShortcut.
+ */
+
+!'::  Firefox_CustomShortcut(1)
+        ; LinkHints.activate.
+!+':: Firefox_CustomShortcut(2)
+        ; LinkHints.activateEdit.
+^!':: Firefox_CustomShortcut(3)
+        ; LinkHints.activateHover.
+
+^!c:: {
+    switch Chord().input {
+    case '`'': Firefox_CustomShortcut(4)
+        ; LinkHints.activateCopyLinkUrl.
+    case '"':  Firefox_CustomShortcut(5)
+        ; LinkHints.activateCopyLinkText.
+    case 'i':  Firefox_CustomShortcut(7)
+        ; LinkHints.activateCopyImage.
+    case 't':  Firefox_CustomShortcut(8)
+        ; copyCurrentTitle.
+    }
+}
+
+!+Left::  Firefox_CustomShortcut(9)
+        ; goPrevious.
+!+Right:: Firefox_CustomShortcut(11)
+        ; goNext.
+
+!;::   Firefox_CustomShortcut(12)
+        ; Marks.activateCreate swap.
+!+;::  Firefox_CustomShortcut(13)
+        ; Marks.activate swap.
+^!;::  Firefox_CustomShortcut(14)
+        ; Marks.clearGlobal.
+^!+;:: Firefox_CustomShortcut(15)
+        ; Marks.clearLocal.
+
+!+/:: Firefox_CustomShortcut(17)
+        ; showHelp.
+
+!PgDn:: Firefox_CustomShortcut(18)
+        ; scrollPageDown.
+!PgUp:: Firefox_CustomShortcut(19)
+        ; scrollPageUp.
+
+/**
+ * * These hotkeys are already configured in Firefox because they can be.
+ * * These are the global shortcuts
+ * * that I supplied a different shortcut from the Send pattern in Firefox_CustomShortcut:
+ * *     ^F6:: Firefox_CustomShortcut(6)   ; nextFrame.
+ * *     ^!r:: Firefox_CustomShortcut(10)  ; reopenTab.
+ */
+
+Firefox_CustomShortcut(num) {
+    if num > 24 {
+        Send('{Ctrl Down}{Alt Down}{F' (num - 24) '}{Alt Up}{Ctrl Up}')
+    } else if num > 12 {
+        Send('{Alt Down}{Shift Down}{F' (num - 12) '}{Shift Up}{Alt Up}')
+    } else {
+        Send('{Ctrl Down}{Shift Down}{F' num '}{Shift Up}{Ctrl Up}')
+    }
+}
 #HotIf
 
 ;-------------------------------------------------------------------------------
