@@ -1,4 +1,5 @@
 #Include <default-settings>
+#Include <globals>
 #Include <constants>
 #Include <functions>
 #Include <classes>
