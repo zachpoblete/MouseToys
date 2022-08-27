@@ -215,11 +215,7 @@ OpenSettings(thisHotkey) {
             ; so "i" can be registered as an input.
             ; This needs to be done because of the WinKey hotkey.
 
-    ih := InputHook('L1 M')
-    ih.start()
-    ih.wait()
-
-    switch ih.input {
+    switch Chord().input {
     case 'i':
         Send('{LWin Down}i{LWin Up}')
     case 'v':

@@ -79,6 +79,13 @@ StdOut(text, delayMs := '', delimiter := '') {
 ; Hotkey
 ;===============================================================================
 
+Chord() {
+    ih := InputHook('L1 M')
+    ih.start()
+    ih.wait()
+    return ih
+}
+
 HotkeyDelModifierSymbols(hk) {
     hk := RegExReplace(hk, ' Up$')
     hk := StrReplace(hk, ' ')
