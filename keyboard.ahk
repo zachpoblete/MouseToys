@@ -223,18 +223,19 @@ Zoom_OpenReactions(thisHotkey) {
         } else {
             return
         }
+        if A_Index = 1 {
+            Send('{Tab}')
+                    ; Maybe the reason the icon wasn't found was because there was a dotted rectangle surrounding it,
+                    ; so Send('{Tab}') to move the rectangle to a different item.
+            continue
+        }
         try {
             iconClick('more')
         } catch {
+            exit
         } else {
             break
         }
-        if A_Index = 2 {
-            exit
-        }
-        Send('{Tab}')
-                ; Maybe the reason the icon wasn't found was because there was a dotted rectangle surrounding it,
-                ; so Send('{Tab}') to move the rectangle to a different item.
     }
     Sleep(150)
 
