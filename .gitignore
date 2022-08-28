@@ -1,4 +1,4 @@
 .vscode
 *.code-workspace
 joystick-test.exe
-testing.ahk
+test.ahk
