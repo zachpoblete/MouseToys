@@ -260,15 +260,21 @@ X2W(states*) {
 ;== LButton and RButton
 ;== ============================================================================
 
-XButton2 & LButton:: X2LR('{Shift Down}t{Shift Up}')
-        ; Reopen last closed tab,
-        ; and switch to it.
-XButton2 & RButton:: X2LR('w')
-        ; Close current tab.
-
-X2LR(states*) {
+XButton2 & LButton:: {
     MouseWinActivate()
-    Send('{Ctrl Down}' states[-1] '{Ctrl Up}')
+    Send('{Ctrl Down}{Shift Down}t{Shift Up}{Ctrl Up}')
+            ; Reopen last closed tab,
+            ; and switch to it.
+}
+XButton2 & RButton:: {
+    MouseWinActivate()
+    
+    if WinActive('ahk_exe Notion.exe') {
+        return
+    } else {
+        Send('{Ctrl Down}w{Ctrl Up}')
+                ; Close current tab.
+    }
 }
 
 ;== ============================================================================
