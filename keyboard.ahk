@@ -4,9 +4,13 @@
 #Include <functions>
 #Include <classes>
 
-;===============================================================================
-; In-App
-;===============================================================================
+;= =============================================================================
+;= In-App
+;= =============================================================================
+
+;== ============================================================================
+;== Notion
+;== ============================================================================
 
 #HotIf WinActive('ahk_exe Notion.exe')
 !Left::  Send('{Ctrl Down}[{Ctrl Up}')
@@ -16,6 +20,10 @@
 
 ^+f:: Send('{Ctrl Down}{Shift Down}h{Shift Up}{Ctrl Up}')
         ; Apply last text or highlight color used.
+
+;== ============================================================================
+;== Spotify
+;== ============================================================================
 
 #HotIf WinActive('ahk_exe Spotify.exe')
 /** 
@@ -34,8 +42,11 @@
 !+Right:: Send('{Alt Down}{Shift Down}{Up}{Shift Up}{Alt Up}')
         ; Decrease friend activity width.
 
+;=== ============================================================================
+;=== Spicetify
+;=== ============================================================================
+
 /**
- * Spicetify
  * * keyboardShortcut-Quarter.js:
  * *     !+l:: toggleLyrics()
  * *     !+q:: toggleQueue()
@@ -54,9 +65,9 @@
 !+4:: return
 #HotIf
 
-;-------------------------------------------------------------------------------
-; Browsers
-;-------------------------------------------------------------------------------
+;== ============================================================================
+;== Browsers
+;== ============================================================================
 
 BrowserHotkeys(() => GetKeyState('NumLock', 'T'))
 BrowserHotkeys(hotIfExFn) {
@@ -65,9 +76,17 @@ BrowserHotkeys(hotIfExFn) {
     C_Hotkey.Browser.searchSelectedAsUrl('y', 'https://www.youtube.com/results?search_query=', hotIfExFn)
 }
 
+;=== ============================================================================
+;=== Edge
+;=== ============================================================================
+
 #HotIf WinActive('ahk_exe msedge.exe')
 ^e:: Send('{Ctrl Down}{Shift Down},{Shift Up}{Ctrl Up}')
         ; Toggle vertical tabs.
+
+;=== ============================================================================
+;=== Firefox
+;=== ============================================================================
 
 #HotIf WinActive('ahk_exe firefox.exe')
 ^e:: Send('{F1}')
@@ -143,9 +162,9 @@ Firefox_CustomShortcut(num) {
 }
 #HotIf
 
-;-------------------------------------------------------------------------------
-; Zoom
-;-------------------------------------------------------------------------------
+;== ============================================================================
+;== Zoom
+;== ============================================================================
 
 #HotIf WinActive(K_CLASSES['ZOOM']['MEETING']) and WinWaitActive(K_CLASSES['ZOOM']['TOOLBAR'], , 0.1)
 ~#Down:: {
@@ -172,6 +191,10 @@ Firefox_CustomShortcut(num) {
                 ; Check if a visible meeting window doesn't exist.
 !F4:: ProcessClose('Zoom.exe')
         ; Can't use WinClose because that minimizes here.
+
+;=== ============================================================================
+;=== Reactions
+;=== ============================================================================
 
 #HotIf WinActive('ahk_pid ' WinGetPid.tryCall(K_CLASSES['ZOOM']['TOOLBAR']))
         ; Check if a meeting window is active.
@@ -260,9 +283,13 @@ Zoom_OpenReactions(thisHotkey) {
 }
 #HotIf
 
-;===============================================================================
-; Run and Activate
-;===============================================================================
+;= =============================================================================
+;= Run
+;= =============================================================================
+
+;== ============================================================================
+;== Directory
+;== ============================================================================
 
 #HotIf GetKeyState('NumLock', 'T')
 d::
@@ -285,6 +312,10 @@ RunSelectedAsDir(thisHotkey) {
 }
 #HotIf
 
+;== ============================================================================
+;== App
+;== ============================================================================
+
 #i::
 OpenSettings(thisHotkey) {
     Send('{Blind}{' A_PriorKey 'Up}')
@@ -297,6 +328,14 @@ OpenSettings(thisHotkey) {
     case 'v': Run('App volume and device preferences', 'C:\Windows')
     }
 }
+
+;= =============================================================================
+;= Activate
+;= =============================================================================
+
+;== ============================================================================
+;== Group
+;== ============================================================================
 
 ; A_TitleMatchMode = 2:
 GroupAdd('ExplorerWins', 'ahk_class CabinetWClass')
@@ -331,6 +370,10 @@ IntraSwitchActiveGroup(thisHotkey) {
     GroupActivate(groupName, 'R')
 }
 
+;== ============================================================================
+;== Window
+;== ============================================================================
+
 /**
  * Switch to an open window by typing its name.
  */
@@ -346,57 +389,13 @@ WinWalker(thisHotkey) {
     Send('< ')  ; Directly activate Window Walker.
 }
 
-;===============================================================================
-; Multimedia
-;===============================================================================
+;= =============================================================================
+;= Multimedia
+;= =============================================================================
 
-#HotIf GetKeyState('CapsLock', 'T')
-$Volume_Up::   DisplayAndSetVolume(1)
-$Volume_Down:: DisplayAndSetVolume(-1)
-
-DisplayAndSetVolume(variation) {
-    newVol := SoundGetVolume() + variation
-    volDirection := (variation > 0 or Round(newVol) = 1)? 'Up' : 'Down'
-            ; Fsr Round(newVol) before this point doesn't work.
-
-    Send('{Volume_' volDirection '}')
-            ; Vary volume by 2,
-            ; and, importantly, display volume slider (and media overlay).
-    SoundSetVolume(newVol)
-            ; Override that normal variation of 2.
-}
-#HotIf
-
-if not ProcessExist('brightness-setter.exe') {
-    Run('brightness-setter')
-}
-
-OnExit((reason, code) => CloseBrightnessSetter())
-CloseBrightnessSetter() {
-    if G_WillReload or not ProcessExist('brightness-setter.exe') {
-        return
-    }
-    ProcessClose('brightness-setter.exe')
-    ProcessWaitClose('brightness-setter.exe')
-}
-
-/**
- * * brightness-setter.exe:
- * *     #PgUp:: C_BrightnessSetter.setBrightness(2)
- * *     #PgDn:: C_BrightnessSetter.setBrightness(-2)
- */
-
-#F5::
-ProcessRestart(thisHotkey) {
-    WinExist('A')
-
-    winPid := WinGetPID()
-    winPath := ProcessGetPath(winPid)
-
-    WinClose()
-    ProcessWaitClose(winPid)
-    Run(winPath)
-}
+;== ============================================================================
+;== Media
+;== ============================================================================
 
 Pause::
 OneButtonRemote(thisHotkey) {
@@ -421,12 +420,76 @@ OneButtonRemote(thisHotkey) {
     }
 }
 
+;== ============================================================================
+;== Volume
+;== ============================================================================
+
+#HotIf GetKeyState('CapsLock', 'T')
+$Volume_Up::   DisplayAndSetVolume(1)
+$Volume_Down:: DisplayAndSetVolume(-1)
+
+DisplayAndSetVolume(variation) {
+    newVol := SoundGetVolume() + variation
+    volDirection := (variation > 0 or Round(newVol) = 1)? 'Up' : 'Down'
+            ; Fsr Round(newVol) before this point doesn't work.
+
+    Send('{Volume_' volDirection '}')
+            ; Vary volume by 2,
+            ; and, importantly, display volume slider (and media overlay).
+    SoundSetVolume(newVol)
+            ; Override that normal variation of 2.
+}
+#HotIf
+
+;== ============================================================================
+;== Brightness
+;== ============================================================================
+
+if not ProcessExist('brightness-setter.exe') {
+    Run('brightness-setter')
+}
+
+OnExit((reason, code) => CloseBrightnessSetter())
+CloseBrightnessSetter() {
+    if G_WillReload or not ProcessExist('brightness-setter.exe') {
+        return
+    }
+    ProcessClose('brightness-setter.exe')
+    ProcessWaitClose('brightness-setter.exe')
+}
+
+/**
+ * * brightness-setter.exe:
+ * *     #PgUp:: C_BrightnessSetter.setBrightness(2)
+ * *     #PgDn:: C_BrightnessSetter.setBrightness(-2)
+ */
+
+;== ============================================================================
+;== Restart
+;== ============================================================================
+
+#F5::
+ProcessRestart(thisHotkey) {
+    WinExist('A')
+
+    winPid := WinGetPID()
+    winPath := ProcessGetPath(winPid)
+
+    WinClose()
+    ProcessWaitClose(winPid)
+    Run(winPath)
+}
+
+;== ============================================================================
+;== PrintScreen
+;== ============================================================================
+
 PrintScreen:: Send('{LWin Down}{Alt Down}{PrintScreen}{Alt Up}{LWin Up}')
         ; Save screenshot of window.
 
-;===============================================================================
-; Remap
-;===============================================================================
+;= =============================================================================
+;= Remap
+;= =============================================================================
 
 /**
  * (In order of decreasing input level)
@@ -447,6 +510,10 @@ PrintScreen:: Send('{LWin Down}{Alt Down}{PrintScreen}{Alt Up}{LWin Up}')
  * *     ScrollLock:: AppsKey
 */
 
+;== ============================================================================
+;== Space <-> Underscore
+;== ============================================================================
+
 #InputLevel 1
 +Space:: Send('_')
 
@@ -461,6 +528,10 @@ PrintScreen:: Send('{LWin Down}{Alt Down}{PrintScreen}{Alt Up}{LWin Up}')
     }
 }
 #InputLevel
+
+;== ============================================================================
+;== Shift+BackSpace -> Delete
+;== ============================================================================
 
 #HotIf RegExMatch(ControlGetFocus.tryCall('A'), '^Edit\d+$')
 /**
@@ -480,43 +551,13 @@ PrintScreen:: Send('{LWin Down}{Alt Down}{PrintScreen}{Alt Up}{LWin Up}')
 +BS::  Send('{Del}')
 ^+BS:: Send('{Ctrl Down}{Del}{Ctrl Up}')
 
-MapF13UntilF24()
-MapF13untilF24() {
-    remap := (num, thisHotkey) => Send('{Blind}{Alt Up}{Ctrl Up}{F' (num + 12) '}')
+;= =============================================================================
+;= Modifiers
+;= =============================================================================
 
-    Loop 12 {
-        Hotkey('#^!F' A_Index, remap.bind(A_Index))
-    }
-}
-
-;===============================================================================
-; Modifiers
-;===============================================================================
-
-if GetKeyState('NumLock', 'T') {
-    ToolTip('NumLock On')
-}
-
-#InputLevel 1
-^Pause:: Send('{NumLock}')
-        ; When Ctrl is down, NumLock produces the key code of Pause while Pause produces CtrlBreak.
-#InputLevel
-
-/**
- * Display ToolTip while NumLock is on.
- */
-~*NumLock:: {
-    toolTipNumLock() => ToolTip('NumLock On')
-
-    Sleep(10)
-
-    if GetKeyState('NumLock', 'T') {
-        SetTimer(toolTipNumLock, 10)
-    } else {
-        SetTimer(toolTipNumLock, 0)
-        ToolTip()
-    }
-}
+;== ============================================================================
+;== Mask
+;== ============================================================================
 
 *Alt::
 MaskAlt(thisHotkey) {
@@ -541,9 +582,52 @@ MaskWin(thisHotkey) {
     Send('{' thisHotkey ' Up}')
 }
 
-;===============================================================================
-; Hotstrings
-;===============================================================================
+;== ============================================================================
+;== NumLock
+;== ============================================================================
+
+if GetKeyState('NumLock', 'T') {
+    ToolTip('NumLock On')
+}
+
+#InputLevel 1
+^Pause:: Send('{NumLock}')
+        ; When Ctrl is down, NumLock produces the key code of Pause while Pause produces CtrlBreak.
+#InputLevel
+
+/**
+ * Display ToolTip while NumLock is on.
+ */
+~*NumLock::
+NumLockIndicator(thisHotkey) {
+    toolTipNumLock() => ToolTip('NumLock On')
+
+    Sleep(10)
+
+    if GetKeyState('NumLock', 'T') {
+        SetTimer(toolTipNumLock, 10)
+    } else {
+        SetTimer(toolTipNumLock, 0)
+        ToolTip()
+    }
+}
+
+;== ============================================================================
+;== F13 - F24
+;== ============================================================================
+
+MapF13UntilF24()
+MapF13UntilF24() {
+    remap := (num, thisHotkey) => Send('{Blind}{Alt Up}{Ctrl Up}{F' (num + 12) '}')
+
+    Loop 12 {
+        Hotkey('#^!+F' A_Index, remap.bind(A_Index))
+    }
+}
+
+;= =============================================================================
+;= Hotstrings
+;= =============================================================================
 ; For each Unicode character sent, the hotstring abbreviation is the HTML entity (or something intuitive).
 
 ~^z:: {
@@ -601,9 +685,9 @@ MaskWin(thisHotkey) {
     SendInstantRaw(tabs)
 }
 
-;-------------------------------------------------------------------------------
-; Math and Science
-;-------------------------------------------------------------------------------
+;== ============================================================================
+;== Math and Science
+;== ============================================================================
 
 :?cx:&bullet;::Send( '{U+2219}')
 
@@ -627,9 +711,9 @@ MaskWin(thisHotkey) {
 
 :?cx:&xbar;::Send(   '{U+0078}{U+0305}')
 
-;-------------------------------------------------------------------------------
-; Greek Alphabet
-;-------------------------------------------------------------------------------
+;== ============================================================================
+;== Greek Alphabet
+;== ============================================================================
 
 :?cx:&Alpha;::Send(   '{U+0391}')
 :?cx:&alpha;::Send(   '{U+03B1}')
