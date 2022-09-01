@@ -597,7 +597,7 @@ MaskWin(thisHotkey) {
 ;== ============================================================================
 
 if GetKeyState('NumLock', 'T') {
-    ToolTip('NumLock On')
+    NumLockIndicatorFollowMouse('')
 }
 
 #InputLevel 1
@@ -609,7 +609,7 @@ if GetKeyState('NumLock', 'T') {
  * Display ToolTip while NumLock is on.
  */
 ~*NumLock::
-NumLockIndicator(thisHotkey) {
+NumLockIndicatorFollowMouse(thisHotkey) {
     toolTipNumLock() => ToolTip('NumLock On')
 
     Sleep(10)
