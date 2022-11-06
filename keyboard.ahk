@@ -34,6 +34,7 @@ ProcessRestart(thisHotkey) {
 
     WinClose()
     ProcessWaitClose(winPid)
+    Sleep(1000)
     Run(winPath)
 }
 
