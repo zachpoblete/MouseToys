@@ -687,11 +687,11 @@ MapF13UntilF24() {
 :?cx:&ra;::Send(    '{U+2192}')
         ; Right arrow.
 
-:?cx:&mdash;::Send( '{U+2014}')
-:?cx:&ndash;::Send( '{U+2013}')
+:?cx:&md;::Send( '{U+2014}')
+:?cx:&nd;::Send( '{U+2013}')
 
-:?cx:&Ntilde;::Send('{U+00D1}')
-:?cx:&ntilde;::Send('{U+00F1}')
+:?cx:&N~;::Send('{U+00D1}')
+:?cx:&n~;::Send('{U+00F1}')
 
 :?cx:&peso;::Send(  '{U+20B1}')
 
