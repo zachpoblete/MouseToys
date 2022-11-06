@@ -698,7 +698,7 @@ MapF13UntilF24() {
 :?cx:&deg;::Send(   '{U+00B0}')
 
 :?cx:&lr;::Send(    '{U+200E}')
-        ; Left-to-right mark
+        ; Left-to-right mark.
 
 :?cx:&la;::Send(    '{U+2190}')
         ; Left arrow.
@@ -706,10 +706,14 @@ MapF13UntilF24() {
         ; Right arrow.
 
 :?cx:&md;::Send(    '{U+2014}')
+        ; Em dash.
 :?cx:&nd;::Send(    '{U+2013}')
+        ; En dash.
 
 :?cx:&N~;::Send(    '{U+00D1}')
+        ; N tilde.
 :?cx:&n~;::Send(    '{U+00F1}')
+        ; n tilde.
 
 :?cx:&peso;::Send(  '{U+20B1}')
 
