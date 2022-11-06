@@ -682,6 +682,9 @@ MapF13UntilF24() {
 
 :?cx:&deg;::Send(   '{U+00B0}')
 
+:?cx:&lr;::Send(      '{U+200E}')
+        ; Left-to-right mark
+
 :?cx:&la;::Send(    '{U+2190}')
         ; Left arrow.
 :?cx:&ra;::Send(    '{U+2192}')
