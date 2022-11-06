@@ -435,7 +435,8 @@ WinWalker(thisHotkey) {
     if not powerLauncherActive {
         return
     }
-    Send('< ')  ; Directly activate Window Walker.
+    Send('< ')
+            ; Directly activate Window Walker.
 }
 
 ;= =============================================================================
