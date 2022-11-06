@@ -11,13 +11,24 @@
 #!LButton:: Click('M')
 
 ;= =============================================================================
-;= Wheel + Native Modifiers
+;= Wheel
 ;= =============================================================================
 
 WheelUp::
 WheelDown:: {
     AcceleratedScroll()
 }
+
+A_TrayMenu.insert('E&xit', '&Disable Accelerated Scroll', DisableAcceleratedScroll)
+DisableAcceleratedScroll(name, pos, obj) {
+    Hotkey('WheelUp', 'Toggle')
+    Hotkey('WheelDown', 'Toggle')
+    A_TrayMenu.toggleCheck(name)
+}
+
+;= =============================================================================
+;= Native Modifiers
+;= =============================================================================
 
 ~^WheelUp::
 ~^WheelDown:: {
