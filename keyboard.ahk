@@ -687,35 +687,28 @@ MapF13UntilF24() {
 }
 
 #Hotstring EndChars `t
-/**
- * * Sorry if the hotstrings look weird!
- * * Currently, when using the X option, whitespace isn't allowed before the expression.
- * * In v1, I made heavy use of whitespace to align my Send commands.
- * * I've worked around this bug by adding the whitespace after the function's open parenthesis.
- * TODO: When this is fixed, revert the hotstrings back to normal.
- */
 
-:?cx:&deg;::Send(   '{U+00B0}')
+:?cx:&deg;::    Send('{U+00B0}')
 
-:?cx:&lr;::Send(    '{U+200E}')
+:?cx:&lr;::     Send('{U+200E}')
         ; Left-to-right mark.
 
-:?cx:&la;::Send(    '{U+2190}')
+:?cx:&la;::     Send('{U+2190}')
         ; Left arrow.
-:?cx:&ra;::Send(    '{U+2192}')
+:?cx:&ra;::     Send('{U+2192}')
         ; Right arrow.
 
-:?cx:&md;::Send(    '{U+2014}')
+:?cx:&md;::     Send('{U+2014}')
         ; Em dash.
-:?cx:&nd;::Send(    '{U+2013}')
+:?cx:&nd;::     Send('{U+2013}')
         ; En dash.
 
-:?cx:&N~;::Send(    '{U+00D1}')
+:?cx:&N~;::     Send('{U+00D1}')
         ; N tilde.
-:?cx:&n~;::Send(    '{U+00F1}')
+:?cx:&n~;::     Send('{U+00F1}')
         ; n tilde.
 
-:?cx:&peso;::Send(  '{U+20B1}')
+:?cx:&peso;::   Send('{U+20B1}')
 
 :*?b0c:&tab:: {
     ih := InputHook('L3 V', '{Tab}')
@@ -744,78 +737,78 @@ MapF13UntilF24() {
 ;== Math and Science
 ;== ============================================================================
 
-:?cx:&bullet;::Send( '{U+2219}')
+:?cx:&bullet;::  Send('{U+2219}')
 
-:?cx:&infin;::Send(  '{U+221E}')
+:?cx:&infin;::   Send('{U+221E}')
 
-:?cx:&ne;::Send(     '{U+2260}')
+:?cx:&ne;::      Send('{U+2260}')
         ; Not equal.
-:?cx:&le;::Send(     '{U+2264}')
+:?cx:&le;::      Send('{U+2264}')
         ; Lesser than or equal.
-:?cx:&ge;::Send(     '{U+2265}')
+:?cx:&ge;::      Send('{U+2265}')
         ; Greater than or equal.
-:?cx:&pm;::Send(     '{U+00B1}')
+:?cx:&pm;::      Send('{U+00B1}')
         ; Plus-minus.
 
-:?cx:&radic3;::Send( '{U+221B}')
-:?cx:&radic4;::Send( '{U+221C}')
+:?cx:&radic3;::  Send('{U+221B}')
+:?cx:&radic4;::  Send('{U+221C}')
 
-:?cx:&scriptM;::Send('{U+2133}')
+:?cx:&scriptM;:: Send('{U+2133}')
 
-:?cx:&times;::Send(  '{U+00D7}')
+:?cx:&times;::   Send('{U+00D7}')
 
-:?cx:&xbar;::Send(   '{U+0078}{U+0305}')
+:?cx:&xbar;::    Send('{U+0078}{U+0305}')
 
 ;== ============================================================================
 ;== Greek Alphabet
 ;== ============================================================================
 
-:?cx:&Alpha;::Send(   '{U+0391}')
-:?cx:&alpha;::Send(   '{U+03B1}')
-:?cx:&Beta;::Send(    '{U+0392}')
-:?cx:&beta;::Send(    '{U+03B2}')
-:?cx:&Gamma;::Send(   '{U+0393}')
-:?cx:&gamma;::Send(   '{U+03B3}')
-:?cx:&Delta;::Send(   '{U+0394}')
-:?cx:&delta;::Send(   '{U+03B4}')
-:?cx:&Epsilon;::Send( '{U+0395}')
-:?cx:&epsilon;::Send( '{U+03B5}')
-:?cx:&Zeta;::Send(    '{U+0396}')
-:?cx:&zeta;::Send(    '{U+03B6}')
-:?cx:&Eta;::Send(     '{U+0397}')
-:?cx:&eta;::Send(     '{U+03B7}')
-:?cx:&Theta;::Send(   '{U+0398}')
-:?cx:&theta;::Send(   '{U+03B8}')
-:?cx:&Iota;::Send(    '{U+0399}')
-:?cx:&iota;::Send(    '{U+03B9}')
-:?cx:&Kappa;::Send(   '{U+039A}')
-:?cx:&kappa;::Send(   '{U+03BA}')
-:?cx:&Lambda;::Send(  '{U+039B}')
-:?cx:&lambda;::Send(  '{U+03BB}')
-:?cx:&Mu;::Send(      '{U+039C}')
-:?cx:&mu;::Send(      '{U+03BC}')
-:?cx:&Nu;::Send(      '{U+039D}')
-:?cx:&nu;::Send(      '{U+03BD}')
-:?cx:&Xi;::Send(      '{U+039E}')
-:?cx:&xi;::Send(      '{U+03BE}')
-:?cx:&Omicron;::Send( '{U+039F}')
-:?cx:&omicron;::Send( '{U+03BF}')
-:?cx:&Pi;::Send(      '{U+03A0}')
-:?cx:&pi;::Send(      '{U+03C0}')
-:?cx:&Rho;::Send(     '{U+03A1}')
-:?cx:&rho;::Send(     '{U+03C1}')
-:?cx:&Sigma;::Send(   '{U+03A3}')
-:?cx:&sigma;::Send(   '{U+03C3}')
-:?cx:&varsigma;::Send('{U+03C2}')
-:?cx:&Tau;::Send(     '{U+03A4}')
-:?cx:&tau;::Send(     '{U+03C4}')
-:?cx:&Upsilon;::Send( '{U+03A5}')
-:?cx:&upsilon;::Send( '{U+03C5}')
-:?cx:&Phi;::Send(     '{U+03A6}')
-:?cx:&phi;::Send(     '{U+03C6}')
-:?cx:&Chi;::Send(     '{U+03A7}')
-:?cx:&chi;::Send(     '{U+03C7}')
-:?cx:&Psi;::Send(     '{U+03A8}')
-:?cx:&psi;::Send(     '{U+03C8}')
-:?cx:&Omega;::Send(   '{U+03A9}')
-:?cx:&omega;::Send(   '{U+03C9}')
+:?cx:&Alpha;::    Send('{U+0391}')
+:?cx:&alpha;::    Send('{U+03B1}')
+:?cx:&Beta;::     Send('{U+0392}')
+:?cx:&beta;::     Send('{U+03B2}')
+:?cx:&Gamma;::    Send('{U+0393}')
+:?cx:&gamma;::    Send('{U+03B3}')
+:?cx:&Delta;::    Send('{U+0394}')
+:?cx:&delta;::    Send('{U+03B4}')
+:?cx:&Epsilon;::  Send('{U+0395}')
+:?cx:&epsilon;::  Send('{U+03B5}')
+:?cx:&Zeta;::     Send('{U+0396}')
+:?cx:&zeta;::     Send('{U+03B6}')
+:?cx:&Eta;::      Send('{U+0397}')
+:?cx:&eta;::      Send('{U+03B7}')
+:?cx:&Theta;::    Send('{U+0398}')
+:?cx:&theta;::    Send('{U+03B8}')
+:?cx:&Iota;::     Send('{U+0399}')
+:?cx:&iota;::     Send('{U+03B9}')
+:?cx:&Kappa;::    Send('{U+039A}')
+:?cx:&kappa;::    Send('{U+03BA}')
+:?cx:&Lambda;::   Send('{U+039B}')
+:?cx:&lambda;::   Send('{U+03BB}')
+:?cx:&Mu;::       Send('{U+039C}')
+:?cx:&mu;::       Send('{U+03BC}')
+:?cx:&Nu;::       Send('{U+039D}')
+:?cx:&nu;::       Send('{U+03BD}')
+:?cx:&Xi;::       Send('{U+039E}')
+:?cx:&xi;::       Send('{U+03BE}')
+:?cx:&Omicron;::  Send('{U+039F}')
+:?cx:&omicron;::  Send('{U+03BF}')
+:?cx:&Pi;::       Send('{U+03A0}')
+:?cx:&pi;::       Send('{U+03C0}')
+:?cx:&Rho;::      Send('{U+03A1}')
+:?cx:&rho;::      Send('{U+03C1}')
+:?cx:&Sigma;::    Send('{U+03A3}')
+:?cx:&sigma;::    Send('{U+03C3}')
+:?cx:&varsigma;:: Send('{U+03C2}')
+:?cx:&Tau;::      Send('{U+03A4}')
+:?cx:&tau;::      Send('{U+03C4}')
+:?cx:&Upsilon;::  Send('{U+03A5}')
+:?cx:&upsilon;::  Send('{U+03C5}')
+:?cx:&Phi;::      Send('{U+03A6}')
+:?cx:&phi;::      Send('{U+03C6}')
+:?cx:&Chi;::      Send('{U+03A7}')
+:?cx:&chi;::      Send('{U+03C7}')
+:?cx:&Psi;::      Send('{U+03A8}')
+:?cx:&psi;::      Send('{U+03C8}')
+:?cx:&Omega;::    Send('{U+03A9}')
+:?cx:&omega;::    Send('{U+03C9}')
