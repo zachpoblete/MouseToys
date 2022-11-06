@@ -430,7 +430,11 @@ WinWalker(thisHotkey) {
     }
     Send('{LWin Down}{Space}{LWin Up}')
             ; Activate PowerToys Run.
-    WinWaitActive()
+    powerLauncherActive := WinWaitActive(, , 5)
+
+    if not powerLauncherActive {
+        return
+    }
     Send('< ')  ; Directly activate Window Walker.
 }
 
