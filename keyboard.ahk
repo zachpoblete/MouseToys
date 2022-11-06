@@ -428,7 +428,8 @@ WinWalker(thisHotkey) {
     if not WinExist('ahk_exe PowerToys.PowerLauncher.exe') {
         return
     }
-    Send('{LWin Down} {LWin Up}')  ; Activate PowerToys Run.
+    Send('{LWin Down}{Space}{LWin Up}')
+            ; Activate PowerToys Run.
     WinWaitActive()
     Send('< ')  ; Directly activate Window Walker.
 }
