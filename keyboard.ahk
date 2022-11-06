@@ -136,6 +136,23 @@ Alt Up:: {
 ^e:: Send('{F1}')
         ; Toggle Tree Style Tab.
 
+^q::  Firefox_SearchYouTube(false)
+^+q:: Firefox_SearchYouTube(true)
+
+Firefox_SearchYouTube(inNew) {
+    inNew := (inNew)? 't' : 'l'
+    Send('{Ctrl Down}' inNew '{Ctrl Up}')
+
+    ; SetTitleMatchMode(3)
+    ; newTabActive := WinWaitActive('Mozilla Firefox', , 5)
+
+    ; if not newTabActive {
+    ;     return
+    ; }
+    Sleep(150)
+    Send('@')
+}
+
 /**
  * Shortcut Forwarding Tool and Vimium C
  * These hotkeys activate the global browser shortcuts.
