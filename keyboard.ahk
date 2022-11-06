@@ -153,7 +153,7 @@ Alt Up:: {
         ; LinkHints.activateHover.
 
 ^!c:: {
-    switch Chord().input {
+    switch ChordInput() {
     case '`'': Firefox_CustomShortcut(4)
         ; LinkHints.activateCopyLinkUrl.
     case '"':  Firefox_CustomShortcut(5)
@@ -367,7 +367,7 @@ OpenSettings(thisHotkey) {
             ; so "i" can be registered as an input.
             ; This needs to be done because of the WinKey hotkey.
 
-    switch Chord().input {
+    switch ChordInput() {
     case 'i': Send('{LWin Down}i{LWin Up}')
     case 'v': Run('App volume and device preferences', 'C:\Windows')
     }

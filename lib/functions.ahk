@@ -79,11 +79,11 @@ StdOut(text, delayMs := '', delimiter := '') {
 ;= Hotkey
 ;= =============================================================================
 
-Chord() {
+ChordInput() {
     ih := InputHook('L1 M')
     ih.start()
     ih.wait()
-    return ih
+    return ih.input
 }
 
 HotkeyDelModifierSymbols(hk) {
