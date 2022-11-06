@@ -672,7 +672,7 @@ MapF13UntilF24() {
 }
 
 #Hotstring EndChars `t
-/** 
+/**
  * * Sorry if the hotstrings look weird!
  * * Currently, when using the X option, whitespace isn't allowed before the expression.
  * * In v1, I made heavy use of whitespace to align my Send commands.
