@@ -689,6 +689,7 @@ MapF13UntilF24() {
 #Hotstring EndChars `t
 
 :?cx:&deg;::    Send('{U+00B0}')
+        ; Degree.
 
 :?cx:&lr;::     Send('{U+200E}')
         ; Left-to-right mark.
@@ -740,6 +741,7 @@ MapF13UntilF24() {
 :?cx:&bullet;::  Send('{U+2219}')
 
 :?cx:&infin;::   Send('{U+221E}')
+        ; Infinity.
 
 :?cx:&ne;::      Send('{U+2260}')
         ; Not equal.
