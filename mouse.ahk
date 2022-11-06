@@ -53,7 +53,11 @@ RButton & WheelUp::   ShiftAltTab
 /**
  * Delete.
  */
-RButton & LButton:: {
+RButton & LButton:: return
+RButton & LButton Up:: {
+    if A_PriorKey = 'Escape' {
+        return
+    }
     if WinActive('Task Switching ahk_class XamlExplorerHostIslandWindow') {
         Click()
         return
@@ -74,7 +78,11 @@ RButton & LButton:: {
  * open it in a new tab,
  * and switch to that tab.
  */
-RButton & MButton:: {
+RButton & MButton:: return
+RButton & MButton Up:: {
+    if A_PriorKey = 'Escape' {
+        return
+    }
     if WinActive('Task Switching ahk_class XamlExplorerHostIslandWindow') {
         Click('M')
         return
@@ -222,12 +230,18 @@ C_Hotkey.ctrlTab('XButton1 & WheelUp', true)
 ;== LButton and RButton
 ;== ============================================================================
 
-XButton1 & LButton:: X1LR('[', 'X1')
+XButton1 & LButton:: return
+XButton1 & LButton Up:: X1LR('[', 'X1')
         ; Go back.
-XButton1 & RButton:: X1LR(']', 'X2')
+
+XButton1 & RButton:: return
+XButton1 & RButton Up:: X1LR(']', 'X2')
         ; Go forward.
 
 X1LR(states*) {
+    if A_PriorKey = 'Escape' {
+        return
+    }
     MouseWinActivate()
 
     if WinActive('ahk_exe Notion.exe') {
@@ -241,8 +255,12 @@ X1LR(states*) {
 ;== MButton
 ;== ============================================================================
 
-XButton1 & MButton::
+XButton1 & MButton:: return
+XButton1 & MButton Up::
 MouseWinReload(thisHotkey) {
+    if A_PriorKey = 'Escape' {
+        return
+    }
     MouseWinActivate()
     Send('{F5}')
 }
@@ -278,13 +296,22 @@ X2W(states*) {
 ;== LButton and RButton
 ;== ============================================================================
 
-XButton2 & LButton:: {
+XButton2 & LButton:: return
+XButton2 & LButton Up:: {
+    if A_PriorKey = 'Escape' {
+        return
+    }
     MouseWinActivate()
     Send('{Ctrl Down}{Shift Down}t{Shift Up}{Ctrl Up}')
             ; Reopen last closed tab,
             ; and switch to it.
 }
-XButton2 & RButton:: {
+
+XButton2 & RButton:: return
+XButton2 & RButton Up:: {
+    if A_PriorKey = 'Escape' {
+        return
+    }
     MouseWinActivate()
     
     if WinActive('ahk_exe Notion.exe') {
@@ -298,9 +325,12 @@ XButton2 & RButton:: {
 ;== ============================================================================
 ;== MButton
 ;== ============================================================================
-
-XButton2 & MButton::
+XButton2 & MButton:: return
+XButton2 & MButton Up::
 MouseWinClose(thisHotkey) {
+    if A_PriorKey = 'Escape' {
+        return
+    }
     MouseWinActivate()
 
     if WinActive(K_CLASSES['ZOOM']['MEETING']) {
