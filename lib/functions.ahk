@@ -80,6 +80,21 @@ StdOut(text, delayMs := '', delimiter := '') {
 ;= =============================================================================
 
 ChordInput() {
+    if GetKeyState('LWin', 'P') {
+        Send('{Blind}{LWin Up}')
+    }
+    if GetKeyState('RWin', 'P') {
+        Send('{Blind}{RWin Up}')
+    }
+    if GetKeyState('Alt', 'P') {
+        Send('{Blind}{Alt Up}')
+    }
+            ; Release a Win or Alt key if it is physically being pressed down
+            ; so that any inputs that use the Win or Alt key
+            ; can be detected properly.
+            ; This needs to be done
+            ; because of the MaskWin and MaskAlt hotkeys in keyboards.ahk.
+
     ih := InputHook('L1 M')
     ih.start()
     ih.wait()

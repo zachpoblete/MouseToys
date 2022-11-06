@@ -362,11 +362,6 @@ RunSelectedAsDir(thisHotkey) {
 
 #i::
 OpenSettings(thisHotkey) {
-    Send('{Blind}{' A_PriorKey 'Up}')
-            ; Release the Win key,
-            ; so "i" can be registered as an input.
-            ; This needs to be done because of the WinKey hotkey.
-
     switch ChordInput() {
     case 'i': Send('{LWin Down}i{LWin Up}')
     case 'v': Run('App volume and device preferences', 'C:\Windows')
