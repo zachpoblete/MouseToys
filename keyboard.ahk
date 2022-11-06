@@ -430,14 +430,22 @@ IntraSwitchActiveGroup(thisHotkey) {
 }
 
 ;== ============================================================================
-;== Window
+;== PowerToys Run
 ;== ============================================================================
 
-/**
- * Switch to an open window by typing its name.
- */
-#;::
-WinWalker(thisHotkey) {
+#;:: {
+    ActivatePowerToysRun()
+    Send('< ')
+            ; Search open windows.
+}
+
+#':: {
+    ActivatePowerToysRun()
+    Send('* ')
+            ; Search programs.
+}
+
+ActivatePowerToysRun() {
     DetectHiddenWindows(true)
 
     if not WinExist('ahk_exe PowerToys.PowerLauncher.exe') {
@@ -450,8 +458,6 @@ WinWalker(thisHotkey) {
     if not powerLauncherActive {
         return
     }
-    Send('< ')
-            ; Directly activate Window Walker.
 }
 
 #HotIf WinActive('ahk_exe PowerToys.PowerLauncher.exe')
