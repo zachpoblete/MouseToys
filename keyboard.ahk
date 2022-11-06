@@ -115,7 +115,9 @@ BrowserHotkeys(hotIfExFn) {
 ;=== ===========================================================================
 
 #HotIf WinActive('ahk_exe msedge.exe')
-^e:: Send('{Ctrl Down}{Shift Down},{Shift Up}{Ctrl Up}')
+^Tab::  Send('{Ctrl Down}{Shift Down}a{Shift Up}{Ctrl Up}')
+        ; Search tabs.
+^+Tab:: Send('{Ctrl Down}{Shift Down},{Shift Up}{Ctrl Up}')
         ; Toggle vertical tabs.
 
 ;=== ===========================================================================
