@@ -183,6 +183,43 @@ Firefox_CustomShortcut(num) {
         ; Apply last text or highlight color used.
 
 ;== ============================================================================
+;== PowerToys Run
+;== ============================================================================
+
+#;:: {
+    ActivatePowerToysRun()
+    Send('< ')
+            ; Search open windows.
+}
+
+#':: {
+    ActivatePowerToysRun()
+    Send('* ')
+            ; Search programs.
+}
+
+ActivatePowerToysRun() {
+    DetectHiddenWindows(true)
+
+    if not WinExist('ahk_exe PowerToys.PowerLauncher.exe') {
+        return
+    }
+    Send('{LWin Down}{Space}{LWin Up}')
+            ; Activate PowerToys Run.
+    powerLauncherActive := WinWaitActive(, , 5)
+
+    if not powerLauncherActive {
+        return
+    }
+}
+
+#HotIf WinActive('ahk_exe PowerToys.PowerLauncher.exe')
+!;:: Send('{End}.exe{Ctrl Down}{Left}{Ctrl Up}{Left}')
+        ; Search only for processes.
+        ; This hotkey is meant to be used for Window Walker.
+#HotIf
+
+;== ============================================================================
 ;== Spotify
 ;== ============================================================================
 
@@ -428,43 +465,6 @@ IntraSwitchActiveGroup(thisHotkey) {
     GroupAdd(groupName, 'ahk_exe ' processName)
     GroupActivate(groupName, 'R')
 }
-
-;== ============================================================================
-;== PowerToys Run
-;== ============================================================================
-
-#;:: {
-    ActivatePowerToysRun()
-    Send('< ')
-            ; Search open windows.
-}
-
-#':: {
-    ActivatePowerToysRun()
-    Send('* ')
-            ; Search programs.
-}
-
-ActivatePowerToysRun() {
-    DetectHiddenWindows(true)
-
-    if not WinExist('ahk_exe PowerToys.PowerLauncher.exe') {
-        return
-    }
-    Send('{LWin Down}{Space}{LWin Up}')
-            ; Activate PowerToys Run.
-    powerLauncherActive := WinWaitActive(, , 5)
-
-    if not powerLauncherActive {
-        return
-    }
-}
-
-#HotIf WinActive('ahk_exe PowerToys.PowerLauncher.exe')
-!;:: Send('{End}.exe{Ctrl Down}{Left}{Ctrl Up}{Left}')
-        ; Search only for processes.
-        ; This hotkey is meant to be used for Window Walker.
-#HotIf
 
 ;= =============================================================================
 ;= Multimedia
