@@ -439,6 +439,12 @@ WinWalker(thisHotkey) {
             ; Directly activate Window Walker.
 }
 
+#HotIf WinActive('ahk_exe PowerToys.PowerLauncher.exe')
+!;:: Send('{End}.exe{Ctrl Down}{Left}{Ctrl Up}{Left}')
+        ; Search only for processes.
+        ; This hotkey is meant to be used for Window Walker.
+#HotIf
+
 ;= =============================================================================
 ;= Multimedia
 ;= =============================================================================
