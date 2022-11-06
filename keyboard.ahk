@@ -43,63 +43,6 @@ ProcessRestart(thisHotkey) {
 ;= =============================================================================
 
 ;== ============================================================================
-;== Notion
-;== ============================================================================
-
-#HotIf WinActive('ahk_exe Notion.exe')
-!Left::  Send('{Ctrl Down}[{Ctrl Up}')
-        ; Go back.
-!Right:: Send('{Ctrl Down}]{Ctrl Up}')
-        ; Go forward.
-
-^+f:: Send('{Ctrl Down}{Shift Down}h{Shift Up}{Ctrl Up}')
-        ; Apply last text or highlight color used.
-
-;== ============================================================================
-;== Spotify
-;== ============================================================================
-
-#HotIf WinActive('ahk_exe Spotify.exe')
-/** 
- * I switched the keyboard shortcuts for varying the navigation bar and friend activity widths.
- * When you increase the navigation bar width, the cover art grows taller,
- * so assign Down and Up to it,
- * When you increase the friend activity width, the bar grows fatter,
- * so assign Left and Right to it.
- */
-!+Down::  Send('{Alt Down}{Shift Down}{Left}{Shift Up}{Alt Up}')
-        ; Decrease navigation bar width.
-!+Up::    Send('{Alt Down}{Shift Down}{Right}{Shift Up}{Alt Up}')
-        ; Increase navigation bar width.
-!+Left::  Send('{Alt Down}{Shift Down}{Down}{Shift Up}{Alt Up}')
-        ; Increase friend activity width.
-!+Right:: Send('{Alt Down}{Shift Down}{Up}{Shift Up}{Alt Up}')
-        ; Decrease friend activity width.
-
-;=== ===========================================================================
-;=== Spicetify
-;=== ===========================================================================
-
-/**
- * * keyboardShortcut-Quarter.js:
- * *     !+l:: toggleLyrics()
- * *     !+q:: toggleQueue()
- * *     !+m:: openSpicetifyMarketPlace()
- *
- * !+2 goes to Your Podcasts,
- * but because of the Hide Podcasts extension,
- * Your Podcasts isn't listed in Your Library,
- * so !+2 should redirect to Your Artists instead.
- * The same logic applies to !+3 and !+4.
- */
-!+2:: Send('{Alt Down}{Shift Down}3{Shift Up}{Alt Up}')
-        ; Go to Your Artists.
-!+3:: Send('{Alt Down}{Shift Down}4{Shift Up}{Alt Up}')
-        ; Go to Your Albums.
-!+4:: return
-#HotIf
-
-;== ============================================================================
 ;== Browsers
 ;== ============================================================================
 
@@ -224,6 +167,63 @@ Firefox_CustomShortcut(num) {
         Send('{Ctrl Down}{Shift Down}{F' num '}{Shift Up}{Ctrl Up}')
     }
 }
+#HotIf
+
+;== ============================================================================
+;== Notion
+;== ============================================================================
+
+#HotIf WinActive('ahk_exe Notion.exe')
+!Left::  Send('{Ctrl Down}[{Ctrl Up}')
+        ; Go back.
+!Right:: Send('{Ctrl Down}]{Ctrl Up}')
+        ; Go forward.
+
+^+f:: Send('{Ctrl Down}{Shift Down}h{Shift Up}{Ctrl Up}')
+        ; Apply last text or highlight color used.
+
+;== ============================================================================
+;== Spotify
+;== ============================================================================
+
+#HotIf WinActive('ahk_exe Spotify.exe')
+/** 
+ * I switched the keyboard shortcuts for varying the navigation bar and friend activity widths.
+ * When you increase the navigation bar width, the cover art grows taller,
+ * so assign Down and Up to it,
+ * When you increase the friend activity width, the bar grows fatter,
+ * so assign Left and Right to it.
+ */
+!+Down::  Send('{Alt Down}{Shift Down}{Left}{Shift Up}{Alt Up}')
+        ; Decrease navigation bar width.
+!+Up::    Send('{Alt Down}{Shift Down}{Right}{Shift Up}{Alt Up}')
+        ; Increase navigation bar width.
+!+Left::  Send('{Alt Down}{Shift Down}{Down}{Shift Up}{Alt Up}')
+        ; Increase friend activity width.
+!+Right:: Send('{Alt Down}{Shift Down}{Up}{Shift Up}{Alt Up}')
+        ; Decrease friend activity width.
+
+;=== ===========================================================================
+;=== Spicetify
+;=== ===========================================================================
+
+/**
+ * * keyboardShortcut-Quarter.js:
+ * *     !+l:: toggleLyrics()
+ * *     !+q:: toggleQueue()
+ * *     !+m:: openSpicetifyMarketPlace()
+ *
+ * !+2 goes to Your Podcasts,
+ * but because of the Hide Podcasts extension,
+ * Your Podcasts isn't listed in Your Library,
+ * so !+2 should redirect to Your Artists instead.
+ * The same logic applies to !+3 and !+4.
+ */
+!+2:: Send('{Alt Down}{Shift Down}3{Shift Up}{Alt Up}')
+        ; Go to Your Artists.
+!+3:: Send('{Alt Down}{Shift Down}4{Shift Up}{Alt Up}')
+        ; Go to Your Albums.
+!+4:: return
 #HotIf
 
 ;== ============================================================================
