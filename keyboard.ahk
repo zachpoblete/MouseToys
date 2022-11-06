@@ -120,6 +120,14 @@ BrowserHotkeys(hotIfExFn) {
 ^+Tab:: Send('{Ctrl Down}{Shift Down},{Shift Up}{Ctrl Up}')
         ; Toggle vertical tabs.
 
+#HotIf WinActive.bind(' - Google Docs ahk_exe msedge.exe').setWinModeAndCall(2)
+Alt Up:: {
+    if not InStr(A_PriorKey, 'Alt') {
+        return
+    }
+    Send('{F10}')
+}
+
 ;=== ===========================================================================
 ;=== Firefox
 ;=== ===========================================================================
