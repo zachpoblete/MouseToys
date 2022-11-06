@@ -179,6 +179,7 @@ MButton:: {
     if WinActive(K_CLASSES['ZOOM']['MEETING']) {
         Send('{LWin Down}{Alt Down}{PrintScreen}{Alt Up}{LWin Up}')
     } else if WinActive('AutoHotkey Community ahk_exe msedge.exe')
+            or WinActive('ahk_exe Code.exe')
             or WinActive.bind('ahk_exe .EXE$').setWinModeAndCall('RegEx') {
                     ; Check if an Office app is active.
         Send('{Ctrl Down}{Click}{Ctrl Up}')
