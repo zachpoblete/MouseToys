@@ -1,0 +1,1 @@
+Run('*UIAccess "launcher.ahk"')
