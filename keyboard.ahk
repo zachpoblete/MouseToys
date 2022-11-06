@@ -697,7 +697,7 @@ MapF13UntilF24() {
 
 :?cx:&deg;::Send(   '{U+00B0}')
 
-:?cx:&lr;::Send(      '{U+200E}')
+:?cx:&lr;::Send(    '{U+200E}')
         ; Left-to-right mark
 
 :?cx:&la;::Send(    '{U+2190}')
@@ -705,11 +705,11 @@ MapF13UntilF24() {
 :?cx:&ra;::Send(    '{U+2192}')
         ; Right arrow.
 
-:?cx:&md;::Send( '{U+2014}')
-:?cx:&nd;::Send( '{U+2013}')
+:?cx:&md;::Send(    '{U+2014}')
+:?cx:&nd;::Send(    '{U+2013}')
 
-:?cx:&N~;::Send('{U+00D1}')
-:?cx:&n~;::Send('{U+00F1}')
+:?cx:&N~;::Send(    '{U+00D1}')
+:?cx:&n~;::Send(    '{U+00F1}')
 
 :?cx:&peso;::Send(  '{U+20B1}')
 
