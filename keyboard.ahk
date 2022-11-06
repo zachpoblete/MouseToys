@@ -592,16 +592,16 @@ CloseBrightnessSetter() {
 ;== Mask
 ;== ============================================================================
 
+#HotIf not WinActive.bind('ahk_exe .EXE$').setWinModeAndCall('RegEx')
+    ; Check if an Office app isn't active.
 *Alt::
 MaskAlt(thisHotkey) {
-    if not WinActive.bind('ahk_exe .EXE$').setWinModeAndCall('RegEx') {
-            ; Check if an Office app isn't active.
-        Send('{Alt Down}')
-        Send(K_KEYS['MENU_MASK'])
-        KeyWait('Alt')
-        Send('{Alt Up}')
-    }
+    Send('{Alt Down}')
+    Send(K_KEYS['MENU_MASK'])
+    KeyWait('Alt')
+    Send('{Alt Up}')
 }
+#HotIf
 
 LWin::
 RWin::
