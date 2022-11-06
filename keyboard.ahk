@@ -187,6 +187,9 @@ Alt Up:: {
 !PgUp:: Firefox_CustomShortcut(19)
         ; scrollPageUp.
 
+^!d:: Firefox_CustomShortcut(20)
+        ; duplicateTab.
+
 /**
  * * These hotkeys are already configured in Firefox because they can be.
  * * These are the global shortcuts
