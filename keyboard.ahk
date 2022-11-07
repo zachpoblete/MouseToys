@@ -70,6 +70,7 @@ Alt Up:: {
     }
     Send('{F10}')
 }
+#HotIf
 
 ;=== ===========================================================================
 ;=== Firefox
@@ -181,6 +182,7 @@ Firefox_CustomShortcut(num) {
 
 ^+f:: Send('{Ctrl Down}{Shift Down}h{Shift Up}{Ctrl Up}')
         ; Apply last text or highlight color used.
+#HotIf
 
 ;== ============================================================================
 ;== PowerToys Run
@@ -239,11 +241,13 @@ ActivatePowerToysRun() {
         ; Increase friend activity width.
 !+Right:: Send('{Alt Down}{Shift Down}{Up}{Shift Up}{Alt Up}')
         ; Decrease friend activity width.
+#HotIf
 
 ;=== ===========================================================================
 ;=== Spicetify
 ;=== ===========================================================================
 
+#HotIf WinActive('ahk_exe Spotify.exe')
 /**
  * * keyboardShortcut-Quarter.js:
  * *     !+l:: toggleLyrics()
@@ -292,6 +296,7 @@ ActivatePowerToysRun() {
                 ; Check if a visible meeting window doesn't exist.
 !F4:: ProcessClose('Zoom.exe')
         ; Can't use WinClose because that minimizes here.
+#HotIf
 
 ;=== ===========================================================================
 ;=== Reactions
