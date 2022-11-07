@@ -638,18 +638,6 @@ MaskAlt(thisHotkey) {
 }
 #HotIf
 
-LWin::
-RWin::
-MaskWin(thisHotkey) {
-    Send('{' thisHotkey ' Down}')
-    KeyWait(thisHotkey)
-
-    if A_PriorKey = thisHotkey and A_TimeSinceThisHotkey > 500 {
-        Send(K_KEYS['MENU_MASK'])
-    }
-    Send('{' thisHotkey ' Up}')
-}
-
 ;== ============================================================================
 ;== NumLock
 ;== ============================================================================
