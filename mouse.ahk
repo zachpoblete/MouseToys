@@ -2,6 +2,7 @@
 #Include <constants>
 #Include <functions>
 #Include <classes>
+#Include <accelerated-scroll>
 
 ;= =============================================================================
 ;= Touchpad
