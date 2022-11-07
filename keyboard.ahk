@@ -629,7 +629,7 @@ Volume_Mute:: vk13
 
 #HotIf not WinActive.bind('ahk_exe .EXE$').setWinModeAndCall('RegEx')
     ; Check if an Office app isn't active.
-*Alt::
+Alt::
 MaskAlt(thisHotkey) {
     Send('{Alt Down}')
     Send(K_KEYS['MENU_MASK'])
