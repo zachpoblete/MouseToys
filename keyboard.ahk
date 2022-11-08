@@ -523,7 +523,12 @@ DisplayAndSetVolume(variation) {
     SoundSetVolume(newVol)
             ; Override that normal variation of 2.
 }
+
 #HotIf
+#InputLevel 1
+Volume_Mute:: vk13
+        ; Pause.
+#InputLevel
 
 ;== ============================================================================
 ;== Brightness
@@ -548,79 +553,6 @@ DisplayAndSetVolume(variation) {
 ;~  * *     #PgUp:: C_BrightnessSetter.setBrightness(2)
 ;~  * *     #PgDn:: C_BrightnessSetter.setBrightness(-2)
 ;~  */
-
-;= =============================================================================
-;= Remap
-;= =============================================================================
-
-/**
- * (In order of decreasing input level)
- * * RAKK Lam-Ang Pro FineTuner:
- * *     Fn::         CapsLock
- * *     CapsLock::   BS
- * *     BS::         `
- * *     `::          NumLock
- * * 
- * *     Ins::        Home
- * *     Home::       PgUp
- * *     PgUp::       Ins
- * * 
- * * KeyTweak:
- * *     AppsKey::    RWin
- * * 
- * * PowerToys:
- * *     ScrollLock:: AppsKey
-*/
-
-;== ============================================================================
-;== Space <-> Underscore
-;== ============================================================================
-
-#InputLevel 1
-+Space:: Send('_')
-
-/**
- * Send square root symbol.
- */
-+-:: {
-    if WinActive('Desmos ahk_exe msedge.exe') or WinActive('ahk_exe EXCEL.EXE') {
-        Send('sqrt')
-    } else {
-        Send('{U+221A}')
-    }
-}
-#InputLevel
-
-;== ============================================================================
-;== Volume_Mute -> Pause
-;== ============================================================================
-
-#InputLevel 1
-Volume_Mute:: vk13
-        ; Pause.
-#InputLevel
-
-;== ============================================================================
-;== Shift+BackSpace -> Delete
-;== ============================================================================
-
-#HotIf RegExMatch(ControlGetFocus.tryCall('A'), '^Edit\d+$')
-/**
- * ^BS doesn't natively work,
- * so work around that.
- */
-^BS:: {
-    if GetSelected() {
-        Send('{Del}')
-    } else {
-        Send('{Ctrl Down}{Shift Down}{Left}{Del}{Shift Up}{Ctrl Up}')
-                ; Delete last word typed.
-    }
-}
-
-#HotIf
-+BS::  Send('{Del}')
-^+BS:: Send('{Ctrl Down}{Del}{Ctrl Up}')
 
 ;= =============================================================================
 ;= Modifiers
@@ -685,8 +617,31 @@ MapF13UntilF24() {
 }
 
 ;= =============================================================================
-;= Hotstrings
+;= Characters
 ;= =============================================================================
+
+;== ============================================================================
+;== Space <-> Underscore
+;== ============================================================================
+
+#InputLevel 1
++Space:: Send('_')
+
+/**
+ * Send square root symbol.
+ */
++-:: {
+    if WinActive('Desmos ahk_exe msedge.exe') or WinActive('ahk_exe EXCEL.EXE') {
+        Send('sqrt')
+    } else {
+        Send('{U+221A}')
+    }
+}
+#InputLevel
+
+;== =============================================================================
+;== Hotstrings
+;== =============================================================================
 ; For each Unicode character sent, the hotstring abbreviation is the HTML entity (or something intuitive).
 
 ~^z:: {
@@ -745,9 +700,9 @@ MapF13UntilF24() {
     SendInstantRaw(tabs)
 }
 
-;== ============================================================================
-;== Math and Science
-;== ============================================================================
+;=== ============================================================================
+;=== Math and Science
+;=== ============================================================================
 
 :?cx:&bullet;::  Send('{U+2219}')
 
@@ -772,9 +727,9 @@ MapF13UntilF24() {
 
 :?cx:&xbar;::    Send('{U+0078}{U+0305}')
 
-;== ============================================================================
-;== Greek Alphabet
-;== ============================================================================
+;=== ============================================================================
+;=== Greek Alphabet
+;=== ============================================================================
 
 :?cx:&Alpha;::    Send('{U+0391}')
 :?cx:&alpha;::    Send('{U+03B1}')
@@ -825,3 +780,52 @@ MapF13UntilF24() {
 :?cx:&psi;::      Send('{U+03C8}')
 :?cx:&Omega;::    Send('{U+03A9}')
 :?cx:&omega;::    Send('{U+03C9}')
+
+;= =============================================================================
+;= Misc
+;= =============================================================================
+
+;== ============================================================================
+;== Remaps in Other Programs
+;== ============================================================================
+
+/**
+ * (In order of decreasing input level)
+ * * RAKK Lam-Ang Pro FineTuner:
+ * *     Fn::         CapsLock
+ * *     CapsLock::   BS
+ * *     BS::         `
+ * *     `::          NumLock
+ * * 
+ * *     Ins::        Home
+ * *     Home::       PgUp
+ * *     PgUp::       Ins
+ * * 
+ * * KeyTweak:
+ * *     AppsKey::    RWin
+ * * 
+ * * PowerToys:
+ * *     ScrollLock:: AppsKey
+*/
+
+;== ============================================================================
+;== Shift+BackSpace -> Delete
+;== ============================================================================
+
+#HotIf RegExMatch(ControlGetFocus.tryCall('A'), '^Edit\d+$')
+/**
+ * ^BS doesn't natively work,
+ * so work around that.
+ */
+^BS:: {
+    if GetSelected() {
+        Send('{Del}')
+    } else {
+        Send('{Ctrl Down}{Shift Down}{Left}{Del}{Shift Up}{Ctrl Up}')
+                ; Delete last word typed.
+    }
+}
+
+#HotIf
++BS::  Send('{Del}')
+^+BS:: Send('{Ctrl Down}{Del}{Ctrl Up}')
