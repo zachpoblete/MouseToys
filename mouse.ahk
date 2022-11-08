@@ -222,8 +222,8 @@ XButton1 & WheelDown:: Send('{Ctrl Down}{PgDn}{Ctrl Up}')
         ; Jump one page down.
 XButton1 & WheelUp::   Send('{Ctrl Down}{PgUp}{Ctrl Up}')
         ; Jump one page up.
-
 #HotIf
+
 C_Hotkey.ctrlTab('XButton1 & WheelDown', false)
 C_Hotkey.ctrlTab('XButton1 & WheelUp', true)
 

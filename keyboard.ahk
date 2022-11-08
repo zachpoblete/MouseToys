@@ -523,8 +523,8 @@ DisplayAndSetVolume(variation) {
     SoundSetVolume(newVol)
             ; Override that normal variation of 2.
 }
-
 #HotIf
+
 #InputLevel 1
 Volume_Mute:: vk13
         ; Pause.
@@ -825,7 +825,7 @@ MapF13UntilF24() {
                 ; Delete last word typed.
     }
 }
-
 #HotIf
+
 +BS::  Send('{Del}')
 ^+BS:: Send('{Ctrl Down}{Del}{Ctrl Up}')
