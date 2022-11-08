@@ -507,8 +507,6 @@ OneButtonRemote(thisHotkey) {
 ;== ============================================================================
 
 #HotIf GetKeyState('CapsLock', 'T')
-Volume_Mute:: Volume_Mute
-
 $Volume_Up::   DisplayAndSetVolume(1)
 $Volume_Down:: DisplayAndSetVolume(-1)
 
@@ -523,12 +521,13 @@ DisplayAndSetVolume(variation) {
     SoundSetVolume(newVol)
             ; Override that normal variation of 2.
 }
-#HotIf
 
+#HotIf not GetKeyState('CapsLock', 'T')
 #InputLevel 1
 Volume_Mute:: vk13
         ; Pause.
 #InputLevel
+#HotIf
 
 ;== ============================================================================
 ;== Brightness
