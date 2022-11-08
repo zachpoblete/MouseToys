@@ -507,6 +507,8 @@ OneButtonRemote(thisHotkey) {
 ;== ============================================================================
 
 #HotIf GetKeyState('CapsLock', 'T')
+Volume_Mute:: Volume_Mute
+
 $Volume_Up::   DisplayAndSetVolume(1)
 $Volume_Down:: DisplayAndSetVolume(-1)
 
