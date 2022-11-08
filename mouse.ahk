@@ -112,7 +112,7 @@ MouseWinMaximize(thisHotkey) {
 }
 
 MButton & WheelDown::
-MouseWinMinimizeOrRestore(ThisHotkey) {
+MouseWinMinimizeOrRestore(thisHotkey) {
     MouseWinActivate()
     if WinActive(K_CLASSES['ZOOM']['WAIT_HOST']) or WinActive(K_CLASSES['ZOOM']['VID_PREVIEW']) {
         WinMinimize()
