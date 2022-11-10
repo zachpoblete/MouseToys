@@ -20,6 +20,18 @@ UpdateVSCodeExtList() {
     FileAppend(list, extListFile)
 }
 
+UpdateBrowserHistoryBackup()
+UpdateBrowserHistoryBackup() {
+    destDir := A_MyDocuments '\Browser Extension Backups'
+    backupFileName := 'history_autobackup_*_full.tsv'
+
+    FileDelete(destDir '\' backupFileName)
+
+    userProfileDir := EnvGet('USERPROFILE')
+    downloadsDir := userProfileDir '\Downloads'
+    FileMove(downloadsDir '\' backupFileName, destDir)
+}
+
 ;= =============================================================================
 ;= Timers
 ;= =============================================================================
