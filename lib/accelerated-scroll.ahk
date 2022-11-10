@@ -20,7 +20,7 @@ AcceleratedScroll() {
             ; Recommended: 400 < x < 1000.
 
     BOOST := 25,
-            ; If you scroll a long distance in one session, apply additional boost factor.
+            ; If you scroll many times in one session, apply additional boost factor.
             ; The higher the value, the longer it takes to activate,
             ; and the slower it accumulates.
             ; Set to 0 to disable completely.
@@ -32,7 +32,7 @@ AcceleratedScroll() {
             ; Default: 60.
 
     ; Session variables:
-    _distance,
+    _count,
     _maxSpeed
 
     timeBetweenHotkeysMs := A_TimeSincePriorHotkey or 1
@@ -46,7 +46,7 @@ AcceleratedScroll() {
         MouseClick(A_ThisHotkey)
         return
     }
-    _distance++
+    _count++
             ; Remember how many times the current direction has been scrolled in.
     if timeBetweenHotkeysMs < 100 {
         speed := (250.0 / timeBetweenHotkeysMs) - 1
@@ -56,14 +56,14 @@ AcceleratedScroll() {
     }
 
     ; Apply boost:
-    if BOOST > 1 and _distance > BOOST {
+    if BOOST > 1 and _count > BOOST {
         ; Hold onto the highest speed achieved during this boost:
         if speed > _maxSpeed {
             _maxSpeed := speed
         } else {
             speed := _maxSpeed
         }
-        speed *= _distance / BOOST
+        speed *= _count / BOOST
     }
     if speed > MAX_SCROLLS {
         speed := MAX_SCROLLS
