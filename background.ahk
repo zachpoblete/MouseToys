@@ -2,6 +2,28 @@
 #Include <constants>
 #Include <functions>
 
+;= =============================================================================
+;= At Launch
+;= =============================================================================
+
+UpdateVSCodeExtList()
+UpdateVSCodeExtList() {
+    userProfileDir := EnvGet('USERPROFILE')
+    vsCodeExtsDir := userProfileDir '\.vscode\extensions'
+    list := ''
+
+    Loop Files vsCodeExtsDir '\*', 'D' {
+        list .= A_LoopFileName '`n'
+    }
+    extListFile := A_AppData '\Code\User\extensions.txt'
+    FileDelete(extListFile)
+    FileAppend(list, extListFile)
+}
+
+;= =============================================================================
+;= Timers
+;= =============================================================================
+
 SetTimer(CloseRakkPopup, 1000)
 CloseRakkPopup() {
     try {
