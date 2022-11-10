@@ -35,7 +35,7 @@ AcceleratedScroll() {
 
     timeBetweenHotkeysMs := A_TimeSincePriorHotkey or 1
 
-    if not (A_ThisHotkey = A_PriorHotkey and timeBetweenHotkeysMs < TIMEOUT_MS) {
+    if A_ThisHotkey != A_PriorHotkey or timeBetweenHotkeysMs > TIMEOUT_MS {
             ; Combo broken.
         _momentum := 0
         _highestSpeedAchieved := 1
