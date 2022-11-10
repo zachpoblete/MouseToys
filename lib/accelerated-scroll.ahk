@@ -41,7 +41,7 @@ AcceleratedScroll() {
         _momentum := 0
         _highestSpeedAchieved := 1
 
-        MouseClick(A_ThisHotkey)
+        Click(A_ThisHotkey)
         return
     }
     _momentum++
@@ -68,5 +68,5 @@ AcceleratedScroll() {
     } else {
         speed := Floor(speed)
     }
-    MouseClick(A_ThisHotkey, , , speed)
+    Click(A_ThisHotkey ' ' speed)
 }
