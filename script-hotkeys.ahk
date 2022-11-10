@@ -37,8 +37,8 @@
     }
 }
 
-#^h::
-OpenDocs(thisHotkey) {
+#^h:: OpenDocs()
+OpenDocs() {
     if not GetKeyState('CapsLock', 'T') {
         Run('https://lexikos.github.io/v2/docs/AutoHotkey.htm')
         return
@@ -49,8 +49,8 @@ OpenDocs(thisHotkey) {
     Run(query)
 }
 
-#^w::
-WinSpy(thisHotkey) {
+#^w:: WinSpy()
+WinSpy() {
     static WIN_SPY := 'Window Spy ahk_class AutoHotkeyGUI'
 
     try {

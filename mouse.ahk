@@ -105,14 +105,14 @@ RButton:: Click('R')
 ;== Wheel
 ;== ============================================================================
 
-MButton & WheelUp::
-MouseWinMaximize(thisHotkey) {
+MButton & WheelUp:: MouseWinMaximize()
+MouseWinMaximize() {
     MouseWinActivate()
     WinMaximize('A')
 }
 
-MButton & WheelDown::
-MouseWinMinimizeOrRestore(thisHotkey) {
+MButton & WheelDown:: MouseWinMinimizeOrRestore()
+MouseWinMinimizeOrRestore() {
     MouseWinActivate()
     if WinActive(K_CLASSES['ZOOM']['WAIT_HOST']) or WinActive(K_CLASSES['ZOOM']['VID_PREVIEW']) {
         WinMinimize()
@@ -131,8 +131,8 @@ MouseWinMinimizeOrRestore(thisHotkey) {
 ;== RButton
 ;== ============================================================================
 
-MButton & RButton::
-MouseWinMove(thisHotkey) {
+MButton & RButton:: MouseWinMove()
+MouseWinMove() {
     MouseWinActivate()
 
     if WinActive('ahk_class WorkerW ahk_exe Explorer.EXE') {
@@ -157,10 +157,10 @@ MouseWinMove(thisHotkey) {
         }
         switch A_ThisHotkey {
         case 'WheelUp':
-            MouseWinMaximize(thisHotkey)
+            MouseWinMaximize()
             break
         case 'WheelDown':
-            MouseWinMinimizeOrRestore(thisHotkey)
+            MouseWinMinimizeOrRestore()
             break
         }
         MouseGetPos(&mouseX, &mouseY)
@@ -257,8 +257,8 @@ X1LR(states*) {
 ;== ============================================================================
 
 XButton1 & MButton:: return
-XButton1 & MButton Up::
-MouseWinReload(thisHotkey) {
+XButton1 & MButton Up:: MouseWinReload()
+MouseWinReload() {
     if A_PriorKey = 'Escape' {
         return
     }
@@ -328,8 +328,8 @@ XButton2 & RButton Up:: {
 ;== ============================================================================
 
 XButton2 & MButton:: return
-XButton2 & MButton Up::
-MouseWinClose(thisHotkey) {
+XButton2 & MButton Up:: MouseWinClose()
+MouseWinClose() {
     if A_PriorKey = 'Escape' {
         return
     }

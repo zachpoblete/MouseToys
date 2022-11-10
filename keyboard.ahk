@@ -25,8 +25,8 @@ PrintScreen:: Send('{LWin Down}{Alt Down}{PrintScreen}{Alt Up}{LWin Up}')
 ;== Restart
 ;== ============================================================================
 
-#F5::
-ProcessRestart(thisHotkey) {
+#F5:: ProcessRestart()
+ProcessRestart() {
     WinExist('A')
 
     winPid := WinGetPID()
@@ -304,9 +304,9 @@ ActivatePowerToysRun() {
 
 #HotIf WinActive('ahk_pid ' WinGetPid.tryCall(K_CLASSES['ZOOM']['TOOLBAR']))
         ; Check if a meeting window is active.
-!=::
-Zoom_ThumbsUpReact(thisHotkey) {
-    Zoom_OpenReactions(thisHotkey)
+!=:: Zoom_ThumbsUpReact()
+Zoom_ThumbsUpReact() {
+    Zoom_OpenReactions()
     Sleep(50)
     
     CoordMode('Mouse', 'Client')
@@ -321,8 +321,8 @@ Zoom_ThumbsUpReact(thisHotkey) {
             ; Prevent the activation of the most recent window when the reaction disappears.
 }
 
-!e::
-Zoom_OpenReactions(thisHotkey) {
+!e:: Zoom_OpenReactions()
+Zoom_OpenReactions() {
     if not WinExist(K_CLASSES['ZOOM']['MEETING']) {
         return
     }
@@ -398,16 +398,16 @@ Zoom_OpenReactions(thisHotkey) {
 ;== ============================================================================
 
 #HotIf GetKeyState('NumLock', 'T')
-d::
-WinOpenDir(thisHotkey) {
+d:: WinOpenDir()
+WinOpenDir() {
     winPid := WinGetPID('A')
     winPath := ProcessGetPath(winPid)
     winDir := RegExReplace(winPath, '\\[^\\]+$')
     Run(winDir)
 }
 
-+d::
-RunSelectedAsDir(thisHotkey) {
++d:: RunSelectedAsDir()
+RunSelectedAsDir() {
     dir := GetSelectedElseExit()
 
     while RegExMatch(dir, '%(.+?)%', &match) {
@@ -422,8 +422,8 @@ RunSelectedAsDir(thisHotkey) {
 ;== App
 ;== ============================================================================
 
-#i::
-OpenSettings(thisHotkey) {
+#i:: OpenSettings()
+OpenSettings() {
     switch ChordInput() {
     case 'i': Send('{LWin Down}i{LWin Up}')
     case 'v': Run('App volume and device preferences', 'C:\Windows')
@@ -445,8 +445,8 @@ GroupAdd('ExplorerWins', 'ahk_class CabinetWClass')
 GroupAdd('PhotoWins', ' ' K_CHARS['LEFT_TO_RIGHT_MARK'] '- Photos$ ahk_exe ApplicationFrameHost.exe')
 GroupAdd('ZoomWins', 'ahk_class ^Z ahk_exe Zoom.exe')
 
-^!Tab::
-IntraSwitchActiveGroup(thisHotkey) {
+^!Tab:: IntraSwitchActiveGroup()
+IntraSwitchActiveGroup() {
     check(groupName) {
         if not WinActive('ahk_group ' groupName) {
             return
@@ -479,8 +479,8 @@ IntraSwitchActiveGroup(thisHotkey) {
 ;== Media
 ;== ============================================================================
 
-Pause::
-OneButtonRemote(thisHotkey) {
+Pause:: OneButtonRemote()
+OneButtonRemote() {
     static pressCount := 0
     
     pressCount++
@@ -563,8 +563,8 @@ Volume_Mute:: vk13
 
 #HotIf not WinActive.bind('ahk_exe .EXE$').setWinModeAndCall('RegEx')
     ; Check if an Office app isn't active.
-Alt::
-MaskAlt(thisHotkey) {
+Alt:: MaskAlt()
+MaskAlt() {
     Send('{Alt Down}')
     Send(K_KEYS['MENU_MASK'])
     KeyWait('Alt')
@@ -577,7 +577,7 @@ MaskAlt(thisHotkey) {
 ;== ============================================================================
 
 if GetKeyState('NumLock', 'T') {
-    NumLockIndicatorFollowMouse('')
+    NumLockIndicatorFollowMouse()
 }
 
 #InputLevel 1
@@ -589,8 +589,8 @@ if GetKeyState('NumLock', 'T') {
 /**
  * Display ToolTip while NumLock is on.
  */
-~*NumLock::
-NumLockIndicatorFollowMouse(thisHotkey) {
+~*NumLock:: NumLockIndicatorFollowMouse()
+NumLockIndicatorFollowMouse() {
     toolTipNumLock() => ToolTip('NumLock On')
 
     Sleep(10)
@@ -609,7 +609,7 @@ NumLockIndicatorFollowMouse(thisHotkey) {
 
 MapF13UntilF24()
 MapF13UntilF24() {
-    remap := (num, thisHotkey) => Send('{Blind}{Alt Up}{Ctrl Up}{F' (num + 12) '}')
+    remap := (num) => Send('{Blind}{Alt Up}{Ctrl Up}{F' (num + 12) '}')
 
     Loop 12 {
         Hotkey('#^!+F' A_Index, remap.bind(A_Index))
