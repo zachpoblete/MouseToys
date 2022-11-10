@@ -155,14 +155,6 @@ MouseWinMove() {
             WinMove(winOriginalX, winOriginalY)
             break
         }
-        switch A_ThisHotkey {
-        case 'WheelUp':
-            MouseWinMaximize()
-            break
-        case 'WheelDown':
-            MouseWinMinimizeOrRestore()
-            break
-        }
         MouseGetPos(&mouseX, &mouseY)
         WinGetPos(&winX, &winY)
         WinMove(winX + (mouseX - mouseStartX), winY + (mouseY - mouseStartY))
