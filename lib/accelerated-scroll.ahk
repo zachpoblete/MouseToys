@@ -38,8 +38,9 @@ AcceleratedScroll() {
     timeBetweenHotkeysMs := A_TimeSincePriorHotkey or 1
 
     if not (A_ThisHotkey = A_PriorHotkey and timeBetweenHotkeysMs < TIMEOUT_MS) {
-        ; Combo broken, so reset session variables:
-        _distance := 0
+            ; Combo broken.
+        ; So reset session variables:
+        _count := 0
         _maxSpeed := 1
 
         MouseClick(A_ThisHotkey)
