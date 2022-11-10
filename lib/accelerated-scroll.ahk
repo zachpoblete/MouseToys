@@ -36,7 +36,7 @@ AcceleratedScroll() {
     timeBetweenHotkeysMs := A_TimeSincePriorHotkey or 1
 
     if A_ThisHotkey != A_PriorHotkey or timeBetweenHotkeysMs > TIMEOUT_MS {
-            ; Combo broken.
+            ; A new session has started.
         _momentum := 0
         _highestSpeedAchieved := 1
 
