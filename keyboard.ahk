@@ -514,8 +514,9 @@ $Volume_Down:: DisplayAndSetVolume(-1)
 
 DisplayAndSetVolume(variation) {
     newVol := SoundGetVolume() + variation
-    volDirection := (variation > 0 or Round(newVol) = 1)? 'Up' : 'Down'
-            ; Fsr Round(newVol) before this point doesn't work.
+    newVol := Round(newVol)
+
+    volDirection := (variation > 0 or newVol = 1)? 'Up' : 'Down'
 
     Send('{Volume_' volDirection '}')
             ; Vary volume by 2,
