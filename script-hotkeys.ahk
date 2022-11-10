@@ -37,17 +37,7 @@
     }
 }
 
-#^h:: OpenDocs()
-OpenDocs() {
-    if not GetKeyState('CapsLock', 'T') {
-        Run('https://lexikos.github.io/v2/docs/AutoHotkey.htm')
-        return
-    }
-    query := GetSelectedElseExit()
-    query := QueryToUrl(query, 'https://www.google.com/search?q=')
-    query .= ' site:https://lexikos.github.io/v2/docs'
-    Run(query)
-}
+#^h:: Run('https://lexikos.github.io/v2/docs/AutoHotkey.htm')
 
 #^w:: WinSpy()
 WinSpy() {
