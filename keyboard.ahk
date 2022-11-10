@@ -516,7 +516,11 @@ DisplayAndSetVolume(variation) {
     newVol := SoundGetVolume() + variation
     newVol := Round(newVol)
 
-    volDirection := (variation > 0 or newVol = 1)? 'Up' : 'Down'
+    if variation > 0 or newVol = 1 {
+        volDirection := 'Up'
+    } else {
+        volDirection := 'Down'
+    }
 
     Send('{Volume_' volDirection '}')
             ; Vary volume by 2,

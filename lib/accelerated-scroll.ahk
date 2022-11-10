@@ -47,8 +47,12 @@ AcceleratedScroll() {
     }
     _distance++
             ; Remember how many times the current direction has been scrolled in.
-    speed := (timeBetweenHotkeysMs < 100)? (250.0 / timeBetweenHotkeysMs) - 1 : 1
-            ; Calculate acceleration factor using a 1/x like curve.
+    if timeBetweenHotkeysMs < 100 {
+        speed := (250.0 / timeBetweenHotkeysMs) - 1
+                ; Calculate acceleration factor using a 1/x like curve.
+    } else {
+        speed := 1
+    }
 
     ; Apply boost:
     if BOOST > 1 and _distance > BOOST {
@@ -60,6 +64,10 @@ AcceleratedScroll() {
         }
         speed *= _distance / BOOST
     }
-    speed := (speed > MAX_SCROLLS)? MAX_SCROLLS : Floor(speed)
+    if speed > MAX_SCROLLS {
+        speed := MAX_SCROLLS
+    } else {
+        speed := Floor(speed)
+    }
     MouseClick(A_ThisHotkey, , , speed)
 }
