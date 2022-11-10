@@ -1,4 +1,4 @@
-﻿#Requires AutoHotkey v2.0-beta.7
+#Requires AutoHotkey v2.0-beta.7
 
 #Include <default-settings>
 #Include <globals>
@@ -7,7 +7,7 @@
 #Include <classes>
 #Include <accelerated-scroll>
 
-#Include timers.ahk
+#Include background.ahk
 #Include mouse.ahk
 #Include script-hotkeys.ahk
 #Include keyboard.ahk
