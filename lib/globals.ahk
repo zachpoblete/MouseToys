@@ -1,6 +1,6 @@
 #Include default-settings.ahk
 
-G_IsMouseMovingWin := false
+G_MouseIsMovingWin := false
 G_WillReload := false
 
 class G_ {

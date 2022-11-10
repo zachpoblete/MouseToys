@@ -107,7 +107,7 @@ RButton:: Click('R')
 
 MButton & WheelUp:: MouseWinMaximize()
 MouseWinMaximize() {
-    if G_IsMouseMovingWin {
+    if G_MouseIsMovingWin {
         WinExist('A')
     } else {
         MouseWinActivate()
@@ -117,7 +117,7 @@ MouseWinMaximize() {
 
 MButton & WheelDown:: MouseWinMinimizeOrRestore()
 MouseWinMinimizeOrRestore() {
-    if G_IsMouseMovingWin {
+    if G_MouseIsMovingWin {
         WinExist('A')
     } else {
         MouseWinActivate()
@@ -141,7 +141,7 @@ MouseWinMinimizeOrRestore() {
 
 MButton & RButton:: MouseWinMove()
 MouseWinMove() {
-    global G_IsMouseMovingWin := true
+    global G_MouseIsMovingWin := true
 
     MouseWinActivate()
 
@@ -174,7 +174,7 @@ MouseWinMove() {
 
         Sleep(10)
     }
-    G_IsMouseMovingWin := false
+    G_MouseIsMovingWin := false
 }
 
 ;== ============================================================================
