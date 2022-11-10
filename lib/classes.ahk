@@ -27,7 +27,7 @@ class C_KeyWait {
 
 class C_Hotkey {
     static ctrlTab(hk, shouldPressShift) {
-        sendFirstAndLast() {
+        sendFirstAndLast(thisHotkey) {
             Send('{Ctrl Down}' tab)
             hkPrefixKey := HotkeyGetPrefixKey(thisHotkey)
             KeyWait(hkPrefixKey)
@@ -36,11 +36,11 @@ class C_Hotkey {
 
         tab := (shouldPressShift)? '{Shift Down}{Tab}{Shift Up}' : '{Tab}'
 
-        HotIf(() => GetKeyState('Ctrl'))
-        Hotkey(hk, () => Send(tab))
+        HotIf((thisHotkey) => GetKeyState('Ctrl'))
+        Hotkey(hk, (thisHotkey) => Send(tab))
 
         HotIf()
-        Hotkey(hk, () => sendFirstAndLast())
+        Hotkey(hk, (thisHotkey) => sendFirstAndLast(thisHotkey))
     }
 
     class Browser {
@@ -50,9 +50,9 @@ class C_Hotkey {
 
         static hotIfCondition(hotIfExFn) {
             if HasProp(hotIfExFn, 'call') {
-                HotIf(() => this.active() and hotIfExFn())
+                HotIf((thisHotkey) => this.active() and hotIfExFn())
             } else {
-                HotIf(() => this.active())
+                HotIf((thisHotkey) => this.active())
             }
         }
 
@@ -78,11 +78,11 @@ class C_Hotkey {
             }
 
             this.hotIfCondition(hotIfExFn)
-            Hotkey(hk, () => searchUrlInTab(true))
-            Hotkey('+' hk, () => searchUrlInTab(false))
+            Hotkey(hk, (thisHotkey) => searchUrlInTab(true))
+            Hotkey('+' hk, (thisHotkey) => searchUrlInTab(false))
 
-            HotIf(() => hotIfExFn())
-            Hotkey(hk, () => runUrl())
+            HotIf((thisHotkey) => hotIfExFn())
+            Hotkey(hk, (thisHotkey) => runUrl())
             HotIf()
         }
     }
