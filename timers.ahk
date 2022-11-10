@@ -1,5 +1,6 @@
 #Include <default-settings>
 #Include <constants>
+#Include <functions>
 
 SetTimer(CloseRakkPopup, 1000)
 CloseRakkPopup() {
