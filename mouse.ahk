@@ -107,13 +107,21 @@ RButton:: Click('R')
 
 MButton & WheelUp:: MouseWinMaximize()
 MouseWinMaximize() {
-    MouseWinActivate()
-    WinMaximize('A')
+    if G_IsMouseMovingWin {
+        WinExist('A')
+    } else {
+        MouseWinActivate()
+    }
+    WinMaximize()
 }
 
 MButton & WheelDown:: MouseWinMinimizeOrRestore()
 MouseWinMinimizeOrRestore() {
-    MouseWinActivate()
+    if G_IsMouseMovingWin {
+        WinExist('A')
+    } else {
+        MouseWinActivate()
+    }
     if WinActive(K_CLASSES['ZOOM']['WAIT_HOST']) or WinActive(K_CLASSES['ZOOM']['VID_PREVIEW']) {
         WinMinimize()
         return
@@ -133,6 +141,8 @@ MouseWinMinimizeOrRestore() {
 
 MButton & RButton:: MouseWinMove()
 MouseWinMove() {
+    global G_IsMouseMovingWin := true
+
     MouseWinActivate()
 
     if WinActive('ahk_class WorkerW ahk_exe Explorer.EXE') {
@@ -164,6 +174,7 @@ MouseWinMove() {
 
         Sleep(10)
     }
+    G_IsMouseMovingWin := false
 }
 
 ;== ============================================================================
