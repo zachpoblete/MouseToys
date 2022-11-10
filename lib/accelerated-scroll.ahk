@@ -27,7 +27,7 @@ AcceleratedScroll() {
             ; Default: 30.
 
     MAX_SCROLLS := 70,
-            ; Spamming applications with hundreds of individual scroll events can slow them down,
+            ; Spamming apps with hundreds of individual scroll events can slow them down,
             ; so set a max number of scrolls sent per click.
             ; Default: 60.
 
