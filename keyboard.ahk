@@ -525,7 +525,7 @@ DisplayAndSetVolume(variation) {
 #HotIf not GetKeyState('CapsLock', 'T')
 #InputLevel 1
 Volume_Mute:: vk13
-        ; Pause.
+        ; Pause key.
 #InputLevel
 #HotIf
 
