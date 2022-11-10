@@ -19,20 +19,19 @@ AcceleratedScroll() {
             ; Default: 500
             ; Recommended: 400 < x < 1000.
 
-    BOOST := 25,
-            ; If you scroll many times in one session, apply additional boost factor.
-            ; The higher the value, the longer it takes to activate,
-            ; and the slower it accumulates.
-            ; Set to 0 to disable completely.
+    MIN_BOOST_MOMENTUM := 25,
+            ; The higher the value,
+            ; the slower boost activates and accumulates.
+            ; Set to 0 to disable boost completely.
             ; Default: 30.
 
-    MAX_SCROLLS := 70,
+    MAX_SCROLLS_TO_SEND := 70,
             ; Spamming apps with hundreds of individual scroll events can slow them down,
             ; so set a max number of scrolls sent per click.
             ; Default: 60.
 
     ; Session variables:
-    _count,
+    _momentum,
     _highestSpeedAchieved
 
     timeBetweenHotkeysMs := A_TimeSincePriorHotkey or 1
@@ -40,13 +39,13 @@ AcceleratedScroll() {
     if not (A_ThisHotkey = A_PriorHotkey and timeBetweenHotkeysMs < TIMEOUT_MS) {
             ; Combo broken.
         ; So reset session variables:
-        _count := 0
+        _momentum := 0
         _highestSpeedAchieved := 1
 
         MouseClick(A_ThisHotkey)
         return
     }
-    _count++
+    _momentum++
             ; Remember how many times the current direction has been scrolled in.
     if timeBetweenHotkeysMs < 100 {
         speed := (250.0 / timeBetweenHotkeysMs) - 1
@@ -56,16 +55,16 @@ AcceleratedScroll() {
     }
 
     ; Apply boost:
-    if BOOST > 1 and _count > BOOST {
+    if MIN_BOOST_MOMENTUM > 1 and _momentum > MIN_BOOST_MOMENTUM {
         if speed > _highestSpeedAchieved {
             _highestSpeedAchieved := speed
         } else {
             speed := _highestSpeedAchieved
         }
-        speed *= _count / BOOST
+        speed *= _momentum / MIN_BOOST_MOMENTUM
     }
-    if speed > MAX_SCROLLS {
-        speed := MAX_SCROLLS
+    if speed > MAX_SCROLLS_TO_SEND {
+        speed := MAX_SCROLLS_TO_SEND
     } else {
         speed := Floor(speed)
     }
