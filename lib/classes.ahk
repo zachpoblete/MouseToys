@@ -82,7 +82,7 @@ class C_Hotkey {
             Hotkey('+' hk, () => searchUrlInTab(false))
 
             HotIf(() => hotIfExFn())
-            hotkey(hk, () => runUrl())
+            Hotkey(hk, () => runUrl())
             HotIf()
         }
     }
