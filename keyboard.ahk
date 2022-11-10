@@ -445,13 +445,15 @@ GroupAdd('ExplorerWins', 'ahk_class CabinetWClass')
 GroupAdd('PhotoWins', ' ' K_CHARS['LEFT_TO_RIGHT_MARK'] '- Photos$ ahk_exe ApplicationFrameHost.exe')
 GroupAdd('ZoomWins', 'ahk_class ^Z ahk_exe Zoom.exe')
 
-^!Tab:: IntraSwitchActiveGroup()
-IntraSwitchActiveGroup() {
+^!Tab::  OperateOnActiveGroup('Activate')
+^+!Tab:: OperateOnActiveGroup('Close')
+
+OperateOnActiveGroup(action) {
     check(groupName) {
         if not WinActive('ahk_group ' groupName) {
             return
         }
-        GroupActivate(groupName, 'R')
+        Group%action%(groupName)
         exit
     }
     
@@ -468,7 +470,7 @@ IntraSwitchActiveGroup() {
     groupName := StrReplace(groupName, ' ', '_')
     
     GroupAdd(groupName, 'ahk_exe ' processName)
-    GroupActivate(groupName, 'R')
+    Group%action%(groupName)
 }
 
 ;= =============================================================================
