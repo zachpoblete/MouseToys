@@ -31,7 +31,6 @@ AcceleratedScroll() {
             ; so set a max number of scrolls sent per click.
             ; Default: 60.
 
-    ; Session variables:
     _momentum,
     _highestSpeedAchieved
 
@@ -39,7 +38,6 @@ AcceleratedScroll() {
 
     if not (A_ThisHotkey = A_PriorHotkey and timeBetweenHotkeysMs < TIMEOUT_MS) {
             ; Combo broken.
-        ; So reset session variables:
         _momentum := 0
         _highestSpeedAchieved := 1
 
@@ -56,7 +54,6 @@ AcceleratedScroll() {
         speed := 1
     }
 
-    ; Apply boost:
     if BOOST_IS_ENABLED and _momentum > MIN_BOOST_MOMENTUM {
         if speed > _highestSpeedAchieved {
             _highestSpeedAchieved := speed
