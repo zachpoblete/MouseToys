@@ -20,8 +20,7 @@ AcceleratedScroll() {
             ; Recommended: 400 < x < 1000.
 
     MIN_BOOST_MOMENTUM := 25,
-            ; The higher the value,
-            ; the slower boost activates and accumulates.
+            ; The smaller the value, the faster boost activates and accumulates.
             ; Set to 0 to disable boost completely.
             ; Default: 30.
     BOOST_IS_ENABLED := MIN_BOOST_MOMENTUM > 1,
@@ -50,6 +49,7 @@ AcceleratedScroll() {
     if timeBetweenHotkeysMs < 100 {
         speed := (250.0 / timeBetweenHotkeysMs) - 1
                 ; Calculate acceleration factor using a 1/x like curve.
+                ; The smaller timeBetweenHotkeysMs is, the higher speed is.
     } else {
         speed := 1
     }
