@@ -48,6 +48,7 @@ AcceleratedScroll() {
     }
     _momentum++
             ; Remember how many times the current direction has been scrolled in.
+
     if timeBetweenHotkeysMs < 100 {
         speed := (250.0 / timeBetweenHotkeysMs) - 1
                 ; Calculate acceleration factor using a 1/x like curve.
