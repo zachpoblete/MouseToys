@@ -33,7 +33,7 @@ AcceleratedScroll() {
 
     ; Session variables:
     _count,
-    _maxSpeed
+    _highestSpeedAchieved
 
     timeBetweenHotkeysMs := A_TimeSincePriorHotkey or 1
 
@@ -41,7 +41,7 @@ AcceleratedScroll() {
             ; Combo broken.
         ; So reset session variables:
         _count := 0
-        _maxSpeed := 1
+        _highestSpeedAchieved := 1
 
         MouseClick(A_ThisHotkey)
         return
@@ -57,11 +57,10 @@ AcceleratedScroll() {
 
     ; Apply boost:
     if BOOST > 1 and _count > BOOST {
-        ; Hold onto the highest speed achieved during this boost:
-        if speed > _maxSpeed {
-            _maxSpeed := speed
+        if speed > _highestSpeedAchieved {
+            _highestSpeedAchieved := speed
         } else {
-            speed := _maxSpeed
+            speed := _highestSpeedAchieved
         }
         speed *= _count / BOOST
     }
