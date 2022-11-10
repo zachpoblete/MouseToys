@@ -64,9 +64,9 @@ AcceleratedScroll() {
         speed *= boost
     }
     if speed > MAX_SCROLLS_TO_SEND {
-        speed := MAX_SCROLLS_TO_SEND
+        scrollsToSend := MAX_SCROLLS_TO_SEND
     } else {
-        speed := Floor(speed)
+        scrollsToSend := Floor(speed)
     }
-    Click(A_ThisHotkey ' ' speed)
+    Click(A_ThisHotkey ' ' scrollsToSend)
 }
