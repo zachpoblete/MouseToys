@@ -24,6 +24,7 @@ AcceleratedScroll() {
             ; the slower boost activates and accumulates.
             ; Set to 0 to disable boost completely.
             ; Default: 30.
+    BOOST_IS_ENABLED := MIN_BOOST_MOMENTUM > 1,
 
     MAX_SCROLLS_TO_SEND := 70,
             ; Spamming apps with hundreds of individual scroll events can slow them down,
@@ -55,13 +56,14 @@ AcceleratedScroll() {
     }
 
     ; Apply boost:
-    if MIN_BOOST_MOMENTUM > 1 and _momentum > MIN_BOOST_MOMENTUM {
+    if BOOST_IS_ENABLED and _momentum > MIN_BOOST_MOMENTUM {
         if speed > _highestSpeedAchieved {
             _highestSpeedAchieved := speed
         } else {
             speed := _highestSpeedAchieved
         }
-        speed *= _momentum / MIN_BOOST_MOMENTUM
+        boost := _momentum / MIN_BOOST_MOMENTUM
+        speed *= boost
     }
     if speed > MAX_SCROLLS_TO_SEND {
         speed := MAX_SCROLLS_TO_SEND
