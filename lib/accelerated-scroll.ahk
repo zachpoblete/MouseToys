@@ -35,34 +35,32 @@ AcceleratedScroll() {
             ; A new session has started.
         _momentum := 0
         _highestSpeedAchieved := 1
-
-        Click(A_ThisHotkey)
-        return
-    }
-    _momentum++
-            ; Remember how many times the current direction has been scrolled in.
-
-    if timeBetweenHotkeysMs < 80 {
-        speed := (250.0 / timeBetweenHotkeysMs) - 1
-                ; Calculate acceleration factor using a 1/x like curve.
-                ; The smaller timeBetweenHotkeysMs is, the higher speed is.
+        scrollsToSend := 1
     } else {
-        speed := 1
-    }
+        _momentum++
+                ; Remember how many times the current direction has been scrolled in.
 
-    if BOOST_IS_ENABLED and _momentum > MIN_BOOST_MOMENTUM {
-        if speed > _highestSpeedAchieved {
-            _highestSpeedAchieved := speed
+        if timeBetweenHotkeysMs < 80 {
+            speed := (250.0 / timeBetweenHotkeysMs) - 1
+                    ; Calculate acceleration factor using a 1/x like curve.
+                    ; The smaller timeBetweenHotkeysMs is, the higher speed is.
         } else {
-            speed := _highestSpeedAchieved
+            speed := 1
         }
-        boost := _momentum / MIN_BOOST_MOMENTUM
-        speed *= boost
-    }
-    if speed > MAX_SCROLLS_TO_SEND {
-        scrollsToSend := MAX_SCROLLS_TO_SEND
-    } else {
-        scrollsToSend := Floor(speed)
+        if BOOST_IS_ENABLED and _momentum > MIN_BOOST_MOMENTUM {
+            if speed > _highestSpeedAchieved {
+                _highestSpeedAchieved := speed
+            } else {
+                speed := _highestSpeedAchieved
+            }
+            boost := _momentum / MIN_BOOST_MOMENTUM
+            speed *= boost
+        }
+        if speed > MAX_SCROLLS_TO_SEND {
+            scrollsToSend := MAX_SCROLLS_TO_SEND
+        } else {
+            scrollsToSend := Floor(speed)
+        }
     }
     Click(A_ThisHotkey ' ' scrollsToSend)
 }
