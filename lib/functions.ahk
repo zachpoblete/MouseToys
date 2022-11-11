@@ -209,7 +209,7 @@ MouseControlFocus(control := '', winTitle := '', winText := '', excludedTitle :=
     }
     ControlFocus(mouseControlHwnd)
 
-    if control := '' {
+    if control = '' {
         return mouseControlHwnd
     }
     try {
