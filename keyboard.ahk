@@ -63,7 +63,7 @@ BrowserHotkeys(hotIfExFn) {
 ^+Tab:: Send('{Ctrl Down}{Shift Down},{Shift Up}{Ctrl Up}')
         ; Toggle vertical tabs.
 
-#HotIf SetTitleMatchMode(2) and WinActive(' - Google Docs ahk_exe msedge.exe')
+#HotIf WinActive(' - Google Docs ahk_exe msedge.exe')
 Alt Up:: {
     if not InStr(A_PriorKey, 'Alt') {
         return
