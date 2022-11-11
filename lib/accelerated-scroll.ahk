@@ -7,7 +7,6 @@
 #Include default-settings.ahk
 
 A_MaxHotkeysPerInterval := 140
-        ; Default: 120
 
 /**
  * To use effectively, make sure this function is the first line in a hotkey.
@@ -16,19 +15,16 @@ AcceleratedScroll() {
     static TIMEOUT_MS := 500,
             ; Length of a scrolling session.
             ; Keep scrolling within this time to accumulate boost.
-            ; Default: 500
             ; Recommended: 400 < x < 1000.
 
-    MIN_BOOST_MOMENTUM := 25,
+    MIN_BOOST_MOMENTUM := 30,
             ; The smaller the value, the faster boost activates and accumulates.
             ; Set to 0 to disable boost completely.
-            ; Default: 30.
     BOOST_IS_ENABLED := MIN_BOOST_MOMENTUM > 1,
 
-    MAX_SCROLLS_TO_SEND := 70,
+    MAX_SCROLLS_TO_SEND := 60,
             ; Spamming apps with hundreds of individual scroll events can slow them down,
             ; so set a max number of scrolls sent per click.
-            ; Default: 60.
 
     _momentum,
     _highestSpeedAchieved
@@ -46,7 +42,7 @@ AcceleratedScroll() {
     _momentum++
             ; Remember how many times the current direction has been scrolled in.
 
-    if timeBetweenHotkeysMs < 100 {
+    if timeBetweenHotkeysMs < 80 {
         speed := (250.0 / timeBetweenHotkeysMs) - 1
                 ; Calculate acceleration factor using a 1/x like curve.
                 ; The smaller timeBetweenHotkeysMs is, the higher speed is.
