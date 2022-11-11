@@ -572,10 +572,11 @@ Volume_Mute:: vk13
     ; Check if an Office app isn't active.
 Alt:: MaskAlt()
 MaskAlt() {
-    Send('{Alt Down}')
+    SetKeyDelay(-1)
+    SendEvent('{Blind}{Alt DownR}')
     Send(K_KEYS['MENU_MASK'])
     KeyWait('Alt')
-    Send('{Alt Up}')
+    SendEvent('{Blind}{Alt Up}')
 }
 #HotIf
 
