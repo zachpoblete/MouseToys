@@ -32,15 +32,8 @@ DisableAcceleratedScroll(name, pos, obj) {
 ;= =============================================================================
 
 #HotIf MouseControlFocus('RichEditD2DPT1', 'ahk_exe Notepad.exe')
-+WheelUp:: {
-    Send('{Blind+}')
-    Send('{WheelLeft}')
-}
-
-+WheelDown:: {
-    Send('{Blind+}')
-    Send('{WheelRight}')
-}
++WheelUp::   Send('{Blind+}{WheelLeft}')
++WheelDown:: Send('{Blind+}{WheelRight}')
 #HotIf
 
 ~^WheelUp::
