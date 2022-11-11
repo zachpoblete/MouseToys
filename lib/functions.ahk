@@ -153,35 +153,6 @@ MouseWinActivate(winTitle := '', winText := '', excludedTitle := '', excludedTex
         ; when all the parameters are blank and there is no last found window.
 }
 
-Func.prototype.defineProp('setWinModeAndCall', {call: FuncProto_SetWinModeAndCall})
-FuncProto_SetWinModeAndCall(this, titleMatchMode := '', titleMatchModeSpeed := '', shouldDetectHiddenWin := '', shouldDetectHiddenText := '') {
-    originalTitleMatchMode := A_TitleMatchMode
-    originalTitleMatchModeSpeed := A_TitleMatchModeSpeed
-    originalShouldDetectHiddenWin := A_DetectHiddenWindows
-    originalShouldDetectHiddenText := A_DetectHiddenText
-
-    if titleMatchMode {
-        A_TitleMatchMode := titleMatchMode
-    }
-    if titleMatchModeSpeed {
-        A_TitleMatchModeSpeed := titleMatchModeSpeed
-    }
-    if shouldDetectHiddenWin != '' {
-        A_DetectHiddenWindows := shouldDetectHiddenWin
-    }
-    if shouldDetectHiddenText != '' {
-        A_DetectHiddenText := shouldDetectHiddenText
-    }
-    val := this()
-
-    A_TitleMatchMode := originalTitleMatchMode
-    A_TitleMatchModeSpeed := originalTitleMatchModeSpeed
-    A_DetectHiddenWindows := originalShouldDetectHiddenWin
-    A_DetectHiddenText := originalShouldDetectHiddenText
-
-    return val
-}
-
 ;= =============================================================================
 ;= Control
 ;= =============================================================================

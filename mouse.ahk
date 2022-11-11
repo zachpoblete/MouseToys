@@ -197,7 +197,7 @@ MButton:: {
         Send('{LWin Down}{Alt Down}{PrintScreen}{Alt Up}{LWin Up}')
     } else if WinActive('AutoHotkey Community ahk_exe msedge.exe')
             or WinActive('ahk_exe Code.exe')
-            or WinActive.bind('ahk_exe .EXE$').setWinModeAndCall('RegEx') {
+            or (SetTitleMatchMode('RegEx') and WinActive('ahk_exe .EXE$')) {
                     ; Check if an Office app is active.
         Send('{Ctrl Down}{Click}{Ctrl Up}')
     } else {

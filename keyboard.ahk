@@ -63,7 +63,7 @@ BrowserHotkeys(hotIfExFn) {
 ^+Tab:: Send('{Ctrl Down}{Shift Down},{Shift Up}{Ctrl Up}')
         ; Toggle vertical tabs.
 
-#HotIf WinActive.bind(' - Google Docs ahk_exe msedge.exe').setWinModeAndCall(2)
+#HotIf SetTitleMatchMode(2) and WinActive(' - Google Docs ahk_exe msedge.exe')
 Alt Up:: {
     if not InStr(A_PriorKey, 'Alt') {
         return
@@ -568,7 +568,7 @@ Volume_Mute:: vk13
 ;== Mask
 ;== ============================================================================
 
-#HotIf not WinActive.bind('ahk_exe .EXE$').setWinModeAndCall('RegEx')
+#HotIf SetTitleMatchMode('RegEx') and not WinActive('ahk_exe .EXE$')
     ; Check if an Office app isn't active.
 Alt:: MaskAlt()
 MaskAlt() {
