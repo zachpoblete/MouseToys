@@ -28,13 +28,23 @@ DisableAcceleratedScroll(name, pos, obj) {
 }
 
 ;= =============================================================================
-;= Native Modifiers
+;= Shift
 ;= =============================================================================
 
 #HotIf MouseControlFocus('RichEditD2DPT1', 'ahk_exe Notepad.exe')
 +WheelUp::   Send('{Blind+}{WheelLeft}')
 +WheelDown:: Send('{Blind+}{WheelRight}')
+
+#HotIf SetTitleMatchMode('RegEx') and MouseWinActivate('Calendar - (Sun|Mon|Tues|Wednes|Thurs|Fri|Satur)day, '
+        '((Jan|Febr)uary|March|April|May|June|July|August|(Septem|Octo|Novem|Decem)ber) \d\d, \d\d\d\d '
+        'ahk_exe msedge.exe')
++WheelUp::   Send('k')
++WheelDown:: Send('j')
 #HotIf
+
+;= =============================================================================
+;= Ctrl
+;= =============================================================================
 
 ~^WheelUp::
 ~^WheelDown:: {
