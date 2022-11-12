@@ -10,14 +10,21 @@ UpdateVSCodeExtList()
 UpdateVSCodeExtList() {
     userProfileDir := EnvGet('USERPROFILE')
     vsCodeExtsDir := userProfileDir '\.vscode\extensions'
-    list := ''
-
+    extList := ''
     Loop Files vsCodeExtsDir '\*', 'D' {
-        list .= A_LoopFileName '`n'
+        extList .= A_LoopFileName '`r`n'
     }
+    
+    obsoleteFilePath := vsCodeExtsDir '\.obsolete'
+    Loop Read obsoleteFilePath {
+        RegExMatch(A_LoopReadLine, '"(.+)"', &obsoleteExt)
+        extList := RegExReplace(extList, obsoleteExt[1] '`r`n')
+    } else {
+    }
+
     extListFile := A_AppData '\Code\User\extensions.txt'
     FileDelete(extListFile)
-    FileAppend(list, extListFile)
+    FileAppend(extList, extListFile)
 }
 
 UpdateBrowserHistoryBackup()
