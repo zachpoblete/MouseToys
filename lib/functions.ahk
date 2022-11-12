@@ -80,6 +80,18 @@ StdOut(text, delayMs := '', delimiter := '') {
 ;= =============================================================================
 
 ChordInput() {
+    mask(key) {
+        if GetKeyState(key, 'P') {
+            Send(K_KEYS['MENU_MASK'])
+            Send('{Blind}{' key ' Up}')
+        }
+    }
+
+    mask('LWin')
+    mask('RWin')
+    mask('Alt')
+    mask('Ctrl')
+
     ih := InputHook('L1 M')
     ih.start()
     ih.wait()
