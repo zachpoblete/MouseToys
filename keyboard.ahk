@@ -42,6 +42,14 @@ ProcessRestart() {
 ;= Specific App
 ;= =============================================================================
 
+#!m:: AppToggleMute()
+AppToggleMute() {
+    switch ChordInput() {
+    case 'z': Send('{Ctrl Down}{Shift Down}{Alt Down}{F1}{Alt Up}{Shift Up}{Ctrl Up}')
+    case 'd': Send('{Ctrl Down}{Shift Down}{Alt Down}{F2}{Alt Up}{Shift Up}{Ctrl Up}')
+    }
+}
+
 ;== ============================================================================
 ;== Browsers
 ;== ============================================================================
