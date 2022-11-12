@@ -578,7 +578,7 @@ Alt:: MaskAlt()
 MaskAlt() {
     SetKeyDelay(-1)
     SendEvent('{Blind}{Alt DownR}')
-    Send(K_KEYS['MENU_MASK'])
+    MaskMenu()
     KeyWait('Alt')
     SendEvent('{Blind}{Alt Up}')
 }

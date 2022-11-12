@@ -25,11 +25,6 @@ K_CONTROL_CODES := Map(
 ;     'DEFAULT_BACKGROUND', '-E0x200'
 ; )
 
-K_KEYS := Map(
-    'MENU_MASK', '{vkFF}'
-            ; No mapping.
-)
-
 K_WIN32_CONSTS := Map(
     'EM_SETSEL',     0x00B1,
     'EM_LINESCROLL', 0x00B6,
