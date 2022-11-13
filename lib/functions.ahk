@@ -123,13 +123,11 @@ ChordInput() {
 ;== ============================================================================
 
 HotkeyEncloseInBraces(hk) {
-    if InStr(hk, '&') {
-        return '{' RegExReplace(hk, ' *& *', '}{') '}'
-    } else if RegExMatch(hk, ' Up$') {
-        return '{' hk '}'
-    } else {
-        return RegExReplace(hk, '([#!^+<>]*)([*~$]*)([^*~$]+)', '$1{$3}')
-    }
+    hk := HotkeySplit(hk)
+    hk[1] := RegExReplace(hk[1], '[*~$]')
+    hk.prefix := []
+    RegExMatch(hk[1], '([#!^+<>]*)(.+)', hk.refProp('prefix'))
+    return hk.prefix[1] '{' hk.prefix[2] '}{' hk[2] '}'
 }
 
 HotkeySplit(hk) {
