@@ -80,22 +80,15 @@ StdOut(text, delayMs := '', delimiter := '') {
 ;= =============================================================================
 
 ChordInput() {
-    mask(key) {
-        if GetKeyState(key, 'P') {
-            Send(K_KEYS['MENU_MASK'])
-            Send('{Blind}{' key ' Up}')
-        }
-    }
+    ih := InputHook('')
 
-    mask('LWin')
-    mask('RWin')
-    mask('Alt')
-    mask('Ctrl')
+    ih.keyOpt('{All}', 'E')
+    maskKey := RegExReplace(A_MenuMaskKey, '(vk[[:xdigit:]]{2})(sc[[:xdigit:]]{3})', '{$1}{$2}')
+    ih.keyOpt('{LWin}{RWin}{Ctrl}{Shift}{Alt}' maskKey , '-E')
 
-    ih := InputHook('L1 M')
     ih.start()
     ih.wait()
-    return ih.input
+    return ih.endMods ih.endKey
 }
 
 HotkeyDelModifierSymbols(hk) {
