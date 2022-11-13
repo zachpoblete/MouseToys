@@ -91,6 +91,10 @@ ChordInput() {
     return ih.endMods ih.endKey
 }
 
+;== ============================================================================
+;== Hotkey
+;== ============================================================================
+
 HotkeyDelModifierSymbols(hk) {
     hk := RegExReplace(hk, ' Up$')
     hk := StrReplace(hk, ' ')
