@@ -544,6 +544,27 @@ Volume_Mute:: vk13
 ;= Keys
 ;= =============================================================================
 
+;== ============================================================================
+;== Insert Whitespace
+;== ============================================================================
+
+SetCapsLockState('AlwaysOff')
+
+CapsLock & Space::
+CapsLock & Enter:: 
+CapsLock & Tab:: {
+    hk := HotkeySplit(thisHotkey)
+    Send('{' hk[2] '}{Left}')
+}
+
+CapsLock Up:: {
+    if GetKeyState('CapsLock', 'T') {
+        SetCapsLockState('AlwaysOff')
+    } else {
+        SetCapsLockState('AlwaysOn')
+    }
+}
+
 ;== =============================================================================
 ;== Modifiers
 ;== =============================================================================
