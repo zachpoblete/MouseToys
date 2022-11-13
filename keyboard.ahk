@@ -572,6 +572,14 @@ Volume_Mute:: vk13
 ;== Mask
 ;== ============================================================================
 
+#^+Alt::
+#^!Shift Up::
+#+!Ctrl::
+^+!LWin::
+^+!RWin:: {
+    MaskMenu()
+}
+
 #HotIf SetTitleMatchMode('RegEx') and not WinActive('ahk_exe .EXE$')
     ; Check if an Office app isn't active.
 Alt:: MaskAlt()
