@@ -540,30 +540,6 @@ Volume_Mute:: vk13
 #InputLevel
 #HotIf
 
-;== ============================================================================
-;== Brightness
-;== ============================================================================
-
-; ! Broken as of Nov 7, 2022
-;~ if not ProcessExist('brightness-setter.exe') {
-;~     Run('brightness-setter')
-;~ }
-
-;~ OnExit((reason, code) => CloseBrightnessSetter())
-;~ CloseBrightnessSetter() {
-;~     if G_WillReload or not ProcessExist('brightness-setter.exe') {
-;~         return
-;~     }
-;~     ProcessClose('brightness-setter.exe')
-;~     ProcessWaitClose('brightness-setter.exe')
-;~ }
-
-;~ /**
-;~  * * brightness-setter.exe:
-;~  * *     #PgUp:: C_BrightnessSetter.setBrightness(2)
-;~  * *     #PgDn:: C_BrightnessSetter.setBrightness(-2)
-;~  */
-
 ;= =============================================================================
 ;= Keys
 ;= =============================================================================
