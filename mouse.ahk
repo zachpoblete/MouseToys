@@ -110,7 +110,7 @@ RButton & MButton Up:: {
 ;== None
 ;== ============================================================================
 
-RButton:: Click('R')
+RButton Up:: Click('R')
 
 ;= =============================================================================
 ;= MButton
@@ -200,7 +200,7 @@ MouseWinMove() {
  * Click link,
  * and open it in a new tab.
  */
-MButton:: {
+MButton Up:: {
     MouseWinActivate()
 
     if WinActive(K_CLASSES['ZOOM']['MEETING']) {
