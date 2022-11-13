@@ -36,7 +36,7 @@ DisableAcceleratedScroll(name, pos, obj) {
 +WheelDown:: Send('{Blind+}{WheelRight}')
 
 #HotIf SetTitleMatchMode('RegEx') and MouseWinActivate('Calendar - (Sun|Mon|Tues|Wednes|Thurs|Fri|Satur)day, '
-        '((Jan|Febr)uary|March|April|May|June|July|August|(Septem|Octo|Novem|Decem)ber) \d\d, \d\d\d\d '
+        '((Jan|Febr)uary|March|April|May|June|July|August|(Septem|Octo|Novem|Decem)ber) \d{2}, \d{4} '
         'ahk_exe msedge.exe')
 +WheelUp::   Send('k')
 +WheelDown:: Send('j')
