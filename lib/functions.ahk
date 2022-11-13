@@ -1,5 +1,9 @@
 #Include default-settings.ahk
 
+;= =============================================================================
+;= Meta
+;= =============================================================================
+
 Func.prototype.defineProp('tryCall', {call: FuncProto_TryCall})
 FuncProto_TryCall(this, params*) {
     try {
