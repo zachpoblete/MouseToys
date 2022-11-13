@@ -21,7 +21,7 @@ ObjProto_RefProp(this, name) {
     if desc.hasProp('value') {
         this.defineProp(name, makeRef(desc))
     } else if not desc.get.hasProp('ref') {
-        throw Error("Invalid property for ref", -1, name)
+        throw Error('Invalid property for ref', -1, name)
     }
     return desc.get.ref
 
