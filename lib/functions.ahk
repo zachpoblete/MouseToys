@@ -95,17 +95,6 @@ ChordInput() {
 ;== Hotkey
 ;== ============================================================================
 
-HotkeyDelModifierSymbols(hk) {
-    hk := RegExReplace(hk, ' Up$')
-    hk := StrReplace(hk, ' ')
-
-    if InStr(hk, '&') {
-        return StrSplit(hk, '&')
-    } else {
-        return RegExReplace(hk, '[#!^+<>*~$]')
-    }
-}
-
 HotkeyEncloseInBraces(hk) {
     if InStr(hk, '&') {
         return '{' RegExReplace(hk, ' *& *', '}{') '}'
@@ -116,22 +105,21 @@ HotkeyEncloseInBraces(hk) {
     }
 }
 
-HotkeyGetPrefixKey(hk) {
-    if HotstringGetAbbrev(hk) {
-        return
-    }
-    hkKeys := HotkeyDelModifierSymbols(hk)
+HotkeySplit(hk) {
+    RegExMatch(hk, '(^:[^:]*:)(.+)', &hs)
 
-    if not IsObject(hkKeys) {
-        return hkKeys
+    if hs {
+        hk := hs
     } else {
-        return hkKeys[1]
-    }
-}
+        hk := StrReplace(hk, ' ')
 
-HotstringGetAbbrev(hs) {
-    RegExMatch(hs, '^:[^:]*:\K.+', &abbrev)
-    return abbrev
+        if InStr(hk, '&') {
+            hk := StrSplit(hk, '&') 
+        } else {
+            RegExMatch(hk, '([#!^+<>*~$]*)(.+)', &hk)
+        }
+    }
+    return hk
 }
 
 MaskMenu() {

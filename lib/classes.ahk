@@ -29,8 +29,8 @@ class C_Hotkey {
     static ctrlTab(hk, shouldPressShift) {
         sendFirstAndLast(thisHotkey) {
             Send('{Ctrl Down}' tab)
-            hkPrefixKey := HotkeyGetPrefixKey(thisHotkey)
-            KeyWait(hkPrefixKey)
+            hk := HotkeySplit(thisHotkey)
+            KeyWait(hk[1])
             Send('{Ctrl Up}')
         }
 
