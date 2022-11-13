@@ -304,7 +304,9 @@ X2W(states*) {
         Send('{Alt Down}' states[1] '{Alt Up}')
     } else if WinActive('ahk_exe POWERPNT.EXE') {
         Send(states[2])
-    } else if WinActive('ahk_exe AcroRd32.exe') or WinActive('ahk_exe WindowsTerminal.exe') {
+    } else if WinActive('ahk_class CabinetWClass')
+        or WinActive('ahk_exe AcroRd32.exe')
+        or WinActive('ahk_exe WindowsTerminal.exe') {
         Send('{Ctrl Down}' states[3] '{Ctrl Up}')
     } else {
         Send('{Ctrl Down}' states[-1] '{Ctrl Up}')
