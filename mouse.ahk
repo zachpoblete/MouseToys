@@ -20,8 +20,9 @@ WheelDown:: {
     AcceleratedScroll()
 }
 
-A_TrayMenu.insert('E&xit', '&Disable Accelerated Scroll', DisableAcceleratedScroll)
-DisableAcceleratedScroll(name, pos, obj) {
+#^a:: DisableAcceleratedScroll()
+A_TrayMenu.insert('E&xit', 'Disable &Accelerated Scroll', DisableAcceleratedScroll)
+DisableAcceleratedScroll(name := 'Disable &Accelerated Scroll', pos := '', obj := '') {
     Hotkey('WheelUp', 'Toggle')
     Hotkey('WheelDown', 'Toggle')
     A_TrayMenu.toggleCheck(name)
