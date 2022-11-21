@@ -52,7 +52,7 @@ CloseRakkPopup() {
     }
 }
 
-SetTimer(CloseMonokaiPopup, 1000)
+SetTimer(CloseMonokaiPopup, 500)
 CloseMonokaiPopup() {
     static monokaiMsg :=
     (Join`r`n
