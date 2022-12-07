@@ -116,14 +116,14 @@ ChordInput() {
 ;== ============================================================================
 
 HotkeyEncloseInBraces(hk) {
-    hk := HotkeySplit(hk)
+    hk := HkSplit(hk)
     hk[1] := RegExReplace(hk[1], '[*~$]')
     hk.prefix := []
     RegExMatch(hk[1], '([#!^+<>]*)(.+)', hk.refProp('prefix'))
     return hk.prefix[1] '{' hk.prefix[2] '}{' hk[2] '}'
 }
 
-HotkeySplit(hk) {
+HkSplit(hk) {
     RegExMatch(hk, '(^:[^:]*:)(.+)', &hs)
 
     if hs {

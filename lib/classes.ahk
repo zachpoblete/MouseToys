@@ -29,7 +29,7 @@ class C_Hotkey {
     static ctrlTab(hk, shouldPressShift) {
         sendFirstAndLast(thisHotkey) {
             Send('{Ctrl Down}' tab)
-            hk := HotkeySplit(thisHotkey)
+            hk := HkSplit(thisHotkey)
             KeyWait(hk[1])
             Send('{Ctrl Up}')
         }

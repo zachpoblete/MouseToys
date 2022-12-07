@@ -58,7 +58,7 @@ AppToggleMute() {
 ^Left::  Send('{Ctrl Down}{Shift Down}{Left}{Shift Up}{Ctrl Up}{Up}')
 ^Right:: Send('{Ctrl Down}{Shift Down}{Right}{Shift Up}{Ctrl Up}{Down}')
 
-; hk := HotkeySplit(thisHotkey)
+; hk := HkSplit(thisHotkey)
 ; horiz := '{' hk[2] '}'
 
 ; if horiz = '{Left}' {
@@ -580,7 +580,7 @@ SetCapsLockState('AlwaysOff')
 ~CapsLock & Space::
 ~CapsLock & Enter:: 
 ~CapsLock & Tab:: {
-    hk := HotkeySplit(thisHotkey)
+    hk := HkSplit(thisHotkey)
     Send('{' hk[2] '}{Left}')
 
     if A_PriorKey != 'CapsLock' {
