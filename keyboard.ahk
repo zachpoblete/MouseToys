@@ -33,7 +33,7 @@ ProcessRestart() {
     winPath := ProcessGetPath(winPid)
 
     WinClose()
-    ProcessWaitClose(winPid)
+    ProcessWaitClose(winPid, 5)
     Sleep(1000)
     Run(winPath)
 }
