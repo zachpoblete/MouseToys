@@ -12,79 +12,8 @@
 #!LButton:: Click('M')
 
 ;= =============================================================================
-;= Wheel
+;= Prefix
 ;= =============================================================================
-
-WheelUp::
-WheelDown:: {
-    AcceleratedScroll()
-}
-
-#^a:: DisableAcceleratedScroll()
-A_TrayMenu.insert('E&xit', 'Disable &Accelerated Scroll', DisableAcceleratedScroll)
-DisableAcceleratedScroll(name := 'Disable &Accelerated Scroll', pos := '', obj := '') {
-    Hotkey('WheelUp', 'Toggle')
-    Hotkey('WheelDown', 'Toggle')
-    A_TrayMenu.toggleCheck(name)
-}
-
-;= =============================================================================
-;= Shift+Wheel
-;= =============================================================================
-
-#HotIf MouseControlFocus('RichEditD2DPT1', 'ahk_exe Notepad.exe')
-+WheelUp::   Send('{Blind+}{WheelLeft}')
-+WheelDown:: Send('{Blind+}{WheelRight}')
-
-#HotIf SetTitleMatchMode('RegEx') and MouseWinActivate('Calendar - (Sun|Mon|Tues|Wednes|Thurs|Fri|Satur)day, '
-        '((Jan|Febr)uary|March|April|May|June|July|August|(Septem|Octo|Novem|Decem)ber) \d{2}, \d{4} '
-        'ahk_exe msedge.exe')
-+WheelUp::   Send('k')
-+WheelDown:: Send('j')
-#HotIf
-
-;= =============================================================================
-;= Ctrl+Wheel
-;= =============================================================================
-
-~^WheelUp::
-~^WheelDown:: {
-    MouseWinActivate()
-}
-
-;= =============================================================================
-;= RButton
-;= =============================================================================
-
-;== ============================================================================
-;== Wheel
-;== ============================================================================
-
-RButton & WheelDown:: AltTab
-RButton & WheelUp::   ShiftAltTab
-
-;== ============================================================================
-;== LButton
-;== ============================================================================
-
-/**
- * Delete.
- */
-RButton & LButton:: return
-RButton & LButton Up:: {
-    if A_PriorKey = 'Escape' {
-        return
-    }
-    if WinActive('Task Switching ahk_class XamlExplorerHostIslandWindow') {
-        Click()
-        return
-    }
-    if GetKeyState('Shift', 'P') {
-        Send('{Shift Down}{Del}{Shift Up}')
-    } else {
-        Send('{Del}')
-    }
-}
 
 ;== ============================================================================
 ;== MButton
@@ -92,34 +21,26 @@ RButton & LButton Up:: {
 
 /**
  * Click link,
- * open it in a new tab,
- * and switch to that tab.
+ * and open it in a new tab.
  */
-RButton & MButton:: return
-RButton & MButton Up:: {
-    if A_PriorKey = 'Escape' {
-        return
-    }
-    if WinActive('Task Switching ahk_class XamlExplorerHostIslandWindow') {
+ MButton:: {
+    MouseWinActivate()
+
+    if WinActive(K_CLASSES['ZOOM']['MEETING']) {
+        Send('{LWin Down}{Alt Down}{PrintScreen}{Alt Up}{LWin Up}')
+    } else if WinActive('AutoHotkey Community ahk_exe msedge.exe')
+            or WinActive('ahk_exe Code.exe')
+            or (SetTitleMatchMode('RegEx') and WinActive('ahk_exe .EXE$')) {
+                    ; Check if an Office app is active.
+        Send('{Ctrl Down}{Click}{Ctrl Up}')
+    } else {
         Click('M')
-        return
     }
-    Send('{Ctrl Down}{Shift Down}{Click}{Shift Up}{Ctrl Up}')
 }
 
-;== ============================================================================
-;== None
-;== ============================================================================
-
-RButton:: Click('R')
-
-;= =============================================================================
-;= MButton
-;= =============================================================================
-
-;== ============================================================================
-;== Wheel
-;== ============================================================================
+;=== ===========================================================================
+;=== Wheel
+;=== ===========================================================================
 
 MButton & WheelUp:: MouseWinMaximize()
 MouseWinMaximize() {
@@ -151,9 +72,9 @@ MouseWinMinimizeOrRestore() {
     }
 }
 
-;== ============================================================================
-;== RButton
-;== ============================================================================
+;=== ===========================================================================
+;=== RButton
+;=== ===========================================================================
 
 MButton & RButton:: MouseWinMove()
 MouseWinMove() {
@@ -194,35 +115,69 @@ MouseWinMove() {
 }
 
 ;== ============================================================================
-;== None
+;== RButton
 ;== ============================================================================
 
-/**
- * Click link,
- * and open it in a new tab.
- */
-MButton:: {
-    MouseWinActivate()
+RButton:: Click('R')
 
-    if WinActive(K_CLASSES['ZOOM']['MEETING']) {
-        Send('{LWin Down}{Alt Down}{PrintScreen}{Alt Up}{LWin Up}')
-    } else if WinActive('AutoHotkey Community ahk_exe msedge.exe')
-            or WinActive('ahk_exe Code.exe')
-            or (SetTitleMatchMode('RegEx') and WinActive('ahk_exe .EXE$')) {
-                    ; Check if an Office app is active.
-        Send('{Ctrl Down}{Click}{Ctrl Up}')
+;=== ===========================================================================
+;=== Wheel
+;=== ===========================================================================
+
+RButton & WheelDown:: AltTab
+RButton & WheelUp::   ShiftAltTab
+
+;=== ===========================================================================
+;=== LButton
+;=== ===========================================================================
+
+/**
+ * Delete.
+ */
+RButton & LButton:: return
+RButton & LButton Up:: {
+    if A_PriorKey = 'Escape' {
+        return
+    }
+    if WinActive('Task Switching ahk_class XamlExplorerHostIslandWindow') {
+        Click()
+        return
+    }
+    if GetKeyState('Shift', 'P') {
+        Send('{Shift Down}{Del}{Shift Up}')
     } else {
-        Click('M')
+        Send('{Del}')
     }
 }
 
-;= =============================================================================
-;= XButton1
-;= =============================================================================
+;=== ===========================================================================
+;=== MButton
+;=== ===========================================================================
+
+/**
+ * Click link,
+ * open it in a new tab,
+ * and switch to that tab.
+ */
+RButton & MButton:: return
+RButton & MButton Up:: {
+    if A_PriorKey = 'Escape' {
+        return
+    }
+    if WinActive('Task Switching ahk_class XamlExplorerHostIslandWindow') {
+        Click('M')
+        return
+    }
+    Send('{Ctrl Down}{Shift Down}{Click}{Shift Up}{Ctrl Up}')
+}
 
 ;== ============================================================================
-;== Wheel
+;== XButton1
 ;== ============================================================================
+
+;=== ===========================================================================
+;=== Wheel
+;=== ===========================================================================
 
 #HotIf MouseWinActivate('ahk_exe msedge.exe')
 /**
@@ -246,9 +201,9 @@ XButton1 & WheelUp::   Send('{Ctrl Down}{PgUp}{Ctrl Up}')
 C_Hotkey.ctrlTab('XButton1 & WheelDown', false)
 C_Hotkey.ctrlTab('XButton1 & WheelUp', true)
 
-;== ============================================================================
-;== LButton and RButton
-;== ============================================================================
+;=== ===========================================================================
+;=== LButton and RButton
+;=== ===========================================================================
 
 XButton1 & LButton:: return
 XButton1 & LButton Up:: X1LR('[', 'X1')
@@ -271,9 +226,9 @@ X1LR(states*) {
     }
 }
 
-;== ============================================================================
-;== MButton
-;== ============================================================================
+;=== ===========================================================================
+;=== MButton
+;=== ===========================================================================
 
 XButton1 & MButton:: return
 XButton1 & MButton Up:: MouseWinReload()
@@ -285,13 +240,13 @@ MouseWinReload() {
     Send('{F5}')
 }
 
-;= =============================================================================
-;= XButton2
-;= =============================================================================
+;== ============================================================================
+;== XButton2
+;== ============================================================================
 
-;== ============================================================================
-;== Wheel
-;== ============================================================================
+;=== ===========================================================================
+;=== Wheel
+;=== ===========================================================================
 
 XButton2 & WheelDown:: X2W('{Down}', '{PgDn}', '{Tab}',                       '{PgDn}')
         ; Switch to next tab.
@@ -314,9 +269,9 @@ X2W(states*) {
     }
 }
 
-;== ============================================================================
-;== LButton and RButton
-;== ============================================================================
+;=== ===========================================================================
+;=== LButton and RButton
+;=== ===========================================================================
 
 XButton2 & LButton:: return
 XButton2 & LButton Up:: {
@@ -344,9 +299,9 @@ XButton2 & RButton Up:: {
     }
 }
 
-;== ============================================================================
-;== MButton
-;== ============================================================================
+;=== ===========================================================================
+;=== MButton
+;=== ===========================================================================
 
 XButton2 & MButton:: return
 XButton2 & MButton Up:: MouseWinClose()
@@ -372,3 +327,44 @@ MouseWinClose() {
         Send('{Alt Down}{F4}{Alt Up}')
     }
 }
+
+;= =============================================================================
+;= Wheel
+;= =============================================================================
+
+WheelUp::
+WheelDown:: {
+    AcceleratedScroll()
+}
+
+#^a:: DisableAcceleratedScroll()
+A_TrayMenu.insert('E&xit', 'Disable &Accelerated Scroll', DisableAcceleratedScroll)
+DisableAcceleratedScroll(name := 'Disable &Accelerated Scroll', pos := '', obj := '') {
+    Hotkey('WheelUp', 'Toggle')
+    Hotkey('WheelDown', 'Toggle')
+    A_TrayMenu.toggleCheck(name)
+}
+
+;== ============================================================================
+;== Ctrl+Wheel
+;== ============================================================================
+
+~^WheelUp::
+~^WheelDown:: {
+    MouseWinActivate()
+}
+
+;== ============================================================================
+;== Shift+Wheel
+;== ============================================================================
+
+#HotIf MouseControlFocus('RichEditD2DPT1', 'ahk_exe Notepad.exe')
++WheelUp::   Send('{Blind+}{WheelLeft}')
++WheelDown:: Send('{Blind+}{WheelRight}')
+
+#HotIf SetTitleMatchMode('RegEx') and MouseWinActivate('Calendar - (Sun|Mon|Tues|Wednes|Thurs|Fri|Satur)day, '
+        '((Jan|Febr)uary|March|April|May|June|July|August|(Septem|Octo|Novem|Decem)ber) \d{2}, \d{4} '
+        'ahk_exe msedge.exe')
++WheelUp::   Send('k')
++WheelDown:: Send('j')
+#HotIf

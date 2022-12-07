@@ -1,33 +1,6 @@
 #Include default-settings.ahk
 
 ;= =============================================================================
-;= Meta
-;= =============================================================================
-
-Object.prototype.defineProp('refProp', {call: ObjProto_RefProp})
-/**
- * Taken from Lexikos from:
- * https://www.autohotkey.com/boards/viewtopic.php?p=394816#p394816
- */
-ObjProto_RefProp(this, name) {
-    desc := this.getOwnPropDesc(name)
-    if desc.hasProp('value') {
-        this.defineProp(name, makeRef(desc))
-    } else if not desc.get.hasProp('ref') {
-        throw Error('Invalid property for ref', -1, name)
-    }
-    return desc.get.ref
-
-    makeRef(desc) {
-        v := desc.deleteProp('value')
-        desc.get := (this)        => v
-        desc.set := (this, value) => v := value
-        desc.get.ref := &v
-        return desc
-    }
-}
-
-;= =============================================================================
 ;= Clipboard
 ;= =============================================================================
 
@@ -59,6 +32,65 @@ SendInstantRaw(text) {
     Send('{Ctrl Down}v{Ctrl Up}')
     SetTimer(() => A_Clipboard := savedClipboard, -50)
             ; Fsr, Sleep(50) is too fast.
+}
+
+;= =============================================================================
+;= Control
+;= =============================================================================
+
+ControlClassNnFocused(winTitle, controlClassNn, useRegEx := 0) {
+    try {
+        focusedControlHwnd    := ControlGetFocus(winTitle)
+        focusedControlClassNn := ControlGetClassNn(focusedControlHwnd)
+    } catch {
+        return
+    }
+
+    if not useRegEx and focusedControlClassNn != controlClassNn {
+        return
+    } else if not RegExMatch(focusedControlClassNn, controlClassNn) {
+        return
+    }
+
+    ; TODO: When '#HotIf [string]' is made to evaluate to true, remove the 'not not' below
+    return not not focusedControlClassNn
+}
+
+ControlGetHwndFromClassNnAndTextElseExit(controlClassNn, controlText) {
+    try {
+        controlHwnd := ControlGetHwnd(controlClassNn)
+    } catch {
+        exit
+    }
+    controlTextFromClassNn := ControlGetText(controlClassNn)
+
+    if controlText != controlTextFromClassNn {
+        exit
+    }
+    return controlHwnd
+}
+
+MouseControlFocus(control := '', winTitle := '', winText := '', excludedTitle := '', excludedText := '') {
+    MouseGetPos(, , &mouseHwnd, &mouseControlHwnd, 2)
+    WinActivate(mouseHwnd)
+
+    if not WinActive(winTitle ' ahk_id ' mouseHwnd, winText, excludedTitle, excludedText) {
+        return
+    }
+    ControlFocus(mouseControlHwnd)
+
+    if control = '' {
+        return mouseControlHwnd
+    }
+    try {
+        controlHwnd := ControlGetHwnd(control)
+    } catch {
+        return
+    }
+    if controlHwnd != mouseControlHwnd {
+        return
+    }
+    return mouseControlHwnd
 }
 
 ;= =============================================================================
@@ -146,6 +178,33 @@ MaskMenu() {
 }
 
 ;= =============================================================================
+;= Meta
+;= =============================================================================
+
+Object.prototype.defineProp('refProp', {call: ObjProto_RefProp})
+/**
+ * Taken from Lexikos from:
+ * https://www.autohotkey.com/boards/viewtopic.php?p=394816#p394816
+ */
+ObjProto_RefProp(this, name) {
+    desc := this.getOwnPropDesc(name)
+    if desc.hasProp('value') {
+        this.defineProp(name, makeRef(desc))
+    } else if not desc.get.hasProp('ref') {
+        throw Error('Invalid property for ref', -1, name)
+    }
+    return desc.get.ref
+
+    makeRef(desc) {
+        v := desc.deleteProp('value')
+        desc.get := (this)        => v
+        desc.set := (this, value) => v := value
+        desc.get.ref := &v
+        return desc
+    }
+}
+
+;= =============================================================================
 ;= String
 ;= =============================================================================
 
@@ -182,63 +241,4 @@ Zoom_MeetingWinExist(isVisible) {
     
     winTitle := isVisible ? 'Zoom' : ''
     return WinExist(winTitle ' ahk_pid ' meetingWinPid)
-}
-
-;= =============================================================================
-;= Control
-;= =============================================================================
-
-ControlClassNnFocused(winTitle, controlClassNn, useRegEx := 0) {
-    try {
-        focusedControlHwnd    := ControlGetFocus(winTitle)
-        focusedControlClassNn := ControlGetClassNn(focusedControlHwnd)
-    } catch {
-        return
-    }
-
-    if not useRegEx and focusedControlClassNn != controlClassNn {
-        return
-    } else if not RegExMatch(focusedControlClassNn, controlClassNn) {
-        return
-    }
-
-    ; TODO: When '#HotIf [string]' is made to evaluate to true, remove the 'not not' below
-    return not not focusedControlClassNn
-}
-
-ControlGetHwndFromClassNnAndTextElseExit(controlClassNn, controlText) {
-    try {
-        controlHwnd := ControlGetHwnd(controlClassNn)
-    } catch {
-        exit
-    }
-    controlTextFromClassNn := ControlGetText(controlClassNn)
-
-    if controlText != controlTextFromClassNn {
-        exit
-    }
-    return controlHwnd
-}
-
-MouseControlFocus(control := '', winTitle := '', winText := '', excludedTitle := '', excludedText := '') {
-    MouseGetPos(, , &mouseHwnd, &mouseControlHwnd, 2)
-    WinActivate(mouseHwnd)
-
-    if not WinActive(winTitle ' ahk_id ' mouseHwnd, winText, excludedTitle, excludedText) {
-        return
-    }
-    ControlFocus(mouseControlHwnd)
-
-    if control = '' {
-        return mouseControlHwnd
-    }
-    try {
-        controlHwnd := ControlGetHwnd(control)
-    } catch {
-        return
-    }
-    if controlHwnd != mouseControlHwnd {
-        return
-    }
-    return mouseControlHwnd
 }
