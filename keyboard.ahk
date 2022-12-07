@@ -234,6 +234,8 @@ Firefox_CustomShortcut(num) {
 #':: ActivatePowerToysRunPlugin('*')
         ; Search programs.
 
+#/:: ActivatePowerToysRunPlugin('?')
+        ; Search web.
 
 ActivatePowerToysRunPlugin(activationCmd) {
     DetectHiddenWindows(true)
