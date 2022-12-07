@@ -550,14 +550,21 @@ Volume_Mute:: vk13
 
 SetCapsLockState('AlwaysOff')
 
-CapsLock & Space::
-CapsLock & Enter:: 
-CapsLock & Tab:: {
+~CapsLock & Space::
+~CapsLock & Enter:: 
+~CapsLock & Tab:: {
     hk := HotkeySplit(thisHotkey)
     Send('{' hk[2] '}{Left}')
+
+    if A_PriorKey != 'CapsLock' {
+        return
+    }
+    SetOppCapsLockState()
 }
 
-CapsLock Up:: {
+CapsLock:: SetOppCapsLockState()
+
+SetOppCapsLockState() {
     if GetKeyState('CapsLock', 'T') {
         SetCapsLockState('AlwaysOff')
     } else {
