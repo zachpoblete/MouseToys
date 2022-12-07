@@ -342,6 +342,8 @@ RunSelectedAsDir() {
 OpenSettings() {
     switch ChordInput() {
     case 'i': Send('{LWin Down}i{LWin Up}')
+    case 's': ActivatePowerToysRunPlugin('$')
+            ; Search Windows settings.
     case 'v': Run('App volume and device preferences', 'C:\Windows')
     }
 }
@@ -544,6 +546,9 @@ Firefox_CustomShortcut(num) {
 
 #/:: ActivatePowerToysRunPlugin('?')
         ; Search web.
+
+#=:: ActivatePowerToysRunPlugin('=')
+        ; Do mathematical calculations.
 
 ActivatePowerToysRunPlugin(activationCmd) {
     DetectHiddenWindows(true)
