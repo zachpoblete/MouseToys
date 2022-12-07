@@ -700,7 +700,7 @@ MapF13UntilF24() {
 ;== BackSpace
 ;== ============================================================================
 
-#HotIf ControlClassNnFocused('A', '^Edit\d+$', true)
+#HotIf ControlClassNnFocused('A', '^Edit\d+$', true) or ControlClassNnFocused('ahk_exe AcroRd32.exe', 'AVL_AVView32')
 /**
  * ^BS doesn't natively work because it produces a control character,
  * so work around that.
