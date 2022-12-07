@@ -705,7 +705,7 @@ MapF13UntilF24() {
 
 #HotIf ControlClassNnFocused('A', '^Edit\d+$', true)
 /**
- * ^BS doesn't natively work,
+ * ^BS doesn't natively work because it produces a control character,
  * so work around that.
  */
 ^BS:: {
