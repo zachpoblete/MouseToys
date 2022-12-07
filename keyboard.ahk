@@ -92,7 +92,7 @@ Alt Up:: {
 ^+q:: Firefox_SearchYouTube(true)
 
 Firefox_SearchYouTube(inNew) {
-    inNew := (inNew)? 't' : 'l'
+    inNew := inNew ? 't' : 'l'
     Send('{Ctrl Down}' inNew '{Ctrl Up}')
 
     ;~ SetTitleMatchMode(3)
