@@ -68,7 +68,7 @@ PrintScreen:: Send('{LWin Down}{Alt Down}{PrintScreen}{Alt Up}{LWin Up}')
 ProcessRestart() {
     WinExist('A')
 
-    winPid := WinGetPID()
+    winPid := WinGetPid()
     winPath := ProcessGetPath(winPid)
 
     WinClose()
@@ -316,7 +316,7 @@ Volume_Mute:: vk13
 #HotIf GetKeyState('NumLock', 'T')
 d:: WinOpenDir()
 WinOpenDir() {
-    winPid := WinGetPID('A')
+    winPid := WinGetPid('A')
     winPath := ProcessGetPath(winPid)
     winDir := RegExReplace(winPath, '\\[^\\]+$')
     Run(winDir)
