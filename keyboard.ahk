@@ -331,9 +331,7 @@ ActivatePowerToysRun() {
             ; Exit minimized video window.
 }
 
-#HotIf WinActive(K_CLASSES['ZOOM']['HOME'])
-        and not WinExist('Zoom ahk_pid ' WinGetPid.tryCall(K_CLASSES['ZOOM']['TOOLBAR']))
-                ; Check if a visible meeting window doesn't exist.
+#HotIf WinActive(K_CLASSES['ZOOM']['HOME']) and not Zoom_MeetingWinExist(true)
 !F4:: ProcessClose('Zoom.exe')
         ; Can't use WinClose because that minimizes here.
 #HotIf
@@ -342,8 +340,7 @@ ActivatePowerToysRun() {
 ;=== Reactions
 ;=== ===========================================================================
 
-#HotIf WinActive('ahk_pid ' WinGetPid.tryCall(K_CLASSES['ZOOM']['TOOLBAR']))
-        ; Check if a meeting window is active.
+#HotIf Zoom_MeetingWinExist(false)
 !=:: Zoom_ThumbsUpReact()
 Zoom_ThumbsUpReact() {
     Zoom_OpenReactions()

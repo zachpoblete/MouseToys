@@ -4,13 +4,6 @@
 ;= Meta
 ;= =============================================================================
 
-Func.prototype.defineProp('tryCall', {call: FuncProto_TryCall})
-FuncProto_TryCall(this, params*) {
-    try {
-        return this(params*)
-    }
-}
-
 Object.prototype.defineProp('refProp', {call: ObjProto_RefProp})
 /**
  * Taken from Lexikos from:
@@ -178,6 +171,17 @@ MouseWinActivate(winTitle := '', winText := '', excludedTitle := '', excludedTex
     return WinActive(winTitle ' ahk_id ' mouseHwnd, winText, excludedTitle, excludedText)
         ; mouseHwnd is there for the case
         ; when all the parameters are blank and there is no last found window.
+}
+
+Zoom_MeetingWinExist(isVisible) {
+    try {
+        meetingWinPid := WinGetPid(K_CLASSES['ZOOM']['TOOLBAR'])
+    } catch {
+        return
+    }
+    
+    winTitle := isVisible ? 'Zoom' : ''
+    return WinExist(winTitle ' ahk_pid ' meetingWinPid)
 }
 
 ;= =============================================================================

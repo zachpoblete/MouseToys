@@ -361,8 +361,7 @@ MouseWinClose() {
                 ; Show 'End Meeting or Leave Meeting?' prompt in the middle of the screen
                 ; instead of the corner of the window.
     } else if WinActive(K_CLASSES['ZOOM']['HOME']) {
-        if WinExist('Zoom ahk_pid ' WinGetPid.tryCall(K_CLASSES['ZOOM']['TOOLBAR'])) {
-                ; Check if a visible Zoom meeting window exists.
+        if Zoom_MeetingWinExist(true) {
             ControlSend('{Alt Down}q{Alt Up}', , K_CLASSES['ZOOM']['MEETING'])
         } else {
             ProcessClose('Zoom.exe')
