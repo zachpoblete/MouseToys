@@ -228,19 +228,14 @@ Firefox_CustomShortcut(num) {
 ;== PowerToys Run
 ;== ============================================================================
 
-#;:: {
-    ActivatePowerToysRun()
-    Send('< ')
-            ; Search open windows.
-}
+#;:: ActivatePowerToysRunPlugin('<')
+        ; Search open windows.
 
-#':: {
-    ActivatePowerToysRun()
-    Send('* ')
-            ; Search programs.
-}
+#':: ActivatePowerToysRunPlugin('*')
+        ; Search programs.
 
-ActivatePowerToysRun() {
+
+ActivatePowerToysRunPlugin(activationCmd) {
     DetectHiddenWindows(true)
 
     if not WinExist('ahk_exe PowerToys.PowerLauncher.exe') {
@@ -253,6 +248,7 @@ ActivatePowerToysRun() {
     if not powerLauncherActive {
         return
     }
+    Send(activationCmd ' ')
 }
 
 #HotIf WinActive('ahk_exe PowerToys.PowerLauncher.exe')
