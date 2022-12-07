@@ -754,20 +754,20 @@ MapF13UntilF24() {
 
 #Hotstring EndChars `t
 
-:?cx:&deg;::    Send('{U+00B0}')
+:?x:&deg;::    Send('{U+00B0}')
         ; Degree.
 
-:?cx:&lr;::     Send('{U+200E}')
+:?x:&lr;::     Send('{U+200E}')
         ; Left-to-right mark.
 
-:?cx:&la;::     Send('{U+2190}')
+:?x:&la;::     Send('{U+2190}')
         ; Left arrow.
-:?cx:&ra;::     Send('{U+2192}')
+:?x:&ra;::     Send('{U+2192}')
         ; Right arrow.
 
-:?cx:&md;::     Send('{U+2014}')
+:?x:&md;::     Send('{U+2014}')
         ; Em dash.
-:?cx:&nd;::     Send('{U+2013}')
+:?x:&nd;::     Send('{U+2013}')
         ; En dash.
 
 :?cx:&N~;::     Send('{U+00D1}')
@@ -775,9 +775,9 @@ MapF13UntilF24() {
 :?cx:&n~;::     Send('{U+00F1}')
         ; n tilde.
 
-:?cx:&peso;::   Send('{U+20B1}')
+:?x:&peso;::   Send('{U+20B1}')
 
-:*?b0c:&tab:: {
+:*?b0:&tab:: {
     ih := InputHook('L3 V', '{Tab}')
     ih.keyOpt('{Tab}', 'S')
     ih.start()
@@ -804,28 +804,28 @@ MapF13UntilF24() {
 ;=== Math and Science
 ;=== ============================================================================
 
-:?cx:&bullet;::  Send('{U+2219}')
+:?x:&bullet;::  Send('{U+2219}')
 
-:?cx:&infin;::   Send('{U+221E}')
+:?x:&infin;::   Send('{U+221E}')
         ; Infinity.
 
-:?cx:&ne;::      Send('{U+2260}')
+:?x:&ne;::      Send('{U+2260}')
         ; Not equal.
-:?cx:&le;::      Send('{U+2264}')
+:?x:&le;::      Send('{U+2264}')
         ; Lesser than or equal.
-:?cx:&ge;::      Send('{U+2265}')
+:?x:&ge;::      Send('{U+2265}')
         ; Greater than or equal.
-:?cx:&pm;::      Send('{U+00B1}')
+:?x:&pm;::      Send('{U+00B1}')
         ; Plus-minus.
 
-:?cx:&radic3;::  Send('{U+221B}')
-:?cx:&radic4;::  Send('{U+221C}')
+:?x:&radic3;::  Send('{U+221B}')
+:?x:&radic4;::  Send('{U+221C}')
 
-:?cx:&scriptM;:: Send('{U+2133}')
+:?x:&scriptM;:: Send('{U+2133}')
 
-:?cx:&times;::   Send('{U+00D7}')
+:?x:&times;::   Send('{U+00D7}')
 
-:?cx:&xbar;::    Send('{U+0078}{U+0305}')
+:?x:&xbar;::    Send('{U+0078}{U+0305}')
 
 ;=== ============================================================================
 ;=== Greek Alphabet
