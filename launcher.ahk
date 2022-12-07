@@ -1,4 +1,4 @@
-#Requires AutoHotkey v2.0-beta.7
+#Requires AutoHotkey v2.0-rc.2
 
 #Include <default-settings>
 #Include <globals>
