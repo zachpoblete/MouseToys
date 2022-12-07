@@ -103,6 +103,9 @@ GetFileExt(fileName) {
 }
 
 OnFileSave(fileName, fn, shouldCall := true) {
+    periodMs := shouldCall ? 1000 : 0
+    SetTimer(() => funcIfSave(fn), periodMs)
+
     funcIfSave(fn) {
         fileAttrib := FileGetAttrib(fileName)
         if not InStr(fileAttrib, 'A') {
@@ -111,9 +114,6 @@ OnFileSave(fileName, fn, shouldCall := true) {
         FileSetAttrib('-A', fileName)
         fn()
     }
-
-    periodMs := shouldCall ? 1000 : 0
-    SetTimer(() => funcIfSave(fn), periodMs)
 }
 
 StdOut(text, delayMs := '', delimiter := '') {

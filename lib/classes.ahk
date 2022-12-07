@@ -27,13 +27,6 @@ class C_KeyWait {
 
 class C_Hotkey {
     static ctrlTab(hk, shouldPressShift) {
-        sendFirstAndLast(thisHotkey) {
-            Send('{Ctrl Down}' tab)
-            hk := HkSplit(thisHotkey)
-            KeyWait(hk[1])
-            Send('{Ctrl Up}')
-        }
-
         tab := shouldPressShift ? '{Shift Down}{Tab}{Shift Up}' : '{Tab}'
 
         HotIf((thisHotkey) => GetKeyState('Ctrl'))
@@ -41,6 +34,13 @@ class C_Hotkey {
 
         HotIf()
         Hotkey(hk, (thisHotkey) => sendFirstAndLast(thisHotkey))
+
+        sendFirstAndLast(thisHotkey) {
+            Send('{Ctrl Down}' tab)
+            hk := HkSplit(thisHotkey)
+            KeyWait(hk[1])
+            Send('{Ctrl Up}')
+        }
     }
 
     class Browser {
@@ -57,6 +57,14 @@ class C_Hotkey {
         }
 
         static searchSelectedAsUrl(hk, engine := '', hotIfExFn := {}) {
+            this.hotIfCondition(hotIfExFn)
+            Hotkey(hk, (thisHotkey) => searchUrlInTab(true))
+            Hotkey('+' hk, (thisHotkey) => searchUrlInTab(false))
+
+            HotIf((thisHotkey) => hotIfExFn())
+            Hotkey(hk, (thisHotkey) => runUrl())
+            HotIf()
+
             searchUrlInTab(inNew) {
                 url := getUrlFromSelectedElseExit()
 
@@ -81,14 +89,6 @@ class C_Hotkey {
                     return query
                 }
             }
-
-            this.hotIfCondition(hotIfExFn)
-            Hotkey(hk, (thisHotkey) => searchUrlInTab(true))
-            Hotkey('+' hk, (thisHotkey) => searchUrlInTab(false))
-
-            HotIf((thisHotkey) => hotIfExFn())
-            Hotkey(hk, (thisHotkey) => runUrl())
-            HotIf()
         }
     }
 }

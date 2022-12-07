@@ -19,14 +19,6 @@ GroupAdd('ZoomWins', 'ahk_class ^Z ahk_exe Zoom.exe')
 ^+!Tab:: OperateOnActiveGroup('Close')
 
 OperateOnActiveGroup(action) {
-    check(groupName) {
-        if not WinActive('ahk_group ' groupName) {
-            return
-        }
-        Group%action%(groupName)
-        exit
-    }
-    
     check('ExplorerWins')
 
     SetTitleMatchMode('RegEx')
@@ -41,6 +33,14 @@ OperateOnActiveGroup(action) {
     
     GroupAdd(groupName, 'ahk_exe ' processName)
     Group%action%(groupName)
+
+    check(groupName) {
+        if not WinActive('ahk_group ' groupName) {
+            return
+        }
+        Group%action%(groupName)
+        exit
+    }
 }
 
 ;= =============================================================================
@@ -683,11 +683,6 @@ Zoom_OpenReactions() {
     }
     ControlGetPos(&controlX, &controlY, &controlW, &controlH, K_CONTROLS['ZOOM']['MEETING_TOOLS'])
     
-    iconClick(imageFileName) {
-        ImageSearch(&imageX, &imageY, controlX, controlY, controlX + controlW, controlY + controlH, '*50 images\' imageFileName '-icon.png')
-        ControlClick('x' imageX ' y' imageY)
-    }
-
     Loop {
         try {
             iconClick('reactions')
@@ -729,6 +724,11 @@ Zoom_OpenReactions() {
     Click(imageX ' ' imageY)
     Sleep(10)
     MouseMove(mouseX, mouseY)
+
+    iconClick(imageFileName) {
+        ImageSearch(&imageX, &imageY, controlX, controlY, controlX + controlW, controlY + controlH, '*50 images\' imageFileName '-icon.png')
+        ControlClick('x' imageX ' y' imageY)
+    }
 }
 #HotIf
 
@@ -846,8 +846,6 @@ if GetKeyState('NumLock', 'T') {
  */
 ~*NumLock:: NumLockIndicatorFollowMouse()
 NumLockIndicatorFollowMouse() {
-    toolTipNumLock() => ToolTip('NumLock On')
-
     Sleep(10)
 
     if GetKeyState('NumLock', 'T') {
@@ -856,6 +854,8 @@ NumLockIndicatorFollowMouse() {
         SetTimer(toolTipNumLock, 0)
         ToolTip()
     }
+
+    toolTipNumLock() => ToolTip('NumLock On')
 }
 
 ;== ============================================================================
