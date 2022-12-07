@@ -655,7 +655,8 @@ ActivatePowerToysRunPlugin(activationCmd) {
 !=:: Zoom_ThumbsUpReact()
 Zoom_ThumbsUpReact() {
     Zoom_OpenReactions()
-    Sleep(50)
+    Sleep(200)
+            ; WinWaitActive(K_CLASSES['ZOOM']['REACTION']) doesn't work fsr.
     
     CoordMode('Mouse', 'Client')
     CoordMode('Pixel', 'Client')
