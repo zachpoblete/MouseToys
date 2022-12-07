@@ -74,7 +74,12 @@ class C_Hotkey {
             }
             getUrlFromSelectedElseExit() {
                 query := GetSelectedElseExit()
-                return (engine)? QueryToUrl(query, engine) : query
+                
+                if engine {
+                    return QueryToUrl(query, engine)
+                } else {
+                    return query
+                }
             }
 
             this.hotIfCondition(hotIfExFn)
