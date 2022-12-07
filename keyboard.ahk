@@ -533,7 +533,7 @@ DisplayAndSetVolume(variation) {
             ; Override that normal variation of 2.
 }
 
-#HotIf not GetKeyState('CapsLock', 'T')
+#HotIf GetKeyState('CapsLock', 'T')
 #InputLevel 1
 Volume_Mute:: vk13
         ; Pause key.
