@@ -184,6 +184,24 @@ MouseWinActivate(winTitle := '', winText := '', excludedTitle := '', excludedTex
 ;= Control
 ;= =============================================================================
 
+ControlClassNnFocused(winTitle, controlClassNn, useRegEx := 0) {
+    try {
+        focusedControlHwnd    := ControlGetFocus(winTitle)
+        focusedControlClassNn := ControlGetClassNn(focusedControlHwnd)
+    } catch {
+        return
+    }
+
+    if not useRegEx and focusedControlClassNn != controlClassNn {
+        return
+    } else if not RegExMatch(focusedControlClassNn, controlClassNn) {
+        return
+    }
+
+    ; TODO: When '#HotIf [string]' is made to evaluate to true, remove the 'not not' below
+    return not not focusedControlClassNn
+}
+
 ControlGetHwndFromClassNnAndTextElseExit(controlClassNn, controlText) {
     try {
         controlHwnd := ControlGetHwnd(controlClassNn)

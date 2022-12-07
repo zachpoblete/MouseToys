@@ -51,6 +51,38 @@ AppToggleMute() {
 }
 
 ;== ============================================================================
+;== Adobe Reader
+;== ============================================================================
+
+#HotIf ControlClassNnFocused('ahk_exe AcroRd32.exe', 'AVL_AVView32')
+^Left::  Send('{Ctrl Down}{Shift Down}{Left}{Shift Up}{Ctrl Up}{Up}')
+^Right:: Send('{Ctrl Down}{Shift Down}{Right}{Shift Up}{Ctrl Up}{Down}')
+
+; hk := HotkeySplit(thisHotkey)
+; horiz := '{' hk[2] '}'
+
+; if horiz = '{Left}' {
+;     oppHoriz := '{Right}'
+;     vert := '{Up}'
+
+; } else {
+;     oppHoriz := '{Left}'
+;     vert := '{Down}'
+; }
+
+; Send('{Ctrl Down}{Shift Down}' horiz '{Shift Up}{Ctrl Up}')
+; selected := GetSelected()
+
+; if not StrReplace(selected, ' ') {
+;     Send('{Ctrl Down}{Shift Down}' horiz '{Shift Up}{Ctrl Up}')
+; }
+
+; Sleep(30)
+; Send(vert oppHoriz)
+
+#HotIf
+
+;== ============================================================================
 ;== Browsers
 ;== ============================================================================
 
@@ -671,7 +703,7 @@ MapF13UntilF24() {
 ;== BackSpace
 ;== ============================================================================
 
-#HotIf RegExMatch(ControlGetFocus.tryCall('A'), '^Edit\d+$')
+#HotIf ControlClassNnFocused('A', '^Edit\d+$', true)
 /**
  * ^BS doesn't natively work,
  * so work around that.
