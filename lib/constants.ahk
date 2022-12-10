@@ -32,7 +32,7 @@ K_CONTROLS := Map(
 )
 
     K_CONTROLS['ZOOM'] := Map(
-        'MEETING_TOOLS', 'ZPControlPanelClass1'
+        'MEETING_CONTROLS', 'ZPControlPanelClass1'
     )
 
 K_CONTROL_CODES := Map(

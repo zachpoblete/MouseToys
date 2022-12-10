@@ -733,10 +733,10 @@ Zoom_OpenReactions() {
         WinActivate()
     }
 
-    if not ControlGetVisible(K_CONTROLS['ZOOM']['MEETING_TOOLS']) {
-        ControlShow(K_CONTROLS['ZOOM']['MEETING_TOOLS'])
+    if not ControlGetVisible(K_CONTROLS['ZOOM']['MEETING_CONTROLS']) {
+        ControlShow(K_CONTROLS['ZOOM']['MEETING_CONTROLS'])
     }
-    ControlGetPos(&controlX, &controlY, &controlW, &controlH, K_CONTROLS['ZOOM']['MEETING_TOOLS'])
+    ControlGetPos(&controlX, &controlY, &controlW, &controlH, K_CONTROLS['ZOOM']['MEETING_CONTROLS'])
     
     Loop {
         try {
