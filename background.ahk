@@ -68,13 +68,13 @@ CloseMonokaiPopup() {
     if not WinExist('Visual Studio Code ' K_CLASSES['DIALOG_BOX'] ' ahk_exe Code.exe') {
         return
     }
-    okButtonHwnd     := ControlGetHwndFromClassNnAndTextElseExit('Button1', 'OK')
-    cancelButtonHwnd := ControlGetHwndFromClassNnAndTextElseExit('Button2', 'Cancel')
+    okBtnHwnd     := ControlGetHwndFromClassNnAndTextElseExit('Button1', 'OK')
+    cancelBtnHwnd := ControlGetHwndFromClassNnAndTextElseExit('Button2', 'Cancel')
 
     activeMsg := GetSelected()
 
     if activeMsg != monokaiMsg {
         return
     }
-    ControlClick(cancelButtonHwnd)
+    ControlClick(cancelBtnHwnd)
 }

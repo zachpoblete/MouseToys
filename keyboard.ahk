@@ -250,8 +250,8 @@ ProcessRestart() {
 ;== Media
 ;== ============================================================================
 
-Pause:: OneButtonRemote()
-OneButtonRemote() {
+Pause:: OneBtnRemote()
+OneBtnRemote() {
     static pressCount := 0
     
     pressCount++
