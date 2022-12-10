@@ -68,13 +68,62 @@ PrintScreen:: Send('{LWin Down}{Alt Down}{PrintScreen}{Alt Up}{LWin Up}')
 ProcessRestart() {
     WinExist('A')
 
-    winPid := WinGetPid()
-    winPath := ProcessGetPath(winPid)
+    winId := WinGetID()
+    winProcessName := WinGetProcessName()
+    winClass := WinGetClass()
 
-    WinClose()
-    Sleep(1000)
-    ProcessWaitClose(winPid, 5)
-    Run(winPath)
+    winPath := ProcessGetPath(winProcessName)
+    similarWinIds := WinGetList('ahk_class ' winClass ' ahk_exe ' winProcessName)
+
+    if similarWinIds.length < 2 {
+        WinClose()
+        restartCurrentInstance()
+        return
+    }
+
+    gui_Choice := Gui()
+    gui_Choice.opt('-SysMenu')
+    gui_Choice.setFont('s9')
+    gui_Choice.add('Text', , 'Do you want to restart the current instance and close all other instances?')
+
+    btn_AllInstances    := gui_Choice.add('Button', 'Default y+20',
+            'Restart current instance and close all other &instances')
+    btn_CurrentInstance := gui_Choice.add('Button', 'x+10', 'Just restart c&urrent instance')
+    btn_Cancel          := gui_Choice.add('Button', 'w70 x+10', '&Cancel')
+
+    btn_AllInstances.onEvent('Click', onClick_Btn_AllInstances)
+    btn_CurrentInstance.onEvent('Click', onClick_Btn_CurrentInstance)
+    btn_Cancel.onEvent('Click', onClick_Btn_Cancel)
+
+    gui_Choice.show()
+
+    onClick_Btn_AllInstances(guiCtrlObj, info) {
+        for thisWinId in similarWinIds {
+            WinClose(thisWinId)
+        }
+        gui_Choice.destroy()
+        restartCurrentInstance()
+    }
+    onClick_Btn_CurrentInstance(guiCtrlObj, info) {
+        WinClose(winId)
+        gui_Choice.destroy()
+        restartCurrentInstance()
+    }
+    onClick_Btn_Cancel(guiCtrlObj, info) {
+        gui_Choice.destroy()
+    }
+
+    restartCurrentInstance() {
+        Sleep(1000)
+
+        winDoesExist := WinWaitClose(winId, , 5)
+        if not winDoesExist {
+            MsgBox('Unable to close current instance')
+            exit
+        }
+
+        Run(winPath)
+    }
 }
 
 ;= =============================================================================
