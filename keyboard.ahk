@@ -725,7 +725,7 @@ Zoom_OpenReactions() {
     CoordMode('Pixel')
 
     MouseGetPos(&mouseX, &mouseY)
-    ImageSearch(&imageX, &imageY, 0, 0, G_.virtualScreenW, G_.virtualScreenH, '*50 images\reactions-menu-item.png')
+    ImageSearch(&imageX, &imageY, 0, 0, G_VirtualScreenW, G_VirtualScreenH, '*50 images\reactions-menu-item.png')
     
     Click(imageX ' ' imageY)
     Sleep(10)

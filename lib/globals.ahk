@@ -3,7 +3,5 @@
 G_MouseIsMovingWin := false
 G_WillReload := false
 
-class G_ {
-    static virtualScreenW => SysGet(78)
-    static virtualScreenH => SysGet(79)
-}
+G_VirtualScreenW := () => SysGet(78)
+G_VirtualScreenH := () => SysGet(79)
