@@ -30,7 +30,7 @@ SendInstantRaw(text) {
     A_Clipboard := text
     ClipWait(0.05)
     Send('{Ctrl Down}v{Ctrl Up}')
-    SetTimer(() => A_Clipboard := savedClipboard, -50)
+    SetTimer(() => A_Clipboard := savedClipboard, -100)
             ; Fsr, Sleep(50) is too fast.
 }
 
