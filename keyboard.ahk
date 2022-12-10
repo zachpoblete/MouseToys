@@ -364,7 +364,7 @@ AppToggleMute() {
 ;== Adobe Reader
 ;== ============================================================================
 
-#HotIf ControlClassNnFocused('ahk_exe AcroRd32.exe', 'AVL_AVView32')
+#HotIf ControlClassNnFocused('ahk_exe AcroRd32.exe', '^AVL_AVView', true)
 ^Left::  Send('{Ctrl Down}{Shift Down}{Left}{Shift Up}{Ctrl Up}{Up}')
 ^Right:: Send('{Ctrl Down}{Shift Down}{Right}{Shift Up}{Ctrl Up}{Down}')
 
@@ -746,7 +746,8 @@ Zoom_OpenReactions() {
 ;== BackSpace
 ;== ============================================================================
 
-#HotIf ControlClassNnFocused('A', '^Edit\d+$', true) or ControlClassNnFocused('ahk_exe AcroRd32.exe', 'AVL_AVView32')
+#HotIf ControlClassNnFocused('A', '^Edit\d+$', true)
+        or ControlClassNnFocused('ahk_exe AcroRd32.exe', '^AVL_AVView', true)
 /**
  * ^BS doesn't natively work because it produces a control character,
  * so work around that.
