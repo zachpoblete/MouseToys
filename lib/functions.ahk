@@ -52,8 +52,7 @@ ControlClassNnFocused(winTitle, controlClassNn, useRegEx := 0) {
         return
     }
 
-    ; TODO: When '#HotIf [string]' is made to evaluate to true, remove the 'not not' below
-    return not not focusedControlClassNn
+    return focusedControlClassNn
 }
 
 ControlGetHwndFromClassNnAndTextElseExit(controlClassNn, controlText) {
