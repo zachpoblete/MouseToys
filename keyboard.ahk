@@ -158,8 +158,6 @@ ProcessRestart() {
 
 :?x:&md;::     Send('{U+2014}')
         ; Em dash.
-:?x:&nd;::     Send('{U+2013}')
-        ; En dash.
 
 :?cx:&N~;::     Send('{U+00D1}')
         ; N tilde.
@@ -268,6 +266,8 @@ ProcessRestart() {
 
 :?x:&scriptM;:: Send('{U+2133}')
 
+:?x:&sqrt;::    Send('{U+221A}')
+
 :?x:&times;::   Send('{U+00D7}')
 
 :?x:&xbar;::    Send('{U+0078}{U+0305}')
@@ -278,17 +278,8 @@ ProcessRestart() {
 
 #InputLevel 1
 +Space:: Send('_')
-
-/**
- * Send square root symbol.
- */
-+-:: {
-    if WinActive('Desmos ahk_exe msedge.exe') or WinActive('ahk_exe EXCEL.EXE') {
-        Send('sqrt')
-    } else {
-        Send('{U+221A}')
-    }
-}
++-::     Send('{U+2013}')
+        ; En dash.
 #InputLevel
 
 ;= =============================================================================
