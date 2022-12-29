@@ -37,7 +37,7 @@
     }
 }
 
-#^h:: Run('https://lexikos.github.io/v2/docs/AutoHotkey.htm')
+#^h:: Run('https://www.autohotkey.com/docs/v2/')
 
 #^w:: WinSpy()
 WinSpy() {
