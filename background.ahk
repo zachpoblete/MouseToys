@@ -15,11 +15,16 @@ UpdateVSCodeExtList() {
         extList .= A_LoopFileName '`r`n'
     }
     
-    obsoleteFilePath := vsCodeExtsDir '\.obsolete'
-    Loop Read obsoleteFilePath {
-        RegExMatch(A_LoopReadLine, '"(.+)"', &obsoleteExt)
-        extList := RegExReplace(extList, obsoleteExt[1] '`r`n')
-    } else {
+    obsoleteFile := vsCodeExtsDir '\.obsolete'
+    obsoleteFilesStr := FileRead(obsoleteFile)
+    if obsoleteFilesStr {
+        obsoleteFilesStr := LTrim(obsoleteFilesStr, '{"')
+        obsoleteFilesStr := RTrim(obsoleteFilesStr, '":true}')
+
+        obsoleteFilesStr := StrReplace(obsoleteFilesStr, '":true,"', '|')
+        Loop Parse obsoleteFilesStr, '|' {
+            extList := RegExReplace(extList, A_LoopField '`r`n')
+        }
     }
 
     extListFile := A_AppData '\Code\User\extensions.txt'
