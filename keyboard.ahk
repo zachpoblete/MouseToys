@@ -450,7 +450,7 @@ BrowserHotkeys(hotIfExFn) {
 #HotIf WinActive('ahk_exe msedge.exe') or WinActive('ahk_exe firefox.exe')
 !;::  VimcCmd(1)
         ; LinkHints.activate.
-!+;:: VimcCmd(2)
++!;:: VimcCmd(2)
         ; LinkHints.activateEdit.
 ^!;:: VimcCmd(3)
         ; LinkHints.activateHover.
@@ -479,7 +479,7 @@ BrowserHotkeys(hotIfExFn) {
 
 ^!p::    VimcCmd(11)
         ; togglePinTab.
-^!+d::   VimcCmd(12)
+^+!d::   VimcCmd(12)
         ; duplicateTab.
 ^!r::    VimcCmd(13)
         ; reopenTab.
@@ -636,13 +636,13 @@ ActivatePowerToysRunPlugin(activationCmd) {
  * When you increase the friend activity width, the bar grows fatter,
  * so assign Left and Right to it.
  */
-!+Down::  Send('{Alt Down}{Shift Down}{Left}{Shift Up}{Alt Up}')
++!Down::  Send('{Shift Down}{Alt Down}{Left}{Alt Up}{Shift Up}')
         ; Decrease navigation bar width.
-!+Up::    Send('{Alt Down}{Shift Down}{Right}{Shift Up}{Alt Up}')
++!Up::    Send('{Shift Down}{Alt Down}{Right}{Alt Up}{Shift Up}')
         ; Increase navigation bar width.
-!+Left::  Send('{Alt Down}{Shift Down}{Down}{Shift Up}{Alt Up}')
++!Left::  Send('{Shift Down}{Alt Down}{Down}{Alt Up}{Shift Up}')
         ; Increase friend activity width.
-!+Right:: Send('{Alt Down}{Shift Down}{Up}{Shift Up}{Alt Up}')
++!Right:: Send('{Shift Down}{Alt Down}{Up}{Alt Up}{Shift Up}')
         ; Decrease friend activity width.
 #HotIf
 
@@ -653,21 +653,21 @@ ActivatePowerToysRunPlugin(activationCmd) {
 #HotIf WinActive('ahk_exe Spotify.exe')
 /**
  * * keyboardShortcut-Quarter.js:
- * *     !+l:: toggleLyrics()
- * *     !+q:: toggleQueue()
- * *     !+m:: openSpicetifyMarketPlace()
+ * *     +!l:: toggleLyrics()
+ * *     +!q:: toggleQueue()
+ * *     +!m:: openSpicetifyMarketPlace()
  *
- * !+2 goes to Your Podcasts,
+ * +!2 goes to Your Podcasts,
  * but because of the Hide Podcasts extension,
  * Your Podcasts isn't listed in Your Library,
- * so !+2 should redirect to Your Artists instead.
- * The same logic applies to !+3 and !+4.
+ * so +!2 should redirect to Your Artists instead.
+ * The same logic applies to +!3 and +!4.
  */
-!+2:: Send('{Alt Down}{Shift Down}3{Shift Up}{Alt Up}')
++!2:: Send('{Shift Down}{Alt Down}3{Alt Up}{Shift Up}')
         ; Go to Your Artists.
-!+3:: Send('{Alt Down}{Shift Down}4{Shift Up}{Alt Up}')
++!3:: Send('{Shift Down}{Alt Down}4{Alt Up}{Shift Up}')
         ; Go to Your Albums.
-!+4:: return
++!4:: return
 #HotIf
 
 ;== ============================================================================
