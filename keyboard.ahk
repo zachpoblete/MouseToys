@@ -444,6 +444,90 @@ BrowserHotkeys(hotIfExFn) {
 }
 
 ;=== ===========================================================================
+;=== Vimium C Commands
+;=== ===========================================================================
+
+#HotIf WinActive('ahk_exe msedge.exe') or WinActive('ahk_exe firefox.exe')
+!;::  VimcCmd(1)
+        ; LinkHints.activate.
+!+;:: VimcCmd(2)
+        ; LinkHints.activateEdit.
+^!;:: VimcCmd(3)
+        ; LinkHints.activateHover.
+
+^!c:: {
+    switch ChordInput() {
+    case ';':   VimcCmd(4)
+        ; LinkHints.activateCopyLinkUrl.
+    case '<+;': VimcCmd(5)
+        ; LinkHints.activateCopyLinkText.
+    case '>+;': VimcCmd(5)
+    case 'i':   VimcCmd(6)
+        ; LinkHints.activateCopyImage.
+    case 't':   VimcCmd(7)
+        ; copyCurrentTitle.
+    }
+}
+
+^!Left::  VimcCmd(8)
+        ; goPrevious.
+^!Right:: VimcCmd(9)
+        ; goNext.
+
+^F6:: VimcCmd(10)
+        ; nextFrame.
+
+^!p::    VimcCmd(11)
+        ; togglePinTab.
+^!+d::   VimcCmd(12)
+        ; duplicateTab.
+^!r::    VimcCmd(13)
+        ; reopenTab.
+^]::     VimcCmd(14)
+        ; removeRightTab.
+^+PgUp:: VimcCmd(15)
+        ; moveTabLeft.
+^+PgDn:: VimcCmd(16)
+        ; moveTabRight.
+
+^!d:: VimcCmd(17)
+        ; scrollDown.
+^!u:: VimcCmd(18)
+        ; scrollUp.
+!j::  VimcCmd(19)
+        ; scrollDown count=3.
+!k::  VimcCmd(20)
+        ; scrollUp count=3.
+!d::  VimcCmd(21)
+        ; scrollPageDown.
+!u::  VimcCmd(22)
+        ; scrollPageUp.
+^!j:: VimcCmd(23)
+        ; scrollToBottom.
+^!k:: VimcCmd(24)
+        ; scrollToTop.
+
+!h::  VimcCmd(25)
+        ; scrollLeft.
+!l::  VimcCmd(26)
+        ; scrollRight.
+^!h:: VimcCmd(27)
+        ; scrollToLeft.
+^!l:: VimcCmd(28)
+        ; scrollToRight.
+
+VimcCmd(num) {
+    if num > 24 {
+        Send('{Ctrl Down}{F' (num - 12) '}{Ctrl Up}')
+    } else if num > 12 {
+        Send('{Shift Down}{F' num '}{Shift Up}')
+    } else {
+        Send('{F' (num + 12) '}')
+    }
+}
+#HotIf
+
+;=== ===========================================================================
 ;=== Edge
 ;=== ===========================================================================
 
@@ -485,78 +569,6 @@ Firefox_SearchYouTube(inNew) {
     ;~ }
     Sleep(150)
     Send('@')
-}
-
-/**
- * Shortcut Forwarding Tool and Vimium C
- * These hotkeys activate the global browser shortcuts.
- * The reason some numbers are missing is because some combinations of Ctrl, Alt, Shift, and F[1-12] are
- * built-in to Firefox and are intercepted by Firefox first and not AutoHotkey;
- * thus, I've opted to leave their shortcuts in Firefox blank unless I choose
- * to supply a different shortcut from the Send pattern in Firefox_CustomShortcut.
- */
-
-!'::  Firefox_CustomShortcut(1)
-        ; LinkHints.activate.
-!+':: Firefox_CustomShortcut(2)
-        ; LinkHints.activateEdit.
-^!':: Firefox_CustomShortcut(3)
-        ; LinkHints.activateHover.
-
-^!c:: {
-    switch ChordInput() {
-    case '`'': Firefox_CustomShortcut(4)
-        ; LinkHints.activateCopyLinkUrl.
-    case '"':  Firefox_CustomShortcut(5)
-        ; LinkHints.activateCopyLinkText.
-    case 'i':  Firefox_CustomShortcut(7)
-        ; LinkHints.activateCopyImage.
-    case 't':  Firefox_CustomShortcut(8)
-        ; copyCurrentTitle.
-    }
-}
-
-!+Left::  Firefox_CustomShortcut(9)
-        ; goPrevious.
-!+Right:: Firefox_CustomShortcut(11)
-        ; goNext.
-
-!;::   Firefox_CustomShortcut(12)
-        ; Marks.activateCreate swap.
-!+;::  Firefox_CustomShortcut(13)
-        ; Marks.activate swap.
-^!;::  Firefox_CustomShortcut(14)
-        ; Marks.clearGlobal.
-^!+;:: Firefox_CustomShortcut(15)
-        ; Marks.clearLocal.
-
-!+/:: Firefox_CustomShortcut(17)
-        ; showHelp.
-
-!PgDn:: Firefox_CustomShortcut(18)
-        ; scrollPageDown.
-!PgUp:: Firefox_CustomShortcut(19)
-        ; scrollPageUp.
-
-^!d:: Firefox_CustomShortcut(20)
-        ; duplicateTab.
-
-/**
- * * These hotkeys are already configured in Firefox because they can be.
- * * These are the global shortcuts
- * * that I supplied a different shortcut from the Send pattern in Firefox_CustomShortcut:
- * *     ^F6:: Firefox_CustomShortcut(6)   ; nextFrame.
- * *     ^!r:: Firefox_CustomShortcut(10)  ; reopenTab.
- */
-
-Firefox_CustomShortcut(num) {
-    if num > 24 {
-        Send('{Ctrl Down}{Alt Down}{F' (num - 24) '}{Alt Up}{Ctrl Up}')
-    } else if num > 12 {
-        Send('{Alt Down}{Shift Down}{F' (num - 12) '}{Shift Up}{Alt Up}')
-    } else {
-        Send('{Ctrl Down}{Shift Down}{F' num '}{Shift Up}{Ctrl Up}')
-    }
 }
 #HotIf
 
