@@ -395,8 +395,8 @@ OpenSettings() {
 #!m:: AppToggleMute()
 AppToggleMute() {
     switch ChordInput() {
-    case 'z': Send('{Ctrl Down}{Shift Down}{Alt Down}{F1}{Alt Up}{Shift Up}{Ctrl Up}')
-    case 'd': Send('{Ctrl Down}{Shift Down}{Alt Down}{F2}{Alt Up}{Shift Up}{Ctrl Up}')
+    case 'z': Send('{Ctrl Down}{Shift Down}{Alt Down}{F13}{Alt Up}{Shift Up}{Ctrl Up}')
+    case 'd': Send('{Ctrl Down}{Shift Down}{Alt Down}{F14}{Alt Up}{Shift Up}{Ctrl Up}')
     }
 }
 
