@@ -16,8 +16,8 @@ UpdateVSCodeExtList() {
     }
     
     obsoleteFile := vsCodeExtsDir '\.obsolete'
-    obsoleteFilesStr := FileRead(obsoleteFile)
-    if obsoleteFilesStr {
+    try {
+        obsoleteFilesStr := FileRead(obsoleteFile)
         obsoleteFilesStr := LTrim(obsoleteFilesStr, '{"')
         obsoleteFilesStr := RTrim(obsoleteFilesStr, '":true}')
 
