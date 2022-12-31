@@ -843,8 +843,6 @@ SetOppCapsLockState() {
 
 MapF13UntilF24()
 MapF13UntilF24() {
-    remap := (num, thisHotkey) => Send('{Blind}{F' num '}')
-
     HotIf((thisHotkey) => GetKeyState('CapsLock', 'T'))
     Loop 12 {
         if A_Index < 3 {
@@ -855,6 +853,8 @@ MapF13UntilF24() {
         Hotkey('*F' (A_Index), remap.bind(num))
     }
     HotIf
+
+    remap(num, thisHotkey) => Send('{Blind}{F' num '}')
 }
 
 ;=== ===========================================================================
