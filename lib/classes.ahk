@@ -42,55 +42,6 @@ class C_Hotkey {
             Send('{Ctrl Up}')
         }
     }
-
-    class Browser {
-        static active() {
-            return WinActive('ahk_exe msedge.exe') or WinActive('ahk_exe firefox.exe') or WinActive('ahk_exe chrome.exe')
-        }
-
-        static hotIfCondition(hotIfExFn) {
-            if HasProp(hotIfExFn, 'call') {
-                HotIf((thisHotkey) => this.active() and hotIfExFn())
-            } else {
-                HotIf((thisHotkey) => this.active())
-            }
-        }
-
-        static searchSelectedAsUrl(hk, engine := '', hotIfExFn := {}) {
-            this.hotIfCondition(hotIfExFn)
-            Hotkey(hk, (thisHotkey) => searchUrlInTab(true))
-            Hotkey('+' hk, (thisHotkey) => searchUrlInTab(false))
-
-            HotIf((thisHotkey) => hotIfExFn())
-            Hotkey(hk, (thisHotkey) => runUrl())
-            HotIf()
-
-            searchUrlInTab(inNew) {
-                url := getUrlFromSelectedElseExit()
-
-                letter := inNew ? 't' : 'l'
-                Send('{Ctrl Down}' letter '{Ctrl Up}')
-
-                SendInstantRaw(url)
-
-                Sleep(10)
-                Send('{Enter}')
-            }
-            runUrl() {
-                url := getUrlFromSelectedElseExit()
-                Run(url)
-            }
-            getUrlFromSelectedElseExit() {
-                query := GetSelectedElseExit()
-                
-                if engine {
-                    return QueryToUrl(query, engine)
-                } else {
-                    return query
-                }
-            }
-        }
-    }
 }
 
 class C_Timer {

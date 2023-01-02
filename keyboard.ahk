@@ -436,13 +436,6 @@ AppToggleMute() {
 ;== Browsers
 ;== ============================================================================
 
-BrowserHotkeys(() => GetKeyState('NumLock', 'T'))
-BrowserHotkeys(hotIfExFn) {
-    C_Hotkey.Browser.searchSelectedAsUrl('u', , hotIfExFn)
-    C_Hotkey.Browser.searchSelectedAsUrl('g', 'https://www.google.com/search?q=', hotIfExFn)
-    C_Hotkey.Browser.searchSelectedAsUrl('y', 'https://www.youtube.com/results?search_query=', hotIfExFn)
-}
-
 ;=== ===========================================================================
 ;=== Vimium C Commands
 ;=== ===========================================================================
