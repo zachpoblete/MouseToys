@@ -27,6 +27,8 @@ UpdateVSCodeExtList() {
         }
     }
 
+    extList := RegExReplace(extList, 'm)-\d+(\.\d+){2}$')
+
     extListFile := A_AppData '\Code\User\extensions.txt'
     FileDelete(extListFile)
     FileAppend(extList, extListFile)
