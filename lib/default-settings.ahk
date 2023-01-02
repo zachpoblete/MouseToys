@@ -1,4 +1,4 @@
-#Requires AutoHotkey v2.0-rc.2
+#Requires AutoHotkey v2.0
 #Warn
 #WinActivateForce
 #SingleInstance
