@@ -70,6 +70,13 @@ MouseWinMinimizeOrRestore() {
     } else {
         WinMinimize()
     }
+
+    WinGetPos(, , &winW, &winH)
+
+    CoordMode('Mouse')
+    MouseGetPos(&mouseX, &mouseY)
+
+    WinMove(mouseX - (winW / 2), mouseY - (winH / 2))
 }
 
 ;=== ===========================================================================
