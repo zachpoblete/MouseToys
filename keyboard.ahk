@@ -478,7 +478,7 @@ AppToggleMute() {
         ; duplicateTab.
 ^!r::    VimcCmd(13)
         ; reopenTab.
-^]::     VimcCmd(14)
+^!]::     VimcCmd(14)
         ; removeRightTab.
 ^+PgUp:: VimcCmd(15)
         ; moveTabLeft.
