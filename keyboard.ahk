@@ -513,9 +513,11 @@ AppToggleMute() {
 
 VimcCmd(num) {
     if num > 24 {
-        Send('{Ctrl Down}{F' (num - 12) '}{Ctrl Up}')
-    } else if num > 12 {
-        Send('{Shift Down}{F' num '}{Shift Up}')
+        Send('{Alt Down}{F' (num - 12) '}{Alt Up}')
+    } else if num > 16 { 
+        Send('{Ctrl Down}{F' (num - 4) '}{Ctrl Up}')
+    } else if num > 8 {
+        Send('{Shift Down}{F' (num + 4) '}{Shift Up}')
     } else {
         Send('{F' (num + 12) '}')
     }
