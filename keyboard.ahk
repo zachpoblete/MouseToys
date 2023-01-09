@@ -878,8 +878,12 @@ MapF13UntilF24() {
     MaskMenu()
 }
 
-#HotIf SetTitleMatchMode('RegEx') and not WinActive('ahk_exe .EXE$')
-    ; Check if an Office app isn't active.
+#HotIf not OfficeAppIsActive()
+OfficeAppIsActive() {
+    SetTitleMatchMode('RegEx')
+    return WinActive('ahk_exe .EXE$')
+}
+
 Alt:: MaskAlt()
 MaskAlt() {
     SetKeyDelay(-1)
