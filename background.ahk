@@ -73,6 +73,7 @@ CloseMonokaiPopup() {
     )
 
     if not WinExist('Visual Studio Code ' K_CLASSES['DIALOG_BOX'] ' ahk_exe Code.exe') {
+            ; VS Code still needs to be active fsr.
         return
     }
     okBtnHwnd     := ControlGetHwndFromClassNnAndTextElseExit('Button1', 'OK')
