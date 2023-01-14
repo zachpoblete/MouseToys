@@ -887,7 +887,8 @@ if GetKeyState('NumLock', 'T') {
 }
 
 #InputLevel 1
-^Pause:: SendEvent('{NumLock}')
+!CapsLock:: SendEvent('{NumLock}')
+^Pause::    SendEvent('{NumLock}')
         ; This hotkey exists because when Ctrl is down,
         ; NumLock produces the key code of Pause (while Pause produces CtrlBreak).
 #InputLevel
