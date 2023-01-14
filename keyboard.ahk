@@ -780,6 +780,7 @@ Zoom_OpenReactions() {
 
 #HotIf ControlClassNnFocused('A', '^Edit\d+$', true)
         or ControlClassNnFocused('ahk_exe AcroRd32.exe', '^AVL_AVView', true)
+        or WinActive('ahk_exe mmc.exe')
 /**
  * ^BS doesn't natively work because it produces a control character,
  * so work around that.
