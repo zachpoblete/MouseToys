@@ -358,10 +358,14 @@ Volume_Mute:: vk13
 #HotIf GetKeyState('NumLock', 'T')
 d:: WinOpenDir()
 WinOpenDir() {
-    winPid := WinGetPid('A')
+    WinExist('A')
+    winProcessName := WinGetProcessName()
+    winPid := WinGetPid()
     winPath := ProcessGetPath(winPid)
     winDir := RegExReplace(winPath, '\\[^\\]+$')
     Run(winDir)
+    WinWaitActive('ahk_exe explorer.exe')
+    Send(winProcessName)
 }
 
 +d:: RunSelectedAsDir()
