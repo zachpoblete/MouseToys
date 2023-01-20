@@ -10,13 +10,13 @@ AddUpdateSubMenuToTray()
 AddUpdateSubMenuToTray() {
     menu_Update := Menu()
     A_TrayMenu.insert('E&xit', 'Update...', menu_Update)
-    menu_Update.add('VS Code Extension List', UpdateVSCodeExtList)
+    menu_Update.add('VS Code Extension List', UpdateVsCodeExtList)
     menu_Update.add('Browser History Backup', UpdateBrowserHistoryBackup)
     menu_Update.add('Edge Extensions List', (name, pos, menu) =>
             Run('PowerShell.exe Start-ScheduledTask -TaskPath "\Custom" -TaskName "update-edge-extensions-list"'))
 }
 
-UpdateVSCodeExtList(name, pos, menu) {
+UpdateVsCodeExtList(name, pos, menu) {
     vsCodeExtsDir := EnvGet('USERPROFILE') '\.vscode\extensions'
     extList := ''
     Loop Files vsCodeExtsDir '\*', 'D' {
