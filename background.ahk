@@ -17,8 +17,7 @@ AddUpdateSubMenuToTray() {
 }
 
 UpdateVSCodeExtList(name, pos, menu) {
-    userProfileDir := EnvGet('USERPROFILE')
-    vsCodeExtsDir := userProfileDir '\.vscode\extensions'
+    vsCodeExtsDir := EnvGet('USERPROFILE') '\.vscode\extensions'
     extList := ''
     Loop Files vsCodeExtsDir '\*', 'D' {
         extList .= A_LoopFileName '`r`n'
