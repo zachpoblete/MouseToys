@@ -574,10 +574,10 @@ Alt Up:: {
 ;== PowerToys Run
 ;== ============================================================================
 
-#;:: ActivatePowerToysRunPlugin('<')
+#':: ActivatePowerToysRunPlugin('<')
         ; Search open windows.
 
-#':: ActivatePowerToysRunPlugin('*')
+#;:: ActivatePowerToysRunPlugin('*')
         ; Search programs.
 
 #/:: ActivatePowerToysRunPlugin('?')
@@ -603,7 +603,7 @@ ActivatePowerToysRunPlugin(activationCmd) {
 }
 
 #HotIf WinActive('ahk_exe PowerToys.PowerLauncher.exe')
-!;:: Send('{End}.exe{Ctrl Down}{Left}{Ctrl Up}{Left}')
+!':: Send('{End}.exe{Ctrl Down}{Left}{Ctrl Up}{Left}')
         ; Search only for processes.
         ; This hotkey is meant to be used for Window Walker.
 #HotIf
