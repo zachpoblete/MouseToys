@@ -3,11 +3,20 @@
 #Include <functions>
 
 ;= =============================================================================
-;= At Launch
+;= Update
 ;= =============================================================================
 
-UpdateVSCodeExtList()
-UpdateVSCodeExtList() {
+AddUpdateSubMenuToTray()
+AddUpdateSubMenuToTray() {
+    menu_Update := Menu()
+    A_TrayMenu.insert('E&xit', 'Update...', menu_Update)
+    menu_Update.add('VS Code Extension List', UpdateVSCodeExtList)
+    menu_Update.add('Browser History Backup', UpdateBrowserHistoryBackup)
+    menu_Update.add('Edge Extensions List', (name, pos, menu) =>
+            Run('PowerShell.exe Start-ScheduledTask -TaskPath "\Custom" -TaskName "update-edge-extensions-list"'))
+}
+
+UpdateVSCodeExtList(name, pos, menu) {
     userProfileDir := EnvGet('USERPROFILE')
     vsCodeExtsDir := userProfileDir '\.vscode\extensions'
     extList := ''
@@ -34,8 +43,7 @@ UpdateVSCodeExtList() {
     FileAppend(extList, extListFile)
 }
 
-UpdateBrowserHistoryBackup()
-UpdateBrowserHistoryBackup() {
+UpdateBrowserHistoryBackup(name, pos, menu) {
     destDir := A_MyDocuments '\Browser Extension Backups'
     backupFileName := 'history_autobackup_*_full.tsv'
 

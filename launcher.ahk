@@ -7,7 +7,7 @@
 #Include <classes>
 #Include <accelerated-scroll>
 
-#Include background.ahk
+#Include keyboard.ahk
 #Include mouse.ahk
 #Include script-hotkeys.ahk
-#Include keyboard.ahk
+#Include background.ahk
