@@ -596,9 +596,6 @@ ActivatePowerToysRunPlugin(activationCmd) {
             ; Activate PowerToys Run.
     powerLauncherActive := WinWaitActive(, , 5)
 
-    if not powerLauncherActive {
-        return
-    }
     Send(activationCmd ' ')
 }
 
