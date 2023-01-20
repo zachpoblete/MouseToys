@@ -43,14 +43,16 @@ UpdateVSCodeExtList(name, pos, menu) {
 }
 
 UpdateBrowserHistoryBackup(name, pos, menu) {
-    destDir := A_MyDocuments '\Browser Extension Backups'
-    backupFileName := 'history_autobackup_*_full.tsv'
-
-    FileDelete(destDir '\' backupFileName)
-
-    userProfileDir := EnvGet('USERPROFILE')
-    downloadsDir := userProfileDir '\Downloads'
-    FileMove(downloadsDir '\' backupFileName, destDir)
+    backupFileNamePattern := 'history_autobackup_*_full.tsv'
+    newBackupPath := EnvGet('USERPROFILE') '\Downloads\' backupFileNamePattern
+    
+    if not FileExist(newBackupPath) {
+        MsgBox("New browser history backup does not exist")
+    }
+        
+    oldBackupDir := A_MyDocuments '\Browser Extensions (Private)\Backups'
+    FileDelete(oldBackupDir '\' backupFileNamePattern)
+    FileMove(newBackupPath, oldBackupDir)
 }
 
 ;= =============================================================================
