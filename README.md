@@ -2,7 +2,7 @@
 
 - [Features](#features)
     - [Mouse shortcuts](#%EF%B8%8F-mouse-shortcutsmouseahk)
-    - [Zoom (videoconferencing app) shortcuts](#-zoom-videoconferencing-app-shortcuts)
+    - [Zoom (videoconferencing app) shortcuts](#-zoom-videoconferencing-app-shortcutskeyboardahk)
     - [Keyboard shortcuts](#%EF%B8%8F-keyboard-shortcutskeyboardahk)
 - [What's WheelUp, XButton1, etc.?](#whats-wheelup-xbutton1-etc)
 - [What do you mean by clicking or holding a key combo like MButton+RButton?](#what-do-you-mean-by-clicking-or-holding-a-key-combo-like-mbuttonrbutton)
@@ -76,7 +76,7 @@ Hold <kbd>XButton2</kbd>+<kbd>LButton</kbd> and release <kbd>LButton</kbd> on a 
 
 Click a window with <kbd>RButton</kbd>+<kbd>LButton</kbd> to send <kbd>Delete</kbd>.
 
-## 🎦 Zoom (videoconferencing app) shortcuts
+## 🎦 Zoom (videoconferencing app) shortcuts&ensp;_(keyboard.ahk)_
 
 ### 🙂 Open reactions&ensp;_(Zoom_OpenReactions)_
 
