@@ -74,7 +74,7 @@ ProcessRestart() {
     winProcessName := WinGetProcessName()
     winClass := WinGetClass()
 
-    winPath := ProcessGetPath(winProcessName)
+    winProcessPath := ProcessGetPath(winProcessName)
     similarWinIds := WinGetList('ahk_class ' winClass ' ahk_exe ' winProcessName)
 
     if similarWinIds.length < 2 {
@@ -124,7 +124,7 @@ ProcessRestart() {
             exit
         }
 
-        Run(winPath)
+        Run(winProcessPath)
     }
 }
 
