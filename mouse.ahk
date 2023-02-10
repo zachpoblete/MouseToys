@@ -298,12 +298,8 @@ XButton2 & RButton Up:: {
     }
     MouseWinActivate()
     
-    if WinActive('ahk_exe Notion.exe') {
-        return
-    } else {
-        Send('{Ctrl Down}w{Ctrl Up}')
-                ; Close current tab.
-    }
+    Send('{Ctrl Down}w{Ctrl Up}')
+            ; Close current tab.
 }
 
 ;=== ===========================================================================
