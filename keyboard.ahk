@@ -367,8 +367,8 @@ DisplayAndSetVolume(variation) {
 ;== ============================================================================
 
 #HotIf GetKeyState('NumLock', 'T')
-d:: WinOpenDir()
-WinOpenDir() {
+d:: WinOpenProcessDir()
+WinOpenProcessDir() {
     WinExist('A')
     winProcessName := WinGetProcessName()
     winPid := WinGetPid()
