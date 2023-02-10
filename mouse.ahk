@@ -65,12 +65,12 @@ MouseWinMinimizeOrRestore() {
     }
     winMinMax := WinGetMinMax()
 
-    if winMinMax {
-        WinRestore()
-    } else {
+    if not winMinMax {
         WinMinimize()
+        return
     }
     
+    WinRestore()
     MoveWinMiddleToMouse()
 }
 
