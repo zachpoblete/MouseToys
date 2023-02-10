@@ -232,6 +232,15 @@ MouseWinActivate(winTitle := '', winText := '', excludedTitle := '', excludedTex
         ; when all the parameters are blank and there is no last found window.
 }
 
+MoveWinMiddleToMouse() {
+    WinGetPos(, , &winW, &winH)
+
+    CoordMode('Mouse')
+    MouseGetPos(&mouseX, &mouseY)
+
+    WinMove(mouseX - (winW / 2), mouseY - (winH / 2))
+}
+
 Zoom_MeetingWinExist(isVisible) {
     try {
         meetingWinPid := WinGetPid(K_CLASSES['ZOOM']['TOOLBAR'])
