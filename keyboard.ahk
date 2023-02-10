@@ -811,30 +811,39 @@ Zoom_OpenReactions() {
 ^+BS:: Send('{Ctrl Down}{Del}{Ctrl Up}')
 
 ;== ============================================================================
-;== Insert Whitespace
+;== Insert Any Key Right of Caret
 ;== ============================================================================
 
 SetCapsLockState('AlwaysOff')
 
-~CapsLock & Space::
-~CapsLock & Enter:: 
-~CapsLock & Tab:: {
-    hk := HkSplit(thisHotkey)
-    Send('{' hk[2] '}{Left}')
+CapsLock:: {
+    ih := InputHook('')
+    ih.keyOpt('{All}', 'N')
+    ih.onKeyUp := insertKeyRightOfCaret
+    ih.start()
+    KeyWait('CapsLock')
+    ih.stop()
 
-    if A_PriorKey != 'CapsLock' {
-        return
+    if not ih.input {
+        setOppCapsLockState()
     }
-    SetOppCapsLockState()
-}
+    
+    insertKeyRightOfCaret(ih, vk, sc) {
+        Send(Format("{vk{:x}}{Left}", vk))
 
-CapsLock:: SetOppCapsLockState()
+        if A_PriorKey != 'CapsLock' {
+            return
+        }
 
-SetOppCapsLockState() {
-    if GetKeyState('CapsLock', 'T') {
-        SetCapsLockState('AlwaysOff')
-    } else {
-        SetCapsLockState('AlwaysOn')
+        setOppCapsLockState()    
+    }
+    
+    setOppCapsLockState() {
+        if GetKeyState('CapsLock', 'T') {
+            SetCapsLockState('AlwaysOff')
+        } else {
+            SetCapsLockState('AlwaysOn')
+        }
     }
 }
 
