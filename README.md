@@ -12,105 +12,105 @@
 
 # Features
 
-## 🖱️ Mouse shortcuts <font size ="2">_(mouse.ahk)_</font>
+## 🖱️ Mouse shortcuts&ensp;_(mouse.ahk)_
 
-### 🚀 Accelerated Scroll <font size ="2">_(accelerated_scroll.ahk)_</font>
+### 🚀 Accelerated Scroll&ensp;_(accelerated_scroll.ahk)_
 
 Scroll faster (using <kbd>WheelUp</kbd> and <kbd>WheelDown</kbd>) to scroll farther.
 
-### 🚚 Move window with mouse <font size ="2">_(MouseWinMove)_</font>
+### 🚚 Move window with mouse&ensp;_(MouseWinMove)_
 
 Click a window with <kbd>MButton</kbd>+<kbd>RButton</kbd> (automatically restoring the window if maximized) and move the cursor to move the window.
 
 ### ↗️↙️ Maximize or minimize/restore window with mouse
 
-Click a window with <kbd>MButton</kbd>+<kbd>WheelUp</kbd> to maximize the window. <font size ="2">_(MouseWinMaximize)_</font>
+Click a window with <kbd>MButton</kbd>+<kbd>WheelUp</kbd> to maximize the window. _(MouseWinMaximize)_
 
-Click a window with <kbd>MButton</kbd>+<kbd>WheelDown</kbd> to minimize/restore the window to the cursor. <font size ="2">_(MouseWinMinimizeOrRestore)_</font>
+Click a window with <kbd>MButton</kbd>+<kbd>WheelDown</kbd> to minimize/restore the window to the cursor. _(MouseWinMinimizeOrRestore)_
 
-### ❌ Close window with mouse <font size ="2">_(MouseWinClose)_</font>
+### ❌ Close window with mouse&ensp;_(MouseWinClose)_
 
 Hold <kbd>XButton2</kbd>+<kbd>MButton</kbd> and release <kbd>MButton</kbd> on a selected window to close it.
 
 ### 🔀 Switch to recently used windows (Alt-Tab) with mouse
 
-Click <kbd>RButton</kbd>+<kbd>WheelDown</kbd> to move to older windows, and release <kbd>RButton</kbd> to open the selected window. <font size ="2">_(RButton & WheelDown)_</font>
+Click <kbd>RButton</kbd>+<kbd>WheelDown</kbd> to move to older windows, and release <kbd>RButton</kbd> to open the selected window. _(RButton & WheelDown)_
 
-Click <kbd>RButton</kbd>+<kbd>WheelUp</kbd> to move to newer windows, and release <kbd>RButton</kbd> to open the selected window. <font size ="2">_(RButton & WheelUp)_</font>
+Click <kbd>RButton</kbd>+<kbd>WheelUp</kbd> to move to newer windows, and release <kbd>RButton</kbd> to open the selected window. _(RButton & WheelUp)_
 
 While in the Alt-Tab Menu from using the mouse:
-- Alternatively, move the cursor to a window and click <kbd>RButton</kbd>+<kbd>LButton</kbd> to open the window. <font size ="2">_(RButton & LButton Up)_</font>
-- Move the cursor to a window and click <kbd>RButton</kbd>+<kbd>MButton</kbd> to close the window. <font size ="2">_(RButton & MButton Up)_</font>
+- Alternatively, move the cursor to a window and click <kbd>RButton</kbd>+<kbd>LButton</kbd> to open the window. _(RButton & LButton Up)_
+- Move the cursor to a window and click <kbd>RButton</kbd>+<kbd>MButton</kbd> to close the window. _(RButton & MButton Up)_
 
-### 🔀 Switch to recently used tabs with mouse <font size ="2">_(C_Hotkey.ctrlTab)_</font>
+### 🔀 Switch to recently used tabs with mouse&ensp;_(C_Hotkey.ctrlTab)_
 
 Click a window with <kbd>XButton1</kbd>+<kbd>WheelDown</kbd> to switch to older tabs.
 
 Click a window with <kbd>XButton1</kbd>+<kbd>WheelUp</kbd> to switch to newer tabs.
 
-### ⬅️➡️ Go one tab left or right with mouse <font size ="2">_(X2W)_</font>
+### ⬅️➡️ Go one tab left or right with mouse&ensp;_(X2W)_
 
 Click a window with <kbd>XButton2</kbd>+<kbd>WheelUp</kbd> to go one tab left (one tab up if the tabs were vertically arranged).
 
 Click a window with <kbd>XButton2</kbd>+<kbd>WheelDown</kbd> to go one tab right (one tab down if the tabs were vertically arranged).
 
-### ⬅️➡️ Go back or forward a page with mouse <font size ="2">_(X1LR)_</font>
+### ⬅️➡️ Go back or forward a page with mouse&ensp;_(X1LR)_
 
 Hold <kbd>XButton1</kbd>+<kbd>LButton</kbd> and release <kbd>LButton</kbd> on a selected window to go back a page (sends <kbd>Browser_Back</kbd>).
 
 Hold <kbd>XButton1</kbd>+<kbd>RButton</kbd> and release <kbd>RButton</kbd> on a selected window to go forward a page (sends <kbd>Browser_Forward</kbd>).
 
-### 🔄 Reload page with mouse <font size ="2">_(MouseWinReload)_</font>
+### 🔄 Reload page with mouse&ensp;_(MouseWinReload)_
 
 Hold <kbd>XButton1</kbd>+<kbd>MButton</kbd> and release <kbd>MButton</kbd> on a selected window to reload the page (sends <kbd>F5</kbd>).
 
-### ❌ Close tab with mouse <font size ="2">_(XButton2 & RButton Up)_</font>
+### ❌ Close tab with mouse&ensp;_(XButton2 & RButton Up)_
 
 Hold <kbd>XButton2</kbd>+<kbd>RButton</kbd> and release <kbd>RButton</kbd> on a selected window to close the current tab.
 
-### ↩️ Undo close tab with mouse <font size ="2">_(XButton2 & LButton Up)_</font>
+### ↩️ Undo close tab with mouse&ensp;_(XButton2 & LButton Up)_
 
 Hold <kbd>XButton2</kbd>+<kbd>LButton</kbd> and release <kbd>LButton</kbd> on a selected window to reopen the last closed tab.
 
-### ❌ Delete with mouse <font size ="2">_(RButton & LButton Up)_</font>
+### ❌ Delete with mouse&ensp;_(RButton & LButton Up)_
 
 Click a window with <kbd>RButton</kbd>+<kbd>LButton</kbd> to send <kbd>Delete</kbd>.
 
 ## 🎦 Zoom (videoconferencing app) shortcuts
 
-### 🙂 Open reactions <font size ="2">_(Zoom_OpenReactions)_</font>
+### 🙂 Open reactions&ensp;_(Zoom_OpenReactions)_
 
 In a Zoom Meeting, press <kbd>Alt</kbd>+<kbd>E</kbd> to open the reactions.
 
-### 👍 Give a thumbs-up react <font size ="2">_(Zoom_ThumbsUpReact)_</font>
+### 👍 Give a thumbs-up react&ensp;_(Zoom_ThumbsUpReact)_
 
 In a Zoom Meeting, press <kbd>Alt</kbd>+<kbd>=</kbd> to give a thumbs-up react.
 
-## ⌨️ Keyboard shortcuts <font size ="2">_(keyboard.ahk)_</font>
+## ⌨️ Keyboard shortcuts&ensp;_(keyboard.ahk)_
 
-### 🕹️ One button remote <font size ="2">_(OneBtnRemote)_</font>
+### 🕹️ One button remote&ensp;_(OneBtnRemote)_
 
 Press <kbd>Pause</kbd>
 - ⏯️ once to play/pause the current media that is paused/playing.
 - ⏭️ twice to play the next media.
 - ⏮️ thrice to play the previous media.
 
-### 📂 Reveal process of active window in File Explorer <font size ="2">_(WinOpenProcessDir)_</font>
+### 📂 Reveal process of active window in File Explorer&ensp;_(WinOpenProcessDir)_
 
 While <kbd>NumLock</kbd> is on, press <kbd>D</kbd> to open the process of the active window in File Explorer.
 
-### 📂 Open selection as folder in File Explorer <font size ="2">_(RunSelectedAsDir)_</font>
+### 📂 Open selection as folder in File Explorer&ensp;_(RunSelectedAsDir)_
 While <kbd>NumLock</kbd> is on, select some text, and press <kbd>Shift</kbd>+<kbd>D</kbd> to open the selection as a folder in File Explorer.
 
 For example, selecting `%USERPROFILE%\Documents` and pressing <kbd>Shift</kbd>+<kbd>D</kbd> while <kbd>NumLock</kbd> is on will open your Documents folder.
 
-### 🔄 Restart window <font size ="2">_(ProcessRestart)_</font>
+### 🔄 Restart window&ensp;_(ProcessRestart)_
 
 Press <kbd>Win</kbd>+<kbd>F5</kbd> to close the process of the active window and open it again.
 
 If there are multiple instances of the process, you will be asked if you want to restart the current instance and close all other instances.
 
-### 🪟 Operate on active window group <font size ="2">_(OperateOnActivateWindowGroup)_</font>
+### 🪟 Operate on active window group&ensp;_(OperateOnActivateWindowGroup)_
 
 First, create a window group using [GroupAdd](https://www.autohotkey.com/docs/v2/lib/GroupAdd.htm).
 
