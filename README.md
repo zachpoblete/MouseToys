@@ -157,4 +157,4 @@ I've only listed the coolest and most original features applicable to most peopl
 
 # License
 
-[MIT](https://choosealicense.com/licenses/mit/)
+[MIT](https://github.com/zachpoblete/AutoHotkey/blob/main/LICENSE)
