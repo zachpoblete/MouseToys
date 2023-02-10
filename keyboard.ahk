@@ -147,6 +147,15 @@ ProcessRestart() {
 
 #Hotstring EndChars `t
 
+:?x:&l';::     Send('{U+2018}')
+        ; Left single quotation mark.
+:?x:&r';::     Send('{U+2019}')
+        ; Right single quotation mark.
+:?x:&l";::     Send('{U+201C}')
+        ; Left double quotation mark.
+:?x:&r";::     Send('{U+201D}')
+        ; Right double quotation mark.
+
 :?x:&deg;::    Send('{U+00B0}')
         ; Degree.
 
