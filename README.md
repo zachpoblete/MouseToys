@@ -1,9 +1,9 @@
 # Contents
 
 - [Features](#features)
-    - [Mouse shortcuts](#%EF%B8%8F-mouse-shortcuts-mouseahk)
+    - [Mouse shortcuts](#%EF%B8%8F-mouse-shortcutsmouseahk)
     - [Zoom (videoconferencing app) shortcuts](#-zoom-videoconferencing-app-shortcuts)
-    - [Keyboard shortcuts](#%EF%B8%8F-keyboard-shortcuts-keyboardahk)
+    - [Keyboard shortcuts](#%EF%B8%8F-keyboard-shortcutskeyboardahk)
 - [What's WheelUp, XButton1, etc.?](#whats-wheelup-xbutton1-etc)
 - [What do you mean by clicking or holding a key combo like MButton+RButton?](#what-do-you-mean-by-clicking-or-holding-a-key-combo-like-mbuttonrbutton)
 - [Issues](#issues)
