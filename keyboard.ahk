@@ -303,6 +303,13 @@ ProcessRestart() {
 ;== Media
 ;== ============================================================================
 
+#HotIf GetKeyState('CapsLock', 'T')
+#InputLevel 1
+Volume_Mute:: vk13
+        ; Pause key.
+#InputLevel
+#HotIf
+
 Pause:: OneBtnRemote()
 OneBtnRemote() {
     static pressCount := 0
@@ -350,13 +357,6 @@ DisplayAndSetVolume(variation) {
     SoundSetVolume(newVol)
             ; Override that normal variation of 2.
 }
-
-#HotIf GetKeyState('CapsLock', 'T')
-#InputLevel 1
-Volume_Mute:: vk13
-        ; Pause key.
-#InputLevel
-#HotIf
 
 ;= =============================================================================
 ;= Run
