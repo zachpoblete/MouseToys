@@ -195,8 +195,10 @@ ProcessRestart() {
             tabs .= A_Tab
         }
     }
-    Send('{Ctrl Down}{Shift Down}{Left}{Ctrl Up}{Left}{Shift Up}')
+    Send('{Shift Down}{Left}{Ctrl Down}{Left}{Ctrl Up}{Left}{Shift Up}')
             ; Erase the abbreviation.
+            ; Although this version takes longer,
+            ; it works on more text inputs.
     SendInstantRaw(tabs)
 }
 
