@@ -814,36 +814,23 @@ Zoom_OpenReactions() {
 ;== Insert Any Key Right of Caret
 ;== ============================================================================
 
-SetCapsLockState('AlwaysOff')
-
-CapsLock:: {
-    ih := InputHook('')
+~CapsLock:: {
+    ih := InputHook('I')
     ih.keyOpt('{All}', 'N')
-    ih.onKeyUp := insertKeyRightOfCaret
+    ih.onKeyDown := insertKeyRightOfCaret
     ih.start()
     KeyWait('CapsLock')
     ih.stop()
 
     if not ih.input {
-        setOppCapsLockState()
+        return
     }
-    
+
+    capsLockIsOn := GetKeyState('CapsLock', 'T')
+    SetCapsLockState(capsLockIsOn ? false : true)
+
     insertKeyRightOfCaret(ih, vk, sc) {
         Send(Format("{vk{:x}}{Left}", vk))
-
-        if A_PriorKey != 'CapsLock' {
-            return
-        }
-
-        setOppCapsLockState()    
-    }
-    
-    setOppCapsLockState() {
-        if GetKeyState('CapsLock', 'T') {
-            SetCapsLockState('AlwaysOff')
-        } else {
-            SetCapsLockState('AlwaysOn')
-        }
     }
 }
 
