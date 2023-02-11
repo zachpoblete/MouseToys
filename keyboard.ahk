@@ -62,9 +62,9 @@ OperateOnActiveGroup(action) {
 #+!r:: MacroRecorder()
 MacroRecorder() {
     switch ChordInput() {
-    case "n": Send("{Ctrl Down}{Shift Down}{F13}{Shift Up}{Ctrl Up}")
+    case 'n': Send('{Ctrl Down}{Shift Down}{F13}{Shift Up}{Ctrl Up}')
             ; Start new recording.
-    case "p": Send("{Ctrl Down}{Shift Down}{F14}{Shift Up}{Ctrl Up}")
+    case 'p': Send('{Ctrl Down}{Shift Down}{F14}{Shift Up}{Ctrl Up}')
             ; Playback.
     }
 }
@@ -76,7 +76,7 @@ MacroRecorder() {
 PrintScreen:: Send('{LWin Down}{Alt Down}{PrintScreen}{Alt Up}{LWin Up}')
         ; Save screenshot of window.
 
-^y:: Send("{Ctrl Down}{Shift Down}z{Shift Up}{Ctrl Up}")
+^y:: Send('{Ctrl Down}{Shift Down}z{Shift Up}{Ctrl Up}')
         ; More consistent redo.
 
 ;== ============================================================================
@@ -844,7 +844,7 @@ Zoom_OpenReactions() {
         if ih.input = priorInput {
             return
         }
-        Send(Format("{vk{:x}}{Left}", vk))
+        Send(Format('{vk{:x}}{Left}', vk))
         priorInput := ih.input
     }
 }

@@ -47,7 +47,7 @@ UpdateBrowserHistoryBackup(name, pos, menu) {
     newBackupPath := EnvGet('USERPROFILE') '\Downloads\' backupFileNamePattern
     
     if not FileExist(newBackupPath) {
-        MsgBox("New browser history backup does not exist")
+        MsgBox('New browser history backup does not exist')
     }
         
     oldBackupDir := A_MyDocuments '\Browser Extensions (Private)\Backups'
