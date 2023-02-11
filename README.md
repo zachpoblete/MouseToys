@@ -121,7 +121,7 @@ In _any_ window that is part of a group:
 
 ### ➡️ Insert any key right of caret&ensp;_(~CapsLock)_
 
-Press <kbd>CapsLock</kbd>+<kbd>Any Key</kbd> to insert <kbd>Any Key</kbd> in front of the text cursor indicator or caret (|).
+Press <kbd>CapsLock</kbd>+<kbd>Any Key</kbd> to insert <kbd>Any Key</kbd> in front of the text cursor indicator, aka caret (|).
 
 Because, normally, pressing <kbd>Any Key</kbd> would insert it behind the caret.
 
