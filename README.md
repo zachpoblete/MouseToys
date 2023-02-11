@@ -4,6 +4,7 @@
     - [Mouse shortcuts](#%EF%B8%8F-mouse-shortcutsmouseahk)
     - [Zoom (videoconferencing app) shortcuts](#-zoom-videoconferencing-app-shortcutskeyboardahk)
     - [Keyboard shortcuts](#%EF%B8%8F-keyboard-shortcutskeyboardahk)
+- [Best way to view the code](#best-way-to-view-the-code)
 - [What's WheelUp, XButton1, etc.?](#whats-wheelup-xbutton1-etc)
 - [What do you mean by clicking or holding a key combo like MButton+RButton?](#what-do-you-mean-by-clicking-or-holding-a-key-combo-like-mbuttonrbutton)
 - [Issues](#issues)
@@ -124,6 +125,14 @@ In _any_ window that is part of a group:
 Press <kbd>CapsLock</kbd>+<kbd>Any Key</kbd> to insert <kbd>Any Key</kbd> in front of the text cursor indicator, aka caret (|).
 
 Because, normally, pressing <kbd>Any Key</kbd> would insert it behind the caret.
+
+# Best way to view the code
+
+1. Install the [CodeMap extension](https://marketplace.visualstudio.com/items?itemName=oleg-shilo.codemap).
+2. Download [mapper_ahk.js](https://github.com/zachpoblete/VSCode-User/blob/main/codemap.user/mapper_ahk.js).
+3. Insert `"codemap.ahk": "[file path of mapper_ahk.js]"` into your settings.json.
+4. Boom:
+![codemap](https://user-images.githubusercontent.com/92368853/218280716-848d1102-934d-4ca6-ac39-71b66f96c1e6.gif)
 
 # What's WheelUp, XButton1, etc.?
 
