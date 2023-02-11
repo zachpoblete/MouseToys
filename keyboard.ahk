@@ -817,7 +817,10 @@ Zoom_OpenReactions() {
 ~CapsLock:: {
     ih := InputHook('I')
     ih.keyOpt('{All}', 'N')
+    ih.backspaceIsUndo := false
     ih.onKeyDown := insertKeyRightOfCaret
+    priorInput := ''
+
     ih.start()
     KeyWait('CapsLock')
     ih.stop()
@@ -830,7 +833,11 @@ Zoom_OpenReactions() {
     SetCapsLockState(capsLockIsOn ? false : true)
 
     insertKeyRightOfCaret(ih, vk, sc) {
+        if ih.input = priorInput {
+            return
+        }
         Send(Format("{vk{:x}}{Left}", vk))
+        priorInput := ih.input
     }
 }
 
