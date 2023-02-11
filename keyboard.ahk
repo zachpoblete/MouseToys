@@ -76,9 +76,6 @@ MacroRecorder() {
 PrintScreen:: Send('{LWin Down}{Alt Down}{PrintScreen}{Alt Up}{LWin Up}')
         ; Save screenshot of window.
 
-^y:: Send('{Ctrl Down}{Shift Down}z{Shift Up}{Ctrl Up}')
-        ; More consistent redo.
-
 ;== ============================================================================
 ;== Restart
 ;== ============================================================================
