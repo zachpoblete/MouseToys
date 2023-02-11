@@ -1,3 +1,4 @@
+.editorconfig
 .vscode
 *.code-workspace
 joystick-test.exe
