@@ -70,11 +70,14 @@ MacroRecorder() {
 }
 
 ;== ============================================================================
-;== PrintScreen
+;== Remap Shortcuts
 ;== ============================================================================
 
 PrintScreen:: Send('{LWin Down}{Alt Down}{PrintScreen}{Alt Up}{LWin Up}')
         ; Save screenshot of window.
+
+^y:: Send("{Ctrl Down}{Shift Down}z{Shift Up}{Ctrl Up}")
+        ; More consistent redo.
 
 ;== ============================================================================
 ;== Restart
@@ -479,19 +482,10 @@ AppToggleMute() {
 ^!;:: VimcCmd(3)
         ; LinkHints.activateHover.
 
-^!c:: {
-    switch ChordInput() {
-    case ';':   VimcCmd(4)
+^!+c:: VimcCmd(4)
         ; LinkHints.activateCopyLinkUrl.
-    case '<+;': VimcCmd(5)
+^!c::  VimcCmd(5)
         ; LinkHints.activateCopyLinkText.
-    case '>+;': VimcCmd(5)
-    case 'i':   VimcCmd(6)
-        ; LinkHints.activateCopyImage.
-    case 't':   VimcCmd(7)
-        ; copyCurrentTitle.
-    }
-}
 
 ^!Left::  VimcCmd(8)
         ; goPrevious.
