@@ -259,13 +259,17 @@ XButton2 & WheelUp::   X2W('{Up}',   '{PgUp}', '{Shift Down}{Tab}{Shift Up}', '{
 X2W(states*) {
     MouseWinActivate()
 
-    if WinActive('ahk_exe Discord.exe') or WinActive('ahk_exe Messenger.exe') {
+    WinExist('A')
+    activeWin := {}
+    activeWin.class := WinGetClass()
+    activeWin.processName := WinGetProcessName()
+    
+    if activeWin.processName  ~= 'i)\A(Discord.exe|Messenger.exe)\z' {
         Send('{Alt Down}' states[1] '{Alt Up}')
-    } else if WinActive('ahk_exe POWERPNT.EXE') {
+    } else if activeWin.processName ~= 'i)\A(POWERPNT.EXE)\z' {
         Send(states[2])
-    } else if WinActive('ahk_class CabinetWClass')
-        or WinActive('ahk_exe AcroRd32.exe')
-        or WinActive('ahk_exe WindowsTerminal.exe') {
+    } else if activeWin.class ~= 'i)\A(CabinetWClass)\z'
+        or activeWin.processName ~= 'i)\A(AcroRd32.exe|Notion.exe|Photoshop.exe|WindowsTerminal.exe)' {
         Send('{Ctrl Down}' states[3] '{Ctrl Up}')
     } else {
         Send('{Ctrl Down}' states[-1] '{Ctrl Up}')
