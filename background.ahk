@@ -18,28 +18,56 @@ AddUpdateSubMenuToTray() {
 
 UpdateVsCodeExtList(name, pos, menu) {
     vsCodeExtsDir := EnvGet('USERPROFILE') '\.vscode\extensions'
-    extList := ''
+    extsCsvText := ''
     Loop Files vsCodeExtsDir '\*', 'D' {
-        extList .= A_LoopFileName '`r`n'
+        Loop Files A_LoopFilePath '\package.json' {
+            jsonPackageText := FileRead(A_LoopFilePath)
+            getJsonPackageProp(&extName, 'name')
+            getJsonPackageProp(&extDisplayName, 'displayName')
+            getJsonPackageProp(&extPublisher, 'publisher')
+            getJsonPackageProp(&extPublisherDisplayName, 'publisherDisplayName')
+            getJsonPackageProp(&extVer, 'version')
+            getJsonPackageProp(&extWorkspaceSuffix, 'workspaceSuffix')
+            
+            extsCsvText .= '`r`n"'
+            try {
+                extsCsvText .= extWorkspaceSuffix[1]
+            } catch {
+                try {
+                    extsCsvText .= extDisplayName[1]
+                } catch {
+                    extsCsvText .= extName[1]   
+                }
+            }
+
+            extsCsvText .= '","' extPublisherDisplayName[1] '","https://marketplace.visualstudio.com/items?itemName='
+                    . extPublisher[1] '.' extName[1] '-' extVer[1]
+        }
     }
     
     obsoleteFile := vsCodeExtsDir '\.obsolete'
     try {
-        obsoleteFilesStr := FileRead(obsoleteFile)
-        obsoleteFilesStr := LTrim(obsoleteFilesStr, '{"')
-        obsoleteFilesStr := RTrim(obsoleteFilesStr, '":true}')
+        obsoleteFileText := FileRead(obsoleteFile)
+        obsoleteFileText := LTrim(obsoleteFileText, '{"')
+        obsoleteFileText := RTrim(obsoleteFileText, '":true}')
 
-        obsoleteFilesStr := StrReplace(obsoleteFilesStr, '":true,"', '|')
-        Loop Parse obsoleteFilesStr, '|' {
-            extList := RegExReplace(extList, A_LoopField '`r`n')
+        obsoleteFileText := StrReplace(obsoleteFileText, '":true,"', '|')
+        Loop Parse obsoleteFileText, '|' {
+            extsCsvText := RegExReplace(extsCsvText, 'i).+' A_LoopField '`r`n')
         }
     }
 
-    extList := RegExReplace(extList, 'm)-\d+(\.\d+){2}$')
+    extsCsvText := RegExReplace(extsCsvText, 'm)-\d+(\.\d+){2}$', '"')
+    extsCsvText := Sort(extsCsvText)
+    extsCsvText := '"Extension","Publisher","Link"' extsCsvText
 
-    extListFile := A_AppData '\Code\User\extensions.txt'
-    FileDelete(extListFile)
-    FileAppend(extList, extListFile)
+    extsCsv := A_AppData '\Code\User\extensions.csv'
+    FileDelete(extsCsv)
+    FileAppend(extsCsvText, extsCsv)
+
+    getJsonPackageProp(&extProp, prop) {
+        RegExMatch(jsonPackageText, 'm)^' A_Tab '+"' prop '": "(.+)",?$', &extProp)
+    }
 }
 
 UpdateBrowserHistoryBackup(name, pos, menu) {
