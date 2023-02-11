@@ -130,7 +130,7 @@ Because, normally, pressing <kbd>Any Key</kbd> would insert it behind the caret.
 
 1. Install the [CodeMap extension](https://marketplace.visualstudio.com/items?itemName=oleg-shilo.codemap).
 2. Download [mapper_ahk.js](https://github.com/zachpoblete/VSCode-User/blob/main/codemap.user/mapper_ahk.js).
-3. Insert `"codemap.ahk": "[file path of mapper_ahk.js]"` into your settings.json.
+3. Insert `"codemap.ahk": "[file path of mapper_ahk.js]"` into your settings.json (for VS Code, but Sublime and Notepad++ have their equivalents).
 4. Boom:
 ![codemap](https://user-images.githubusercontent.com/92368853/218280716-848d1102-934d-4ca6-ac39-71b66f96c1e6.gif)
 
