@@ -14,7 +14,7 @@
 
 ## 🖱️ Mouse shortcuts&ensp;_(mouse.ahk)_
 
-### 🚀 Accelerated Scroll&ensp;_(accelerated_scroll.ahk)_
+### 🚀 Accelerated Scroll&ensp;_(lib / accelerated_scroll.ahk)_
 
 Scroll faster (using <kbd>WheelUp</kbd> and <kbd>WheelDown</kbd>) to scroll farther.
 
