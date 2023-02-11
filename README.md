@@ -119,7 +119,7 @@ In _any_ window that is part of a group:
 - Press <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Tab</kbd> to activate the next window in the group (uses [GroupActivate](https://www.autohotkey.com/docs/v2/lib/GroupActivate.htm)).
 - Press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>Tab</kbd> to close the active window and activate the next window in the series (uses [GroupClose](https://www.autohotkey.com/docs/v2/lib/GroupClose.htm)).
 
-### ➡️ Insert any key right of caret
+### ➡️ Insert any key right of caret&ensp;_(~CapsLock)_
 
 Press <kbd>CapsLock</kbd>+<kbd>Any Key</kbd> to insert <kbd>Any Key</kbd> in front of the text cursor indicator or caret (|).
 
