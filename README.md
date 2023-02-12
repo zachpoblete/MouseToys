@@ -150,11 +150,11 @@ Because, normally, pressing <kbd>Any Key</kbd> would insert it behind the caret.
 
 # What do you mean by clicking or holding a key combo like MButton+RButton?
 
-Whenever I say something like, "Click <kbd>MButton</kbd>+<kbd>RButton</kbd>", what I mean is press and hold <kbd>MButton</kbd>, then while <kbd>MButton</kbd> is down, press and release <kbd>RButton</kbd>.
+Whenever I say something like, "Click <kbd>MButton</kbd>+<kbd>RButton</kbd>", what I mean is press and hold <kbd>MButton</kbd>, then while <kbd>MButton</kbd> is down, press <kbd>RButton</kbd> to activate the hotkey.
 
 It's like saying, "Press <kbd>Ctrl</kbd>+<kbd>A</kbd>", where <kbd>MButton</kbd> is <kbd>Ctrl</kbd> and <kbd>RButton</kbd> is <kbd>A</kbd>.
 
-Whenever I say something like, "Hold <kbd>XButton2</kbd>+<kbd>MButton</kbd>", what I mean is press and hold <kbd>XButton2</kbd>, then press and hold <kbd>MButton</kbd>.
+Whenever I say something like, "Hold <kbd>XButton2</kbd>+<kbd>MButton</kbd>... and release <kbd>MButton</kbd>", what I mean is press and hold <kbd>XButton2</kbd>, then press and hold <kbd>MButton</kbd>, and then release <kbd>MButton</kbd> to activate the hotkey.
 
 # Issues
 
