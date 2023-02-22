@@ -19,8 +19,8 @@ AddUpdateSubMenuToTray() {
 UpdateVsCodeExtList(name, pos, menu) {
     vsCodeExtsDir := EnvGet('USERPROFILE') '\.vscode\extensions'
     extsCsvText := ''
-    Loop Files vsCodeExtsDir '\*', 'D' {
-        Loop Files A_LoopFilePath '\package.json' {
+    loop files vsCodeExtsDir '\*', 'D' {
+        loop files A_LoopFilePath '\package.json' {
             jsonPackageText := FileRead(A_LoopFilePath)
             getJsonPackageProp(&extName, 'name')
             getJsonPackageProp(&extDisplayName, 'displayName')
@@ -52,7 +52,7 @@ UpdateVsCodeExtList(name, pos, menu) {
         obsoleteFileText := RTrim(obsoleteFileText, '":true}')
 
         obsoleteFileText := StrReplace(obsoleteFileText, '":true,"', '|')
-        Loop Parse obsoleteFileText, '|' {
+        loop parse obsoleteFileText, '|' {
             extsCsvText := RegExReplace(extsCsvText, 'i).+' A_LoopField '`r`n')
         }
     }

@@ -31,7 +31,7 @@
  * Edit.
  */
 #^e:: {
-    Loop Files '*.code-workspace' {
+    loop files '*.code-workspace' {
         Run(A_LoopFileName)
     }
 }

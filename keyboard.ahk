@@ -206,7 +206,7 @@ ProcessRestart() {
     if ih.input = ';' {
         tabs := A_Tab
     } else if RegExMatch(ih.Input, '\A(\d);\z', &match) {
-        Loop match[1] {
+        loop match[1] {
             tabs .= A_Tab
         }
     }
@@ -743,7 +743,7 @@ Zoom_OpenReactions() {
     
     ControlGetPos(&controlX, &controlY, &controlW, &controlH, K_CONTROLS['ZOOM']['MEETING_CONTROLS'])
     
-    Loop {
+    loop {
         try {
             iconClick('reactions')
         } catch {
@@ -834,7 +834,7 @@ Zoom_OpenReactions() {
 MapF13UntilF24()
 MapF13UntilF24() {
     HotIf((thisHotkey) => GetKeyState('CapsLock', 'T'))
-    Loop 12 {
+    loop 12 {
         if A_Index < 3 {
             num := A_Index + 22
         } else {

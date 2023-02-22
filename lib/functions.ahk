@@ -125,7 +125,7 @@ StdOut(text, delayMs := '', delimiter := '') {
         return
     }
 
-    Loop Parse text, delimiter {
+    loop parse text, delimiter {
         FileAppend(A_LoopField delimiter, '*')
         Sleep(delayMs)
     }
