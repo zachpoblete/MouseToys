@@ -871,9 +871,7 @@ MaskAlt() {
 ;=== NumLock
 ;=== ===========================================================================
 
-if GetKeyState('NumLock', 'T') {
-    DoOnNumLockToggle()
-}
+DoOnNumLockToggle()
 
 #InputLevel 1
 !CapsLock:: SendEvent('{NumLock}')
