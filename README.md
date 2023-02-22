@@ -98,10 +98,10 @@ Press <kbd>Pause</kbd>
 
 ### 📂 Reveal process of active window in File Explorer&ensp;_(WinOpenProcessDir)_
 
-While <kbd>NumLock</kbd> is on, press <kbd>Ctrl</kbd>+<kbd>D</kbd> to open the process of the active window in File Explorer.
+Turn <kbd>NumLock</kbd> on and press <kbd>Ctrl</kbd>+<kbd>D</kbd> to open the process of the active window in File Explorer.
 
 ### 📂 Open selection as folder in File Explorer&ensp;_(RunSelectedAsDir)_
-While <kbd>NumLock</kbd> is on, select some text, and press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd> to open the selection as a folder in File Explorer.
+Turn <kbd>NumLock</kbd> on, select some text, and press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd> to open the selection as a folder in File Explorer.
 
 For example, selecting `%USERPROFILE%\Documents` and pressing <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd> while <kbd>NumLock</kbd> is on will open your Documents folder.
 
