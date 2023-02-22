@@ -8,6 +8,7 @@ class C_KeyWait {
         if not (this._states.has(key) and this._states[key].has(options)) {
             return
         }
+        
         return this._states[key][options]
     }
 
@@ -17,9 +18,11 @@ class C_KeyWait {
         } else {
             this._states[key] := Map(options, isWaiting)
         }
+
         if not isWaiting {
             return
         }
+
         KeyWait(key, options)
         this._states[key][options] := false
     }
@@ -93,6 +96,7 @@ class C_Timer {
         if not this._labels.has(index) {
             this._labels.insertAt(index, fn)
         }
+
         if periodMs > 0 {
             this._labels.removeAt(index)
             this._labels.insertAt(index, fn)

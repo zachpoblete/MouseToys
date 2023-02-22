@@ -56,6 +56,7 @@ MouseWinMaximize() {
     } else {
         MouseWinActivate()
     }
+
     WinMaximize()
 }
 
@@ -66,12 +67,13 @@ MouseWinMinimizeOrRestore() {
     } else {
         MouseWinActivate()
     }
+
     if WinActive(K_CLASSES['ZOOM']['WAIT_HOST']) or WinActive(K_CLASSES['ZOOM']['VID_PREVIEW']) {
         WinMinimize()
         return
     }
-    winMinMax := WinGetMinMax()
 
+    winMinMax := WinGetMinMax()
     if not winMinMax {
         WinMinimize()
         return
@@ -90,18 +92,17 @@ MouseWinMove() {
     global G_MouseIsMovingWin := true
 
     MouseWinActivate()
-
     if WinActive('ahk_class WorkerW ahk_exe Explorer.EXE') {
         return
     }
-    WinExist('A')
     
+    WinExist('A')
     winMinMax := WinGetMinMax()
-
     if winMinMax = 1 {
         WinRestore()
         MoveWinMiddleToMouse()
     }
+
     CoordMode('Mouse')
     MouseGetPos(&mouseStartX, &mouseStartY)
     WinGetPos(&winOriginalX, &winOriginalY)
@@ -112,6 +113,7 @@ MouseWinMove() {
             WinMove(winOriginalX, winOriginalY)
             break
         }
+
         MouseGetPos(&mouseX, &mouseY)
         WinGetPos(&winX, &winY)
         WinMove(winX + (mouseX - mouseStartX), winY + (mouseY - mouseStartY))
@@ -121,6 +123,7 @@ MouseWinMove() {
 
         Sleep(10)
     }
+
     G_MouseIsMovingWin := false
 }
 
@@ -153,6 +156,7 @@ RButton & LButton Up:: {
         Click()
         return
     }
+
     if GetKeyState('Shift', 'P') {
         Send('{Shift Down}{Del}{Shift Up}')
     } else {
@@ -178,6 +182,7 @@ RButton & MButton Up:: {
         Click('M')
         return
     }
+
     Send('{Ctrl Down}{Shift Down}{Click}{Shift Up}{Ctrl Up}')
 }
 
@@ -197,6 +202,7 @@ XButton1 & WheelDown:: {
     if GetKeyState('Ctrl') {
         Send('{Ctrl Up}')
     }
+
     Send('{Ctrl Down}{Shift Down}a{Shift Up}{Ctrl Up}')
 }
 XButton1 & WheelUp:: Send('{Esc}')
@@ -227,8 +233,8 @@ X1LR(states*) {
     if A_PriorKey = 'Escape' {
         return
     }
-    MouseWinActivate()
 
+    MouseWinActivate()
     if WinActive('ahk_exe Notion.exe') {
         Send('{Ctrl Down}' states[1] '{Ctrl Up}')
     } else {
@@ -246,6 +252,7 @@ MouseWinReload() {
     if A_PriorKey = 'Escape' {
         return
     }
+
     MouseWinActivate()
     Send('{F5}')
 }
@@ -292,6 +299,7 @@ XButton2 & LButton Up:: {
     if A_PriorKey = 'Escape' {
         return
     }
+
     MouseWinActivate()
     Send('{Ctrl Down}{Shift Down}t{Shift Up}{Ctrl Up}')
             ; Reopen last closed tab,
@@ -303,8 +311,8 @@ XButton2 & RButton Up:: {
     if A_PriorKey = 'Escape' {
         return
     }
+
     MouseWinActivate()
-    
     Send('{Ctrl Down}w{Ctrl Up}')
             ; Close current tab.
 }
@@ -319,8 +327,8 @@ MouseWinClose() {
     if A_PriorKey = 'Escape' {
         return
     }
-    MouseWinActivate()
 
+    MouseWinActivate()
     if WinActive(K_CLASSES['ZOOM']['MEETING']) {
         Send('{Alt Down}q{Alt Up}')
                 ; Show 'End Meeting or Leave Meeting?' prompt in the middle of the screen

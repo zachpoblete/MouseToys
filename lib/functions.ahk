@@ -18,10 +18,10 @@ GetSelected() {
 
 GetSelectedElseExit() {
     selected := GetSelected()
-
     if not selected {
         exit
     }
+
     return selected
 }
 
@@ -61,34 +61,37 @@ ControlGetHwndFromClassNnAndTextElseExit(controlClassNn, controlText) {
     } catch {
         exit
     }
-    controlTextFromClassNn := ControlGetText(controlClassNn)
 
+    controlTextFromClassNn := ControlGetText(controlClassNn)
     if controlText != controlTextFromClassNn {
         exit
     }
+
     return controlHwnd
 }
 
 MouseControlFocus(control := '', winTitle := '', winText := '', excludedTitle := '', excludedText := '') {
     MouseGetPos(, , &mouseHwnd, &mouseControlHwnd, 2)
     WinActivate(mouseHwnd)
-
     if not WinActive(winTitle ' ahk_id ' mouseHwnd, winText, excludedTitle, excludedText) {
         return
     }
-    ControlFocus(mouseControlHwnd)
 
+    ControlFocus(mouseControlHwnd)
     if control = '' {
         return mouseControlHwnd
     }
+
     try {
         controlHwnd := ControlGetHwnd(control)
     } catch {
         return
     }
+
     if controlHwnd != mouseControlHwnd {
         return
     }
+
     return mouseControlHwnd
 }
 
@@ -110,6 +113,7 @@ OnFileSave(fileName, fn, shouldCall := true) {
         if not InStr(fileAttrib, 'A') {
             return
         }
+
         FileSetAttrib('-A', fileName)
         fn()
     }
@@ -120,6 +124,7 @@ StdOut(text, delayMs := '', delimiter := '') {
         FileAppend(text, '*')
         return
     }
+
     Loop Parse text, delimiter {
         FileAppend(A_LoopField delimiter, '*')
         Sleep(delayMs)
@@ -161,13 +166,13 @@ HkSplit(hk) {
         hk := hs
     } else {
         hk := StrReplace(hk, ' ')
-
         if InStr(hk, '&') {
             hk := StrSplit(hk, '&') 
         } else {
             RegExMatch(hk, '([#!^+<>*~$]*)(.+)', &hk)
         }
     }
+
     return hk
 }
 
@@ -192,6 +197,7 @@ ObjProto_RefProp(this, name) {
     } else if not desc.get.hasProp('ref') {
         throw Error('Invalid property for ref', -1, name)
     }
+
     return desc.get.ref
 
     makeRef(desc) {

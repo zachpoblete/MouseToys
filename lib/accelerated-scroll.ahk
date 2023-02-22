@@ -47,15 +47,18 @@ AcceleratedScroll() {
         } else {
             speed := 1
         }
+
         if BOOST_IS_ENABLED and _momentum > MIN_BOOST_MOMENTUM {
             if speed > _highestSpeedAchieved {
                 _highestSpeedAchieved := speed
             } else {
                 speed := _highestSpeedAchieved
             }
+            
             boost := _momentum / MIN_BOOST_MOMENTUM
             speed *= boost
         }
+
         if speed > MAX_SCROLLS_TO_SEND {
             scrollsToSend := MAX_SCROLLS_TO_SEND
         } else {

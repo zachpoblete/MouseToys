@@ -73,7 +73,6 @@ UpdateVsCodeExtList(name, pos, menu) {
 UpdateBrowserHistoryBackup(name, pos, menu) {
     backupFileNamePattern := 'history_autobackup_*_full.tsv'
     newBackupPath := EnvGet('USERPROFILE') '\Downloads\' backupFileNamePattern
-    
     if not FileExist(newBackupPath) {
         MsgBox('New browser history backup does not exist')
     }
@@ -113,13 +112,14 @@ CloseMonokaiPopup() {
             ; VS Code still needs to be active fsr.
         return
     }
+
     okBtnHwnd     := ControlGetHwndFromClassNnAndTextElseExit('Button1', 'OK')
     cancelBtnHwnd := ControlGetHwndFromClassNnAndTextElseExit('Button2', 'Cancel')
 
     activeMsg := GetSelected()
-
     if activeMsg != monokaiMsg {
         return
     }
+
     ControlClick(cancelBtnHwnd)
 }

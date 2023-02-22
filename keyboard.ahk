@@ -38,6 +38,7 @@ OperateOnActiveGroup(action) {
         if not WinActive('ahk_group ' groupName) {
             return
         }
+
         Group%action%(groupName)
         exit
     }
@@ -90,7 +91,6 @@ ProcessRestart() {
 
     winProcessPath := ProcessGetPath(winProcessName)
     similarWinIds := WinGetList('ahk_class ' winClass ' ahk_exe ' winProcessName)
-
     if similarWinIds.length < 2 {
         WinClose()
         restartCurrentInstance()
@@ -117,6 +117,7 @@ ProcessRestart() {
         for thisWinId in similarWinIds {
             WinClose(thisWinId)
         }
+
         gui_RestartOptions.destroy()
         restartCurrentInstance()
     }
@@ -200,8 +201,8 @@ ProcessRestart() {
     if not ih.Endkey {
         return
     }
-    tabs := ''
 
+    tabs := ''
     if ih.input = ';' {
         tabs := A_Tab
     } else if RegExMatch(ih.Input, '\A(\d);\z', &match) {
@@ -209,6 +210,7 @@ ProcessRestart() {
             tabs .= A_Tab
         }
     }
+
     SendEvent('{Shift Down}{Left}{Ctrl Down}{Left}{Ctrl Up}{Left}{Shift Up}')
             ; Erase the abbreviation.
             ; Although this version takes longer,
@@ -329,12 +331,12 @@ OneBtnRemote() {
     static pressCount := 0
     
     pressCount++
-
     if pressCount > 2 {
         return
     } else {
         Send('{Media_Play_Pause}')
     }
+
     period := RegRead('HKEY_CURRENT_USER\Control Panel\Mouse', 'DoubleClickSpeed')
     SetTimer(chooseMediaControl, -period)
 
@@ -343,6 +345,7 @@ OneBtnRemote() {
         case 2: Send('{Media_Next}')
         case 3: Send('{Media_Prev}')
         }
+
         pressCount := 0
     }
 }
@@ -358,7 +361,6 @@ $Volume_Down:: DisplayAndSetVolume(-1)
 DisplayAndSetVolume(variation) {
     newVol := SoundGetVolume() + variation
     newVol := Round(newVol)
-
     if variation > 0 or newVol = 1 {
         volDirection := 'Up'
     } else {
@@ -396,11 +398,11 @@ WinOpenProcessDir() {
 ^+d:: RunSelectedAsDir()
 RunSelectedAsDir() {
     dir := GetSelectedElseExit()
-
     while RegExMatch(dir, '%(.+?)%', &match) {
         env := EnvGet(match[1])
         dir := StrReplace(dir, match[], env)
     }
+
     Run(dir)
 }
 #HotIf
@@ -559,6 +561,7 @@ Alt Up:: {
     if not InStr(A_PriorKey, 'Alt') {
         return
     }
+
     Send('{F10}')
 }
 #HotIf
@@ -604,10 +607,10 @@ Alt Up:: {
 
 ActivatePowerToysRunPlugin(activationCmd) {
     DetectHiddenWindows(true)
-
     if not WinExist('ahk_exe PowerToys.PowerLauncher.exe') {
         return
     }
+
     Send('{LWin Down}{Space}{LWin Up}')
             ; Activate PowerToys Run.
     powerLauncherActive := WinWaitActive(, , 5)
@@ -728,6 +731,7 @@ Zoom_OpenReactions() {
         WinActivate()
         return
     }
+
     if not WinActive() {
             ; Check if the meeting window isn't active.
         WinActivate()
@@ -736,6 +740,7 @@ Zoom_OpenReactions() {
     if not ControlGetVisible(K_CONTROLS['ZOOM']['MEETING_CONTROLS']) {
         ControlShow(K_CONTROLS['ZOOM']['MEETING_CONTROLS'])
     }
+    
     ControlGetPos(&controlX, &controlY, &controlW, &controlH, K_CONTROLS['ZOOM']['MEETING_CONTROLS'])
     
     Loop {
@@ -745,12 +750,14 @@ Zoom_OpenReactions() {
         } else {
             return
         }
+
         if A_Index = 1 {
             Send('{Tab}')
                     ; Maybe the reason the icon wasn't found was because there was a dotted rectangle surrounding it,
                     ; so Send('{Tab}') to move the rectangle to a different item.
             continue
         }
+
         try {
             iconClick('more')
         } catch {
@@ -759,6 +766,7 @@ Zoom_OpenReactions() {
             break
         }
     }
+
     Sleep(150)
 
     /**
@@ -832,6 +840,7 @@ MapF13UntilF24() {
         } else {
             num := A_Index + 10
         }
+        
         Hotkey('*F' (A_Index), remap.bind(num))
     }
     HotIf
