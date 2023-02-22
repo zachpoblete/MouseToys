@@ -44,6 +44,37 @@ class C_Hotkey {
     }
 }
 
+C_InsertInputRightOfCaret.init()
+class C_InsertInputRightOfCaret {
+    static init() {
+        this.ih := InputHook('I'),
+        this.ih.keyOpt('{All}', 'N')
+        this.ih.backspaceIsUndo := false,
+        this.priorInput := '',
+        this.ih.onKeyDown := (ih, vk, sc) => this.do()
+    }
+
+    static toggle() {
+        if GetKeyState('NumLock', 'T') {
+            this.ih.start()
+        } else {
+            this.ih.stop()
+        }
+    }
+
+    static do() {
+        if this.ih.input = this.priorInput {
+            return
+        }
+    
+        newestInput := SubStr(this.ih.input, -1)
+        Send('{Raw}' newestInput)
+        Send('{Left}')
+        
+        this.priorInput := this.ih.input
+    }
+}
+
 class C_Timer {
     static _labels := []
 

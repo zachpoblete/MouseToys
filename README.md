@@ -98,12 +98,12 @@ Press <kbd>Pause</kbd>
 
 ### 📂 Reveal process of active window in File Explorer&ensp;_(WinOpenProcessDir)_
 
-While <kbd>NumLock</kbd> is on, press <kbd>D</kbd> to open the process of the active window in File Explorer.
+While <kbd>NumLock</kbd> is on, press <kbd>Ctrl</kbd>+<kbd>D</kbd> to open the process of the active window in File Explorer.
 
 ### 📂 Open selection as folder in File Explorer&ensp;_(RunSelectedAsDir)_
-While <kbd>NumLock</kbd> is on, select some text, and press <kbd>Shift</kbd>+<kbd>D</kbd> to open the selection as a folder in File Explorer.
+While <kbd>NumLock</kbd> is on, select some text, and press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd> to open the selection as a folder in File Explorer.
 
-For example, selecting `%USERPROFILE%\Documents` and pressing <kbd>Shift</kbd>+<kbd>D</kbd> while <kbd>NumLock</kbd> is on will open your Documents folder.
+For example, selecting `%USERPROFILE%\Documents` and pressing <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd> while <kbd>NumLock</kbd> is on will open your Documents folder.
 
 ### 🔄 Restart window&ensp;_(ProcessRestart)_
 
@@ -120,11 +120,11 @@ In _any_ window that is part of a group:
 - Press <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Tab</kbd> to activate the next window in the group (uses [GroupActivate](https://www.autohotkey.com/docs/v2/lib/GroupActivate.htm)).
 - Press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>Tab</kbd> to close the active window and activate the next window in the series (uses [GroupClose](https://www.autohotkey.com/docs/v2/lib/GroupClose.htm)).
 
-### ➡️ Insert any key right of caret&ensp;_(~CapsLock)_
+### ➡️ Insert input right of caret&ensp;_(~*NumLock)_
 
-Press <kbd>CapsLock</kbd>+<kbd>Any Key</kbd> to insert <kbd>Any Key</kbd> in front of the text cursor indicator, aka caret (|).
+Turn <kbd>NumLock</kbd> on and press any key that produces text to insert that text in front of the text cursor indicator, aka caret (|).
 
-Because, normally, pressing <kbd>Any Key</kbd> would insert it behind the caret.
+Because, normally, the text would be inserted behind the caret.
 
 # Best way to view the code
 

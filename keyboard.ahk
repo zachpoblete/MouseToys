@@ -381,7 +381,7 @@ DisplayAndSetVolume(variation) {
 ;== ============================================================================
 
 #HotIf GetKeyState('NumLock', 'T')
-d:: WinOpenProcessDir()
+^d:: WinOpenProcessDir()
 WinOpenProcessDir() {
     WinExist('A')
     winProcessName := WinGetProcessName()
@@ -393,7 +393,7 @@ WinOpenProcessDir() {
     Send(winProcessName)
 }
 
-+d:: RunSelectedAsDir()
+^+d:: RunSelectedAsDir()
 RunSelectedAsDir() {
     dir := GetSelectedElseExit()
 
@@ -816,37 +816,6 @@ Zoom_OpenReactions() {
 ^+BS:: Send('{Ctrl Down}{Del}{Ctrl Up}')
 
 ;== ============================================================================
-;== Insert Any Key Right of Caret
-;== ============================================================================
-
-~CapsLock:: {
-    ih := InputHook('I')
-    ih.keyOpt('{All}', 'N')
-    ih.backspaceIsUndo := false
-    ih.onKeyDown := insertKeyRightOfCaret
-    priorInput := ''
-
-    ih.start()
-    KeyWait('CapsLock')
-    ih.stop()
-
-    if not ih.input {
-        return
-    }
-
-    capsLockIsOn := GetKeyState('CapsLock', 'T')
-    SetCapsLockState(capsLockIsOn ? false : true)
-
-    insertKeyRightOfCaret(ih, vk, sc) {
-        if ih.input = priorInput {
-            return
-        }
-        Send(Format('{vk{:x}}{Left}', vk))
-        priorInput := ih.input
-    }
-}
-
-;== ============================================================================
 ;== Modifiers
 ;== ============================================================================
 
@@ -903,7 +872,7 @@ MaskAlt() {
 ;=== ===========================================================================
 
 if GetKeyState('NumLock', 'T') {
-    NumLockIndicatorFollowMouse()
+    DoOnNumLockToggle()
 }
 
 #InputLevel 1
@@ -913,10 +882,16 @@ if GetKeyState('NumLock', 'T') {
         ; NumLock produces the key code of Pause (while Pause produces CtrlBreak).
 #InputLevel
 
+~*NumLock:: DoOnNumLockToggle()
+
+DoOnNumLockToggle() {
+    NumLockIndicatorFollowMouse()
+    C_InsertInputRightOfCaret.toggle()
+}
+
 /**
  * Display ToolTip while NumLock is on.
  */
-~*NumLock:: NumLockIndicatorFollowMouse()
 NumLockIndicatorFollowMouse() {
     Sleep(10)
 
