@@ -28,7 +28,7 @@ UpdateVsCodeExtList(name, pos, menu) {
             getJsonPackageProp(&extPublisherDisplayName, 'publisherDisplayName')
             getJsonPackageProp(&extVer, 'version')
             getJsonPackageProp(&extWorkspaceSuffix, 'workspaceSuffix')
-            
+
             extsCsvText .= '`r`n"'
             try {
                 extsCsvText .= extWorkspaceSuffix[1]
@@ -36,7 +36,7 @@ UpdateVsCodeExtList(name, pos, menu) {
                 try {
                     extsCsvText .= extDisplayName[1]
                 } catch {
-                    extsCsvText .= extName[1]   
+                    extsCsvText .= extName[1]
                 }
             }
 
@@ -44,7 +44,7 @@ UpdateVsCodeExtList(name, pos, menu) {
                     . extPublisher[1] '.' extName[1] '-' extVer[1]
         }
     }
-    
+
     obsoleteFile := vsCodeExtsDir '\.obsolete'
     try {
         obsoleteFileText := FileRead(obsoleteFile)
@@ -76,7 +76,7 @@ UpdateBrowserHistoryBackup(name, pos, menu) {
     if not FileExist(newBackupPath) {
         MsgBox('New browser history backup does not exist')
     }
-        
+
     oldBackupDir := A_MyDocuments '\Browser Extensions (Private)\Backups'
     FileDelete(oldBackupDir '\' backupFileNamePattern)
     FileMove(newBackupPath, oldBackupDir)

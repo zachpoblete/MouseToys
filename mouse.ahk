@@ -78,7 +78,7 @@ MouseWinMinimizeOrRestore() {
         WinMinimize()
         return
     }
-    
+
     WinRestore()
     MoveWinMiddleToMouse()
 }
@@ -95,7 +95,7 @@ MouseWinMove() {
     if WinActive('ahk_class WorkerW ahk_exe Explorer.EXE') {
         return
     }
-    
+
     WinExist('A')
     winMinMax := WinGetMinMax()
     if winMinMax = 1 {
@@ -277,7 +277,7 @@ X2W(states*) {
     activeWin := {}
     activeWin.class := WinGetClass()
     activeWin.processName := WinGetProcessName()
-    
+
     if activeWin.processName  ~= 'i)\A(Discord.exe|Messenger.exe)\z' {
         Send('{Alt Down}' states[1] '{Alt Up}')
     } else if activeWin.processName ~= 'i)\A(POWERPNT.EXE)\z' {

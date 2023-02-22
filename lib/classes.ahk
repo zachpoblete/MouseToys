@@ -8,7 +8,7 @@ class C_KeyWait {
         if not (this._states.has(key) and this._states[key].has(options)) {
             return
         }
-        
+
         return this._states[key][options]
     }
 
@@ -69,11 +69,11 @@ class C_InsertInputRightOfCaret {
         if this.ih.input = this.priorInput {
             return
         }
-    
+
         newestInput := SubStr(this.ih.input, -1)
         Send('{Raw}' newestInput)
         Send('{Left}')
-        
+
         this.priorInput := this.ih.input
     }
 }
@@ -87,7 +87,7 @@ class C_Timer {
         } else {
             this._labels.insertAt(1, '')
             return
-        } 
+        }
     }
 
     static set(fn, periodMs := 250, priority := 0, index := 1) {

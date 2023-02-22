@@ -30,7 +30,7 @@ OperateOnActiveGroup(action) {
     processName := WinGetProcessName('A')
     groupName := StrReplace(processName, '.exe')
     groupName := StrReplace(groupName, ' ', '_')
-    
+
     GroupAdd(groupName, 'ahk_exe ' processName)
     Group%action%(groupName)
 
@@ -329,7 +329,7 @@ Volume_Mute:: vk13
 Pause:: OneBtnRemote()
 OneBtnRemote() {
     static pressCount := 0
-    
+
     pressCount++
     if pressCount > 2 {
         return
@@ -536,7 +536,7 @@ AppToggleMute() {
 VimcCmd(num) {
     if num > 24 {
         Send('{Alt Down}{F' (num - 12) '}{Alt Up}')
-    } else if num > 16 { 
+    } else if num > 16 {
         Send('{Ctrl Down}{F' (num - 4) '}{Ctrl Up}')
     } else if num > 8 {
         Send('{Shift Down}{F' (num + 4) '}{Shift Up}')
@@ -629,7 +629,7 @@ ActivatePowerToysRunPlugin(activationCmd) {
 ;== ============================================================================
 
 #HotIf WinActive('ahk_exe Spotify.exe')
-/** 
+/**
  * I switched the keyboard shortcuts for varying the navigation bar and friend activity widths.
  * When you increase the navigation bar width, the cover art grows taller,
  * so assign Down and Up to it,
@@ -709,10 +709,10 @@ Zoom_ThumbsUpReact() {
     Zoom_OpenReactions()
     Sleep(200)
             ; WinWaitActive(K_CLASSES['ZOOM']['REACTION']) doesn't work fsr.
-    
+
     CoordMode('Mouse', 'Client')
     CoordMode('Pixel', 'Client')
-    
+
     WinExist('A')
             ; Reaction window.
     WinGetPos(, , &winW, &winH)
@@ -740,9 +740,9 @@ Zoom_OpenReactions() {
     if not ControlGetVisible(K_CONTROLS['ZOOM']['MEETING_CONTROLS']) {
         ControlShow(K_CONTROLS['ZOOM']['MEETING_CONTROLS'])
     }
-    
+
     ControlGetPos(&controlX, &controlY, &controlW, &controlH, K_CONTROLS['ZOOM']['MEETING_CONTROLS'])
-    
+
     loop {
         try {
             iconClick('reactions')
@@ -783,7 +783,7 @@ Zoom_OpenReactions() {
 
     MouseGetPos(&mouseX, &mouseY)
     ImageSearch(&imageX, &imageY, 0, 0, G_VirtualScreenW, G_VirtualScreenH, '*50 images\reactions-menu-item.png')
-    
+
     Click(imageX ' ' imageY)
     Sleep(10)
     MouseMove(mouseX, mouseY)
@@ -840,7 +840,7 @@ MapF13UntilF24() {
         } else {
             num := A_Index + 10
         }
-        
+
         Hotkey('*F' (A_Index), remap.bind(num))
     }
     HotIf
@@ -923,14 +923,14 @@ NumLockIndicatorFollowMouse() {
  * *     CapsLock::   BS
  * *     BS::         `
  * *     `::          NumLock
- * * 
+ * *
  * *     Ins::        Home
  * *     Home::       PgUp
  * *     PgUp::       Ins
- * * 
+ * *
  * * KeyTweak:
  * *     AppsKey::    RWin
- * * 
+ * *
  * * PowerToys:
  * *     ScrollLock:: AppsKey
  */

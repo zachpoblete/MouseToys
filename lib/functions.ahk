@@ -167,7 +167,7 @@ HkSplit(hk) {
     } else {
         hk := StrReplace(hk, ' ')
         if InStr(hk, '&') {
-            hk := StrSplit(hk, '&') 
+            hk := StrSplit(hk, '&')
         } else {
             RegExMatch(hk, '([#!^+<>*~$]*)(.+)', &hk)
         }
@@ -253,7 +253,7 @@ Zoom_MeetingWinExist(isVisible) {
     } catch {
         return
     }
-    
+
     winTitle := isVisible ? 'Zoom' : ''
     return WinExist(winTitle ' ahk_pid ' meetingWinPid)
 }

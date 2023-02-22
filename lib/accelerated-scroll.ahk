@@ -54,7 +54,7 @@ AcceleratedScroll() {
             } else {
                 speed := _highestSpeedAchieved
             }
-            
+
             boost := _momentum / MIN_BOOST_MOMENTUM
             speed *= boost
         }
