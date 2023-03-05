@@ -142,7 +142,11 @@ Because, normally, the text would be inserted behind the caret.
 
 - ❷ is <kbd>RButton</kbd>.
 
-- Pushing directly down on ❸ is <kbd>MButton</kbd>. Scrolling ❸ forward is <kbd>WheelUp</kbd>. Scrolling ❸ backward is <kbd>WheelDown</kbd>.
+- Pushing directly down on ❸ is <kbd>MButton</kbd>.
+
+- Scrolling ❸ forward is <kbd>WheelUp</kbd>.
+
+- Scrolling ❸ backward is <kbd>WheelDown</kbd>.
 
 - ❹ is <kbd>XButton1</kbd> (on my mouse).
 
