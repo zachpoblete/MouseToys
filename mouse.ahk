@@ -34,7 +34,7 @@
     MouseWinActivate()
 
     if WinActive(K_CLASSES['ZOOM']['MEETING']) {
-        Send('{LWin Down}{Alt Down}{PrintScreen}{Alt Up}{LWin Up}')
+        Send('{Alt Down}{PrintScreen}{Alt Up}')
     } else if WinActive('AutoHotkey Community ahk_exe msedge.exe')
             or WinActive('ahk_exe Code.exe')
             or (SetTitleMatchMode('RegEx') and WinActive('ahk_exe .EXE$')) {
