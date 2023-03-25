@@ -139,13 +139,11 @@ Because, normally, the text would be inserted behind the caret.
 ![mouse buttons](https://user-images.githubusercontent.com/92368853/218107501-85e6c04b-cbd5-4de3-9c81-cd3450da1ae7.png)
 
 - ❶ is <kbd>LButton</kbd>.
-
 - ❷ is <kbd>RButton</kbd>.
-
-- Pushing directly down on ❸ is <kbd>MButton</kbd>. Scrolling ❸ forward is <kbd>WheelUp</kbd>. Scrolling ❸ backward is <kbd>WheelDown</kbd>.
-
+- Pushing directly down on ❸ is <kbd>MButton</kbd>.
+- Scrolling ❸ forward is <kbd>WheelUp</kbd>.
+- Scrolling ❸ backward is <kbd>WheelDown</kbd>.
 - ❹ is <kbd>XButton1</kbd> (on my mouse).
-
 - ❺ is <kbd>XButton2</kbd> (on my mouse).
 
 # What do you mean by clicking or holding a key combo like MButton+RButton?
