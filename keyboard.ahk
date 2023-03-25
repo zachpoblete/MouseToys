@@ -412,8 +412,6 @@ RunSelectedAsDir() {
 OpenSettings() {
     switch ChordInput() {
     case 'i': Send('{LWin Down}i{LWin Up}')
-    case 's': ActivatePowerToysRunPlugin('$')
-            ; Search Windows settings.
     case 'v': Run('App volume and device preferences', 'C:\Windows')
     }
 }
@@ -584,41 +582,6 @@ Alt Up:: {
 
 ^+f:: Send('{Ctrl Down}{Shift Down}h{Shift Up}{Ctrl Up}')
         ; Apply last text or highlight color used.
-#HotIf
-
-;== ============================================================================
-;== PowerToys Run
-;== ============================================================================
-
-#':: ActivatePowerToysRunPlugin('<')
-        ; Search open windows.
-
-#;:: ActivatePowerToysRunPlugin('*')
-        ; Search programs.
-
-#/:: ActivatePowerToysRunPlugin('?')
-        ; Search web.
-
-#=:: ActivatePowerToysRunPlugin('=')
-        ; Do mathematical calculations.
-
-ActivatePowerToysRunPlugin(activationCmd) {
-    DetectHiddenWindows(true)
-    if not WinExist('ahk_exe PowerToys.PowerLauncher.exe') {
-        return
-    }
-
-    Send('{LWin Down}{Space}{LWin Up}')
-            ; Activate PowerToys Run.
-    powerLauncherActive := WinWaitActive(, , 5)
-
-    Send(activationCmd ' ')
-}
-
-#HotIf WinActive('ahk_exe PowerToys.PowerLauncher.exe')
-!':: Send('{End}.exe{Ctrl Down}{Left}{Ctrl Up}{Left}')
-        ; Search only for processes.
-        ; This hotkey is meant to be used for Window Walker.
 #HotIf
 
 ;== ============================================================================
