@@ -311,9 +311,14 @@ XButton2 & LButton Up:: {
     }
 
     MouseWinActivate()
-    Send('{Ctrl Down}{Shift Down}t{Shift Up}{Ctrl Up}')
-            ; Reopen last closed tab,
-            ; and switch to it.
+    if WinActive('ahk_exe Adobe Premiere Pro.exe') {
+        Send('{F2}')
+                ; Move playhead to cursor.
+    } else {
+        Send('{Ctrl Down}{Shift Down}t{Shift Up}{Ctrl Up}')
+                ; Reopen last closed tab,
+                ; and switch to it.
+    }
 }
 
 XButton2 & RButton:: return
