@@ -312,8 +312,9 @@ XButton2 & LButton Up:: {
 
     MouseWinActivate()
     if WinActive('ahk_exe Adobe Premiere Pro.exe') {
-        Send('{F2}')
-                ; Move playhead to cursor.
+        Send('{Shift Down}3{Shift Up}{F2}')
+                ; Focus on timeline,
+                ; and move playhead to cursor.
     } else {
         Send('{Ctrl Down}{Shift Down}t{Shift Up}{Ctrl Up}')
                 ; Reopen last closed tab,
