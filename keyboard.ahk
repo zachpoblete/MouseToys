@@ -74,6 +74,19 @@ MacroRecorder() {
 ;== Remap Shortcuts
 ;== ============================================================================
 
+;=== ===========================================================================
+;=== Redo
+;=== ===========================================================================
+
+#HotIf WinThatUsesCtrlYAsRedoIsActive()
+WinThatUsesCtrlYAsRedoIsActive() {
+    return WinActive('ahk_exe explorer.exe') or WinActive('ahk_exe WINWORD.EXE')
+}
+
+^+z:: Send('{Ctrl Down}y{Ctrl Up}')
+^y::  Send('{Ctrl Down}{Shift Down}z{Shift Up}{Ctrl Up}')
+#HotIf
+
 ;== ============================================================================
 ;== Restart
 ;== ============================================================================
