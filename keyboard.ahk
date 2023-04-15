@@ -787,7 +787,10 @@ Zoom_OpenReactions() {
     if GetSelected() {
         Send('{Del}')
     } else {
-        Send('{Ctrl Down}{Shift Down}{Left}{Del}{Shift Up}{Ctrl Up}')
+        Send('{Ctrl Down}{Shift Down}{Left}')
+        Sleep(0)
+                ; For Premiere Pro.
+        Send('{Del}{Shift Up}{Ctrl Up}')
                 ; Delete last word typed.
     }
 }
