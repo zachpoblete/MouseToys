@@ -63,13 +63,13 @@ OperateOnActiveGroup(action) {
 
 #Hotstring EndChars `t
 
-:?x:&l';::     Send('{U+2018}')
+:?x:&<';::     Send('{U+2018}')
         ; Left single quotation mark.
-:?x:&r';::     Send('{U+2019}')
+:?x:&>';::     Send('{U+2019}')
         ; Right single quotation mark.
-:?x:&l";::     Send('{U+201C}')
+:?x:&<";::     Send('{U+201C}')
         ; Left double quotation mark.
-:?x:&r";::     Send('{U+201D}')
+:?x:&>";::     Send('{U+201D}')
         ; Right double quotation mark.
 
 :?x:&deg;::    Send('{U+00B0}')
@@ -78,12 +78,12 @@ OperateOnActiveGroup(action) {
 :?x:&lr;::     Send('{U+200E}')
         ; Left-to-right mark.
 
-:?x:&la;::     Send('{U+2190}')
+:?x:&<-;::     Send('{U+2190}')
         ; Left arrow.
-:?x:&ra;::     Send('{U+2192}')
+:?x:&->;::     Send('{U+2192}')
         ; Right arrow.
 
-:?x:&md;::     Send('{U+2014}')
+:?x:&---;::     Send('{U+2014}')
         ; Em dash.
 
 :?cx:&N~;::     Send('{U+00D1}')
@@ -182,13 +182,13 @@ OperateOnActiveGroup(action) {
 :?x:&infin;::   Send('{U+221E}')
         ; Infinity.
 
-:?x:&ne;::      Send('{U+2260}')
+:?x:&!=;::      Send('{U+2260}')
         ; Not equal.
-:?x:&le;::      Send('{U+2264}')
+:?x:&<=;::      Send('{U+2264}')
         ; Lesser than or equal.
-:?x:&ge;::      Send('{U+2265}')
+:?x:&>=;::      Send('{U+2265}')
         ; Greater than or equal.
-:?x:&pm;::      Send('{U+00B1}')
+:?x:&+-;::      Send('{U+00B1}')
         ; Plus-minus.
 
 :?x:&radic3;::  Send('{U+221B}')
