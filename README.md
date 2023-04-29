@@ -105,12 +105,6 @@ Turn <kbd>NumLock</kbd> on, select some text, and press <kbd>Ctrl</kbd>+<kbd>Shi
 
 For example, selecting `%USERPROFILE%\Documents` and pressing <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd> while <kbd>NumLock</kbd> is on will open your Documents folder.
 
-### 🔄 Restart window&ensp;_(ProcessRestart)_
-
-Press <kbd>Win</kbd>+<kbd>F5</kbd> to close the process of the active window and open it again.
-
-If there are multiple instances of the process, you will be asked if you want to restart the current instance and close all other instances.
-
 ### 🪟 Operate on active window group&ensp;_(OperateOnActivateWindowGroup)_
 
 First, create a window group using [GroupAdd](https://www.autohotkey.com/docs/v2/lib/GroupAdd.htm).
