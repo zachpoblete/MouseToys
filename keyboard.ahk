@@ -57,20 +57,6 @@ OperateOnActiveGroup(action) {
 #c:: return
 
 ;== ============================================================================
-;== Macro Recorder
-;== ============================================================================
-
-#+!r:: MacroRecorder()
-MacroRecorder() {
-    switch ChordInput() {
-    case 'n': Send('{Ctrl Down}{Shift Down}{F13}{Shift Up}{Ctrl Up}')
-            ; Start new recording.
-    case 'p': Send('{Ctrl Down}{Shift Down}{F14}{Shift Up}{Ctrl Up}')
-            ; Playback.
-    }
-}
-
-;== ============================================================================
 ;== Remap Shortcuts
 ;== ============================================================================
 
