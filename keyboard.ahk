@@ -484,7 +484,7 @@ AppToggleMute() {
 ;=== Vimium C Commands
 ;=== ===========================================================================
 
-#HotIf WinActive('ahk_exe msedge.exe')
+#HotIf WinActive('ahk_exe msedge.exe') and not WinActive(' - Google Docs')
 !;::  VimcCmd(1)
         ; LinkHints.activate.
 +!;:: VimcCmd(2)
