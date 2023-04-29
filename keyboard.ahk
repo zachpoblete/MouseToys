@@ -45,38 +45,6 @@ OperateOnActiveGroup(action) {
 }
 
 ;= =============================================================================
-;= All Apps
-;= =============================================================================
-
-;== ============================================================================
-;== Disable
-;== ============================================================================
-
-^+w:: return
-
-#c:: return
-
-;== ============================================================================
-;== Remap Shortcuts
-;== ============================================================================
-
-;=== ===========================================================================
-;=== Redo
-;=== ===========================================================================
-
-#HotIf WinThatUsesCtrlYAsRedoIsActive()
-WinThatUsesCtrlYAsRedoIsActive() {
-    return WinActive('ahk_exe explorer.exe')
-            or WinActive('ahk_exe Messenger.exe')
-            or WinActive('ahk_exe Spotify.exe')
-            or WinActive('ahk_exe WINWORD.EXE')
-}
-
-^+z:: Send('{Ctrl Down}y{Ctrl Up}')
-^y::  Send('{Ctrl Down}{Shift Down}z{Shift Up}{Ctrl Up}')
-#HotIf
-
-;= =============================================================================
 ;= Characters
 ;= =============================================================================
 
@@ -245,6 +213,14 @@ WinThatUsesCtrlYAsRedoIsActive() {
 #InputLevel
 
 ;= =============================================================================
+;= Disable
+;= =============================================================================
+
+^+w:: return
+
+#c:: return
+
+;= =============================================================================
 ;= Multimedia
 ;= =============================================================================
 
@@ -355,6 +331,18 @@ OpenSettings() {
 ;= =============================================================================
 ;= Specific App
 ;= =============================================================================
+
+#HotIf WinThatUsesCtrlYAsRedoIsActive()
+WinThatUsesCtrlYAsRedoIsActive() {
+    return WinActive('ahk_exe explorer.exe')
+            or WinActive('ahk_exe Messenger.exe')
+            or WinActive('ahk_exe Spotify.exe')
+            or WinActive('ahk_exe WINWORD.EXE')
+}
+
+^+z:: Send('{Ctrl Down}y{Ctrl Up}')
+^y::  Send('{Ctrl Down}{Shift Down}z{Shift Up}{Ctrl Up}')
+#HotIf
 
 #!m:: AppToggleMute()
 AppToggleMute() {
