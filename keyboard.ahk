@@ -484,7 +484,7 @@ AppToggleMute() {
 ;=== Vimium C Commands
 ;=== ===========================================================================
 
-#HotIf WinActive('ahk_exe msedge.exe') or WinActive('ahk_exe firefox.exe')
+#HotIf WinActive('ahk_exe msedge.exe')
 !;::  VimcCmd(1)
         ; LinkHints.activate.
 +!;:: VimcCmd(2)
@@ -575,15 +575,6 @@ Alt Up:: {
 
     Send('{F10}')
 }
-#HotIf
-
-;=== ===========================================================================
-;=== Firefox
-;=== ===========================================================================
-
-#HotIf WinActive('ahk_exe firefox.exe')
-^e:: Send('{F1}')
-        ; Toggle Tree Style Tab.
 #HotIf
 
 ;== ============================================================================
