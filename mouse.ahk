@@ -379,6 +379,7 @@ UsePriorAcceleratedScrollSetting() {
     if acceleratedScrollIsOn {
         A_TrayMenu.check('Enable &Accelerated Scroll')
     }
+    AcceleratedScrollIndicatorFollowMouse()
 }
 
 WheelUp::
@@ -395,6 +396,23 @@ ToggleAcceleratedScroll(name := 'Enable &Accelerated Scroll', pos := 0, menu := 
     Hotkey('WheelDown', 'Toggle')
 
     A_TrayMenu.toggleCheck(name)
+    AcceleratedScrollIndicatorFollowMouse()
+}
+
+AcceleratedScrollIndicatorFollowMouse() {
+    SetTimer(toolTipAcceleratedScroll, 10)
+    SetTimer(closeAcceleratedScrollIndicator, -3000)
+
+    closeAcceleratedScrollIndicator() {
+        SetTimer(toolTipAcceleratedScroll, 0)
+        ToolTip()
+    }
+    
+    toolTipAcceleratedScroll() {
+        acceleratedScrollIsOn := IniRead('lib\user-settings.ini', '', 'AcceleratedScrollIsOn')
+        acceleratedScrollSetting := acceleratedScrollIsOn ? 'ON' : 'OFF'
+        ToolTip('Accelerated Scroll ' acceleratedScrollSetting)
+    }
 }
 
 ;== ============================================================================
