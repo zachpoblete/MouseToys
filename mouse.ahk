@@ -389,8 +389,8 @@ WheelDown:: {
 
 #^a:: ToggleAcceleratedScroll()
 ToggleAcceleratedScroll(name := 'Enable &Accelerated Scroll', pos := 0, menu := {}) {
-    acceleratedScrollOppSetting := not IniRead('lib\user-settings.ini', '', 'AcceleratedScrollIsOn')
-    IniWrite(acceleratedScrollOppSetting, 'lib\user-settings.ini', '', 'AcceleratedScrollIsOn')
+    acceleratedScrollIsOn := IniRead('lib\user-settings.ini', '', 'AcceleratedScrollIsOn')
+    IniWrite(not acceleratedScrollIsOn, 'lib\user-settings.ini', '', 'AcceleratedScrollIsOn')
 
     Hotkey('WheelUp', 'Toggle')
     Hotkey('WheelDown', 'Toggle')
