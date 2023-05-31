@@ -366,16 +366,34 @@ MouseWinClose() {
 ;= Wheel
 ;= =============================================================================
 
+A_TrayMenu.insert('E&xit', 'Enable &Accelerated Scroll', ToggleAcceleratedScroll)
+
+UsePriorAcceleratedScrollSetting()
+UsePriorAcceleratedScrollSetting() {
+    acceleratedScrollIsOn := IniRead('lib\user-settings.ini', '', 'AcceleratedScrollIsOn')
+    action := acceleratedScrollIsOn ? 'On' : 'Off'
+
+    Hotkey('WheelUp', action)
+    Hotkey('WheelDown', action)
+
+    if acceleratedScrollIsOn {
+        A_TrayMenu.check('Enable &Accelerated Scroll')
+    }
+}
+
 WheelUp::
 WheelDown:: {
     AcceleratedScroll()
 }
 
 #^a:: ToggleAcceleratedScroll()
-A_TrayMenu.insert('E&xit', 'Disable &Accelerated Scroll', ToggleAcceleratedScroll)
-ToggleAcceleratedScroll(name := 'Disable &Accelerated Scroll', pos := 0, menu := {}) {
+ToggleAcceleratedScroll(name := 'Enable &Accelerated Scroll', pos := 0, menu := {}) {
+    acceleratedScrollOppSetting := not IniRead('lib\user-settings.ini', '', 'AcceleratedScrollIsOn')
+    IniWrite(acceleratedScrollOppSetting, 'lib\user-settings.ini', '', 'AcceleratedScrollIsOn')
+
     Hotkey('WheelUp', 'Toggle')
     Hotkey('WheelDown', 'Toggle')
+
     A_TrayMenu.toggleCheck(name)
 }
 
