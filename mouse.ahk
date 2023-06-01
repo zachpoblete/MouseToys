@@ -137,6 +137,16 @@ RButton:: Click('R')
 ;=== Wheel
 ;=== ===========================================================================
 
+A_TrayMenu.insert('E&xit', 'Enable &MouseAltTab', ToggleMouseAltTab)
+A_TrayMenu.check('Enable &MouseAltTab')
+
+ToggleMouseAltTab(name := 'Enable &MouseAltTab', pos := 0, menu := {}) {
+    Hotkey('RButton & WheelDown', 'Toggle')
+    Hotkey('RButton & WheelUp', 'Toggle')
+
+    A_TrayMenu.toggleCheck('Enable &MouseAltTab')
+}
+
 RButton & WheelDown:: AltTab
 RButton & WheelUp::   ShiftAltTab
 
