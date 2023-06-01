@@ -73,6 +73,7 @@ OperateOnActiveGroup(action) {
 /**
  * * PowerToys:
  * *     #+a:: Global mute microphone
+ * *     #+r:: Screen Ruler
  */
 
 ;= =============================================================================
