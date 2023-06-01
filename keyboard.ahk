@@ -63,145 +63,6 @@ OperateOnActiveGroup(action) {
 
 #Hotstring EndChars `t
 
-:?x:&<';::     Send('{U+2018}')
-        ; Left single quotation mark.
-:?x:&>';::     Send('{U+2019}')
-        ; Right single quotation mark.
-:?x:&<";::     Send('{U+201C}')
-        ; Left double quotation mark.
-:?x:&>";::     Send('{U+201D}')
-        ; Right double quotation mark.
-
-:?x:&deg;::    Send('{U+00B0}')
-        ; Degree.
-
-:?x:&lr;::     Send('{U+200E}')
-        ; Left-to-right mark.
-
-:?x:&<-;::     Send('{U+2190}')
-        ; Left arrow.
-:?x:&->;::     Send('{U+2192}')
-        ; Right arrow.
-
-:?x:&---;::     Send('{U+2014}')
-        ; Em dash.
-
-:?cx:&N~;::     Send('{U+00D1}')
-        ; N tilde.
-:?cx:&n~;::     Send('{U+00F1}')
-        ; n tilde.
-
-:?x:&peso;::   Send('{U+20B1}')
-
-:*?b0:&tab:: {
-    ih := InputHook('L3 V', '{Tab}')
-    ih.keyOpt('{Tab}', 'S')
-    ih.start()
-    ih.wait()
-
-    if not ih.Endkey {
-        return
-    }
-
-    tabs := ''
-    if ih.input = ';' {
-        tabs := A_Tab
-    } else if RegExMatch(ih.Input, '\A(\d);\z', &match) {
-        loop match[1] {
-            tabs .= A_Tab
-        }
-    }
-
-    SendEvent('{Shift Down}{Left}{Ctrl Down}{Left}{Ctrl Up}{Left}{Shift Up}')
-            ; Erase the abbreviation.
-            ; Although this version takes longer,
-            ; it works on more text inputs.
-    SendInstantRaw(tabs)
-}
-
-;=== ===========================================================================
-;=== Greek Alphabet
-;=== ===========================================================================
-
-:?cx:&Alpha;::    Send('{U+0391}')
-:?cx:&alpha;::    Send('{U+03B1}')
-:?cx:&Beta;::     Send('{U+0392}')
-:?cx:&beta;::     Send('{U+03B2}')
-:?cx:&Gamma;::    Send('{U+0393}')
-:?cx:&gamma;::    Send('{U+03B3}')
-:?cx:&Delta;::    Send('{U+0394}')
-:?cx:&delta;::    Send('{U+03B4}')
-:?cx:&Epsilon;::  Send('{U+0395}')
-:?cx:&epsilon;::  Send('{U+03B5}')
-:?cx:&Zeta;::     Send('{U+0396}')
-:?cx:&zeta;::     Send('{U+03B6}')
-:?cx:&Eta;::      Send('{U+0397}')
-:?cx:&eta;::      Send('{U+03B7}')
-:?cx:&Theta;::    Send('{U+0398}')
-:?cx:&theta;::    Send('{U+03B8}')
-:?cx:&Iota;::     Send('{U+0399}')
-:?cx:&iota;::     Send('{U+03B9}')
-:?cx:&Kappa;::    Send('{U+039A}')
-:?cx:&kappa;::    Send('{U+03BA}')
-:?cx:&Lambda;::   Send('{U+039B}')
-:?cx:&lambda;::   Send('{U+03BB}')
-:?cx:&Mu;::       Send('{U+039C}')
-:?cx:&mu;::       Send('{U+03BC}')
-:?cx:&Nu;::       Send('{U+039D}')
-:?cx:&nu;::       Send('{U+03BD}')
-:?cx:&Xi;::       Send('{U+039E}')
-:?cx:&xi;::       Send('{U+03BE}')
-:?cx:&Omicron;::  Send('{U+039F}')
-:?cx:&omicron;::  Send('{U+03BF}')
-:?cx:&Pi;::       Send('{U+03A0}')
-:?cx:&pi;::       Send('{U+03C0}')
-:?cx:&Rho;::      Send('{U+03A1}')
-:?cx:&rho;::      Send('{U+03C1}')
-:?cx:&Sigma;::    Send('{U+03A3}')
-:?cx:&sigma;::    Send('{U+03C3}')
-:?cx:&varsigma;:: Send('{U+03C2}')
-:?cx:&Tau;::      Send('{U+03A4}')
-:?cx:&tau;::      Send('{U+03C4}')
-:?cx:&Upsilon;::  Send('{U+03A5}')
-:?cx:&upsilon;::  Send('{U+03C5}')
-:?cx:&Phi;::      Send('{U+03A6}')
-:?cx:&phi;::      Send('{U+03C6}')
-:?cx:&Chi;::      Send('{U+03A7}')
-:?cx:&chi;::      Send('{U+03C7}')
-:?cx:&Psi;::      Send('{U+03A8}')
-:?cx:&psi;::      Send('{U+03C8}')
-:?cx:&Omega;::    Send('{U+03A9}')
-:?cx:&omega;::    Send('{U+03C9}')
-
-;=== ===========================================================================
-;=== Math and Science
-;=== ===========================================================================
-
-:?x:&bullet;::  Send('{U+2219}')
-
-:?x:&infin;::   Send('{U+221E}')
-        ; Infinity.
-
-:?x:&!=;::      Send('{U+2260}')
-        ; Not equal.
-:?x:&<=;::      Send('{U+2264}')
-        ; Lesser than or equal.
-:?x:&>=;::      Send('{U+2265}')
-        ; Greater than or equal.
-:?x:&+-;::      Send('{U+00B1}')
-        ; Plus-minus.
-
-:?x:&radic3;::  Send('{U+221B}')
-:?x:&radic4;::  Send('{U+221C}')
-
-:?x:&scriptM;:: Send('{U+2133}')
-
-:?x:&sqrt;::    Send('{U+221A}')
-
-:?x:&times;::   Send('{U+00D7}')
-
-:?x:&xbar;::    Send('{U+0078}{U+0305}')
-
 ;== ============================================================================
 ;== Space <-> Underscore
 ;== ============================================================================
@@ -357,6 +218,14 @@ AppToggleMute() {
     case 'z': Send('{Ctrl Down}{Shift Down}{Alt Down}{F13}{Alt Up}{Shift Up}{Ctrl Up}')
     case 'd': Send('{Ctrl Down}{Shift Down}{Alt Down}{F14}{Alt Up}{Shift Up}{Ctrl Up}')
     }
+}
+
+/**
+ * Open uniqoda.
+ */
+#+,:: {
+    Send('{Blind}{Shift Up}{LWin Up}')
+    Send('{Ctrl Down}{Shift Down}{F20}{Shift Up}{Ctrl Up}')
 }
 
 ;== ============================================================================
