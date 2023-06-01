@@ -49,21 +49,6 @@ OperateOnActiveGroup(action) {
 ;= =============================================================================
 
 ;== ============================================================================
-;== Hotstrings
-;== ============================================================================
-; For each Unicode character sent, the hotstring abbreviation is the HTML entity (or something intuitive).
-
-~^z:: {
-    if A_PriorHotkey ~= '^:' {
-            ; Match hotstrings.
-        Send('{Ctrl Down}z{Ctrl Up}')
-                ; Send an extra ^z to go back to the abbreviation.
-    }
-}
-
-#Hotstring EndChars `t
-
-;== ============================================================================
 ;== Space <-> Underscore
 ;== ============================================================================
 
@@ -80,6 +65,14 @@ OperateOnActiveGroup(action) {
 ^+w:: return
 
 #c:: return
+
+;= =============================================================================
+;= Hotstrings
+;= =============================================================================
+; For each replacement text sent, the hotstring abbreviation is in the format of an HTML entity.
+
+#Hotstring EndChars `t
+:?x:&shrug;:: SendInstantRaw('¯\_(ツ)_/¯')
 
 ;= =============================================================================
 ;= Multimedia
