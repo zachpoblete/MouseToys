@@ -67,6 +67,15 @@ OperateOnActiveGroup(action) {
 #c:: return
 
 ;= =============================================================================
+;= Hotkeys in Other Programs Not Mentioned Yet
+;= =============================================================================
+
+/**
+ * * PowerToys:
+ * *     #+a:: Global mute microphone
+ */
+
+;= =============================================================================
 ;= Hotstrings
 ;= =============================================================================
 ; For each replacement text sent, the hotstring abbreviation is in the format of an HTML entity.
@@ -363,14 +372,6 @@ WinThatUsesCtrlYAsRedoIsActive() {
 ^+z:: Send('{Ctrl Down}y{Ctrl Up}')
 ^y::  Send('{Ctrl Down}{Shift Down}z{Shift Up}{Ctrl Up}')
 #HotIf
-
-#!m:: AppToggleMute()
-AppToggleMute() {
-    switch ChordInput() {
-    case 'z': Send('{Ctrl Down}{Shift Down}{Alt Down}{F13}{Alt Up}{Shift Up}{Ctrl Up}')
-    case 'd': Send('{Ctrl Down}{Shift Down}{Alt Down}{F14}{Alt Up}{Shift Up}{Ctrl Up}')
-    }
-}
 
 /**
  * Open uniqoda.
