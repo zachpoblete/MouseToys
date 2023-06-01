@@ -91,6 +91,149 @@ OperateOnActiveGroup(action) {
 }
 
 ;= =============================================================================
+;= Keys
+;= =============================================================================
+
+;== ============================================================================
+;== BackSpace
+;== ============================================================================
+
+#HotIf ControlClassNnFocused('A', '^Edit\d+$', true)
+        or ControlClassNnFocused('ahk_exe AcroRd32.exe', '^AVL_AVView', true)
+        or WinActive('ahk_exe mmc.exe')
+/**
+ * ^BS doesn't natively work because it produces a control character,
+ * so work around that.
+ */
+^BS:: {
+    if GetSelected() {
+        Send('{Del}')
+    } else {
+        Send('{Ctrl Down}{Shift Down}{Left}')
+        Sleep(0)
+                ; For Premiere Pro.
+        Send('{Del}{Shift Up}{Ctrl Up}')
+                ; Delete last word typed.
+    }
+}
+#HotIf
+
++BS::  Send('{Del}')
+^+BS:: Send('{Ctrl Down}{Del}{Ctrl Up}')
+
+;== ============================================================================
+;== Modifiers
+;== ============================================================================
+
+;=== ===========================================================================
+;=== F13 - F24
+;=== ===========================================================================
+
+MapF13UntilF24()
+MapF13UntilF24() {
+    HotIf((thisHotkey) => GetKeyState('CapsLock', 'T'))
+    loop 12 {
+        if A_Index < 3 {
+            num := A_Index + 22
+        } else {
+            num := A_Index + 10
+        }
+
+        Hotkey('*F' (A_Index), remap.bind(num))
+    }
+    HotIf
+
+    remap(num, thisHotkey) => Send('{Blind}{F' num '}')
+}
+
+;=== ===========================================================================
+;=== Mask
+;=== ===========================================================================
+
+#^+Alt::
+#^!Shift::
+#+!Ctrl::
+^+!LWin::
+^+!RWin:: {
+    MaskMenu()
+}
+
+#HotIf not OfficeAppIsActive()
+OfficeAppIsActive() {
+    SetTitleMatchMode('RegEx')
+    return WinActive('ahk_exe .EXE$')
+}
+
+Alt:: MaskAlt()
+MaskAlt() {
+    SetKeyDelay(-1)
+    SendEvent('{Blind}{Alt DownR}')
+    MaskMenu()
+    KeyWait('Alt')
+    SendEvent('{Blind}{Alt Up}')
+}
+#HotIf
+
+;=== ===========================================================================
+;=== NumLock
+;=== ===========================================================================
+
+DoOnNumLockToggle()
+
+#InputLevel 1
+!CapsLock:: SendEvent('{NumLock}')
+^Pause::    SendEvent('{NumLock}')
+        ; This hotkey exists because when Ctrl is down,
+        ; NumLock produces the key code of Pause (while Pause produces CtrlBreak).
+#InputLevel
+
+~*NumLock:: DoOnNumLockToggle()
+
+DoOnNumLockToggle() {
+    NumLockIndicatorFollowMouse()
+    C_InsertInputRightOfCaret.toggle()
+}
+
+/**
+ * Display ToolTip while NumLock is on.
+ */
+NumLockIndicatorFollowMouse() {
+    Sleep(10)
+
+    if GetKeyState('NumLock', 'T') {
+        SetTimer(toolTipNumLock, 10)
+    } else {
+        SetTimer(toolTipNumLock, 0)
+        ToolTip()
+    }
+
+    toolTipNumLock() => ToolTip('NumLock On')
+}
+
+;== ============================================================================
+;== Remaps in Other Programs
+;== ============================================================================
+
+/**
+ * (In order of decreasing input level)
+ * * RAKK Lam-Ang Pro FineTuner:
+ * *     Fn::         CapsLock
+ * *     CapsLock::   BS
+ * *     BS::         `
+ * *     `::          NumLock
+ * *
+ * *     Ins::        Home
+ * *     Home::       PgUp
+ * *     PgUp::       Ins
+ * *
+ * * KeyTweak:
+ * *     AppsKey::    RWin
+ * *
+ * * PowerToys:
+ * *     ScrollLock:: AppsKey
+ */
+
+;= =============================================================================
 ;= Multimedia
 ;= =============================================================================
 
@@ -533,146 +676,3 @@ Zoom_OpenReactions() {
     }
 }
 #HotIf
-
-;= =============================================================================
-;= Keys
-;= =============================================================================
-
-;== ============================================================================
-;== BackSpace
-;== ============================================================================
-
-#HotIf ControlClassNnFocused('A', '^Edit\d+$', true)
-        or ControlClassNnFocused('ahk_exe AcroRd32.exe', '^AVL_AVView', true)
-        or WinActive('ahk_exe mmc.exe')
-/**
- * ^BS doesn't natively work because it produces a control character,
- * so work around that.
- */
-^BS:: {
-    if GetSelected() {
-        Send('{Del}')
-    } else {
-        Send('{Ctrl Down}{Shift Down}{Left}')
-        Sleep(0)
-                ; For Premiere Pro.
-        Send('{Del}{Shift Up}{Ctrl Up}')
-                ; Delete last word typed.
-    }
-}
-#HotIf
-
-+BS::  Send('{Del}')
-^+BS:: Send('{Ctrl Down}{Del}{Ctrl Up}')
-
-;== ============================================================================
-;== Modifiers
-;== ============================================================================
-
-;=== ===========================================================================
-;=== F13 - F24
-;=== ===========================================================================
-
-MapF13UntilF24()
-MapF13UntilF24() {
-    HotIf((thisHotkey) => GetKeyState('CapsLock', 'T'))
-    loop 12 {
-        if A_Index < 3 {
-            num := A_Index + 22
-        } else {
-            num := A_Index + 10
-        }
-
-        Hotkey('*F' (A_Index), remap.bind(num))
-    }
-    HotIf
-
-    remap(num, thisHotkey) => Send('{Blind}{F' num '}')
-}
-
-;=== ===========================================================================
-;=== Mask
-;=== ===========================================================================
-
-#^+Alt::
-#^!Shift::
-#+!Ctrl::
-^+!LWin::
-^+!RWin:: {
-    MaskMenu()
-}
-
-#HotIf not OfficeAppIsActive()
-OfficeAppIsActive() {
-    SetTitleMatchMode('RegEx')
-    return WinActive('ahk_exe .EXE$')
-}
-
-Alt:: MaskAlt()
-MaskAlt() {
-    SetKeyDelay(-1)
-    SendEvent('{Blind}{Alt DownR}')
-    MaskMenu()
-    KeyWait('Alt')
-    SendEvent('{Blind}{Alt Up}')
-}
-#HotIf
-
-;=== ===========================================================================
-;=== NumLock
-;=== ===========================================================================
-
-DoOnNumLockToggle()
-
-#InputLevel 1
-!CapsLock:: SendEvent('{NumLock}')
-^Pause::    SendEvent('{NumLock}')
-        ; This hotkey exists because when Ctrl is down,
-        ; NumLock produces the key code of Pause (while Pause produces CtrlBreak).
-#InputLevel
-
-~*NumLock:: DoOnNumLockToggle()
-
-DoOnNumLockToggle() {
-    NumLockIndicatorFollowMouse()
-    C_InsertInputRightOfCaret.toggle()
-}
-
-/**
- * Display ToolTip while NumLock is on.
- */
-NumLockIndicatorFollowMouse() {
-    Sleep(10)
-
-    if GetKeyState('NumLock', 'T') {
-        SetTimer(toolTipNumLock, 10)
-    } else {
-        SetTimer(toolTipNumLock, 0)
-        ToolTip()
-    }
-
-    toolTipNumLock() => ToolTip('NumLock On')
-}
-
-;== ============================================================================
-;== Remaps in Other Programs
-;== ============================================================================
-
-/**
- * (In order of decreasing input level)
- * * RAKK Lam-Ang Pro FineTuner:
- * *     Fn::         CapsLock
- * *     CapsLock::   BS
- * *     BS::         `
- * *     `::          NumLock
- * *
- * *     Ins::        Home
- * *     Home::       PgUp
- * *     PgUp::       Ins
- * *
- * * KeyTweak:
- * *     AppsKey::    RWin
- * *
- * * PowerToys:
- * *     ScrollLock:: AppsKey
- */
