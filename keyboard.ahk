@@ -76,6 +76,29 @@ OperateOnActiveGroup(action) {
  * *     #+r:: Screen Ruler
  */
 
+;== ============================================================================
+;== Remaps
+;== ============================================================================
+
+/**
+ * (In order of decreasing input level)
+ * * RAKK Lam-Ang Pro FineTuner:
+ * *     Fn::         CapsLock
+ * *     CapsLock::   BS
+ * *     BS::         `
+ * *     `::          NumLock
+ * *
+ * *     Ins::        Home
+ * *     Home::       PgUp
+ * *     PgUp::       Ins
+ * *
+ * * KeyTweak:
+ * *     AppsKey::    RWin
+ * *
+ * * PowerToys:
+ * *     ScrollLock:: AppsKey
+ */
+
 ;= =============================================================================
 ;= Hotstrings
 ;= =============================================================================
@@ -219,29 +242,6 @@ NumLockIndicatorFollowMouse() {
 
     toolTipNumLock() => ToolTip('NumLock On')
 }
-
-;== ============================================================================
-;== Remaps in Other Programs
-;== ============================================================================
-
-/**
- * (In order of decreasing input level)
- * * RAKK Lam-Ang Pro FineTuner:
- * *     Fn::         CapsLock
- * *     CapsLock::   BS
- * *     BS::         `
- * *     `::          NumLock
- * *
- * *     Ins::        Home
- * *     Home::       PgUp
- * *     PgUp::       Ins
- * *
- * * KeyTweak:
- * *     AppsKey::    RWin
- * *
- * * PowerToys:
- * *     ScrollLock:: AppsKey
- */
 
 ;= =============================================================================
 ;= Multimedia
