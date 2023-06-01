@@ -74,6 +74,22 @@ OperateOnActiveGroup(action) {
 #Hotstring EndChars `t
 :?x:&shrug;:: SendInstantRaw('¯\_(ツ)_/¯')
 
+/**
+ * My preferred chain-of-thought (CoT; hence, &cot;) prompt from
+ * https://youtu.be/wVzuvf9D9BU?t=176
+ */
+:?:&cot;:: {
+    SendInstantRaw(
+    (Join`r`n
+        "Question." A_Space "
+        
+        Answer: Let's work this out in a step by step way to be sure we have the right answer."
+    ))
+
+    Send('{Ctrl Down}{Home}{Ctrl Up}{End}')
+            ; Move the text cursor to the space after "Question."
+}
+
 ;= =============================================================================
 ;= Multimedia
 ;= =============================================================================
