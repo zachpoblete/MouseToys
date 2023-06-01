@@ -334,10 +334,17 @@ OpenSettings() {
 
 #HotIf WinThatUsesCtrlYAsRedoIsActive()
 WinThatUsesCtrlYAsRedoIsActive() {
-    return WinActive('ahk_exe explorer.exe')
+    if WinActive('ahk_exe explorer.exe')
             or WinActive('ahk_exe Messenger.exe')
-            or WinActive('ahk_exe Spotify.exe')
-            or WinActive('ahk_exe WINWORD.EXE')
+            or WinActive(' | Tinkercad ahk_exe msedge.exe')
+            or WinActive('ahk_exe Spotify.exe') {
+        return true
+    }
+
+    SetTitleMatchMode('RegEx')
+    if WinActive('ahk_exe .EXE$') {
+        return true
+    }
 }
 
 ^+z:: Send('{Ctrl Down}y{Ctrl Up}')
