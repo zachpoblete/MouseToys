@@ -241,32 +241,11 @@ AppToggleMute() {
 ;== Adobe Reader
 ;== ============================================================================
 
-#HotIf ControlClassNnFocused('ahk_exe AcroRd32.exe', '^AVL_AVView', true)
-^Left::  Send('{Ctrl Down}{Shift Down}{Left}{Shift Up}{Ctrl Up}{Up}')
-^Right:: Send('{Ctrl Down}{Shift Down}{Right}{Shift Up}{Ctrl Up}{Down}')
-
-;~ hk := HkSplit(thisHotkey)
-;~ horiz := '{' hk[2] '}'
-
-;~ if horiz = '{Left}' {
-;~     oppHoriz := '{Right}'
-;~     vert := '{Up}'
-
-;~ } else {
-;~     oppHoriz := '{Left}'
-;~     vert := '{Down}'
-;~ }
-
-;~ Send('{Ctrl Down}{Shift Down}' horiz '{Shift Up}{Ctrl Up}')
-;~ selected := GetSelected()
-
-;~ if not StrReplace(selected, ' ') {
-;~     Send('{Ctrl Down}{Shift Down}' horiz '{Shift Up}{Ctrl Up}')
-;~ }
-
-;~ Sleep(30)
-;~ Send(vert oppHoriz)
-
+#HotIf WinActive('ahk_exe AcroRd32.exe')
+/**
+ * Toggle Full Screen Mode.
+ */
+F11:: Send('{Ctrl Down}l{Ctrl Up}')
 #HotIf
 
 ;== ============================================================================
