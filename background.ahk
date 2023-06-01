@@ -62,7 +62,7 @@ UpdateVsCodeExtList(name, pos, menu) {
     extsCsvText := '"Extension","Publisher","Link"' extsCsvText
 
     extsCsv := A_AppData '\Code\User\extensions.csv'
-    FileDelete(extsCsv)
+    FileRecycle(extsCsv)
     FileAppend(extsCsvText, extsCsv)
 
     getJsonPackageProp(&extProp, prop) {
@@ -78,7 +78,7 @@ UpdateBrowserHistoryBackup(name, pos, menu) {
     }
 
     oldBackupDir := A_MyDocuments '\Browser Extensions (Private)\Backups'
-    FileDelete(oldBackupDir '\' backupFileNamePattern)
+    FileRecycle(oldBackupDir '\' backupFileNamePattern)
     FileMove(newBackupPath, oldBackupDir)
 }
 
