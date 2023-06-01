@@ -131,7 +131,7 @@ OperateOnActiveGroup(action) {
 
 MapF13UntilF24()
 MapF13UntilF24() {
-    HotIf((thisHotkey) => GetKeyState('CapsLock', 'T'))
+    HotIf((thisHotkey) => GetKeyState('NumLock', 'T'))
     loop 12 {
         if A_Index < 3 {
             num := A_Index + 22
