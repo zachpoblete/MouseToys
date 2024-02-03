@@ -69,8 +69,11 @@
         Send('{Ctrl Down}{Shift Down}{Left}')
         Sleep(0)
                 ; For Premiere Pro.
-        Send('{Del}{Shift Up}{Ctrl Up}')
+        Send('{Shift Up}{Ctrl Up}{Del}')
                 ; Delete last word typed.
+                ; Delete comes last because fsr,
+                ; Photoshop doesn't delete the word unless Delete comes last
+                ; even though ^+Del will delete the word if you do it manually.
     }
 }
 #HotIf
