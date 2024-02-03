@@ -433,12 +433,3 @@ AcceleratedScrollIndicatorFollowMouse() {
 ~^WheelDown:: {
     MouseWinActivate()
 }
-
-;== ============================================================================
-;== Shift+Wheel
-;== ============================================================================
-
-#HotIf MouseControlFocus('RichEditD2DPT1', 'ahk_exe Notepad.exe')
-+WheelUp::   Send('{Blind+}{WheelLeft}')
-+WheelDown:: Send('{Blind+}{WheelRight}')
-#HotIf
