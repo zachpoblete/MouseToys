@@ -193,8 +193,7 @@ OneBtnRemote() {
         Send('{Media_Play_Pause}')
     }
 
-    period := RegRead('HKEY_CURRENT_USER\Control Panel\Mouse', 'DoubleClickSpeed')
-    SetTimer(chooseMediaControl, -period)
+    SetTimer(chooseMediaControl, -500)
 
     chooseMediaControl() {
         switch _quickPressCount {
