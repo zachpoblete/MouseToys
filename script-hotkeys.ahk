@@ -21,7 +21,7 @@
  */
 #^r:: {
     global G_WillReload := true
-    Run('*UIAccess "' A_ScriptName '"')
+    Run('meta-launcher.ahk')
 }
 
 #^p:: Pause(-1)
