@@ -184,10 +184,10 @@ Volume_Mute:: vk13
 
 Pause:: OneBtnRemote()
 OneBtnRemote() {
-    static pressCount := 0
+    static _quickPressCount := 0
 
-    pressCount++
-    if pressCount > 2 {
+    _quickPressCount++
+    if _quickPressCount > 2 {
         return
     } else {
         Send('{Media_Play_Pause}')
@@ -197,12 +197,12 @@ OneBtnRemote() {
     SetTimer(chooseMediaControl, -period)
 
     chooseMediaControl() {
-        switch pressCount {
+        switch _quickPressCount {
         case 2: Send('{Media_Next}')
         case 3: Send('{Media_Prev}')
         }
 
-        pressCount := 0
+        _quickPressCount := 0
     }
 }
 
