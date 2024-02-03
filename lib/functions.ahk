@@ -165,10 +165,11 @@ HkSplit(hk) {
     if hs {
         hk := hs
     } else {
-        hk := StrReplace(hk, ' ')
-        if InStr(hk, '&') {
+        if InStr(hk, ' & ') {
+            hk := StrReplace(hk, ' ')
             hk := StrSplit(hk, '&')
         } else {
+            hk := StrReplace(hk, ' ')
             RegExMatch(hk, '([#!^+<>*~$]*)(.+)', &hk)
         }
     }
