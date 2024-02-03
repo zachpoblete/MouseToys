@@ -38,7 +38,7 @@ SendInstantRaw(text) {
 ;= Control
 ;= =============================================================================
 
-ControlClassNnFocused(winTitle, controlClassNn, useRegEx := 0) {
+ControlClassNnFocused(winTitle, controlClassNn, useRegEx := false) {
     try {
         focusedControlHwnd    := ControlGetFocus(winTitle)
         focusedControlClassNn := ControlGetClassNn(focusedControlHwnd)
