@@ -12,22 +12,22 @@ A_MaxHotkeysPerInterval := 140
  * To use effectively, make sure this function is the first line in a hotkey.
  */
 AcceleratedScroll() {
-    static TIMEOUT_MS := 500,
+    static TIMEOUT_MS := 500
             ; Length of a scrolling session.
             ; Keep scrolling within this time to accumulate boost.
             ; Recommended: 400 < x < 1000.
 
-    MIN_BOOST_MOMENTUM := 30,
+    static MIN_BOOST_MOMENTUM := 30
             ; The smaller the value, the faster boost activates and accumulates.
             ; Set to 0 to disable boost completely.
-    BOOST_IS_ENABLED := MIN_BOOST_MOMENTUM > 1,
+    static BOOST_IS_ENABLED := MIN_BOOST_MOMENTUM > 1
 
-    MAX_SCROLLS_TO_SEND := 60,
+    static MAX_SCROLLS_TO_SEND := 60
             ; Spamming apps with hundreds of individual scroll events can slow them down,
             ; so set a max number of scrolls sent per click.
 
-    _momentum,
-    _highestSpeedAchieved
+    static _momentum
+    static _highestSpeedAchieved
 
     timeBetweenHotkeysMs := A_TimeSincePriorHotkey or 1
 
