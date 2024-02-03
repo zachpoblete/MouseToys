@@ -105,15 +105,6 @@ Turn <kbd>NumLock</kbd> on, select some text, and press <kbd>Ctrl</kbd>+<kbd>Shi
 
 For example, selecting `%USERPROFILE%\Documents` and pressing <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd> while <kbd>NumLock</kbd> is on will open your Documents folder.
 
-### 🪟 Operate on active window group&ensp;_(OperateOnActivateWindowGroup)_
-
-First, create a window group using [GroupAdd](https://www.autohotkey.com/docs/v2/lib/GroupAdd.htm).
-
-In _any_ window that is part of a group:
-
-- Press <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Tab</kbd> to activate the next window in the group (uses [GroupActivate](https://www.autohotkey.com/docs/v2/lib/GroupActivate.htm)).
-- Press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>Tab</kbd> to close the active window and activate the next window in the series (uses [GroupClose](https://www.autohotkey.com/docs/v2/lib/GroupClose.htm)).
-
 ### ➡️ Insert input right of caret&ensp;_(~*NumLock)_
 
 Turn <kbd>NumLock</kbd> on and press any key that produces text to insert that text in front of the text cursor indicator, aka caret (|).
