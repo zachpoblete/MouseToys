@@ -5,60 +5,6 @@
 #Include <classes>
 
 ;= =============================================================================
-;= Activate
-;= =============================================================================
-
-; A_TitleMatchMode = 2:
-GroupAdd('ExplorerWins', 'ahk_class CabinetWClass')
-
-; A_TitleMatchMode = 'RegEx':
-GroupAdd('PhotoWins', ' ' K_CHARS['LEFT_TO_RIGHT_MARK'] '- Photos$ ahk_exe ApplicationFrameHost.exe')
-GroupAdd('ZoomWins', 'ahk_class ^Z ahk_exe Zoom.exe')
-
-^!Tab::  OperateOnActiveGroup('Activate')
-^+!Tab:: OperateOnActiveGroup('Close')
-
-OperateOnActiveGroup(action) {
-    check('ExplorerWins')
-
-    SetTitleMatchMode('RegEx')
-    check('PhotoWins')
-    check('ZoomWins')
-
-    SetTitleMatchMode(2)
-
-    processName := WinGetProcessName('A')
-    groupName := StrReplace(processName, '.exe')
-    groupName := StrReplace(groupName, ' ', '_')
-
-    GroupAdd(groupName, 'ahk_exe ' processName)
-    Group%action%(groupName)
-
-    check(groupName) {
-        if not WinActive('ahk_group ' groupName) {
-            return
-        }
-
-        Group%action%(groupName)
-        exit
-    }
-}
-
-;= =============================================================================
-;= Characters
-;= =============================================================================
-
-;== ============================================================================
-;== Space <-> Underscore
-;== ============================================================================
-
-#InputLevel 1
-+Space:: Send('_')
-+-::     Send('{U+2013}')
-        ; En dash.
-#InputLevel
-
-;= =============================================================================
 ;= Disable
 ;= =============================================================================
 
@@ -98,30 +44,6 @@ OperateOnActiveGroup(action) {
  * * PowerToys:
  * *     ScrollLock:: AppsKey
  */
-
-;= =============================================================================
-;= Hotstrings
-;= =============================================================================
-; For each replacement text sent, the hotstring abbreviation is in the format of an HTML entity.
-
-#Hotstring EndChars `t
-:?x:&shrug;:: SendInstantRaw('¯\_(ツ)_/¯')
-
-/**
- * My preferred chain-of-thought (CoT; hence, &cot;) prompt from
- * https://youtu.be/wVzuvf9D9BU?t=176
- */
-:?:&cot;:: {
-    SendInstantRaw(
-    (Join`r`n
-        "Question." A_Space "
-        
-        Answer: Let's work this out in a step by step way to be sure we have the right answer."
-    ))
-
-    Send('{Ctrl Down}{Home}{Ctrl Up}{End}')
-            ; Move the text cursor to the space after "Question."
-}
 
 ;= =============================================================================
 ;= Keys
@@ -339,18 +261,6 @@ RunSelectedAsDir() {
 }
 #HotIf
 
-;== ============================================================================
-;== App
-;== ============================================================================
-
-#i:: OpenSettings()
-OpenSettings() {
-    switch ChordInput() {
-    case 'i': Send('{LWin Down}i{LWin Up}')
-    case 'v': Run('App volume and device preferences', 'C:\Windows')
-    }
-}
-
 ;= =============================================================================
 ;= Specific App
 ;= =============================================================================
@@ -506,52 +416,6 @@ Alt Up:: {
 
 ^+f:: Send('{Ctrl Down}{Shift Down}h{Shift Up}{Ctrl Up}')
         ; Apply last text or highlight color used.
-#HotIf
-
-;== ============================================================================
-;== Spotify
-;== ============================================================================
-
-#HotIf WinActive('ahk_exe Spotify.exe')
-/**
- * I switched the keyboard shortcuts for varying the navigation bar and friend activity widths.
- * When you increase the navigation bar width, the cover art grows taller,
- * so assign Down and Up to it,
- * When you increase the friend activity width, the bar grows fatter,
- * so assign Left and Right to it.
- */
-+!Down::  Send('{Shift Down}{Alt Down}{Left}{Alt Up}{Shift Up}')
-        ; Decrease navigation bar width.
-+!Up::    Send('{Shift Down}{Alt Down}{Right}{Alt Up}{Shift Up}')
-        ; Increase navigation bar width.
-+!Left::  Send('{Shift Down}{Alt Down}{Down}{Alt Up}{Shift Up}')
-        ; Increase friend activity width.
-+!Right:: Send('{Shift Down}{Alt Down}{Up}{Alt Up}{Shift Up}')
-        ; Decrease friend activity width.
-#HotIf
-
-;=== ===========================================================================
-;=== Spicetify
-;=== ===========================================================================
-
-#HotIf WinActive('ahk_exe Spotify.exe')
-/**
- * * keyboardShortcut-Quarter.js:
- * *     +!l:: toggleLyrics()
- * *     +!q:: toggleQueue()
- * *     +!m:: openSpicetifyMarketPlace()
- *
- * +!2 goes to Your Podcasts,
- * but because of the Hide Podcasts extension,
- * Your Podcasts isn't listed in Your Library,
- * so +!2 should redirect to Your Artists instead.
- * The same logic applies to +!3 and +!4.
- */
-+!2:: Send('{Shift Down}{Alt Down}3{Alt Up}{Shift Up}')
-        ; Go to Your Artists.
-+!3:: Send('{Shift Down}{Alt Down}4{Alt Up}{Shift Up}')
-        ; Go to Your Albums.
-+!4:: return
 #HotIf
 
 ;== ============================================================================
