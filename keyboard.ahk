@@ -216,17 +216,20 @@ $Volume_Down:: DisplayAndSetVolume(-1)
 DisplayAndSetVolume(variation) {
     newVol := SoundGetVolume() + variation
     newVol := Round(newVol)
-    if variation > 0 or newVol = 1 {
-        volDirection := 'Up'
-    } else {
-        volDirection := 'Down'
-    }
 
-    Send('{Volume_' volDirection '}')
-            ; Vary volume by 2,
-            ; and, importantly, display volume slider (and media overlay).
+    Send('{Blind}{Volume_Up Down}{Volume_Up Up}')
+            ; On the surface, this increases the volume by 2,
+            ; but what this line is actually for is to display the volume slider (and media overlay).
+            ; because SoundSetVolume doesn't do that on its own.
+            ; We use {Blind}{Key Up} so that keyboards that send Volume_Up and Volume_Down as artificial keys
+            ; don't trick AHK into thinking the hotkey was pressed again,
+            ; resulting in an infinite loop
+            ; We send Volume_Up instead of Volume_Down
+            ; because if Volume_Down were used, then when the volume is at 2,
+            ; the volume would briefly mute for a split second if the keyboard sends inputs slow.
     SoundSetVolume(newVol)
-            ; Override that normal variation of 2.
+            ; Override that normal volume variation/increase of 2
+            ; with the actual new volume variation we want.
 }
 
 ;= =============================================================================
