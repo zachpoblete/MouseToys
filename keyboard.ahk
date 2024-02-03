@@ -284,8 +284,8 @@ WinThatUsesCtrlYAsRedoIsActive() {
     }
 }
 
-^+z:: Send('{Ctrl Down}y{Ctrl Up}')
-^y::  Send('{Ctrl Down}{Shift Down}z{Shift Up}{Ctrl Up}')
+$^+z:: Send('{Ctrl Down}y{Ctrl Up}')
+$^y::  Send('{Ctrl Down}{Shift Down}z{Shift Up}{Ctrl Up}')
 #HotIf
 
 /**
