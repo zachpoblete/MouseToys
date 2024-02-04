@@ -234,6 +234,7 @@ DisplayAndSetVolume(variation) {
             ; Override that normal volume variation/increase of 2
             ; with the actual new volume variation we want.
 }
+#HotIf
 
 ;= =============================================================================
 ;= Run
