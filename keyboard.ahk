@@ -274,15 +274,7 @@ RunSelectedAsDir() {
 
 #HotIf WinThatUsesCtrlYAsRedoIsActive()
 WinThatUsesCtrlYAsRedoIsActive() {
-    if WinActive('ahk_exe explorer.exe')
-            or WinActive('ahk_exe Messenger.exe')
-            or WinActive(' | Tinkercad ahk_exe msedge.exe')
-            or WinActive('ahk_exe Spotify.exe') {
-        return true
-    }
-
-    SetTitleMatchMode('RegEx')
-    if WinActive('ahk_exe .EXE$') {
+    if not WinActive('ahk_exe Photoshop.exe') {
         return true
     }
 }
