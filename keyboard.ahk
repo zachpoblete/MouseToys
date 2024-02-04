@@ -362,17 +362,17 @@ F11:: Send('{Ctrl Down}l{Ctrl Up}')
 ;=== Vimium C Commands
 ;=== ===========================================================================
 
-#HotIf WinActive('ahk_exe msedge.exe') and not WinActive(' - Google Docs')
-!;::  VimcCmd(1)
+#HotIf GetKeyState('CapsLock', 'P') and WinActive('ahk_exe msedge.exe')
+`;:: VimcCmd(1)
         ; LinkHints.activate.
-+!;:: VimcCmd(2)
++;:: VimcCmd(2)
         ; LinkHints.activateEdit.
-^!;:: VimcCmd(3)
+^;:: VimcCmd(3)
         ; LinkHints.activateHover.
 
-^!+c:: VimcCmd(4)
++':: VimcCmd(4)
         ; LinkHints.activateCopyLinkUrl.
-^!c::  VimcCmd(5)
+':: VimcCmd(5)
         ; LinkHints.activateCopyLinkText.
 
 #HotIf WinActive('ahk_exe msedge.exe')
