@@ -195,14 +195,12 @@ Enter:: CtrlBsWithDel()
 
 DoOnNumLockToggle()
 
-#InputLevel 1
-!CapsLock:: SendEvent('{NumLock}')
-^Pause::    SendEvent('{NumLock}')
-        ; This hotkey exists because when Ctrl is down,
-        ; NumLock produces the key code of Pause (while Pause produces CtrlBreak).
-#InputLevel
-
-~*NumLock:: DoOnNumLockToggle()
+~NumLock:: DoOnNumLockToggle()
+!CapsLock:: {
+    numLockState := GetKeyState('NumLock', 'T')
+    SetNumLockState(not numLockState)
+    DoOnNumLockToggle()
+}
 
 DoOnNumLockToggle() {
     NumLockIndicatorFollowMouse()
