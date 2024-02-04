@@ -375,52 +375,16 @@ F11:: Send('{Ctrl Down}l{Ctrl Up}')
 ^!c::  VimcCmd(5)
         ; LinkHints.activateCopyLinkText.
 
-^!Left::  VimcCmd(8)
-        ; goPrevious.
-^!Right:: VimcCmd(9)
-        ; goNext.
-
-^F6:: VimcCmd(10)
-        ; nextFrame.
-
-^!p::    VimcCmd(11)
-        ; togglePinTab.
-^+!d::   VimcCmd(12)
-        ; duplicateTab.
-^!r::    VimcCmd(13)
+#HotIf WinActive('ahk_exe msedge.exe')
+^!r::    VimcCmd(6)
         ; reopenTab.
-^!]::     VimcCmd(14)
+^!]::    VimcCmd(7)
         ; removeRightTab.
-^+PgUp:: VimcCmd(15)
+
+^+PgUp:: VimcCmd(8)
         ; moveTabLeft.
-^+PgDn:: VimcCmd(16)
+^+PgDn:: VimcCmd(9)
         ; moveTabRight.
-
-^!d:: VimcCmd(17)
-        ; scrollDown.
-^!u:: VimcCmd(18)
-        ; scrollUp.
-!j::  VimcCmd(19)
-        ; scrollDown count=3.
-!k::  VimcCmd(20)
-        ; scrollUp count=3.
-!d::  VimcCmd(21)
-        ; scrollPageDown.
-!u::  VimcCmd(22)
-        ; scrollPageUp.
-^!j:: VimcCmd(23)
-        ; scrollToBottom.
-^!k:: VimcCmd(24)
-        ; scrollToTop.
-
-!h::  VimcCmd(25)
-        ; scrollLeft.
-!l::  VimcCmd(26)
-        ; scrollRight.
-^!h:: VimcCmd(27)
-        ; scrollToLeft.
-^!l:: VimcCmd(28)
-        ; scrollToRight.
 
 VimcCmd(num) {
     if num > 24 {
