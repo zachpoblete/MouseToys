@@ -232,10 +232,8 @@ NumLockIndicatorFollowMouse() {
 ;== ============================================================================
 
 #HotIf GetKeyState('CapsLock', 'T')
-#InputLevel 1
 Volume_Mute:: vk13
         ; Pause key.
-#InputLevel
 #HotIf
 
 Pause:: OneBtnRemote()
