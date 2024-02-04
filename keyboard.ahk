@@ -108,22 +108,6 @@ MapF13UntilF24() {
     MaskMenu()
 }
 
-#HotIf not OfficeAppIsActive()
-OfficeAppIsActive() {
-    SetTitleMatchMode('RegEx')
-    return WinActive('ahk_exe .EXE$')
-}
-
-Alt:: MaskAlt()
-MaskAlt() {
-    SetKeyDelay(-1)
-    SendEvent('{Blind}{Alt DownR}')
-    MaskMenu()
-    KeyWait('Alt')
-    SendEvent('{Blind}{Alt Up}')
-}
-#HotIf
-
 ;=== ===========================================================================
 ;=== Custom Layer
 ;=== ===========================================================================
@@ -477,15 +461,6 @@ VimcCmd(num) {
         ; Search tabs.
 ^+Tab:: Send('{Ctrl Down}{Shift Down},{Shift Up}{Ctrl Up}')
         ; Toggle vertical tabs.
-
-#HotIf WinActive(' - Google Docs ahk_exe msedge.exe')
-Alt Up:: {
-    if not InStr(A_PriorKey, 'Alt') {
-        return
-    }
-
-    Send('{F10}')
-}
 
 /**
  * Disable.
