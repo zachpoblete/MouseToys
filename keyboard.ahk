@@ -409,6 +409,17 @@ Alt Up:: {
 
     Send('{F10}')
 }
+
+/**
+ * Disable.
+ */
+^+Del::
+        ; Clear browsing data.
+^r:: {
+        ; I sometimes accidentally press this when I want to Ctrl+T.
+        ; I will just use F5 instead.
+    return
+}
 #HotIf
 
 ;== ============================================================================
