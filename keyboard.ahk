@@ -15,36 +15,13 @@
 }
 
 ;= =============================================================================
-;= Hotkeys in Other Programs Not Mentioned Yet
+;= Hotkeys in Other Programs
 ;= =============================================================================
 
 /**
  * * PowerToys:
  * *     #+a:: Global mute microphone
  * *     #+r:: Screen Ruler
- */
-
-;== ============================================================================
-;== Remaps
-;== ============================================================================
-
-/**
- * (In order of decreasing input level)
- * * RAKK Lam-Ang Pro FineTuner:
- * *     Fn::         CapsLock
- * *     CapsLock::   BS
- * *     BS::         `
- * *     `::          NumLock
- * *
- * *     Ins::        Home
- * *     Home::       PgUp
- * *     PgUp::       Ins
- * *
- * * KeyTweak:
- * *     AppsKey::    RWin
- * *
- * * PowerToys:
- * *     ScrollLock:: AppsKey
  */
 
 ;= =============================================================================
