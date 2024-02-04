@@ -55,31 +55,21 @@
 ;== BackSpace
 ;== ============================================================================
 
-#HotIf ControlClassNnFocused('A', '^Edit\d+$', true)
-        or ControlClassNnFocused('ahk_exe AcroRd32.exe', '^AVL_AVView', true)
-        or WinActive('ahk_exe mmc.exe')
+#HotIf WinWhereBsProducesControlCharIsActive()
+WinWhereBsProducesControlCharIsActive() {
+    if ControlClassNnFocused('A', '^Edit\d+$', true)
+            or ControlClassNnFocused('ahk_exe AcroRd32.exe', '^AVL_AVView', true)
+            or WinActive('ahk_exe mmc.exe') {
+        return true
+    }
+}
 /**
  * ^BS doesn't natively work because it produces a control character,
  * so work around that.
  */
-^BS:: {
-    if GetSelected() {
-        Send('{Del}')
-    } else {
-        Send('{Ctrl Down}{Shift Down}{Left}')
-        Sleep(0)
-                ; For Premiere Pro.
-        Send('{Shift Up}{Ctrl Up}{Del}')
-                ; Delete last word typed.
-                ; Delete comes last because fsr,
-                ; Photoshop doesn't delete the word unless Delete comes last
-                ; even though ^+Del will delete the word if you do it manually.
-    }
-}
-#HotIf
 
-+BS::  Send('{Del}')
-^+BS:: Send('{Ctrl Down}{Del}{Ctrl Up}')
+^BS:: CtrlBsWithDel()
+#HotIf
 
 ;== ============================================================================
 ;== Modifiers
@@ -132,6 +122,100 @@ MaskAlt() {
     KeyWait('Alt')
     SendEvent('{Blind}{Alt Up}')
 }
+#HotIf
+
+;=== ===========================================================================
+;=== Custom Layer
+;=== ===========================================================================
+
+*CapsLock:: return
+
+; Enabling the following causes CapsLock to be enabled on press and disabled on release.
+; This is because custom combinations have special behavior explained here:
+; https://www.autohotkey.com/docs/v2/Hotkeys.htm#combo
+; *CapsLock:: return
+; CapsLock & c::      Ctrl
+; CapsLock & Space::  Shift
+; CapsLock & LShift:: LWin
+; CapsLock & s::      Alt
+; But even if CapsLock didn't turn on as expected.
+; The modifiers could still get stuck in the same way as described below.
+; You can see this by turning uncommenting everything but the "*CapsLock:: return"
+
+; Note: There are additional custom layer hotkeys in Browsers > Vimium C Commands
+
+#HotIf GetKeyState('CapsLock', 'P')
+CustomLayerModifier('*c', 'Ctrl')
+CustomLayerModifier('*Space', 'Shift')
+CustomLayerModifier('*LShift', 'LWin')
+CustomLayerModifier('*s', 'Alt')
+; z::Alt
+        ; For my IdeaPad S145 laptop keyboard.
+        ; Does not work for the MX Keys
+        ; because it cannot be used with comma (,)
+
+/**
+ * Keys that send modifiers can get those modifiers stuck
+ * if CapsLock is released before they are.
+ * This fixes that.
+ */
+CustomLayerModifier(thisHotkey, modifier) {
+    HotIf("GetKeyState('CapsLock', 'P')")
+    Hotkey(thisHotkey, doOnPress)
+
+    HotIf()
+    Hotkey(thisHotkey ' Up', doOnRelease, 'Off')
+
+    doOnPress(thisHotkey) {
+        Send('{Blind}{LShift Up}{' modifier ' DownR}')
+        
+        HotIf()
+        Hotkey(thisHotkey ' Up', 'On')
+    }
+
+    doOnRelease(thisHotkey) {
+        Send('{Blind}{' modifier ' Up}')
+        Hotkey(thisHotkey, 'Off')
+    }
+}
+
+h:: Left
+j:: Down
+k:: Up
+l:: Right
+
+; How do they manage to activate the ^+PgDn and ^+PgUp VimcCmds
+; if they use SendInput?
+u:: PgDn
+i:: PgUp
+
+m::  Home
+,::  End
+n::  Insert
+p::  PrintScreen
+BS:: Del
+
+w:: BS
+e:: Enter
+        ; Since I already have keys for BS and Enter,
+        ; the purpose of these hotkeys is so that I can press BS and Enter
+        ; without using my right hand.
+        ; Rational for using w and e:
+        ; Tab is awkward
+        ; Vim already uses ^w for BS and e is right next to w and can stand for Enter
+
+; Without this hotkey,
+; I would have to constantly reposition my left pinky finger
+; if I wanted to type a " after using one of the navigation keys.
+x & ':: '
+a & ":: "
+
+/:: ^z
+
+Enter:: ^BS
+#HotIf GetKeyState('CapsLock', 'P') and WinWhereBsProducesControlCharIsActive()
+Enter:: CtrlBsWithDel()
+
 #HotIf
 
 ;=== ===========================================================================
@@ -553,3 +637,23 @@ Zoom_OpenReactions() {
     }
 }
 #HotIf
+
+;= =============================================================================
+;= Functions
+;= =============================================================================
+; Functions that are used in more than one section but only in this file.
+
+CtrlBsWithDel() {
+    if GetSelected() {
+        Send('{Del}')
+    } else {
+        Send('{Ctrl Down}{Shift Down}{Left}')
+        Sleep(0)
+                ; For Premiere Pro.
+        Send('{Shift Up}{Ctrl Up}{Del}')
+                ; Delete last word typed.
+                ; Delete comes last because fsr,
+                ; Photoshop doesn't delete the word unless Delete comes last
+                ; even though ^+Del will delete the word if you do it manually.
+    }
+}
