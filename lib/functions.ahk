@@ -1,4 +1,5 @@
 #Include default-settings.ahk
+#Include <constants>
 
 ;= =============================================================================
 ;= Clipboard
