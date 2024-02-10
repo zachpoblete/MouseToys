@@ -25,13 +25,13 @@
  * so that if I forget they exist and redefine them somewhere else,
  * I get an error.
  */
-
 ~#+a::
         ; Global mute microphone.
 ~#+c::
         ; Color picker.
-~#+r:: {
+~#+r::
         ; Screen Ruler.
+{
     return
 }
 
@@ -84,7 +84,8 @@ loop parse 'abcefghijklmnopqrstuvwxyz' {
 #^!Shift::
 #+!Ctrl::
 ^+!LWin::
-^+!RWin:: {
+^+!RWin::
+{
     MaskMenu()
 }
 
