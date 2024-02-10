@@ -160,6 +160,7 @@ HotkeyEncloseInBraces(hk) {
     return hk.prefix[1] '{' hk.prefix[2] '}{' hk[2] '}'
 }
 
+; Note: This currently does not account for Up hotkeys.
 HkSplit(hk) {
     RegExMatch(hk, '(^:[^:]*:)(.+)', &hs)
 
