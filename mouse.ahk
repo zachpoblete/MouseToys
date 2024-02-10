@@ -29,7 +29,8 @@ UsePriorAcceleratedScrollSetting() {
 ; You just don't need it there;
 ; sends too many commands.
 WheelDown::
-WheelUp:: {
+WheelUp::
+{
     AcceleratedScroll()
 }
 
@@ -473,7 +474,8 @@ MouseLinkOpenInNewActiveTab(thisHotkey) {
 ;= ============================================================================
 
 ~*WheelDown::
-~*WheelUp:: {
+~*WheelUp::
+{
     MouseWinActivate()
 }
 
