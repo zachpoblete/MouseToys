@@ -177,8 +177,9 @@ MouseWinRestoreAndMove(thisHotkey) {
     MouseGetPos(&mouseStartX, &mouseStartY)
     WinGetPos(&winOriginalX, &winOriginalY)
 
-    while GetKeyState('XButton1', 'P') {
+    while GetKeyState('XButton1', 'P')
             ; A loop is used instead of SetTimer to preserve the last found window.
+    {
         if SubStr(A_ThisHotkey, 1, -2) = 'MButton & Wheel' {
             break
         }

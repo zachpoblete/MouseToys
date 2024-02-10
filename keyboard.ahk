@@ -432,8 +432,9 @@ Zoom_OpenReactions() {
         return
     }
 
-    if not WinActive() {
+    if not WinActive()
             ; Check if the meeting window isn't active.
+    {
         WinActivate()
     }
 
