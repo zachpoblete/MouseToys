@@ -5,95 +5,18 @@
 #Include <classes>
 
 ;= =============================================================================
-;= Disable
+;= Constants
 ;= =============================================================================
 
-^+w::
-#w::
-#^d::
-{
-    return
-}
+K_LAYER_ACTIVATOR := 'CapsLock'
+        ; I recommend to use your ring/middle finger to press CapsLock
+        ; so that you can easily press Shift and Ctrl.
+
+Hotkey('*' K_LAYER_ACTIVATOR, (thisHotkey) => '')
 
 ;= =============================================================================
-;= Hotkeys in Other Programs
+;= Custom Layer
 ;= =============================================================================
-
-/**
- * PowerToys hotkeys.
- * These hotkeys are redefined here
- * so that if I forget they exist and redefine them somewhere else,
- * I get an error.
- */
-~#+a::
-        ; Global mute microphone.
-~#+c::
-        ; Color picker.
-~#+r::
-        ; Screen Ruler.
-{
-    return
-}
-
-;= =============================================================================
-;= Keys
-;= =============================================================================
-
-;== ============================================================================
-;== Backspace
-;== ============================================================================
-
-#HotIf WinWhereBsProducesControlCharIsActive()
-^BS:: CtrlBsWithDel()
-#HotIf
-
-;== ============================================================================
-;== Modifiers
-;== ============================================================================
-
-;=== ===========================================================================
-;=== F13 - F24
-;=== ===========================================================================
-
-MapF13UntilF24()
-MapF13UntilF24() {
-    HotIf((thisHotkey) => GetKeyState('NumLock', 'T'))
-    loop 12 {
-        if A_Index < 3 {
-            num := A_Index + 22
-        } else {
-            num := A_Index + 10
-        }
-
-        Hotkey('*F' (A_Index), remap.bind(num))
-    }
-    HotIf
-
-    remap(num, thisHotkey) => Send('{Blind}{F' num '}')
-}
-
-;=== ===========================================================================
-;=== Mask Hyper Shortcuts
-;=== ===========================================================================
-
-loop parse 'abcefghijklmnopqrstuvwxyz' {
-    Hotkey('#^+!' A_LoopField, (ThisHotkey) => '')
-}
-
-#^+Alt::
-#^!Shift::
-#+!Ctrl::
-^+!LWin::
-^+!RWin::
-{
-    MaskMenu()
-}
-
-;=== ===========================================================================
-;=== Custom Layer
-;=== ===========================================================================
-
-*CapsLock:: return
 
 ; Enabling the following causes CapsLock to be enabled on press and disabled on release.
 ; This is because custom combinations have special behavior explained here:
@@ -109,7 +32,7 @@ loop parse 'abcefghijklmnopqrstuvwxyz' {
 
 ; Note: There are additional custom layer hotkeys in Browsers > Vimium C Commands
 
-#HotIf GetKeyState('CapsLock', 'P')
+#HotIf GetKeyState(K_LAYER_ACTIVATOR, 'P')
 h:: Left
 j:: Down
 k:: Up
@@ -137,14 +60,60 @@ BS:: Del
 }
 
 Space:: ^BS
-#HotIf GetKeyState('CapsLock', 'P') and WinWhereBsProducesControlCharIsActive()
+#HotIf GetKeyState(K_LAYER_ACTIVATOR, 'P') and WinWhereBsProducesControlCharIsActive()
 Space:: CtrlBsWithDel()
 
 #HotIf
 
-;=== ===========================================================================
-;=== Double Shift for CapsLock
-;=== ===========================================================================
+;== ============================================================================
+;== Vimium C Commands
+;== ============================================================================
+
+#HotIf WinActive('ahk_exe msedge.exe') and GetKeyState(K_LAYER_ACTIVATOR, 'P')
+`;:: VimcCmd(1)
+        ; LinkHints.activate.
++;:: VimcCmd(2)
+        ; LinkHints.activateEdit.
+^;:: VimcCmd(3)
+        ; LinkHints.activateHover.
+
++':: VimcCmd(4)
+        ; LinkHints.activateCopyLinkUrl.
+'::  VimcCmd(5)
+        ; LinkHints.activateCopyLinkText.
+#HotIf
+
+;= ============================================================================
+;= Vimium C Commands
+;= ============================================================================
+
+#HotIf WinActive('ahk_exe msedge.exe')
+^!r::    VimcCmd(6)
+        ; reopenTab.
+^!e::    VimcCmd(7)
+        ; removeRightTab.
+
+^+PgUp:: VimcCmd(8)
+        ; moveTabLeft.
+^+PgDn:: VimcCmd(9)
+        ; moveTabRight.
+
+VimcCmd(num) {
+    if num > 24 {
+        Send('{Alt Down}{F' (num - 12) '}{Alt Up}')
+    } else if num > 16 {
+        Send('{Ctrl Down}{F' (num - 4) '}{Ctrl Up}')
+    } else if num > 8 {
+        Send('{Shift Down}{F' (num + 4) '}{Shift Up}')
+    } else {
+        Send('{F' (num + 12) '}')
+    }
+}
+#HotIf
+
+;= ===========================================================================
+;= Double Shift for CapsLock
+;= ===========================================================================
 
 <+RShift::
 >+LShift::
@@ -159,13 +128,6 @@ Space:: CtrlBsWithDel()
     SetCapsLockState(not capsLockState)
     Send('{Blind}{LShift Up}{RShift Up}')
 }
-
-;=== ===========================================================================
-;=== NumLock
-;=== ===========================================================================
-
-DoOnNumLockToggle()
-~NumLock:: DoOnNumLockToggle()
 
 ;= =============================================================================
 ;= Multimedia
@@ -231,9 +193,12 @@ DisplayAndSetVolume(variation) {
 }
 #HotIf
 
-;= =============================================================================
-;= Run
-;= =============================================================================
+;= ===========================================================================
+;= NumLock
+;= ===========================================================================
+
+DoOnNumLockToggle()
+~NumLock:: DoOnNumLockToggle()
 
 ;== ============================================================================
 ;== Directory
@@ -298,54 +263,9 @@ $^y::  Send('{Ctrl Down}{Shift Down}z{Shift Up}{Ctrl Up}')
 F11:: Send('{Ctrl Down}l{Ctrl Up}')
 #HotIf
 
-;== ============================================================================
-;== Browsers
-;== ============================================================================
-
-;=== ===========================================================================
-;=== Vimium C Commands
-;=== ===========================================================================
-
-#HotIf GetKeyState('CapsLock', 'P') and WinActive('ahk_exe msedge.exe')
-`;:: VimcCmd(1)
-        ; LinkHints.activate.
-+;:: VimcCmd(2)
-        ; LinkHints.activateEdit.
-^;:: VimcCmd(3)
-        ; LinkHints.activateHover.
-
-+':: VimcCmd(4)
-        ; LinkHints.activateCopyLinkUrl.
-'::  VimcCmd(5)
-        ; LinkHints.activateCopyLinkText.
-
-#HotIf WinActive('ahk_exe msedge.exe')
-^!r::    VimcCmd(6)
-        ; reopenTab.
-^!e::    VimcCmd(7)
-        ; removeRightTab.
-
-^+PgUp:: VimcCmd(8)
-        ; moveTabLeft.
-^+PgDn:: VimcCmd(9)
-        ; moveTabRight.
-
-VimcCmd(num) {
-    if num > 24 {
-        Send('{Alt Down}{F' (num - 12) '}{Alt Up}')
-    } else if num > 16 {
-        Send('{Ctrl Down}{F' (num - 4) '}{Ctrl Up}')
-    } else if num > 8 {
-        Send('{Shift Down}{F' (num + 4) '}{Shift Up}')
-    } else {
-        Send('{F' (num + 12) '}')
-    }
-}
-#HotIf
-
-;=== ===========================================================================
-;=== Edge
-;=== ===========================================================================
+;== ===========================================================================
+;== Edge
+;== ===========================================================================
 
 #HotIf WinActive('ahk_exe msedge.exe')
 ^!+e:: Send('{Ctrl Down}w{PgUp}{Ctrl Up}')
@@ -506,6 +426,87 @@ Zoom_OpenReactions() {
     }
 }
 #HotIf
+
+;= =============================================================================
+;= Keys
+;= =============================================================================
+
+;== ============================================================================
+;== Backspace
+;== ============================================================================
+
+#HotIf WinWhereBsProducesControlCharIsActive()
+^BS:: CtrlBsWithDel()
+#HotIf
+
+;== ============================================================================
+;== F13 - F24
+;== ============================================================================
+
+MapF13UntilF24()
+MapF13UntilF24() {
+    HotIf((thisHotkey) => GetKeyState('NumLock', 'T'))
+    loop 12 {
+        if A_Index < 3 {
+            num := A_Index + 22
+        } else {
+            num := A_Index + 10
+        }
+
+        Hotkey('*F' (A_Index), remap.bind(num))
+    }
+    HotIf
+
+    remap(num, thisHotkey) => Send('{Blind}{F' num '}')
+}
+
+;= =============================================================================
+;= Disable
+;= =============================================================================
+
+^+w::
+#w::
+#^d::
+{
+    return
+}
+
+;== ============================================================================
+;== Mask Hyper Shortcuts
+;== ============================================================================
+
+loop parse 'abcefghijklmnopqrstuvwxyz' {
+    Hotkey('#^+!' A_LoopField, (ThisHotkey) => '')
+}
+
+#^+Alt::
+#^!Shift::
+#+!Ctrl::
+^+!LWin::
+^+!RWin::
+{
+    MaskMenu()
+}
+
+;= =============================================================================
+;= Hotkeys in Other Programs
+;= =============================================================================
+
+/**
+ * PowerToys hotkeys.
+ * These hotkeys are redefined here
+ * so that if I forget they exist and redefine them somewhere else,
+ * I get an error.
+ */
+~#+a::
+        ; Global mute microphone.
+~#+c::
+        ; Color picker.
+~#+r::
+        ; Screen Ruler.
+{
+    return
+}
 
 ;= =============================================================================
 ;= Functions
