@@ -109,10 +109,10 @@ loop parse 'abcefghijklmnopqrstuvwxyz' {
 ; This is because custom combinations have special behavior explained here:
 ; https://www.autohotkey.com/docs/v2/Hotkeys.htm#combo
 ; *CapsLock:: return
-; CapsLock & c::      Ctrl
-; CapsLock & Space::  Shift
-; CapsLock & LShift:: LWin
-; CapsLock & s::      Alt
+; CapsLock & h:: Left
+; CapsLock & j:: Down
+; CapsLock & k:: Up
+; CapsLock & l:: Right
 ; But even if CapsLock didn't turn on as expected.
 ; The modifiers could still get stuck in the same way as described below.
 ; You can see this by turning uncommenting everything but the "*CapsLock:: return"
@@ -120,40 +120,6 @@ loop parse 'abcefghijklmnopqrstuvwxyz' {
 ; Note: There are additional custom layer hotkeys in Browsers > Vimium C Commands
 
 #HotIf GetKeyState('CapsLock', 'P')
-CustomLayerModifier('*c', 'Ctrl')
-CustomLayerModifier('*Space', 'Shift')
-CustomLayerModifier('*LShift', 'LWin')
-CustomLayerModifier('*s', 'Alt')
-; z::Alt
-        ; For my IdeaPad S145 laptop keyboard.
-        ; Does not work for the MX Keys
-        ; because it cannot be used with comma (,)
-
-/**
- * Keys that send modifiers can get those modifiers stuck
- * if CapsLock is released before they are.
- * This fixes that.
- */
-CustomLayerModifier(thisHotkey, modifier) {
-    HotIf("GetKeyState('CapsLock', 'P')")
-    Hotkey(thisHotkey, doOnPress)
-
-    HotIf()
-    Hotkey(thisHotkey ' Up', doOnRelease, 'Off')
-
-    doOnPress(thisHotkey) {
-        Send('{Blind}{LShift Up}{' modifier ' DownR}')
-        
-        HotIf()
-        Hotkey(thisHotkey ' Up', 'On')
-    }
-
-    doOnRelease(thisHotkey) {
-        Send('{Blind}{' modifier ' Up}')
-        Hotkey(thisHotkey, 'Off')
-    }
-}
-
 h:: Left
 j:: Down
 k:: Up
@@ -178,12 +144,6 @@ e:: Enter
         ; Rational for using w and e:
         ; Tab is awkward
         ; Vim already uses ^w for BS and e is right next to w and can stand for Enter
-
-; Without this hotkey,
-; I would have to constantly reposition my left pinky finger
-; if I wanted to type a " after using one of the navigation keys.
-x & ':: '
-a & ":: "
 
 /:: ^z
 
