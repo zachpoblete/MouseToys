@@ -136,17 +136,6 @@ n::  Insert
 p::  PrintScreen
 BS:: Del
 
-w:: BS
-e:: Enter
-        ; Since I already have keys for BS and Enter,
-        ; the purpose of these hotkeys is so that I can press BS and Enter
-        ; without using my right hand.
-        ; Rational for using w and e:
-        ; Tab is awkward
-        ; Vim already uses ^w for BS and e is right next to w and can stand for Enter
-
-/:: ^z
-
 Enter:: ^BS
 #HotIf GetKeyState('CapsLock', 'P') and WinWhereBsProducesControlCharIsActive()
 Enter:: CtrlBsWithDel()
