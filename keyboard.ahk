@@ -313,7 +313,7 @@ F11:: Send('{Ctrl Down}l{Ctrl Up}')
 #HotIf WinActive('ahk_exe msedge.exe')
 ^!r::    VimcCmd(6)
         ; reopenTab.
-^!]::    VimcCmd(7)
+^!e::    VimcCmd(7)
         ; removeRightTab.
 
 ^+PgUp:: VimcCmd(8)
@@ -339,6 +339,8 @@ VimcCmd(num) {
 ;=== ===========================================================================
 
 #HotIf WinActive('ahk_exe msedge.exe')
+^!+e:: Send('{Ctrl Down}w{PgUp}{Ctrl Up}')
+        ; Close current tab and move to the tab that was to its left.
 
 /**
  * Disable.
