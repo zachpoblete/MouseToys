@@ -1,13 +1,13 @@
 # 🖱️ Mouse shortcuts (mouse.ahk)
 
-| Press this key | To do this |
+| Press this | To do this |
 | - | - |
 | <kbd>WheelDown</kbd> | 🚀 Accelerated scroll down (Scroll faster to scroll farther) |
 | <kbd>WheelUp</kbd> | 🚀 Accelerated scroll up |
 
 ## 🪟 Window and typing shortcuts (XButton1)
 
-| Press this key | To do this |
+| Press this | To do this |
 | - | - |
 | <kbd>XButton1</kbd>+<kbd>WheelDown</kbd> | ⬇️ Cycle through windows in recently used order (Alt+Tab) |
 | <kbd>XButton1</kbd>+<kbd>WheelUp</kbd> | ⬆️ Cycle through windows in reverse used order (Shift+Alt+Tab) |
@@ -24,7 +24,7 @@
 
 ## 🌐 Tab shortcuts (XButton2)
 
-| Press this key | To do this |
+| Press this | To do this |
 | - | - |
 | <kbd>XButton2</kbd>+<kbd>WheelDown</kbd> | ⬅️ Switch to left tab |
 | <kbd>XButton2</kbd>+<kbd>WheelUp</kbd> | ➡️ Switch to right tab |
@@ -59,7 +59,7 @@ E.g., <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<kbd>RButton</kbd> means to press &
 
 ## 🌐 Vimium C Commands
 
-| Press this key | To do this |
+| Press this | To do this |
 | - | - |
 | <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>R</kbd> | Reopen tab |
 | <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>E</kbd> | Close right tab |
@@ -68,7 +68,7 @@ E.g., <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<kbd>RButton</kbd> means to press &
 
 ### 🅰️ While CapsLock is held down (Custom Layer)
 
-| Press this key | To do this |
+| Press this | To do this |
 | - | - |
 | <kbd>;</kbd> | Activate links hints |
 | <kbd>Shift</kbd>+<kbd>;</kbd> | Activate edit link hints |
@@ -80,14 +80,14 @@ E.g., <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<kbd>RButton</kbd> means to press &
 
 Since we changed <kbd>CapsLock</kbd> to be a custom layer activator, we need a replacement.
 
-| Press this key | To do this |
+| Press this | To do this |
 | - | - |
 | <kbd>LShift</kbd>+<kbd>RShift</kbd> | Toggle <kbd>CapsLock</kbd>
 | <kbd>RShift</kbd>+<kbd>LShift</kbd> | Toggle <kbd>CapsLock</kbd>
 
 ## 🕹️ One button remote
 
-| Press this key | To do this |
+| Press this | To do this |
 | - | - |
 | <kbd>Pause</kbd> | ⏯️ Play/pause the current media that is paused/playing
 | <kbd>Pause</kbd>, <kbd>Pause</kbd> | ⏭️ Play the next media
@@ -96,7 +96,7 @@ Since we changed <kbd>CapsLock</kbd> to be a custom layer activator, we need a r
 ## #️⃣ While NumLock is on
 If you don't have a <kbd>NumLock</kbd> key, use the <kbd>NumLock</kbd> remapping from the Custom Layer (<kbd>CapsLock</kbd>+<kbd>3</kbd>).
 
-| Take this action | To do this |
+| Do this | To do this |
 | - | - |
 | Press <kbd>Ctrl</kbd>+<kbd>D</kbd> | 📂 Open the process of the active window in File Explorer |
 | Select some text, press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd> | 📂 Open the selection as a folder in File Explorer, e.g. doing it on `%USERPROFILE%\Documents` will open your Documents folder |
@@ -104,7 +104,7 @@ If you don't have a <kbd>NumLock</kbd> key, use the <kbd>NumLock</kbd> remapping
 
 ## 🎦 Zoom shortcuts
 
-| Press this key | To do this |
+| Press this | To do this |
 | - | - |
 | <kbd>Alt</kbd>+<kbd>E</kbd> | 🙂 Open reactions |
 | <kbd>Alt</kbd>+<kbd>=</kbd> | 👍 Give a thumbs-up react |
