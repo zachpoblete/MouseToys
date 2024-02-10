@@ -477,7 +477,6 @@ Zoom_OpenReactions() {
 ;= =============================================================================
 ;= Functions
 ;= =============================================================================
-; Functions that are used in more than one section but only in this file.
 
 /**
  * ^BS doesn't natively work because it produces a control character,
