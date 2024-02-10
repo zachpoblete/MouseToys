@@ -71,31 +71,6 @@ ControlGetHwndFromClassNnAndTextElseExit(controlClassNn, controlText) {
     return controlHwnd
 }
 
-MouseControlFocus(control := '', winTitle := '', winText := '', excludedTitle := '', excludedText := '') {
-    MouseGetPos(, , &mouseHwnd, &mouseControlHwnd, 2)
-    WinActivate(mouseHwnd)
-    if not WinActive(winTitle ' ahk_id ' mouseHwnd, winText, excludedTitle, excludedText) {
-        return
-    }
-
-    ControlFocus(mouseControlHwnd)
-    if control = '' {
-        return mouseControlHwnd
-    }
-
-    try {
-        controlHwnd := ControlGetHwnd(control)
-    } catch {
-        return
-    }
-
-    if controlHwnd != mouseControlHwnd {
-        return
-    }
-
-    return mouseControlHwnd
-}
-
 ;= =============================================================================
 ;= File
 ;= =============================================================================
@@ -232,23 +207,6 @@ StrDel(haystack, needle, limit := 1) {
 ;= =============================================================================
 ;= Window
 ;= =============================================================================
-
-MouseWinActivate(winTitle := '', winText := '', excludedTitle := '', excludedText := '') {
-    MouseGetPos(, , &mouseHwnd)
-    WinActivate(mouseHwnd)
-    return WinActive(winTitle ' ahk_id ' mouseHwnd, winText, excludedTitle, excludedText)
-        ; mouseHwnd is there for the case
-        ; when all the parameters are blank and there is no last found window.
-}
-
-MoveWinMiddleToMouse() {
-    WinGetPos(, , &winW, &winH)
-
-    CoordMode('Mouse')
-    MouseGetPos(&mouseX, &mouseY)
-
-    WinMove(mouseX - (winW / 2), mouseY - (winH / 2))
-}
 
 WinThatUsesCtrlYAsRedoIsActive() {
     if WinActive('ahk_exe Photoshop.exe') {

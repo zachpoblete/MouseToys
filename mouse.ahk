@@ -488,9 +488,29 @@ MouseLinkOpenInNewActiveTab(thisHotkey) {
 ;= Functions
 ;= =============================================================================
 
-MouseSend(keys) {
-    MouseWinActivate()
-    Send('{Blind}' keys)
+MouseControlFocus(control := '', winTitle := '', winText := '', excludedTitle := '', excludedText := '') {
+    MouseGetPos(, , &mouseHwnd, &mouseControlHwnd, 2)
+    WinActivate(mouseHwnd)
+    if not WinActive(winTitle ' ahk_id ' mouseHwnd, winText, excludedTitle, excludedText) {
+        return
+    }
+
+    ControlFocus(mouseControlHwnd)
+    if control = '' {
+        return mouseControlHwnd
+    }
+
+    try {
+        controlHwnd := ControlGetHwnd(control)
+    } catch {
+        return
+    }
+
+    if controlHwnd != mouseControlHwnd {
+        return
+    }
+
+    return mouseControlHwnd
 }
 
 MouseExitIfCantBeThisHk(thisHotkey, target, reference?) {
@@ -501,3 +521,26 @@ MouseExitIfCantBeThisHk(thisHotkey, target, reference?) {
         exit
     }
 }
+
+MouseSend(keys) {
+    MouseWinActivate()
+    Send('{Blind}' keys)
+}
+
+MouseWinActivate(winTitle := '', winText := '', excludedTitle := '', excludedText := '') {
+    MouseGetPos(, , &mouseHwnd)
+    WinActivate(mouseHwnd)
+    return WinActive(winTitle ' ahk_id ' mouseHwnd, winText, excludedTitle, excludedText)
+        ; mouseHwnd is there for the case
+        ; when all the parameters are blank and there is no last found window.
+}
+
+MoveWinMiddleToMouse() {
+    WinGetPos(, , &winW, &winH)
+
+    CoordMode('Mouse')
+    MouseGetPos(&mouseX, &mouseY)
+
+    WinMove(mouseX - (winW / 2), mouseY - (winH / 2))
+}
+
