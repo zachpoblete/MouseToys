@@ -1,95 +1,164 @@
 #Include <default-settings>
 #Include <constants>
 #Include <functions>
-#Include <classes>
 #Include <accelerated-scroll>
 
-;= =============================================================================
-;= Disable
-;= =============================================================================
-
-~!RButton:: return
-        ; This hotkey exists so that the shortcut in Photoshop works.
+; Disclaimer: Some mice don't do the 3-button combination hotkeys well.
 
 ;= =============================================================================
-;= Touchpad
+;= WD & WU / Accelerated scroll
 ;= =============================================================================
 
-#LButton::  Click('R')
-#!LButton:: Click('M')
+A_TrayMenu.insert('E&xit', 'Enable &Accelerated Scroll', ToggleAcceleratedScroll)
+
+UsePriorAcceleratedScrollSetting()
+UsePriorAcceleratedScrollSetting() {
+    acceleratedScrollIsOn := IniRead('lib\user-settings.ini', '', 'AcceleratedScrollIsOn')
+    action := acceleratedScrollIsOn ? 'On' : 'Off'
+
+    Hotkey('WheelDown', action)
+    Hotkey('WheelUp', action)
+
+    if acceleratedScrollIsOn {
+        A_TrayMenu.check('Enable &Accelerated Scroll')
+    }
+    AcceleratedScrollIndicatorFollowMouse()
+}
+
+; Do not use ~*WheelUp and ~*WheelDown.
+; You just don't need it there;
+; sends too many commands.
+WheelDown::
+WheelUp:: {
+    AcceleratedScroll()
+}
+
+#^a:: {
+    ToggleAcceleratedScroll()
+    AcceleratedScrollIndicatorFollowMouse()
+}
+
+ToggleAcceleratedScroll(name := 'Enable &Accelerated Scroll', pos := 0, menu := {}) {
+    acceleratedScrollIsOn := IniRead('lib\user-settings.ini', '', 'AcceleratedScrollIsOn')
+    IniWrite(not acceleratedScrollIsOn, 'lib\user-settings.ini', '', 'AcceleratedScrollIsOn')
+
+    Hotkey('WheelDown', 'Toggle')
+    Hotkey('WheelUp', 'Toggle')
+
+    A_TrayMenu.toggleCheck(name)
+}
+
+AcceleratedScrollIndicatorFollowMouse() {
+    SetTimer(toolTipAcceleratedScroll, 10)
+    SetTimer(closeAcceleratedScrollIndicator, -3000)
+
+    closeAcceleratedScrollIndicator() {
+        SetTimer(toolTipAcceleratedScroll, 0)
+        ToolTip()
+    }
+    
+    toolTipAcceleratedScroll() {
+        acceleratedScrollIsOn := IniRead('lib\user-settings.ini', '', 'AcceleratedScrollIsOn')
+        acceleratedScrollSetting := acceleratedScrollIsOn ? 'ON' : 'OFF'
+        ToolTip('Accelerated Scroll ' acceleratedScrollSetting)
+    }
+}
 
 ;= =============================================================================
-;= Prefix
+;= XButton1 / Window and typing shortcuts
 ;= =============================================================================
 
-;== ============================================================================
-;== MButton
-;== ============================================================================
+*XButton1 Up:: return
 
+#HotIf GetKeyState('XButton1', 'P')
 /**
- * Click link,
- * and open it in a new tab.
+ * These are needed so that they don't get stuck.
+ * Idkw but it has something to do with X1+W.
+ * See https://www.autohotkey.com/boards/viewtopic.php?f=82&t=125851
+ * which may mean this is a bug:
  */
- MButton:: {
-    MouseWinActivate()
+*MButton:: return
+*LButton:: return
+*RButton:: return
 
-    if WinActive(K_CLASSES['ZOOM']['MEETING']) {
-        Send('{Alt Down}{PrintScreen}{Alt Up}')
-    } else if WinActive('AutoHotkey Community ahk_exe msedge.exe')
-            or WinActive('ahk_exe Code.exe')
-            or (SetTitleMatchMode('RegEx') and WinActive('ahk_exe .EXE$')) {
-                    ; Check if an Office app is active.
-        Send('{Ctrl Down}{Click}{Ctrl Up}')
-    } else {
-        Click('M')
-    }
+#HotIf
+
+;== ============================================================================
+;== ↕️ X1+W / Cycle through windows in used order
+;== ============================================================================
+
+; Moving the X1+W hotkeys below the X1+R+W hotkeys
+; would make X1+R+W not work.
+; See https://www.autohotkey.com/boards/viewtopic.php?f=14&t=125819
+; which may mean this is a bug.
+
+A_TrayMenu.insert('E&xit', 'Enable &MouseAltTab', ToggleMouseAltTab)
+A_TrayMenu.check('Enable &MouseAltTab')
+
+ToggleMouseAltTab(name := 'Enable &MouseAltTab', pos := 0, menu := {}) {
+    Hotkey('XButton1 & WheelDown', 'Toggle')
+    Hotkey('XButton1 & WheelUp', 'Toggle')
+
+    A_TrayMenu.toggleCheck('Enable &MouseAltTab')
 }
 
 ;=== ===========================================================================
-;=== Wheel
+;=== ⬇️ Cycle through windows in recently used order (Alt+Tab)
 ;=== ===========================================================================
 
-MButton & WheelUp:: MouseWinMaximize()
-MouseWinMaximize() {
+XButton1 & WheelDown:: AltTab
+
+;=== ===========================================================================
+;=== ⬆️ Cycle through windows in reverse used order (Shift+Alt+Tab)
+;=== ===========================================================================
+
+XButton1 & WheelUp::   ShiftAltTab
+
+;== ============================================================================
+;== ↕️ X1+M+W / Minimize and maximize window
+;== ============================================================================
+
+MouseWinMinMax(minOrMax) {
     if G_MouseIsMovingWin {
         WinExist('A')
     } else {
         MouseWinActivate()
     }
-
-    WinMaximize()
-}
-
-MButton & WheelDown:: MouseWinMinimizeOrRestore()
-MouseWinMinimizeOrRestore() {
-    if G_MouseIsMovingWin {
-        WinExist('A')
-    } else {
-        MouseWinActivate()
-    }
-
-    if WinActive(K_CLASSES['ZOOM']['WAIT_HOST']) or WinActive(K_CLASSES['ZOOM']['VID_PREVIEW']) {
-        WinMinimize()
-        return
-    }
-
-    winMinMax := WinGetMinMax()
-    if not winMinMax {
-        WinMinimize()
-        return
-    }
-
-    WinRestore()
-    MoveWinMiddleToMouse()
+    Win%minOrMax%imize()
 }
 
 ;=== ===========================================================================
-;=== RButton
+;=== ↙️ X1+M+WD / Minimize window
 ;=== ===========================================================================
 
-MButton & RButton:: MouseWinMove()
-MouseWinMove() {
+#HotIf GetKeyState('XButton1', 'P')
+MButton & WheelDown:: MouseWinMinMax('Min')
+#HotIf
+
+;=== ===========================================================================
+;=== ↗ X1+M+WU / Maximize window
+;=== ===========================================================================
+
+#HotIf GetKeyState('XButton1', 'P')
+MButton & WheelUp::   MouseWinMinMax('Max')
+#HotIf
+
+;== ============================================================================
+;== 🚚 X1+M / Restore window and move it using the mouse (+ misc)
+;== ============================================================================
+
+#HotIf GetKeyState('XButton1', 'P')
+*MButton Up:: return
+MButton Up:: MouseWinRestoreAndMove(thisHotkey)
+MouseWinRestoreAndMove(thisHotkey) {
     global G_MouseIsMovingWin := true
+
+    MouseExitIfCantBeThisHk(thisHotkey, A_PriorHotkey, '*MButton')
+
+    if WinActive('Task Switching ahk_class XamlExplorerHostIslandWindow') {
+        Click('M')
+        return
+    }
 
     MouseWinActivate()
     if WinActive('ahk_class WorkerW ahk_exe Explorer.EXE') {
@@ -107,10 +176,9 @@ MouseWinMove() {
     MouseGetPos(&mouseStartX, &mouseStartY)
     WinGetPos(&winOriginalX, &winOriginalY)
 
-    while GetKeyState('MButton', 'P') {
+    while GetKeyState('XButton1', 'P') {
             ; A loop is used instead of SetTimer to preserve the last found window.
-        if GetKeyState('Esc', 'P') {
-            WinMove(winOriginalX, winOriginalY)
+        if SubStr(A_ThisHotkey, 1, -2) = 'MButton & Wheel' {
             break
         }
 
@@ -126,171 +194,113 @@ MouseWinMove() {
 
     G_MouseIsMovingWin := false
 }
+#HotIf
 
 ;== ============================================================================
-;== RButton
+;== ❎ X1+M+R / Close window
 ;== ============================================================================
 
-RButton:: Click('R')
-
-;=== ===========================================================================
-;=== Wheel
-;=== ===========================================================================
-
-A_TrayMenu.insert('E&xit', 'Enable &MouseAltTab', ToggleMouseAltTab)
-A_TrayMenu.check('Enable &MouseAltTab')
-
-ToggleMouseAltTab(name := 'Enable &MouseAltTab', pos := 0, menu := {}) {
-    Hotkey('RButton & WheelDown', 'Toggle')
-    Hotkey('RButton & WheelUp', 'Toggle')
-
-    A_TrayMenu.toggleCheck('Enable &MouseAltTab')
-}
-
-RButton & WheelDown:: AltTab
-RButton & WheelUp::   ShiftAltTab
-
-;=== ===========================================================================
-;=== LButton
-;=== ===========================================================================
-
-/**
- * Delete.
- */
-RButton & LButton:: return
-RButton & LButton Up:: {
-    if A_PriorKey = 'Escape' {
-        return
+#HotIf GetKeyState('XButton1', 'P')
+MButton & RButton Up:: MouseWinClose()
+MouseWinClose() {
+    MouseWinActivate()
+    if WinActive(K_CLASSES['ZOOM']['MEETING']) {
+        Send('{Alt Down}q{Alt Up}')
+                ; Show 'End Meeting or Leave Meeting?' prompt in the middle of the screen
+                ; instead of the corner of the window.
+    } else if WinActive(K_CLASSES['ZOOM']['HOME']) {
+        if Zoom_MeetingWinExist(true) {
+            ControlSend('{Alt Down}q{Alt Up}', , K_CLASSES['ZOOM']['MEETING'])
+        } else {
+            ProcessClose('Zoom.exe')
+        }
+    } else if WinActive('ahk_exe PowerToys.Settings.exe') {
+        WinClose()
+    } else {
+        Send('{Alt Down}{F4}{Alt Up}')
     }
+}
+#HotIf
+
+;== ============================================================================
+;== ❎ X1+L / Send Delete key (+ misc)
+;== ============================================================================
+
+#HotIf GetKeyState('XButton1', 'P')
+*LButton Up:: {
+    MouseExitIfCantBeThisHk(thisHotkey, A_PriorHotkey)
+    
     if WinActive('Task Switching ahk_class XamlExplorerHostIslandWindow') {
         Click()
         return
     }
 
-    if GetKeyState('Shift', 'P') {
-        Send('{Shift Down}{Del}{Shift Up}')
-    } else {
-        Send('{Del}')
-    }
+    MouseSend('{Del}')
 }
-
-;=== ===========================================================================
-;=== MButton
-;=== ===========================================================================
-
-/**
- * Click link,
- * open it in a new tab,
- * and switch to that tab.
- */
-RButton & MButton:: return
-RButton & MButton Up:: {
-    if A_PriorKey = 'Escape' {
-        return
-    }
-    if WinActive('Task Switching ahk_class XamlExplorerHostIslandWindow') {
-        Click('M')
-        return
-    }
-
-    Send('{Ctrl Down}{Shift Down}{Click}{Shift Up}{Ctrl Up}')
-}
-
-;== ============================================================================
-;== XButton1
-;== ============================================================================
-
-;=== ===========================================================================
-;=== Wheel
-;=== ===========================================================================
-
-#HotIf MouseWinActivate('ahk_exe msedge.exe')
-/**
- * Search tabs.
- */
-XButton1 & WheelDown:: {
-    if GetKeyState('Ctrl') {
-        Send('{Ctrl Up}')
-    }
-
-    Send('{Ctrl Down}{Shift Down}a{Shift Up}{Ctrl Up}')
-}
-XButton1 & WheelUp:: Send('{Esc}')
-
-#HotIf WinActive('ahk_exe AcroRd32.exe')
-XButton1 & WheelDown:: Send('{Ctrl Down}{PgDn}{Ctrl Up}')
-        ; Jump one page down.
-XButton1 & WheelUp::   Send('{Ctrl Down}{PgUp}{Ctrl Up}')
-        ; Jump one page up.
 #HotIf
 
-C_Hotkey.ctrlTab('XButton1 & WheelDown', false)
-C_Hotkey.ctrlTab('XButton1 & WheelUp', true)
+;== ============================================================================
+;== ❎ X1+L+R / Send Backspace key
+;== ============================================================================
 
-;=== ===========================================================================
-;=== LButton and RButton
-;=== ===========================================================================
+#HotIf GetKeyState('XButton1', 'P')
+LButton & RButton Up:: MouseSend('{BS}')
+#HotIf
 
-XButton1 & LButton:: return
-XButton1 & LButton Up:: X1LR('[', 'X1')
-        ; Go back.
+;== ============================================================================
+;== ⬇️ X1+R / Send Enter key
+;== ============================================================================
 
-XButton1 & RButton:: return
-XButton1 & RButton Up:: X1LR(']', 'X2')
-        ; Go forward.
+#HotIf GetKeyState('XButton1', 'P')
+*RButton Up:: {
+    MouseExitIfCantBeThisHk(thisHotkey, A_PriorHotkey)
+    MouseSend('{Enter}')
+}
+#HotIf
 
-X1LR(states*) {
-    if A_PriorKey = 'Escape' {
-        return
-    }
+;== ============================================================================
+;== ➡️ X1+R+L / Send Tab key
+;== ============================================================================
 
+#HotIf GetKeyState('XButton1', 'P')
+RButton & LButton Up:: MouseSend('{Tab}')
+#HotIf
+
+;== ============================================================================
+;== ↩️ X1+R+WD / Undo
+;== ============================================================================
+
+#HotIf GetKeyState('XButton1', 'P')
+RButton & WheelDown:: MouseSend('^z')
+#HotIf
+
+;== ============================================================================
+;== ↪ X1+R+WU / Redo
+;== ============================================================================
+
+#HotIf GetKeyState('XButton1', 'P')
+RButton & WheelUp:: {
     MouseWinActivate()
-    if WinActive('ahk_exe Notion.exe') {
-        Send('{Ctrl Down}' states[1] '{Ctrl Up}')
+    
+    if WinThatUsesCtrlYAsRedoIsActive() {
+        Send('^y')
     } else {
-        Click(states[-1])
+        Send ('^+z')
     }
 }
+#HotIf
 
-;=== ===========================================================================
-;=== MButton
-;=== ===========================================================================
+;= ============================================================================
+;= XButton2 / Tab shortcuts
+;= =============================================================================
 
-XButton1 & MButton:: return
-XButton1 & MButton Up:: MouseWinReload()
-MouseWinReload() {
-    if A_PriorKey = 'Escape' {
-        return
-    }
-
-    MouseWinActivate()
-    Send('{F5}')
-}
+*XButton2 Up:: return
 
 ;== ============================================================================
-;== XButton2
+;== ↔️ X2+W / Switch to adjacent tab
 ;== ============================================================================
 
-/**
- * MouseWinActivate
- */
-XButton2 Up:: {
-    if A_PriorKey != 'XButton2' {
-        return
-    }
-    MouseWinActivate()
-}
-
-;=== ===========================================================================
-;=== Wheel
-;=== ===========================================================================
-
-XButton2 & WheelDown:: X2W('{Down}', '{PgDn}', '{Tab}',                       '{PgDn}')
-        ; Switch to next tab.
-XButton2 & WheelUp::   X2W('{Up}',   '{PgUp}', '{Shift Down}{Tab}{Shift Up}', '{PgUp}')
-        ; Switch to previous tab.
-
-X2W(states*) {
+MouseAdjacentTabSwitch(states*) {
     MouseWinActivate()
 
     WinExist('A')
@@ -311,15 +321,84 @@ X2W(states*) {
 }
 
 ;=== ===========================================================================
-;=== LButton and RButton
+;=== ⬅️ X2+WD / Switch to left tab
 ;=== ===========================================================================
 
-XButton2 & LButton:: return
-XButton2 & LButton Up:: {
-    if A_PriorKey = 'Escape' {
-        return
+#HotIf GetKeyState('XButton2', 'P')
+WheelDown:: MouseAdjacentTabSwitch('{Down}', '{PgDn}', '{Tab}',                       '{PgDn}')
+#HotIf
+
+;=== ===========================================================================
+;=== ➡️ X2+WU / Switch to right tab
+;=== ===========================================================================
+
+#HotIf GetKeyState('XButton2', 'P')
+WheelUp::   MouseAdjacentTabSwitch('{Up}',   '{PgUp}', '{Shift Down}{Tab}{Shift Up}', '{PgUp}')
+#HotIf
+
+;== ============================================================================
+;== ↕️ X2+R+W / Cycle through tabs in used order (+ misc)
+;== ============================================================================
+
+; Each condition has its own #HotIf
+; because if they were all under the same hotkey variant,
+; then the KeyWait under "#HotIf GetKeyState('XButton2', 'P')"
+; would prevent any further inputs from going through. 
+
+#HotIf GetKeyState('XButton2', 'P') and MouseWinActivate('ahk_exe msedge.exe')
+/**
+ * Search tabs.
+ */
+RButton & WheelDown:: {
+    if GetKeyState('Ctrl') {
+        Send('{Ctrl Up}')
     }
 
+    Send('{Ctrl Down}{Shift Down}a{Shift Up}{Ctrl Up}')
+}
+RButton & WheelUp:: Send('{Esc}')
+
+#HotIf GetKeyState('XButton2', 'P') and WinActive('ahk_exe AcroRd32.exe')
+RButton & WheelDown:: Send('{Ctrl Down}{PgDn}{Ctrl Up}')
+        ; Jump one page down.
+RButton & WheelUp::   Send('{Ctrl Down}{PgUp}{Ctrl Up}')
+        ; Jump one page up.
+
+#HotIf GetKeyState('XButton2', 'P') and GetKeyState('Ctrl')
+RButton & WheelDown:: Send('{Tab}')
+RButton & WheelUp::   Send('+{Tab}')
+
+#HotIf GetKeyState('XButton2', 'P')
+RButton & WheelDown:: {
+    Send('{Ctrl Down}{Tab}')
+    KeyWait('RButton')
+    Send('{Ctrl Up}')
+}
+RButton & WheelUp:: {
+    Send('{Ctrl Down}+{Tab}')
+    KeyWait('RButton')
+    Send('{Ctrl Up}')
+}
+#HotIf
+
+;== ============================================================================
+;== ❎ X2+R / Close tab
+;== ============================================================================
+
+#HotIf GetKeyState('XButton2', 'P')
+RButton Up:: {
+    MouseExitIfCantBeThisHk(thisHotkey, A_PriorKey)
+    MouseWinActivate()
+    Send('{Ctrl Down}w{Ctrl Up}')
+}
+#HotIf
+
+;== ============================================================================
+;== ↪ X2+R+L / Reopen last closed tab (+ misc)
+;== ============================================================================
+
+#HotIf GetKeyState('XButton2', 'P')
+RButton & LButton Up:: {
     MouseWinActivate()
     if WinActive('ahk_exe Adobe Premiere Pro.exe') {
         Send('{Shift Down}3{Shift Up}{F2}')
@@ -327,109 +406,98 @@ XButton2 & LButton Up:: {
                 ; and move playhead to cursor.
     } else {
         Send('{Ctrl Down}{Shift Down}t{Shift Up}{Ctrl Up}')
-                ; Reopen last closed tab,
-                ; and switch to it.
     }
 }
+#HotIf
 
-XButton2 & RButton:: return
-XButton2 & RButton Up:: {
-    if A_PriorKey = 'Escape' {
-        return
-    }
+;== ============================================================================
+;== 🔄 X2+L+M / Refresh page or reload window (Ctrl+R)
+;== ============================================================================
 
+#HotIf GetKeyState('XButton2', 'P')
+LButton & MButton Up:: MouseCtrlR()
+MouseCtrlR() {
     MouseWinActivate()
-    Send('{Ctrl Down}w{Ctrl Up}')
-            ; Close current tab.
+    Send('^r')
 }
+#HotIf
 
-;=== ===========================================================================
-;=== MButton
-;=== ===========================================================================
+;== ============================================================================
+;== ↔️ X2+L(+R) / Go back and forward a page
+;== ============================================================================
 
-XButton2 & MButton:: return
-XButton2 & MButton Up:: MouseWinClose()
-MouseWinClose() {
-    if A_PriorKey = 'Escape' {
-        return
-    }
-
+MouseGoBackAndForward(states*) {
     MouseWinActivate()
-    if WinActive(K_CLASSES['ZOOM']['MEETING']) {
-        Send('{Alt Down}q{Alt Up}')
-                ; Show 'End Meeting or Leave Meeting?' prompt in the middle of the screen
-                ; instead of the corner of the window.
-    } else if WinActive(K_CLASSES['ZOOM']['HOME']) {
-        if Zoom_MeetingWinExist(true) {
-            ControlSend('{Alt Down}q{Alt Up}', , K_CLASSES['ZOOM']['MEETING'])
-        } else {
-            ProcessClose('Zoom.exe')
-        }
-    } else if WinActive('ahk_exe PowerToys.Settings.exe') {
-        WinClose()
+    if WinActive('ahk_exe Notion.exe') {
+        Send('{Ctrl Down}' states[1] '{Ctrl Up}')
     } else {
-        Send('{Alt Down}{F4}{Alt Up}')
+        Click(states[-1])
     }
 }
 
-;= =============================================================================
-;= Wheel
-;= =============================================================================
+;=== ===========================================================================
+;=== ⬅️ X2+L / Go back a page (+ misc)
+;=== ===========================================================================
 
-A_TrayMenu.insert('E&xit', 'Enable &Accelerated Scroll', ToggleAcceleratedScroll)
-
-UsePriorAcceleratedScrollSetting()
-UsePriorAcceleratedScrollSetting() {
-    acceleratedScrollIsOn := IniRead('lib\user-settings.ini', '', 'AcceleratedScrollIsOn')
-    action := acceleratedScrollIsOn ? 'On' : 'Off'
-
-    Hotkey('WheelUp', action)
-    Hotkey('WheelDown', action)
-
-    if acceleratedScrollIsOn {
-        A_TrayMenu.check('Enable &Accelerated Scroll')
-    }
-    AcceleratedScrollIndicatorFollowMouse()
+#HotIf GetKeyState('XButton2', 'P')
+LButton Up:: {
+    MouseExitIfCantBeThisHk(thisHotkey, A_PriorKey)
+    MouseGoBackAndForward('[', 'X1')
 }
+#HotIf
 
-WheelUp::
-WheelDown:: {
-    AcceleratedScroll()
+;=== ===========================================================================
+;=== ➡️ X2+L+R / Go forward a page
+;=== ===========================================================================
+
+#HotIf GetKeyState('XButton2', 'P')
+LButton & RButton Up:: {
+    MouseGoBackAndForward(']', 'X2')
 }
-
-#^a:: ToggleAcceleratedScroll()
-ToggleAcceleratedScroll(name := 'Enable &Accelerated Scroll', pos := 0, menu := {}) {
-    acceleratedScrollIsOn := IniRead('lib\user-settings.ini', '', 'AcceleratedScrollIsOn')
-    IniWrite(not acceleratedScrollIsOn, 'lib\user-settings.ini', '', 'AcceleratedScrollIsOn')
-
-    Hotkey('WheelUp', 'Toggle')
-    Hotkey('WheelDown', 'Toggle')
-
-    A_TrayMenu.toggleCheck(name)
-    AcceleratedScrollIndicatorFollowMouse()
-}
-
-AcceleratedScrollIndicatorFollowMouse() {
-    SetTimer(toolTipAcceleratedScroll, 10)
-    SetTimer(closeAcceleratedScrollIndicator, -3000)
-
-    closeAcceleratedScrollIndicator() {
-        SetTimer(toolTipAcceleratedScroll, 0)
-        ToolTip()
-    }
-    
-    toolTipAcceleratedScroll() {
-        acceleratedScrollIsOn := IniRead('lib\user-settings.ini', '', 'AcceleratedScrollIsOn')
-        acceleratedScrollSetting := acceleratedScrollIsOn ? 'ON' : 'OFF'
-        ToolTip('Accelerated Scroll ' acceleratedScrollSetting)
-    }
-}
+#HotIf
 
 ;== ============================================================================
-;== Ctrl+Wheel
+;== 🔗 X2+M / Open link in new active tab
 ;== ============================================================================
 
-~^WheelUp::
-~^WheelDown:: {
+#HotIf GetKeyState('XButton2', 'P')
+MButton Up:: MouseLinkOpenInNewActiveTab(thisHotkey)
+MouseLinkOpenInNewActiveTab(thisHotkey) {
+    MouseExitIfCantBeThisHk(thisHotkey, A_PriorKey)
+    Send('{Ctrl Down}{Shift Down}{Click}{Shift Up}{Ctrl Up}')
+}
+#HotIf
+
+;= ============================================================================
+;= Always use the window underneath
+;= ============================================================================
+
+~*WheelDown::
+~*WheelUp:: {
     MouseWinActivate()
+}
+
+;= =============================================================================
+;= Alternate right and middle click for touchpad
+;= =============================================================================
+
+#LButton::  Click('R')
+#!LButton:: Click('M')
+
+;= =============================================================================
+;= Functions
+;= =============================================================================
+
+MouseSend(keys) {
+    MouseWinActivate()
+    Send('{Blind}' keys)
+}
+
+MouseExitIfCantBeThisHk(thisHotkey, target, reference?) {
+    if not IsSet(reference) {
+        reference := SubStr(thisHotkey, 1 , -3)
+    }
+    if target != reference {
+        exit
+    }
 }

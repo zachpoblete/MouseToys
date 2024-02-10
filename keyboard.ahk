@@ -328,13 +328,7 @@ RunSelectedAsDir() {
 ;= Specific App
 ;= =============================================================================
 
-#HotIf WinThatUsesCtrlYAsRedoIsActive()
-WinThatUsesCtrlYAsRedoIsActive() {
-    if not WinActive('ahk_exe Photoshop.exe') {
-        return true
-    }
-}
-
+#HotIf not WinThatUsesCtrlYAsRedoIsActive()
 $^+z:: Send('{Ctrl Down}y{Ctrl Up}')
 $^y::  Send('{Ctrl Down}{Shift Down}z{Shift Up}{Ctrl Up}')
 #HotIf

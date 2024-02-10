@@ -250,6 +250,12 @@ MoveWinMiddleToMouse() {
     WinMove(mouseX - (winW / 2), mouseY - (winH / 2))
 }
 
+WinThatUsesCtrlYAsRedoIsActive() {
+    if WinActive('ahk_exe Photoshop.exe') {
+        return true
+    }
+}
+
 Zoom_MeetingWinExist(isVisible) {
     try {
         meetingWinPid := WinGetPid(K_CLASSES['ZOOM']['TOOLBAR'])

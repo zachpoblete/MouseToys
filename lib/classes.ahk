@@ -28,25 +28,6 @@ class C_KeyWait {
     }
 }
 
-class C_Hotkey {
-    static ctrlTab(hk, shouldPressShift) {
-        tab := shouldPressShift ? '{Shift Down}{Tab}{Shift Up}' : '{Tab}'
-
-        HotIf((thisHotkey) => GetKeyState('Ctrl'))
-        Hotkey(hk, (thisHotkey) => Send(tab))
-
-        HotIf()
-        Hotkey(hk, (thisHotkey) => sendFirstAndLast(thisHotkey))
-
-        sendFirstAndLast(thisHotkey) {
-            Send('{Ctrl Down}' tab)
-            hk := HkSplit(thisHotkey)
-            KeyWait(hk[1])
-            Send('{Ctrl Up}')
-        }
-    }
-}
-
 C_InsertInputRightOfCaret.init()
 class C_InsertInputRightOfCaret {
     static init() {
