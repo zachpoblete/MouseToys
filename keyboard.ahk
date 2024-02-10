@@ -376,7 +376,7 @@ F11:: Send('{Ctrl Down}l{Ctrl Up}')
 
 +':: VimcCmd(4)
         ; LinkHints.activateCopyLinkUrl.
-':: VimcCmd(5)
+'::  VimcCmd(5)
         ; LinkHints.activateCopyLinkText.
 
 #HotIf WinActive('ahk_exe msedge.exe')
