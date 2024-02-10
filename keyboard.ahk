@@ -350,9 +350,13 @@ VimcCmd(num) {
  */
 ^+Del::
         ; Clear browsing data.
-^r:: {
-        ; I sometimes accidentally press this when I want to Ctrl+T.
+^r::
+        ; I sometimes accidentally press this when I want to ^t.
         ; I will just use F5 instead.
+^e::
+        ; I sometimes accidentally press this when I want to ^w
+        ; I already have ^l.
+{
     return
 }
 #HotIf
