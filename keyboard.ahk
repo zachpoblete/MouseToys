@@ -277,8 +277,14 @@ $^y::  Send('{Ctrl Down}{Shift Down}z{Shift Up}{Ctrl Up}')
  * Open uniqoda.
  */
 #+,:: {
-    Send('{Blind}{Shift Up}{LWin Up}')
-    Send('{Ctrl Down}{Shift Down}{F20}{Shift Up}{Ctrl Up}')
+    winKeysUp := ''
+    if GetKeyState('LWin', 'P') {
+        winKeysUp .= '{LWin Up}'
+    }
+    if GetKeyState('RWin', 'P') {
+        winKeysUp .= '{RWin Up}'
+    }
+    Send('{Blind}' winKeysUp '^+{F20}')
 }
 
 ;== ============================================================================
