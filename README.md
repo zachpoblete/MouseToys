@@ -1,115 +1,113 @@
-# Contents
+# 🖱️ Mouse shortcuts (mouse.ahk)
 
-- [Features](#features)
-    - [Mouse shortcuts](#%EF%B8%8F-mouse-shortcutsmouseahk)
-    - [Zoom (videoconferencing app) shortcuts](#-zoom-videoconferencing-app-shortcutskeyboardahk)
-    - [Keyboard shortcuts](#%EF%B8%8F-keyboard-shortcutskeyboardahk)
-- [Best way to view the code](#best-way-to-view-the-code)
-- [What's WheelUp, XButton1, etc.?](#whats-wheelup-xbutton1-etc)
-- [What do you mean by clicking or holding a key combo like MButton+RButton?](#what-do-you-mean-by-clicking-or-holding-a-key-combo-like-mbuttonrbutton)
-- [Issues](#issues)
-- [Notes](#notes)
-- [License](#license)
+| Press this key | To do this |
+| - | - |
+| <kbd>WheelDown</kbd> | 🚀 Accelerated scroll down (Scroll faster to scroll farther) |
+| <kbd>WheelUp</kbd> | 🚀 Accelerated scroll up |
 
-# Features
+## 🪟 Window and typing shortcuts (XButton1)
 
-## 🖱️ Mouse shortcuts&ensp;_(mouse.ahk)_
+| Press this key | To do this |
+| - | - |
+| <kbd>XButton1</kbd>+<kbd>WheelDown</kbd> | ⬇️ Cycle through windows in recently used order (Alt+Tab) |
+| <kbd>XButton1</kbd>+<kbd>WheelUp</kbd> | ⬆️ Cycle through windows in reverse used order (Shift+Alt+Tab) |
+| <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<kbd>WheelDown</kbd> | ↙️ Minimize window |
+| <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<kbd>WheelUp</kbd> | ↗ Maximize window |
+| <kbd>XButton1</kbd>+<kbd>MButton</kbd> | 🚚 Restore window and move it using the mouse |
+| <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<kbd>RButton</kbd> | ❎ Close window |
+| <kbd>XButton1</kbd>+<kbd>LButton</kbd> | ❎ Send Delete key|
+| <kbd>XButton1</kbd>+<kbd>LButton</kbd>+<kbd>RButton</kbd> | ❎ Send Backspace key |
+| <kbd>XButton1</kbd>+<kbd>RButton</kbd> | ⬇️ Send Enter key |
+| <kbd>XButton1</kbd>+<kbd>RButton</kbd>+<kbd>LButton</kbd> | ➡️ Send Tab key |
+| <kbd>XButton1</kbd>+<kbd>LButton</kbd>+<kbd>WheelDown</kbd> | ↩️ Undo |
+| <kbd>XButton1</kbd>+<kbd>LButton</kbd>+<kbd>WheelUp</kbd> | ↪ Redo |
 
-### 🚀 Accelerated Scroll&ensp;_(lib / accelerated_scroll.ahk)_
+## 🌐 Tab shortcuts (XButton2)
 
-Scroll faster (using <kbd>WheelUp</kbd> and <kbd>WheelDown</kbd>) to scroll farther.
+| Press this key | To do this |
+| - | - |
+| <kbd>XButton2</kbd>+<kbd>WheelDown</kbd> | ⬅️ Switch to left tab |
+| <kbd>XButton2</kbd>+<kbd>WheelUp</kbd> | ➡️ Switch to right tab |
+| <kbd>XButton2</kbd>+<kbd>RButton</kbd>+<kbd>WheelDown</kbd> | ⬇️ Cycle through tabs in recently used order |
+| <kbd>XButton2</kbd>+<kbd>RButton</kbd>+<kbd>WheelUp</kbd> | ⬆️ Cycle through tabs in reverse used order |
+| <kbd>XButton2</kbd>+<kbd>RButton</kbd> | ❎ Close tab |
+| <kbd>XButton2</kbd>+<kbd>RButton</kbd>+<kbd>LButton</kbd> | ↪ Reopen last closed tab |
+| <kbd>XButton2</kbd>+<kbd>LButton</kbd> | ⬅️ Go back a page |
+| <kbd>XButton2</kbd>+<kbd>LButton</kbd>+<kbd>RButton</kbd> | ➡️ Go forward a page |
+| <kbd>XButton2</kbd>+<kbd>LButton</kbd>+<kbd>MButton</kbd> | 🔄 Refresh page or reload window (Ctrl+R) |
+| <kbd>XButton2</kbd>+<kbd>MButton</kbd> | 🔗 Open link in a new active tab |
 
-### 🚚 Move window with mouse&ensp;_(MouseWinMove)_
+## 🔘 Buttons Guide
 
-Click a window with <kbd>MButton</kbd>+<kbd>RButton</kbd> (automatically restoring the window if maximized) and move the cursor to move the window.
+![mouse buttons](https://user-images.githubusercontent.com/92368853/218107501-85e6c04b-cbd5-4de3-9c81-cd3450da1ae7.png)
 
-### ↗️↙️ Maximize or minimize/restore window with mouse
+- ❶ is <kbd>LButton</kbd>
+- ❷ is <kbd>RButton</kbd>
+- Pushing directly down on ❸ is <kbd>MButton</kbd>
+- Scrolling ❸ forward is <kbd>WheelUp</kbd>
+- Scrolling ❸ backward is <kbd>WheelDown</kbd>
+- ❹ is <kbd>XButton1</kbd>
+- ❺ is <kbd>XButton2</kbd>
 
-Click a window with <kbd>MButton</kbd>+<kbd>WheelUp</kbd> to maximize the window. _(MouseWinMaximize)_
+E.g., <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<kbd>RButton</kbd> means to press & hold <kbd>XButton1</kbd>, press & hold <kbd>MButton</kbd>, and press & release <kbd>RButton</kbd>.
 
-Click a window with <kbd>MButton</kbd>+<kbd>WheelDown</kbd> to minimize/restore the window to the cursor. _(MouseWinMinimizeOrRestore)_
+# ⌨️ Keyboard shortcuts (keyboard.ahk)
 
-### ❌ Close window with mouse&ensp;_(MouseWinClose)_
+## 🅰️ Custom Layer
 
-Hold <kbd>XButton2</kbd>+<kbd>MButton</kbd> and release <kbd>MButton</kbd> on a selected window to close it.
+![custom layer](https://github.com/zachpoblete/AutoHotkey/assets/92368853/b40a582e-5a88-4806-a880-27268bfd6704)
 
-### 🔀 Switch to recently used windows (Alt-Tab) with mouse
+## 🌐 Vimium C Commands
 
-Click <kbd>RButton</kbd>+<kbd>WheelDown</kbd> to move to older windows, and release <kbd>RButton</kbd> to open the selected window. _(RButton & WheelDown)_
+| Press this key | To do this |
+| - | - |
+| <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>R</kbd> | Reopen tab |
+| <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>E</kbd> | Close right tab |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>PgUp</kbd> | Move tab left |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>PgDn</kbd> | Move tab right |
 
-Click <kbd>RButton</kbd>+<kbd>WheelUp</kbd> to move to newer windows, and release <kbd>RButton</kbd> to open the selected window. _(RButton & WheelUp)_
+### 🅰️ While CapsLock is held down (Custom Layer)
 
-While in the Alt-Tab Menu from using the mouse:
-- Alternatively, move the cursor to a window and click <kbd>RButton</kbd>+<kbd>LButton</kbd> to open the window. _(RButton & LButton Up)_
-- Move the cursor to a window and click <kbd>RButton</kbd>+<kbd>MButton</kbd> to close the window. _(RButton & MButton Up)_
+| Press this key | To do this |
+| - | - |
+| <kbd>;</kbd> | Activate links hints |
+| <kbd>Shift</kbd>+<kbd>;</kbd> | Activate edit link hints |
+| <kbd>Ctrl</kbd>+<kbd>;</kbd> | Activate hover link hints |
+| <kbd>Shift</kbd>+<kbd>'</kbd> | Activate-copy url link hints |
+| <kbd>'</kbd> | Activate-copy text link hints
 
-### 🔀 Switch to recently used tabs with mouse&ensp;_(C_Hotkey.ctrlTab)_
+## 🅰️ Double Shift for CapsLock
 
-Click a window with <kbd>XButton1</kbd>+<kbd>WheelDown</kbd> to switch to older tabs.
+Since we changed <kbd>CapsLock</kbd> to be a custom layer activator, we need a replacement.
 
-Click a window with <kbd>XButton1</kbd>+<kbd>WheelUp</kbd> to switch to newer tabs.
+| Press this key | To do this |
+| - | - |
+| <kbd>LShift</kbd>+<kbd>RShift</kbd> | Toggle <kbd>CapsLock</kbd>
+| <kbd>RShift</kbd>+<kbd>LShift</kbd> | Toggle <kbd>CapsLock</kbd>
 
-### ⬅️➡️ Go one tab left or right with mouse&ensp;_(X2W)_
+## 🕹️ One button remote
 
-Click a window with <kbd>XButton2</kbd>+<kbd>WheelUp</kbd> to go one tab left (one tab up if the tabs were vertically arranged).
+| Press this key | To do this |
+| - | - |
+| <kbd>Pause</kbd> | ⏯️ Play/pause the current media that is paused/playing
+| <kbd>Pause</kbd>, <kbd>Pause</kbd> | ⏭️ Play the next media
+| <kbd>Pause</kbd>, <kbd>Pause</kbd>, <kbd>Pause</kbd> | ⏮️ Play the previous media
 
-Click a window with <kbd>XButton2</kbd>+<kbd>WheelDown</kbd> to go one tab right (one tab down if the tabs were vertically arranged).
+## #️⃣ While NumLock is on
+If you don't have a <kbd>NumLock</kbd> key, use the <kbd>NumLock</kbd> remapping from the Custom Layer (<kbd>CapsLock</kbd>+<kbd>3</kbd>).
 
-### ⬅️➡️ Go back or forward a page with mouse&ensp;_(X1LR)_
+| Take this action | To do this |
+| - | - |
+| Press <kbd>Ctrl</kbd>+<kbd>D</kbd> | 📂 Open the process of the active window in File Explorer |
+| Select some text, press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd> | 📂 Open the selection as a folder in File Explorer, e.g. doing it on `%USERPROFILE%\Documents` will open your Documents folder |
+| Press <kbd>Any Key</kbd> that produces visible character | ➡️ Insert that character in front of the text cursor indicator, aka caret (normally, it would be inserted behind the caret) |
 
-Hold <kbd>XButton1</kbd>+<kbd>LButton</kbd> and release <kbd>LButton</kbd> on a selected window to go back a page (sends <kbd>Browser_Back</kbd>).
+## 🎦 Zoom shortcuts
 
-Hold <kbd>XButton1</kbd>+<kbd>RButton</kbd> and release <kbd>RButton</kbd> on a selected window to go forward a page (sends <kbd>Browser_Forward</kbd>).
-
-### 🔄 Reload page with mouse&ensp;_(MouseWinReload)_
-
-Hold <kbd>XButton1</kbd>+<kbd>MButton</kbd> and release <kbd>MButton</kbd> on a selected window to reload the page (sends <kbd>F5</kbd>).
-
-### ❌ Close tab with mouse&ensp;_(XButton2 & RButton Up)_
-
-Hold <kbd>XButton2</kbd>+<kbd>RButton</kbd> and release <kbd>RButton</kbd> on a selected window to close the current tab.
-
-### ↩️ Undo close tab with mouse&ensp;_(XButton2 & LButton Up)_
-
-Hold <kbd>XButton2</kbd>+<kbd>LButton</kbd> and release <kbd>LButton</kbd> on a selected window to reopen the last closed tab.
-
-### ❌ Delete with mouse&ensp;_(RButton & LButton Up)_
-
-Click a window with <kbd>RButton</kbd>+<kbd>LButton</kbd> to send <kbd>Delete</kbd>.
-
-## 🎦 Zoom (videoconferencing app) shortcuts&ensp;_(keyboard.ahk)_
-
-### 🙂 Open reactions&ensp;_(Zoom_OpenReactions)_
-
-In a Zoom Meeting, press <kbd>Alt</kbd>+<kbd>E</kbd> to open the reactions.
-
-### 👍 Give a thumbs-up react&ensp;_(Zoom_ThumbsUpReact)_
-
-In a Zoom Meeting, press <kbd>Alt</kbd>+<kbd>=</kbd> to give a thumbs-up react.
-
-## ⌨️ Keyboard shortcuts&ensp;_(keyboard.ahk)_
-
-### 🕹️ One button remote&ensp;_(OneBtnRemote)_
-
-Press <kbd>Pause</kbd>
-- ⏯️ once to play/pause the current media that is paused/playing.
-- ⏭️ twice to play the next media.
-- ⏮️ thrice to play the previous media.
-
-### 📂 Reveal process of active window in File Explorer&ensp;_(WinOpenProcessDir)_
-
-Turn <kbd>NumLock</kbd> on and press <kbd>Ctrl</kbd>+<kbd>D</kbd> to open the process of the active window in File Explorer.
-
-### 📂 Open selection as folder in File Explorer&ensp;_(RunSelectedAsDir)_
-Turn <kbd>NumLock</kbd> on, select some text, and press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd> to open the selection as a folder in File Explorer.
-
-For example, selecting `%USERPROFILE%\Documents` and pressing <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd> while <kbd>NumLock</kbd> is on will open your Documents folder.
-
-### ➡️ Insert input right of caret&ensp;_(~*NumLock)_
-
-Turn <kbd>NumLock</kbd> on and press any key that produces text to insert that text in front of the text cursor indicator, aka caret (|).
-
-Because, normally, the text would be inserted behind the caret.
+| Press this key | To do this |
+| - | - |
+| <kbd>Alt</kbd>+<kbd>E</kbd> | 🙂 Open reactions |
+| <kbd>Alt</kbd>+<kbd>=</kbd> | 👍 Give a thumbs-up react |
 
 # Best way to view the code
 
@@ -119,29 +117,7 @@ Because, normally, the text would be inserted behind the caret.
 4. Boom:
 ![codemap](https://user-images.githubusercontent.com/92368853/218280716-848d1102-934d-4ca6-ac39-71b66f96c1e6.gif)
 
-# What's WheelUp, XButton1, etc.?
-
-![mouse buttons](https://user-images.githubusercontent.com/92368853/218107501-85e6c04b-cbd5-4de3-9c81-cd3450da1ae7.png)
-
-- ❶ is <kbd>LButton</kbd>.
-- ❷ is <kbd>RButton</kbd>.
-- Pushing directly down on ❸ is <kbd>MButton</kbd>.
-- Scrolling ❸ forward is <kbd>WheelUp</kbd>.
-- Scrolling ❸ backward is <kbd>WheelDown</kbd>.
-- ❹ is <kbd>XButton1</kbd> (on my mouse).
-- ❺ is <kbd>XButton2</kbd> (on my mouse).
-
-# What do you mean by clicking or holding a key combo like MButton+RButton?
-
-Whenever I say something like, "Click <kbd>MButton</kbd>+<kbd>RButton</kbd>", what I mean is press and hold <kbd>MButton</kbd>, then while <kbd>MButton</kbd> is down, press <kbd>RButton</kbd> to activate the hotkey.
-
-It's like saying, "Press <kbd>Ctrl</kbd>+<kbd>A</kbd>", where <kbd>MButton</kbd> is <kbd>Ctrl</kbd> and <kbd>RButton</kbd> is <kbd>A</kbd>.
-
-Whenever I say something like, "Hold <kbd>XButton2</kbd>+<kbd>MButton</kbd>... and release <kbd>MButton</kbd>", what I mean is press and hold <kbd>XButton2</kbd>, then press and hold <kbd>MButton</kbd>, and then release <kbd>MButton</kbd> to activate the hotkey.
-
-# Issues
-
-Sometimes, calling Zoom_ThumbsUpReact throws an error when a Zoom Meeting was just launched, and I don't know why.
+(The GIF is so outdated that all the code you see has been removed. I need to update it.)
 
 # Notes
 
