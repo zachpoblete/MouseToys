@@ -43,18 +43,6 @@
 ;== ============================================================================
 
 #HotIf WinWhereBsProducesControlCharIsActive()
-WinWhereBsProducesControlCharIsActive() {
-    if ControlClassNnFocused('A', '^Edit\d+$', true)
-            or ControlClassNnFocused('ahk_exe AcroRd32.exe', '^AVL_AVView', true)
-            or WinActive('ahk_exe mmc.exe') {
-        return true
-    }
-}
-/**
- * ^BS doesn't natively work because it produces a control character,
- * so work around that.
- */
-
 ^BS:: CtrlBsWithDel()
 #HotIf
 
@@ -491,6 +479,10 @@ Zoom_OpenReactions() {
 ;= =============================================================================
 ; Functions that are used in more than one section but only in this file.
 
+/**
+ * ^BS doesn't natively work because it produces a control character,
+ * so work around that.
+ */
 CtrlBsWithDel() {
     if GetSelected() {
         Send('{Del}')
@@ -503,6 +495,14 @@ CtrlBsWithDel() {
                 ; Delete comes last because fsr,
                 ; Photoshop doesn't delete the word unless Delete comes last
                 ; even though ^+Del will delete the word if you do it manually.
+    }
+}
+
+WinWhereBsProducesControlCharIsActive() {
+    if ControlClassNnFocused('A', '^Edit\d+$', true)
+            or ControlClassNnFocused('ahk_exe AcroRd32.exe', '^AVL_AVView', true)
+            or WinActive('ahk_exe mmc.exe') {
+        return true
     }
 }
 
