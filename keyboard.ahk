@@ -87,6 +87,10 @@ MapF13UntilF24() {
 ;=== Mask
 ;=== ===========================================================================
 
+loop parse 'abcefghijklmnopqrstuvwxyz' {
+    Hotkey('#^+!' A_LoopField, (ThisHotkey) => '')
+}
+
 #^+Alt::
 #^!Shift::
 #+!Ctrl::
