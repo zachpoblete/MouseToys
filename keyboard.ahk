@@ -136,6 +136,16 @@ n::  Insert
 p::  PrintScreen
 BS:: Del
 
+3::
+        ; The hotkey is 3
+        ; because 3 key is also for #.
+        ; We can think of # as standing for NumLock.
+{
+    numLockState := GetKeyState('NumLock', 'T')
+    SetNumLockState(not numLockState)
+    DoOnNumLockToggle()
+}
+
 Space:: ^BS
 #HotIf GetKeyState('CapsLock', 'P') and WinWhereBsProducesControlCharIsActive()
 Space:: CtrlBsWithDel()
@@ -147,34 +157,7 @@ Space:: CtrlBsWithDel()
 ;=== ===========================================================================
 
 DoOnNumLockToggle()
-
 ~NumLock:: DoOnNumLockToggle()
-!CapsLock:: {
-    numLockState := GetKeyState('NumLock', 'T')
-    SetNumLockState(not numLockState)
-    DoOnNumLockToggle()
-}
-
-DoOnNumLockToggle() {
-    NumLockIndicatorFollowMouse()
-    C_InsertInputRightOfCaret.toggle()
-}
-
-/**
- * Display ToolTip while NumLock is on.
- */
-NumLockIndicatorFollowMouse() {
-    Sleep(10)
-
-    if GetKeyState('NumLock', 'T') {
-        SetTimer(toolTipNumLock, 10)
-    } else {
-        SetTimer(toolTipNumLock, 0)
-        ToolTip()
-    }
-
-    toolTipNumLock() => ToolTip('NumLock On')
-}
 
 ;= =============================================================================
 ;= Multimedia
@@ -521,4 +504,29 @@ CtrlBsWithDel() {
                 ; Photoshop doesn't delete the word unless Delete comes last
                 ; even though ^+Del will delete the word if you do it manually.
     }
+}
+
+;== ============================================================================
+;== NumLock
+;== ============================================================================
+
+DoOnNumLockToggle() {
+    NumLockIndicatorFollowMouse()
+    C_InsertInputRightOfCaret.toggle()
+}
+
+/**
+ * Display ToolTip while NumLock is on.
+ */
+NumLockIndicatorFollowMouse() {
+    Sleep(10)
+
+    if GetKeyState('NumLock', 'T') {
+        SetTimer(toolTipNumLock, 10)
+    } else {
+        SetTimer(toolTipNumLock, 0)
+        ToolTip()
+    }
+
+    toolTipNumLock() => ToolTip('NumLock On')
 }
