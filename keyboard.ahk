@@ -136,9 +136,9 @@ n::  Insert
 p::  PrintScreen
 BS:: Del
 
-Enter:: ^BS
+Space:: ^BS
 #HotIf GetKeyState('CapsLock', 'P') and WinWhereBsProducesControlCharIsActive()
-Enter:: CtrlBsWithDel()
+Space:: CtrlBsWithDel()
 
 #HotIf
 
