@@ -102,11 +102,11 @@ Space:: CtrlBsWithDel()
 
 VimcCmd(num) {
     if num > 24 {
-        Send('{Alt Down}{F' (num - 12) '}{Alt Up}')
+        Send('!{F' (num - 12) '}')
     } else if num > 16 {
-        Send('{Ctrl Down}{F' (num - 4) '}{Ctrl Up}')
+        Send('^{F' (num - 4) '}')
     } else if num > 8 {
-        Send('{Shift Down}{F' (num + 4) '}{Shift Up}')
+        Send('+{F' (num + 4) '}')
     } else {
         Send('{F' (num + 12) '}')
     }
@@ -236,8 +236,8 @@ RunSelectedAsDir() {
 ;= =============================================================================
 
 #HotIf not WinThatUsesCtrlYAsRedoIsActive()
-$^+z:: Send('{Ctrl Down}y{Ctrl Up}')
-$^y::  Send('{Ctrl Down}{Shift Down}z{Shift Up}{Ctrl Up}')
+$^+z:: Send('^y')
+$^y::  Send('^+z')
 #HotIf
 
 /**
@@ -267,7 +267,7 @@ $^y::  Send('{Ctrl Down}{Shift Down}z{Shift Up}{Ctrl Up}')
 /**
  * Toggle Full Screen Mode.
  */
-F11:: Send('{Ctrl Down}l{Ctrl Up}')
+F11:: Send('^l')
 #HotIf
 
 ;== ===========================================================================
@@ -299,12 +299,12 @@ F11:: Send('{Ctrl Down}l{Ctrl Up}')
 ;== ============================================================================
 
 #HotIf WinActive('ahk_exe Notion.exe')
-!Left::  Send('{Ctrl Down}[{Ctrl Up}')
+!Left::  Send('^[')
         ; Go back.
-!Right:: Send('{Ctrl Down}]{Ctrl Up}')
+!Right:: Send('^]')
         ; Go forward.
 
-^+f:: Send('{Ctrl Down}{Shift Down}h{Shift Up}{Ctrl Up}')
+^+f:: Send('^+h')
         ; Apply last text or highlight color used.
 #HotIf
 

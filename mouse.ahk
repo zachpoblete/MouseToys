@@ -207,19 +207,19 @@ MButton & RButton Up:: MouseWinClose()
 MouseWinClose() {
     MouseWinActivate()
     if WinActive(K_CLASSES['ZOOM']['MEETING']) {
-        Send('{Alt Down}q{Alt Up}')
+        Send('!q')
                 ; Show 'End Meeting or Leave Meeting?' prompt in the middle of the screen
                 ; instead of the corner of the window.
     } else if WinActive(K_CLASSES['ZOOM']['HOME']) {
         if Zoom_MeetingWinExist(true) {
-            ControlSend('{Alt Down}q{Alt Up}', , K_CLASSES['ZOOM']['MEETING'])
+            ControlSend('!q', , K_CLASSES['ZOOM']['MEETING'])
         } else {
             ProcessClose('Zoom.exe')
         }
     } else if WinActive('ahk_exe PowerToys.Settings.exe') {
         WinClose()
     } else {
-        Send('{Alt Down}{F4}{Alt Up}')
+        Send('!{F4}')
     }
 }
 #HotIf
@@ -311,14 +311,14 @@ MouseAdjacentTabSwitch(states*) {
     activeWin.processName := WinGetProcessName()
 
     if activeWin.processName  ~= 'i)\A(Discord.exe|Messenger.exe)\z' {
-        Send('{Alt Down}' states[1] '{Alt Up}')
+        Send('!' states[1])
     } else if activeWin.processName ~= 'i)\A(POWERPNT.EXE)\z' {
         Send(states[2])
     } else if activeWin.class ~= 'i)\A(CabinetWClass)\z'
         or activeWin.processName ~= 'i)\A(AcroRd32.exe|Notion.exe|Photoshop.exe|WindowsTerminal.exe)' {
-        Send('{Ctrl Down}' states[3] '{Ctrl Up}')
+        Send('^' states[3])
     } else {
-        Send('{Ctrl Down}' states[-1] '{Ctrl Up}')
+        Send('^' states[-1])
     }
 }
 
@@ -335,7 +335,7 @@ WheelDown:: MouseAdjacentTabSwitch('{Down}', '{PgDn}', '{Tab}',                 
 ;=== ===========================================================================
 
 #HotIf GetKeyState('XButton2', 'P')
-WheelUp::   MouseAdjacentTabSwitch('{Up}',   '{PgUp}', '{Shift Down}{Tab}{Shift Up}', '{PgUp}')
+WheelUp::   MouseAdjacentTabSwitch('{Up}',   '{PgUp}', '+{Tab}', '{PgUp}')
 #HotIf
 
 ;== ============================================================================
@@ -356,14 +356,14 @@ RButton & WheelDown:: {
         Send('{Ctrl Up}')
     }
 
-    Send('{Ctrl Down}{Shift Down}a{Shift Up}{Ctrl Up}')
+    Send('^+a')
 }
 RButton & WheelUp:: Send('{Esc}')
 
 #HotIf GetKeyState('XButton2', 'P') and WinActive('ahk_exe AcroRd32.exe')
-RButton & WheelDown:: Send('{Ctrl Down}{PgDn}{Ctrl Up}')
+RButton & WheelDown:: Send('^{PgDn}')
         ; Jump one page down.
-RButton & WheelUp::   Send('{Ctrl Down}{PgUp}{Ctrl Up}')
+RButton & WheelUp::   Send('^{PgUp}')
         ; Jump one page up.
 
 #HotIf GetKeyState('XButton2', 'P') and GetKeyState('Ctrl')
@@ -389,7 +389,7 @@ MouseViewFirstTabInUsedOrder(tab) {
 RButton Up:: {
     MouseExitIfCantBeThisHk(thisHotkey, A_PriorKey)
     MouseWinActivate()
-    Send('{Ctrl Down}w{Ctrl Up}')
+    Send('^w')
 }
 #HotIf
 
@@ -401,11 +401,11 @@ RButton Up:: {
 RButton & LButton Up:: {
     MouseWinActivate()
     if WinActive('ahk_exe Adobe Premiere Pro.exe') {
-        Send('{Shift Down}3{Shift Up}{F2}')
+        Send('+3{F2}')
                 ; Focus on timeline,
                 ; and move playhead to cursor.
     } else {
-        Send('{Ctrl Down}{Shift Down}t{Shift Up}{Ctrl Up}')
+        Send('^+t')
     }
 }
 #HotIf
@@ -429,7 +429,7 @@ MouseCtrlR() {
 MouseGoBackAndForward(states*) {
     MouseWinActivate()
     if WinActive('ahk_exe Notion.exe') {
-        Send('{Ctrl Down}' states[1] '{Ctrl Up}')
+        Send('^' states[1])
     } else {
         Click(states[-1])
     }
@@ -464,7 +464,7 @@ LButton & RButton Up:: {
 MButton Up:: MouseLinkOpenInNewActiveTab(thisHotkey)
 MouseLinkOpenInNewActiveTab(thisHotkey) {
     MouseExitIfCantBeThisHk(thisHotkey, A_PriorKey)
-    Send('{Ctrl Down}{Shift Down}{Click}{Shift Up}{Ctrl Up}')
+    Send('^+{Click}')
 }
 #HotIf
 
