@@ -87,10 +87,12 @@ AcceleratedScrollIndicatorFollowMouse() {
 ;== ↕️ X1+W / Cycle through windows in used order
 ;== ============================================================================
 
-; Moving the X1+W hotkeys below the X1+R+W hotkeys
-; would make X1+R+W not work.
-; See https://www.autohotkey.com/boards/viewtopic.php?f=14&t=125819
-; which may mean this is a bug.
+/**
+ * Moving the X1+W hotkeys below the X1+R+W hotkeys
+ * would make X1+R+W not work.
+ * See https://www.autohotkey.com/boards/viewtopic.php?f=14&t=125819
+ * which may mean this is a bug.
+ */
 
 A_TrayMenu.insert('E&xit', 'Enable &MouseAltTab', ToggleMouseAltTab)
 A_TrayMenu.check('Enable &MouseAltTab')
@@ -340,12 +342,12 @@ WheelUp::   MouseAdjacentTabSwitch('{Up}',   '{PgUp}', '+{Tab}', '{PgUp}')
 ;== ============================================================================
 ;== ↕️ X2+R+W / Cycle through tabs in used order (+ misc)
 ;== ============================================================================
-
-; Each condition has its own #HotIf
-; because if they were all under the same hotkey variant,
-; then the KeyWait under "#HotIf GetKeyState('XButton2', 'P')"
-; would prevent any further inputs from going through. 
-
+/**
+ * Each condition has its own #HotIf
+ * because if they were all under the same hotkey variant,
+ * then the KeyWait under "#HotIf GetKeyState('XButton2', 'P')"
+ * would prevent any further inputs from going through. 
+ */
 #HotIf GetKeyState('XButton2', 'P') and MouseWinActivate('ahk_exe msedge.exe')
 /**
  * Search tabs.

@@ -18,17 +18,19 @@ Hotkey('*' K_LAYER_ACTIVATOR, (thisHotkey) => '')
 ;= Custom Layer
 ;= =============================================================================
 
-; Enabling the following causes CapsLock to be enabled on press and disabled on release.
-; This is because custom combinations have special behavior explained here:
-; https://www.autohotkey.com/docs/v2/Hotkeys.htm#combo
-; *CapsLock:: return
-; CapsLock & h:: Left
-; CapsLock & j:: Down
-; CapsLock & k:: Up
-; CapsLock & l:: Right
-; But even if CapsLock didn't turn on as expected.
-; The modifiers could still get stuck in the same way as described below.
-; You can see this by turning uncommenting everything but the "*CapsLock:: return"
+/**
+ * Enabling the following causes CapsLock to be enabled on press and disabled on release.
+ * This is because custom combinations have special behavior explained here:
+ * https://www.autohotkey.com/docs/v2/Hotkeys.htm#combo
+ * *CapsLock:: return
+ * CapsLock & h:: Left
+ * CapsLock & j:: Down
+ * CapsLock & k:: Up
+ * CapsLock & l:: Right
+ * But even if CapsLock didn't turn on as expected.
+ * The modifiers could still get stuck in the same way as described below.
+ * You can see this by turning uncommenting everything but the "*CapsLock:: return"
+ */
 
 #HotIf GetKeyState(K_LAYER_ACTIVATOR, 'P')
 h:: Left
