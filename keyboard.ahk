@@ -243,11 +243,10 @@ $^y::  Send('{Ctrl Down}{Shift Down}z{Shift Up}{Ctrl Up}')
  */
 #+,:: {
     winKeysUp := ''
-    if GetKeyState('LWin', 'P') {
-        winKeysUp .= '{LWin Up}'
-    }
-    if GetKeyState('RWin', 'P') {
-        winKeysUp .= '{RWin Up}'
+    loop parse 'LR' {
+        if GetKeyState(A_LoopField 'Win', 'P') {
+            winKeysUp .= '{' A_LoopField 'Win Up}'
+        }
     }
     Send('{Blind}' winKeysUp '^+{F20}')
 }
