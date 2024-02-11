@@ -57,7 +57,7 @@ E.g., <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<kbd>RButton</kbd> means to press &
 
 ![custom layer](https://github.com/zachpoblete/AutoHotkey/assets/92368853/b40a582e-5a88-4806-a880-27268bfd6704)
 
-## 🌐 Vimium C Commands
+## 🌐 [Vimium C](https://github.com/gdh1995/vimium-c) Commands
 
 | Press this | To do this |
 | - | - |
@@ -100,7 +100,7 @@ If you don't have a <kbd>NumLock</kbd> key, use the <kbd>NumLock</kbd> remapping
 | - | - |
 | Press <kbd>Ctrl</kbd>+<kbd>D</kbd> | 📂 Open the process of the active window in File Explorer |
 | Select some text, press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd> | 📂 Open the selection as a folder in File Explorer, e.g. doing it on `%USERPROFILE%\Documents` will open your Documents folder |
-| Press <kbd>Any Key</kbd> that produces visible character | ➡️ Insert that character in front of the text cursor indicator, aka caret (normally, it would be inserted behind the caret) |
+| Press <kbd>Any Key</kbd> that produces a visible character | ➡️ Insert that character in front of the text cursor indicator, aka caret (normally, it would be inserted behind the caret) |
 
 ## 🎦 Zoom shortcuts
 
