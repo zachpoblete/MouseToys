@@ -63,6 +63,7 @@ Space:: CtrlBackspaceUsingDelete()
 ;== ============================================================================
 ;== Custom Layer Vimium C Commands
 ;== ============================================================================
+; https://github.com/gdh1995/vimium-c
 
 #HotIf WinActive('ahk_exe msedge.exe') and GetKeyState(K_LAYER_ACTIVATOR, 'P')
 `;:: VimcCmd(1)
