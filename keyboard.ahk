@@ -62,7 +62,7 @@ Backspace:: Delete
 }
 
 Space:: ^Backspace
-#HotIf GetKeyState(K_LAYER_ACTIVATOR, 'P') and WinWhereBackspaceProducesControlCharIsActive()
+#HotIf GetKeyState(K_LAYER_ACTIVATOR, 'P') and WinWhereBackspaceProducesCtrlCharIsActive()
 Space:: CtrlBackspaceUsingDelete()
 
 #HotIf
@@ -442,7 +442,7 @@ Zoom_OpenReactions() {
 ;== Backspace
 ;== ============================================================================
 
-#HotIf WinWhereBackspaceProducesControlCharIsActive()
+#HotIf WinWhereBackspaceProducesCtrlCharIsActive()
 ^Backspace:: CtrlBackspaceUsingDelete()
 #HotIf
 
@@ -538,7 +538,7 @@ CtrlBackspaceUsingDelete() {
     }
 }
 
-WinWhereBackspaceProducesControlCharIsActive() {
+WinWhereBackspaceProducesCtrlCharIsActive() {
     if ControlClassNnFocused('A', '^Edit\d+$', true)
             or ControlClassNnFocused('ahk_exe AcroRd32.exe', '^AVL_AVView', true)
             or WinActive('ahk_exe mmc.exe') {
