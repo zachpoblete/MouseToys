@@ -53,7 +53,7 @@ E.g., <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<kbd>RButton</kbd> means to press &
 
 # ⌨️ Keyboard shortcuts (keyboard.ahk)
 
-## 🅰️ Custom Layer
+## ⌨️ Custom Layer
 
 ![custom layer](https://github.com/zachpoblete/AutoHotkey/assets/92368853/b40a582e-5a88-4806-a880-27268bfd6704)
 
