@@ -26,8 +26,8 @@ UsePriorAcceleratedScrollSetting() {
 }
 
 ; Do not use ~*WheelUp and ~*WheelDown.
-; You just don't need it there;
-; sends too many commands.
+; You just don't need it here;
+; sends too many commands:
 WheelDown::
 WheelUp::
 {
