@@ -1,4 +1,4 @@
-# 🖱️ Mouse shortcuts (mouse.ahk)
+# 🖱️ Mouse shortcuts ([mouse.ahk](mouse.ahk))
 
 | Press this | To do this |
 | - | - |
@@ -51,7 +51,7 @@
 
 E.g., <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<kbd>RButton</kbd> means to press & hold <kbd>XButton1</kbd>, press & hold <kbd>MButton</kbd>, and press & release <kbd>RButton</kbd>
 
-# ⌨️ Keyboard shortcuts (keyboard.ahk)
+# ⌨️ Keyboard shortcuts ([keyboard.ahk](keyboard.ahk))
 
 ## ⌨️ Custom layer
 
