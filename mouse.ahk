@@ -328,7 +328,7 @@ MouseAdjacentTabSwitch(states*) {
 ;=== ===========================================================================
 
 #HotIf GetKeyState('XButton2', 'P')
-WheelDown:: MouseAdjacentTabSwitch('{Down}', '{PgDn}', '{Tab}',                       '{PgDn}')
+WheelDown:: MouseAdjacentTabSwitch('{Down}', '{PgDn}', '{Tab}',  '{PgDn}')
 #HotIf
 
 ;=== ===========================================================================
