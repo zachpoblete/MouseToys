@@ -30,8 +30,6 @@ Hotkey('*' K_LAYER_ACTIVATOR, (thisHotkey) => '')
 ; The modifiers could still get stuck in the same way as described below.
 ; You can see this by turning uncommenting everything but the "*CapsLock:: return"
 
-; Note: There are additional custom layer hotkeys in Browsers > Vimium C Commands
-
 #HotIf GetKeyState(K_LAYER_ACTIVATOR, 'P')
 h:: Left
 j:: Down
