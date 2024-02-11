@@ -38,8 +38,10 @@ j:: Down
 k:: Up
 l:: Right
 
-; How do they manage to activate the ^+PgDn and ^+PgUp VimcCmds
-; if they use SendInput?
+/**
+ * How do they manage to activate the ^+PgDn and ^+PgUp VimcCmds
+ * if they use SendInput?
+ */
 u:: PgDn
 i:: PgUp
 
