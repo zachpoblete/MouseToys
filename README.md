@@ -57,7 +57,7 @@ E.g., <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<kbd>RButton</kbd> means to press &
 
 ![custom layer](https://github.com/zachpoblete/AutoHotkey/assets/92368853/b40a582e-5a88-4806-a880-27268bfd6704)
 
-## 🌐 Vimium C Commands
+## 🌐 [Vimium C](https://github.com/gdh1995/vimium-c) Commands
 
 | Press this | To do this |
 | - | - |
