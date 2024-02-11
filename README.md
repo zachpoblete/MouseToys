@@ -78,7 +78,7 @@ E.g., <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<kbd>RButton</kbd> means to press &
 
 ## 🅰️ Double Shift for CapsLock
 
-Since we changed <kbd>CapsLock</kbd> to be a custom layer activator, we need a replacement.
+Since we changed <kbd>CapsLock</kbd> to be the custom layer activator, we need a replacement.
 
 | Press this | To do this |
 | - | - |
