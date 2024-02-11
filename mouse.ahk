@@ -81,7 +81,6 @@ AcceleratedScrollIndicatorFollowMouse() {
 *MButton:: return
 *LButton:: return
 *RButton:: return
-
 #HotIf
 
 ;== ============================================================================
