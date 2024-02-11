@@ -342,6 +342,7 @@ WheelUp::   MouseAdjacentTabSwitch('{Up}',   '{PgUp}', '+{Tab}', '{PgUp}')
 ;== ============================================================================
 ;== ↕️ X2+R+W / Cycle through tabs in used order (+ misc)
 ;== ============================================================================
+
 /**
  * Each condition has its own #HotIf
  * because if they were all under the same hotkey variant,
