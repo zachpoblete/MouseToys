@@ -204,7 +204,7 @@ QueryToUrl(query, engine) {
     return engine query
 }
 
-StrDel(haystack, needle, limit := 1) {
+StrDelete(haystack, needle, limit := 1) {
     return StrReplace(haystack, needle, , , , limit)
 }
 

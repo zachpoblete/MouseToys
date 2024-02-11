@@ -49,7 +49,7 @@ m::  Home
 ,::  End
 n::  Insert
 p::  PrintScreen
-BS:: Del
+Backspace:: Delete
 
 3::
         ; The hotkey is 3
@@ -61,9 +61,9 @@ BS:: Del
     DoOnNumLockToggle()
 }
 
-Space:: ^BS
-#HotIf GetKeyState(K_LAYER_ACTIVATOR, 'P') and WinWhereBsProducesControlCharIsActive()
-Space:: CtrlBsWithDel()
+Space:: ^Backspace
+#HotIf GetKeyState(K_LAYER_ACTIVATOR, 'P') and WinWhereBackspaceProducesControlCharIsActive()
+Space:: CtrlBackspaceWithDelete()
 
 #HotIf
 
@@ -281,7 +281,7 @@ F11:: Send('^l')
 /**
  * Disable.
  */
-^+Del::
+^+Delete::
         ; Clear browsing data.
 ^r::
         ; I sometimes accidentally press this when I want to ^t.
@@ -442,8 +442,8 @@ Zoom_OpenReactions() {
 ;== Backspace
 ;== ============================================================================
 
-#HotIf WinWhereBsProducesControlCharIsActive()
-^BS:: CtrlBsWithDel()
+#HotIf WinWhereBackspaceProducesControlCharIsActive()
+^Backspace:: CtrlBackspaceWithDelete()
 #HotIf
 
 ;== ============================================================================
@@ -520,25 +520,25 @@ loop parse 'abcefghijklmnopqrstuvwxyz' {
 ;= =============================================================================
 
 /**
- * ^BS doesn't natively work because it produces a control character,
+ * ^Backspace doesn't natively work because it produces a control character,
  * so work around that.
  */
-CtrlBsWithDel() {
+CtrlBackspaceWithDelete() {
     if GetSelected() {
-        Send('{Del}')
+        Send('{Delete}')
     } else {
         Send('{Ctrl Down}{Shift Down}{Left}')
         Sleep(0)
                 ; For Premiere Pro.
-        Send('{Shift Up}{Ctrl Up}{Del}')
+        Send('{Shift Up}{Ctrl Up}{Delete}')
                 ; Delete last word typed.
                 ; Delete comes last because fsr,
                 ; Photoshop doesn't delete the word unless Delete comes last
-                ; even though ^+Del will delete the word if you do it manually.
+                ; even though ^+Delete will delete the word if you do it manually.
     }
 }
 
-WinWhereBsProducesControlCharIsActive() {
+WinWhereBackspaceProducesControlCharIsActive() {
     if ControlClassNnFocused('A', '^Edit\d+$', true)
             or ControlClassNnFocused('ahk_exe AcroRd32.exe', '^AVL_AVView', true)
             or WinActive('ahk_exe mmc.exe') {

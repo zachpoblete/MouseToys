@@ -158,7 +158,7 @@ MouseWinRestoreAndMove(thisHotkey) {
     MouseExitIfCantBeThisHk(thisHotkey, A_PriorHotkey, '*MButton')
 
     if WinActive('Task Switching ahk_class XamlExplorerHostIslandWindow') {
-        Click('M')
+        Click('Middle')
         return
     }
 
@@ -238,7 +238,7 @@ MouseWinClose() {
         return
     }
 
-    MouseSend('{Del}')
+    MouseSend('{Delete}')
 }
 #HotIf
 
@@ -247,7 +247,7 @@ MouseWinClose() {
 ;== ============================================================================
 
 #HotIf GetKeyState('XButton1', 'P')
-LButton & RButton Up:: MouseSend('{BS}')
+LButton & RButton Up:: MouseSend('{Backspace}')
 #HotIf
 
 ;== ============================================================================
@@ -359,7 +359,7 @@ RButton & WheelDown:: {
 
     Send('^+a')
 }
-RButton & WheelUp:: Send('{Esc}')
+RButton & WheelUp:: Send('{Escape}')
 
 #HotIf GetKeyState('XButton2', 'P') and WinActive('ahk_exe AcroRd32.exe')
 RButton & WheelDown:: Send('^{PgDn}')
@@ -483,8 +483,8 @@ MouseLinkOpenInNewActiveTab(thisHotkey) {
 ;= Alternate right and middle click for touchpad
 ;= =============================================================================
 
-#LButton::  Click('R')
-#!LButton:: Click('M')
+#LButton::  Click('Right')
+#!LButton:: Click('Middle')
 
 ;= =============================================================================
 ;= Functions
