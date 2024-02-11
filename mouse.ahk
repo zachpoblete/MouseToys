@@ -1,9 +1,14 @@
 #Include <default-settings>
-#Include <constants>
 #Include <functions>
 #Include <accelerated-scroll>
 
 ; Disclaimer: Some mice don't do the 3-button combination hotkeys well.
+
+;= =============================================================================
+;= Globals
+;= =============================================================================
+
+G_MouseIsMovingWin := false
 
 ;= =============================================================================
 ;= WD & WU / Accelerated scroll
