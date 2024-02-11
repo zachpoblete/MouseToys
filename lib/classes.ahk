@@ -61,33 +61,3 @@ class C_InsertInputRightOfCaret {
         this.priorInput := this.ih.input
     }
 }
-
-class C_Timer {
-    static _labels := []
-
-    static get(index := 1) {
-        if this._labels.has(index) {
-            return this._labels[index]
-        } else {
-            this._labels.insertAt(1, '')
-            return
-        }
-    }
-
-    static set(fn, periodMs := 250, priority := 0, index := 1) {
-        SetTimer(fn, periodMs, priority)
-
-        if not this._labels.has(index) {
-            this._labels.insertAt(index, fn)
-        }
-
-        if periodMs > 0 {
-            this._labels.removeAt(index)
-            this._labels.insertAt(index, fn)
-        } else if periodMs = 0 {
-            this._labels.removeAt(index)
-        } else {
-            SetTimer(() => this._labels.removeAt(index), periodMs)
-        }
-    }
-}
