@@ -63,7 +63,7 @@ Backspace:: Delete
 
 Space:: ^Backspace
 #HotIf GetKeyState(K_LAYER_ACTIVATOR, 'P') and WinWhereBackspaceProducesControlCharIsActive()
-Space:: CtrlBackspaceWithDelete()
+Space:: CtrlBackspaceUsingDelete()
 
 #HotIf
 
@@ -443,7 +443,7 @@ Zoom_OpenReactions() {
 ;== ============================================================================
 
 #HotIf WinWhereBackspaceProducesControlCharIsActive()
-^Backspace:: CtrlBackspaceWithDelete()
+^Backspace:: CtrlBackspaceUsingDelete()
 #HotIf
 
 ;== ============================================================================
@@ -523,7 +523,7 @@ loop parse 'abcefghijklmnopqrstuvwxyz' {
  * ^Backspace doesn't natively work because it produces a control character,
  * so work around that.
  */
-CtrlBackspaceWithDelete() {
+CtrlBackspaceUsingDelete() {
     if GetSelected() {
         Send('{Delete}')
     } else {
