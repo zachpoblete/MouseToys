@@ -61,7 +61,7 @@ Space:: CtrlBackspaceUsingDelete()
 #HotIf
 
 ;== ============================================================================
-;== Vimium C Commands
+;== Custom Layer Vimium C Commands
 ;== ============================================================================
 
 #HotIf WinActive('ahk_exe msedge.exe') and GetKeyState(K_LAYER_ACTIVATOR, 'P')
@@ -79,7 +79,7 @@ Space:: CtrlBackspaceUsingDelete()
 #HotIf
 
 ;= ============================================================================
-;= Vimium C Commands
+;= Other Vimium C Commands
 ;= ============================================================================
 
 #HotIf WinActive('ahk_exe msedge.exe')
