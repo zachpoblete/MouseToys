@@ -49,7 +49,7 @@
 - ❹ is <kbd>XButton1</kbd>
 - ❺ is <kbd>XButton2</kbd>
 
-E.g., <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<kbd>RButton</kbd> means to press & hold <kbd>XButton1</kbd>, press & hold <kbd>MButton</kbd>, and press & release <kbd>RButton</kbd>.
+E.g., <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<kbd>RButton</kbd> means to press & hold <kbd>XButton1</kbd>, press & hold <kbd>MButton</kbd>, and press & release <kbd>RButton</kbd>
 
 # ⌨️ Keyboard shortcuts (keyboard.ahk)
 
@@ -78,7 +78,7 @@ E.g., <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<kbd>RButton</kbd> means to press &
 
 ## 🅰️ Double Shift for CapsLock
 
-Since we changed <kbd>CapsLock</kbd> to be the custom layer activator, we need a replacement.
+Since we changed <kbd>CapsLock</kbd> to be the custom layer activator, we need a replacement:
 
 | Press this | To do this |
 | - | - |
@@ -94,7 +94,7 @@ Since we changed <kbd>CapsLock</kbd> to be the custom layer activator, we need a
 | <kbd>Pause</kbd>, <kbd>Pause</kbd>, <kbd>Pause</kbd> | ⏮️ Play the previous media
 
 ## #️⃣ While NumLock is on
-If you don't have a <kbd>NumLock</kbd> key, use the <kbd>NumLock</kbd> remapping from the Custom Layer (<kbd>CapsLock</kbd>+<kbd>3</kbd>).
+If you don't have a <kbd>NumLock</kbd> key, use the <kbd>NumLock</kbd> remapping from the Custom Layer (<kbd>CapsLock</kbd>+<kbd>3</kbd>)
 
 | Do this | To do this |
 | - | - |
@@ -111,9 +111,9 @@ If you don't have a <kbd>NumLock</kbd> key, use the <kbd>NumLock</kbd> remapping
 
 # Best way to view the code
 
-1. Install the [CodeMap extension](https://marketplace.visualstudio.com/items?itemName=oleg-shilo.codemap).
-2. Download [mapper_ahk.js](https://github.com/zachpoblete/VSCode-User/blob/main/codemap.user/mapper_ahk.js).
-3. Insert `"codemap.ahk": "[file path of mapper_ahk.js]"` into your settings.json (for VS Code, but Sublime and Notepad++ have their equivalents).
+1. Install the [CodeMap extension](https://marketplace.visualstudio.com/items?itemName=oleg-shilo.codemap)
+2. Download [mapper_ahk.js](https://github.com/zachpoblete/VSCode-User/blob/main/codemap.user/mapper_ahk.js)
+3. Insert `"codemap.ahk": "[file path of mapper_ahk.js]"` into your settings.json (for VS Code, but Sublime and Notepad++ have their equivalents)
 4. Boom:
 ![codemap](https://user-images.githubusercontent.com/92368853/218280716-848d1102-934d-4ca6-ac39-71b66f96c1e6.gif)
 
