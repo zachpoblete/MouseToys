@@ -57,16 +57,7 @@ E.g., <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<kbd>RButton</kbd> means to press &
 
 ![custom layer](https://github.com/zachpoblete/AutoHotkey/assets/92368853/b40a582e-5a88-4806-a880-27268bfd6704)
 
-## 🌐 [Vimium C](https://github.com/gdh1995/vimium-c) Commands
-
-| Press this | To do this |
-| - | - |
-| <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>R</kbd> | Reopen tab |
-| <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>E</kbd> | Close right tab |
-| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>PgUp</kbd> | Move tab left |
-| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>PgDn</kbd> | Move tab right |
-
-### 🅰️ While CapsLock is held down (Custom Layer)
+### 🌐 Custom Layer [Vimium C](https://github.com/gdh1995/vimium-c) Commands 
 
 | Press this | To do this |
 | - | - |
@@ -75,6 +66,15 @@ E.g., <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<kbd>RButton</kbd> means to press &
 | <kbd>Ctrl</kbd>+<kbd>;</kbd> | Activate hover link hints |
 | <kbd>Shift</kbd>+<kbd>'</kbd> | Activate-copy url link hints |
 | <kbd>'</kbd> | Activate-copy text link hints
+
+## 🌐 Other Vimium C Commands
+
+| Press this | To do this |
+| - | - |
+| <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>R</kbd> | Reopen tab |
+| <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>E</kbd> | Close right tab |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>PgUp</kbd> | Move tab left |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>PgDn</kbd> | Move tab right |
 
 ## 🅰️ Double Shift for CapsLock
 
