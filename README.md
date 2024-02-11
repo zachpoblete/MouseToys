@@ -37,7 +37,7 @@
 | <kbd>XButton2</kbd>+<kbd>LButton</kbd>+<kbd>MButton</kbd> | 🔄 Refresh page or reload window (Ctrl+R) |
 | <kbd>XButton2</kbd>+<kbd>MButton</kbd> | 🔗 Open link in a new active tab |
 
-## 🔘 Buttons Guide
+## 🔘 Buttons guide
 
 ![mouse buttons](https://user-images.githubusercontent.com/92368853/218107501-85e6c04b-cbd5-4de3-9c81-cd3450da1ae7.png)
 
@@ -53,11 +53,11 @@ E.g., <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<kbd>RButton</kbd> means to press &
 
 # ⌨️ Keyboard shortcuts (keyboard.ahk)
 
-## ⌨️ Custom Layer
+## ⌨️ Custom layer
 
 ![custom layer](https://github.com/zachpoblete/AutoHotkey/assets/92368853/b40a582e-5a88-4806-a880-27268bfd6704)
 
-### 🌐 Custom Layer [Vimium C](https://github.com/gdh1995/vimium-c) Commands 
+### 🌐 Custom layer [Vimium C](https://github.com/gdh1995/vimium-c) commands 
 
 | Press this | To do this |
 | - | - |
@@ -67,7 +67,7 @@ E.g., <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<kbd>RButton</kbd> means to press &
 | <kbd>Shift</kbd>+<kbd>'</kbd> | Activate-copy url link hints |
 | <kbd>'</kbd> | Activate-copy text link hints
 
-## 🌐 Other Vimium C Commands
+## 🌐 Other Vimium C commands
 
 | Press this | To do this |
 | - | - |

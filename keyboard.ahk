@@ -15,7 +15,7 @@ K_LAYER_ACTIVATOR := 'CapsLock'
 Hotkey('*' K_LAYER_ACTIVATOR, (thisHotkey) => '')
 
 ;= =============================================================================
-;= Custom Layer
+;= Custom layer
 ;= =============================================================================
 
 /**
@@ -61,7 +61,7 @@ Space:: CtrlBackspaceUsingDelete()
 #HotIf
 
 ;== ============================================================================
-;== Custom Layer Vimium C Commands
+;== Custom layer Vimium C commands
 ;== ============================================================================
 ; https://github.com/gdh1995/vimium-c
 
@@ -80,7 +80,7 @@ Space:: CtrlBackspaceUsingDelete()
 #HotIf
 
 ;= ============================================================================
-;= Other Vimium C Commands
+;= Other Vimium C commands
 ;= ============================================================================
 
 #HotIf WinActive('ahk_exe msedge.exe')
@@ -226,7 +226,7 @@ RunSelectedAsDir() {
 #HotIf
 
 ;= =============================================================================
-;= Specific App
+;= Specific app
 ;= =============================================================================
 
 #HotIf not WinThatUsesCtrlYAsRedoIsActive()
@@ -473,7 +473,7 @@ MapF13UntilF24() {
 }
 
 ;== ============================================================================
-;== Mask Hyper Shortcuts
+;== Mask Hyper shortcuts
 ;== ============================================================================
 
 loop parse 'abcefghijklmnopqrstuvwxyz' {
@@ -490,7 +490,7 @@ loop parse 'abcefghijklmnopqrstuvwxyz' {
 }
 
 ;= =============================================================================
-;= Hotkeys in Other Programs
+;= Hotkeys in other programs
 ;= =============================================================================
 
 /**
