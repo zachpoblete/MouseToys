@@ -100,7 +100,7 @@ If you don't have a <kbd>NumLock</kbd> key, use the <kbd>NumLock</kbd> remapping
 | - | - |
 | Press <kbd>Ctrl</kbd>+<kbd>D</kbd> | 📂 Open the process of the active window in File Explorer |
 | Select some text, press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd> | 📂 Open the selection as a folder in File Explorer, e.g. doing it on `%USERPROFILE%\Documents` will open your Documents folder |
-| Press <kbd>Any Key</kbd> that produces visible character | ➡️ Insert that character in front of the text cursor indicator, aka caret (normally, it would be inserted behind the caret) |
+| Press <kbd>Any Key</kbd> that produces a visible character | ➡️ Insert that character in front of the text cursor indicator, aka caret (normally, it would be inserted behind the caret) |
 
 ## 🎦 Zoom shortcuts
 
