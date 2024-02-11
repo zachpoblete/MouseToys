@@ -38,10 +38,10 @@ l:: Right
 u:: PgDn
 i:: PgUp
 
-m::  Home
-,::  End
-n::  Insert
-p::  PrintScreen
+m:: Home
+,:: End
+n:: Insert
+p:: PrintScreen
 Backspace:: Delete
 
 3::
