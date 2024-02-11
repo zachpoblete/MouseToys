@@ -1,4 +1,4 @@
-# 🖱️ Mouse shortcuts (mouse.ahk)
+# 🖱️ [Mouse shortcuts](mouse.ahk)
 
 | Press this | To do this |
 | - | - |
@@ -51,7 +51,7 @@
 
 E.g., <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<kbd>RButton</kbd> means to press & hold <kbd>XButton1</kbd>, press & hold <kbd>MButton</kbd>, and press & release <kbd>RButton</kbd>
 
-# ⌨️ Keyboard shortcuts (keyboard.ahk)
+# ⌨️ [Keyboard shortcuts](keyboard.ahk)
 
 ## ⌨️ Custom layer
 
@@ -121,7 +121,7 @@ If you don't have a <kbd>NumLock</kbd> key, use the <kbd>NumLock</kbd> remapping
 
 # Notes
 
-I've only listed the coolest and most original features applicable to most people, but there's a lot more if you check out my individual script files! For instance, I have a lot of miscellaneous functions in `functions.ahk` that you might find useful.
+I've only listed the coolest and most original features applicable to most people, but there's a lot more if you check out my individual script files! I have a lot of [functions](lib/functions.ahk) you might find useful.
 
 # License
 
