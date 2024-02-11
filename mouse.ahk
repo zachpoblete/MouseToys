@@ -371,13 +371,11 @@ RButton & WheelDown:: Send('{Tab}')
 RButton & WheelUp::   Send('+{Tab}')
 
 #HotIf GetKeyState('XButton2', 'P')
-RButton & WheelDown:: {
-    Send('{Ctrl Down}{Tab}')
-    KeyWait('RButton')
-    Send('{Ctrl Up}')
-}
-RButton & WheelUp:: {
-    Send('{Ctrl Down}+{Tab}')
+RButton & WheelDown:: MouseViewFirstTabInUsedOrder('{Tab}')
+RButton & WheelUp::   MouseViewFirstTabInUsedOrder('+{Tab}')
+
+MouseViewFirstTabInUsedOrder(tab) {
+    Send('{Ctrl Down}' tab)
     KeyWait('RButton')
     Send('{Ctrl Up}')
 }
