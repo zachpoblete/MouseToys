@@ -1,6 +1,9 @@
 #Include default-settings.ahk
 #Include functions.ahk
 
+/**
+ * Allows you to check if another thread is waiting for a key.
+ */
 class C_KeyWait {
     static _states := Map()
 
