@@ -6,7 +6,9 @@
 
 #Include default-settings.ahk
 
-A_MaxHotkeysPerInterval := 140
+A_MaxHotkeysPerInterval := 200
+        ; I have adjusted this to my laptop touchpad
+        ; which send a lot of mouse events in a short time.
 
 /**
  * To use effectively, make sure this function is the first line in a hotkey.
