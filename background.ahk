@@ -109,13 +109,11 @@ CloseMonokaiPopup() {
         return
     }
 
-    okBtnHwnd     := ControlGetHwndFromClassNnAndTextElseExit('Button1', 'OK')
-    cancelBtnHwnd := ControlGetHwndFromClassNnAndTextElseExit('Button2', 'Cancel')
+    WinActivate()
 
     activeMsg := GetSelected()
     if activeMsg != monokaiMsg {
         return
     }
-
-    ControlClick(cancelBtnHwnd)
+    WinClose()
 }
