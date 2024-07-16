@@ -86,16 +86,11 @@ UpdateBrowserHistoryBackup(name, pos, menu) {
 ;= Timers
 ;= =============================================================================
 
-;~ SetTimer(CloseRakkPopup, 1000)
-;~ CloseRakkPopup() {
-;~     try {
-;~         WinClose('RAKK Lam-Ang Pro FineTuner ' K_CLASSES['DIALOG_BOX'] ' ahk_exe RAKK Lam-Ang Pro Mechanical Keyboard.exe', 'Failed to activate profile!')
-;~                 ; When selecting a different profile in RAKK Lam-Ang Pro FineTuner,
-;~                 ; close the pop-up error.
-;~     }
-;~ }
+SetTimer(ClosePopups)
+ClosePopups() {
+    CloseMonokaiPopup()
+}
 
-SetTimer(CloseMonokaiPopup, 500)
 CloseMonokaiPopup() {
     static monokaiMsg :=
     (Join`r`n
