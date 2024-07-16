@@ -18,25 +18,31 @@ A_TrayMenu.insert('E&xit', 'Enable &Accelerated Scroll', ToggleAcceleratedScroll
 
 UsePriorAcceleratedScrollSetting()
 UsePriorAcceleratedScrollSetting() {
-    acceleratedScrollIsOn := IniRead('lib\user-settings.ini', '', 'AcceleratedScrollIsOn')
-    action := acceleratedScrollIsOn ? 'On' : 'Off'
+    Hotkey('WheelDown', (thisHotkey) => AcceleratedScroll())
+    Hotkey('WheelUp', (thisHotkey) => AcceleratedScroll())
 
-    Hotkey('WheelDown', action)
-    Hotkey('WheelUp', action)
+    ; Always use the window underneath:
+    ; (Not related to Accelerated scroll,
+    ; but you will see why we need these hotkeys here soon.)
+    Hotkey('~*WheelDown', (thisHotkey) => MouseWinActivate())
+    Hotkey('~*WheelUp', (thisHotkey) => MouseWinActivate())
+
+    acceleratedScrollIsOn := IniRead('lib\user-settings.ini', '', 'AcceleratedScrollIsOn')
+    if not acceleratedScrollIsOn {
+        Hotkey('WheelDown', 'Off')
+        Hotkey('WheelUp', 'Off')
+
+        ; Turn off the hotkeys that activate the window underneath
+        ; because if the window were the clipboard or emoji panel,
+        ; it would close them upon scrolling:
+        Hotkey('~*WheelDown', 'Off')
+        Hotkey('~*WheelUp', 'Off')
+    }
 
     if acceleratedScrollIsOn {
         A_TrayMenu.check('Enable &Accelerated Scroll')
     }
     AcceleratedScrollIndicatorFollowMouse()
-}
-
-; Do not use ~*WheelUp and ~*WheelDown.
-; You just don't need it here;
-; sends too many commands:
-WheelDown::
-WheelUp::
-{
-    AcceleratedScroll()
 }
 
 #^a:: {
@@ -472,16 +478,6 @@ MouseLinkOpenInNewActiveTab(thisHotkey) {
     Send('^+{Click}')
 }
 #HotIf
-
-;= ============================================================================
-;= Always use the window underneath
-;= ============================================================================
-
-~*WheelDown::
-~*WheelUp::
-{
-    MouseWinActivate()
-}
 
 ;= =============================================================================
 ;= Alternate right and middle click for touchpad
