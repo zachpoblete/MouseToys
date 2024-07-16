@@ -280,9 +280,6 @@ F11:: Send('^l')
 ^r::
         ; I sometimes accidentally press this when I want to ^t.
         ; I will just use F5 instead.
-^e::
-        ; I sometimes accidentally press this when I want to ^w
-        ; I already have ^l.
 {
     return
 }
