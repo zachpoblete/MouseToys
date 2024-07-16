@@ -155,6 +155,12 @@ MButton & WheelUp::   MouseWinMinMax('Max')
 ;== ============================================================================
 
 #HotIf GetKeyState('XButton1', 'P')
+!MButton Up:: {
+    if WinActive('Task Switching ahk_class XamlExplorerHostIslandWindow') {
+        Click('Middle')
+    }
+}
+
 *MButton Up:: return
 MButton Up:: MouseWinRestoreAndMove(thisHotkey)
 MouseWinRestoreAndMove(thisHotkey) {
