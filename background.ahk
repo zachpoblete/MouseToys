@@ -92,7 +92,7 @@ ClosePopups() {
 }
 
 CloseMonokaiPopup() {
-    static monokaiMsg :=
+    static _monokaiMsg :=
     (Join`r`n
         '[Window Title]
         Visual Studio Code
@@ -112,7 +112,7 @@ CloseMonokaiPopup() {
     WinActivate()
 
     activeMsg := GetSelected()
-    if activeMsg != monokaiMsg {
+    if activeMsg != _monokaiMsg {
         return
     }
     WinClose()
