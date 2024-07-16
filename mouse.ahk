@@ -55,19 +55,9 @@ ToggleAcceleratedScroll(name := 'Enable &Accelerated Scroll', pos := 0, menu := 
 }
 
 AcceleratedScrollIndicatorFollowMouse() {
-    SetTimer(toolTipAcceleratedScroll, 10)
-    SetTimer(closeAcceleratedScrollIndicator, -3000)
-
-    closeAcceleratedScrollIndicator() {
-        SetTimer(toolTipAcceleratedScroll, 0)
-        ToolTip()
-    }
-    
-    toolTipAcceleratedScroll() {
-        acceleratedScrollIsOn := IniRead('lib\user-settings.ini', '', 'AcceleratedScrollIsOn')
-        acceleratedScrollSetting := acceleratedScrollIsOn ? 'ON' : 'OFF'
-        ToolTip('Accelerated Scroll ' acceleratedScrollSetting)
-    }
+    acceleratedScrollIsOn := IniRead('lib\user-settings.ini', '', 'AcceleratedScrollIsOn')
+    acceleratedScrollSetting := acceleratedScrollIsOn ? 'ON' : 'OFF'
+    TemporaryFollowingToolTip("Accelerated Scroll " . acceleratedScrollSetting, -2000)
 }
 
 ;= =============================================================================
