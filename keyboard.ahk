@@ -8,123 +8,6 @@
 ;= Constants
 ;= =============================================================================
 
-K_LAYER_ACTIVATOR := 'CapsLock'
-        ; I recommend to use your ring/middle finger to press CapsLock
-        ; so that you can easily press Shift and Ctrl.
-
-Hotkey('*' K_LAYER_ACTIVATOR, (thisHotkey) => '')
-
-;= =============================================================================
-;= Custom layer
-;= =============================================================================
-
-/**
- * Cannot use Hotkey(K_LAYER_ACTIVATOR ' & ' originKey, fn)
- * because if K_LAYER_ACTIVATOR is a standard modifier key or toggleable key,
- * it will not lose its native function.
- * See https://www.autohotkey.com/docs/v2/Hotkeys.htm#combo
- */
-
-#HotIf GetKeyState(K_LAYER_ACTIVATOR, 'P')
-h:: Left
-j:: Down
-k:: Up
-l:: Right
-
-/**
- * How do they manage to activate the ^+PgDn and ^+PgUp VimcCmds
- * if they use SendInput?
- */
-u:: PgDn
-i:: PgUp
-
-m:: Home
-,:: End
-n:: Insert
-p:: PrintScreen
-Backspace:: Delete
-
-3::
-        ; The hotkey is 3
-        ; because 3 key is also for #.
-        ; We can think of # as standing for NumLock.
-{
-    numLockState := GetKeyState('NumLock', 'T')
-    SetNumLockState(not numLockState)
-    DoOnNumLockToggle()
-}
-
-Space:: ^Backspace
-#HotIf GetKeyState(K_LAYER_ACTIVATOR, 'P') and WinWhereBackspaceProducesCtrlCharIsActive()
-Space:: CtrlBackspaceUsingDelete()
-
-#HotIf
-
-;== ============================================================================
-;== Custom layer Vimium C commands
-;== ============================================================================
-; https://github.com/gdh1995/vimium-c
-
-#HotIf WinActive('ahk_exe msedge.exe') and GetKeyState(K_LAYER_ACTIVATOR, 'P')
-`;:: VimcCmd(1)
-        ; LinkHints.activate.
-+;:: VimcCmd(2)
-        ; LinkHints.activateEdit.
-^;:: VimcCmd(3)
-        ; LinkHints.activateHover.
-
-+':: VimcCmd(4)
-        ; LinkHints.activateCopyLinkUrl.
-'::  VimcCmd(5)
-        ; LinkHints.activateCopyLinkText.
-#HotIf
-
-;= ============================================================================
-;= Other Vimium C commands
-;= ============================================================================
-
-#HotIf WinActive('ahk_exe msedge.exe')
-^!r::    VimcCmd(6)
-        ; reopenTab.
-^!e::    VimcCmd(7)
-        ; removeRightTab.
-
-^+PgUp:: VimcCmd(8)
-        ; moveTabLeft.
-^+PgDn:: VimcCmd(9)
-        ; moveTabRight.
-
-VimcCmd(num) {
-    if num > 24 {
-        Send('!{F' (num - 12) '}')
-    } else if num > 16 {
-        Send('^{F' (num - 4) '}')
-    } else if num > 8 {
-        Send('+{F' (num + 4) '}')
-    } else {
-        Send('{F' (num + 12) '}')
-    }
-}
-#HotIf
-
-;= ===========================================================================
-;= Double Shift for CapsLock
-;= ===========================================================================
-
-<+RShift::
->+LShift::
-{
-    ; Prevent a combination like LShift+f+RShift
-    ; from triggering this hotkey:
-    if SubStr(A_PriorKey, 2) != 'Shift' {
-        return
-    }
-
-    capsLockState := GetKeyState('CapsLock', 'T')
-    SetCapsLockState(not capsLockState)
-    Send('{Blind}{LShift Up}{RShift Up}')
-}
-
 ;= =============================================================================
 ;= Multimedia
 ;= =============================================================================
@@ -194,7 +77,32 @@ DisplayAndSetVolume(variation) {
 ;= ===========================================================================
 
 DoOnNumLockToggle()
-~NumLock:: DoOnNumLockToggle()
+^CapsLock:: {
+    numLockState := GetKeyState('NumLock', 'T')
+    SetNumLockState(not numLockState)
+    DoOnNumLockToggle()
+}
+
+DoOnNumLockToggle() {
+    NumLockIndicatorFollowMouse()
+    C_InsertInputRightOfCaret.toggle()
+}
+
+/**
+ * Display ToolTip while NumLock is on.
+ */
+NumLockIndicatorFollowMouse() {
+    Sleep(10)
+
+    if GetKeyState('NumLock', 'T') {
+        SetTimer(toolTipNumLock, 10)
+    } else {
+        SetTimer(toolTipNumLock, 0)
+        ToolTip()
+    }
+
+    toolTipNumLock() => ToolTip('NumLock On')
+}
 
 ;== ============================================================================
 ;== Directory
@@ -282,6 +190,39 @@ F11:: Send('^l')
         ; I will just use F5 instead.
 {
     return
+}
+#HotIf
+
+;= ============================================================================
+;= Vimium C commands
+;= ============================================================================
+; For information on what Vimium C is:
+; https://github.com/gdh1995/vimium-c
+
+#HotIf WinActive('ahk_exe msedge.exe')
+^;:: VimcCmd(2)
+        ; LinkHints.activateEdit
+
+^!r::    VimcCmd(6)
+        ; reopenTab.
+^!e::    VimcCmd(7)
+        ; removeRightTab.
+
+^+PgUp:: VimcCmd(8)
+        ; moveTabLeft.
+^+PgDn:: VimcCmd(9)
+        ; moveTabRight.
+
+VimcCmd(num) {
+    if num > 24 {
+        Send('!{F' (num - 12) '}')
+    } else if num > 16 {
+        Send('^{F' (num - 4) '}')
+    } else if num > 8 {
+        Send('+{F' (num + 4) '}')
+    } else {
+        Send('{F' (num + 12) '}')
+    }
 }
 #HotIf
 
@@ -537,27 +478,3 @@ WinWhereBackspaceProducesCtrlCharIsActive() {
     }
 }
 
-;== ============================================================================
-;== NumLock
-;== ============================================================================
-
-DoOnNumLockToggle() {
-    NumLockIndicatorFollowMouse()
-    C_InsertInputRightOfCaret.toggle()
-}
-
-/**
- * Display ToolTip while NumLock is on.
- */
-NumLockIndicatorFollowMouse() {
-    Sleep(10)
-
-    if GetKeyState('NumLock', 'T') {
-        SetTimer(toolTipNumLock, 10)
-    } else {
-        SetTimer(toolTipNumLock, 0)
-        ToolTip()
-    }
-
-    toolTipNumLock() => ToolTip('NumLock On')
-}

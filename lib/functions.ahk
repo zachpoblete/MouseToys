@@ -1,6 +1,5 @@
 #Include default-settings.ahk
-#Include <constants>
-
+#Include constants.ahk
 ;= =============================================================================
 ;= Clipboard
 ;= =============================================================================
@@ -43,7 +42,7 @@ SendInstantRaw(text) {
 ;= Control
 ;= =============================================================================
 
-ControlClassNnFocused(winTitle, controlClassNn, useRegEx := false) {
+ControlClassNnFocused(winTitle := '', controlClassNn := '', useRegEx := false) {
     try {
         focusedControlHwnd    := ControlGetFocus(winTitle)
         focusedControlClassNn := ControlGetClassNn(focusedControlHwnd)
@@ -51,7 +50,11 @@ ControlClassNnFocused(winTitle, controlClassNn, useRegEx := false) {
         return
     }
 
-    if not useRegEx and focusedControlClassNn != controlClassNn {
+    if not controlClassNn {
+        return focusedControlClassNn
+    }
+    
+    if not useRegEx and (focusedControlClassNn != controlClassNn) {
         return
     } else if not RegExMatch(focusedControlClassNn, controlClassNn) {
         return
@@ -131,6 +134,7 @@ ChordInput() {
 ;== Hotkey
 ;== ============================================================================
 
+; Why isn't this HkEncloseInBraces?
 HotkeyEncloseInBraces(hk) {
     hk := HkSplit(hk)
     hk[1] := RegExReplace(hk[1], '[*~$]')
@@ -209,8 +213,18 @@ StrDelete(haystack, needle, limit := 1) {
 }
 
 ;= =============================================================================
-;= Window
+;= Window and tooltips
 ;= =============================================================================
+
+TemporaryFollowingToolTip(text, duration) {
+    tt() => ToolTip(text)
+    SetTimer(tt, 10)
+    SetTimer(turnOff, -Abs(duration))
+    turnOff() {
+        SetTimer(tt, 0)
+        ToolTip()
+    }
+}
 
 WinThatUsesCtrlYAsRedoIsActive() {
     if WinActive('ahk_exe Photoshop.exe') {
