@@ -1,3 +1,5 @@
+A_MenuMaskKey := 'vkFF'
+
 loop parse 'abcefghijklmnopqrstuvwxyz' {
     Hotkey('#^+!' A_LoopField, (ThisHotkey) => '')
 }
@@ -9,4 +11,9 @@ loop parse 'abcefghijklmnopqrstuvwxyz' {
 ^+!RWin::
 {
     MaskMenu()
+}
+
+MaskMenu() {
+    Send('{Blind}{' A_MenuMaskKey '}')
+            ; No mapping.
 }

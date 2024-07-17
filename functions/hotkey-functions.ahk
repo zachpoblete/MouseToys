@@ -25,8 +25,3 @@ HkSplit(hk) {
 
     return hk
 }
-
-MaskMenu() {
-    Send('{Blind}{' A_MenuMaskKey '}')
-            ; No mapping.
-}
