@@ -47,8 +47,7 @@ Space:: Backspace
         ; because the 3 key is also for #.
         ; We can think of # as standing for NumLock.
 {
-    numLockState := GetKeyState('NumLock', 'T')
-    SetNumLockState(not numLockState)
-    NumLockIndicatorFollowMouse()
+    ToggleNumLock()
+    CreateFollowingNumLockIndicator()
 }
 #HotIf
