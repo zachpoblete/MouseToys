@@ -2,7 +2,7 @@
 ; TODO: #Include every file to show dependencies
 
 #Requires AutoHotkey v2.0.18
-; #Requires needs to be here so that AHK doesn't ask which version I want to run.
+        ; #Requires needs to be here so that AHK doesn't ask which version I want to run.
 
 #Include default-settings.ahk  ; TODO: Decide whether to include this for every file and how
 #Include globals\_globals.ahk

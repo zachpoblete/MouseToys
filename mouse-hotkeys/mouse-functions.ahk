@@ -27,6 +27,7 @@ MouseControlFocus(control := '', winTitle := '', winText := '', excludedTitle :=
 
 ; TODO: Rework to something like ThisHkIsCorrect().
 ; Using exit like this is bad practice.
+; Change everywhere you do this.
 MouseExitIfCantBeThisHk(thisHotkey, target, reference?) {
     if not IsSet(reference) {
         reference := SubStr(thisHotkey, 1 , -3)
