@@ -4,7 +4,7 @@
 #Requires AutoHotkey v2.0.18
         ; #Requires needs to be here so that AHK doesn't ask which version I want to run.
 
-#Include default-settings.ahk  ; TODO: Decide whether to include this for every file and how
+#Include default-settings.ahk
 #Include globals\_globals.ahk
 #Include constants\_constants.ahk
 #Include functions\_functions.ahk
