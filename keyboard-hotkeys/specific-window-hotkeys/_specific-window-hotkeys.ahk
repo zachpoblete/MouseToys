@@ -2,5 +2,5 @@
 #Include acrobat-hotkeys\_acrobat-hotkeys.ahk
 #Include edge-hotkeys\_edge-hotkeys.ahk
 #Include notion-hotkeys\_notion-hotkeys.ahk
-#Include uniqoda-hotkeys\_uniqoda-hotkeys.ahk
+#Include launch-uniqoda-hotkey\_launch-uniqoda-hotkey.ahk
 #Include zoom-hotkeys\_zoom-hotkeys.ahk

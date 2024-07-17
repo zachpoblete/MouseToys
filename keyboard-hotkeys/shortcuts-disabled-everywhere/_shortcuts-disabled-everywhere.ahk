@@ -1,2 +1,2 @@
-#Include general-disabled-shortcuts.ahk
+#Include general-shortcuts-disabled-everywhere.ahk
 #Include mask-hyper-shortcuts.ahk
