@@ -40,6 +40,7 @@ Zoom_OpenReactions() {
     }
 
     ControlGetPos(&controlX, &controlY, &controlW, &controlH, K_CONTROLS['ZOOM']['MEETING_CONTROLS'])
+    A_WorkingDir := RegExReplace(A_LineFile, '\\[^\\]+$')
 
     loop {
         try {
@@ -85,6 +86,7 @@ Zoom_OpenReactions() {
     Click(imageX ' ' imageY)
     Sleep(10)
     MouseMove(mouseX, mouseY)
+    A_WorkingDir := A_ScriptDir
 
     iconClick(imageFileName) {
         ImageSearch(&imageX, &imageY, controlX, controlY, controlX + controlW, controlY + controlH, '*50 images\' imageFileName '-icon.png')
