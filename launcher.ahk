@@ -1,15 +1,19 @@
-#Requires AutoHotkey v2.0.7
-        ; Before v2.0.7, hook hotkeys were not recognizing modifiers which were pressed down by SendInput.
-        ; Custom Layer would not work in v2.0.6 and below.
+; TODO: Further organize by creating libraries.
+; TODO: #Include every file to show dependencies
 
-#Include <default-settings>
-#Include <globals>
-#Include <constants>
-#Include <functions>
-#Include <classes>
-#Include <accelerated-scroll>
+#Requires AutoHotkey v2.0.18
+; #Requires needs to be here so that AHK doesn't ask which version I want to run.
 
-#Include keyboard.ahk
-#Include mouse.ahk
-#Include script-hotkeys.ahk
-#Include background.ahk
+#Include default-settings.ahk  ; TODO: Decide whether to include this for every file and how
+#Include globals\_globals.ahk
+#Include constants\_constants.ahk
+#Include functions\_functions.ahk
+
+#Include keyboard-hotkeys\_keyboard-hotkeys.ahk
+#Include keyboard-hotkeys\_keyboard-functions.ahk
+        ; Note: This is a temporary fix.
+        ; #Include it properly in the individual files.
+#Include mouse-hotkeys\_mouse-hotkeys.ahk
+#Include script-hotkeys\_script-hotkeys.ahk
+#Include background-functions\_background-functions.ahk
+
