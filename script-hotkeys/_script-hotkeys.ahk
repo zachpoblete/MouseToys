@@ -1,18 +1,5 @@
-; #Include <default-settings>
-; #Include <functions>
-
 #SuspendExempt
-/**
- * Suspend.
- */
-#^s:: {
-    Suspend()
-
-    DetectHiddenWindows(true)
-    if WinExist('ahk_exe brightness-setter.exe') {
-        SendMessage(K_WIN32_CONSTS['WM_COMMAND'], K_CONTROL_CODES['TRAY']['SUSPEND'])
-    }
-}
+#^s:: Suspend()
 #SuspendExempt false
 
 /**

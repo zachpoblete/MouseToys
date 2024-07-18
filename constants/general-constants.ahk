@@ -9,11 +9,3 @@ K_CLASSES := Map(
 K_CONTROLS := Map(
 
 )
-
-K_CONTROL_CODES := Map(
-
-)
-
-K_WIN32_CONSTS := Map(
-    'WM_COMMAND',    0x0111
-)
