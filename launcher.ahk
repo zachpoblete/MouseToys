@@ -10,9 +10,6 @@
 #Include functions\_functions.ahk
 
 #Include keyboard-hotkeys\_keyboard-hotkeys.ahk
-#Include keyboard-hotkeys\_keyboard-functions.ahk
-        ; Note: This is a temporary fix.
-        ; #Include it properly in the individual files.
 #Include mouse-hotkeys\_mouse-hotkeys.ahk
 #Include script-hotkeys\_script-hotkeys.ahk
 #Include background-functions\_background-functions.ahk
