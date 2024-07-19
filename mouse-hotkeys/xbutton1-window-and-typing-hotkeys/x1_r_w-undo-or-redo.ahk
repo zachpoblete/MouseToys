@@ -13,7 +13,7 @@ RButton & WheelDown:: MouseSend('^z')
 RButton & WheelUp:: {
     MouseWinActivate()
     
-    if WinThatUsesCtrlYAsRedoIsActive() {
+    if CanRedoWithCtrlY() {
         Send('^y')
     } else {
         Send ('^+z')

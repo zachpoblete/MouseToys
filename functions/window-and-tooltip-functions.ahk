@@ -8,8 +8,8 @@ TemporaryFollowingToolTip(text, duration) {
     }
 }
 
-WinThatUsesCtrlYAsRedoIsActive() {
-    if WinActive('ahk_exe Photoshop.exe') {
+CanRedoWithCtrlY() {
+    if not WinActive('ahk_exe Photoshop.exe') {
         return true
     }
 }
