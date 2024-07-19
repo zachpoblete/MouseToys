@@ -9,9 +9,7 @@ TemporaryFollowingToolTip(text, duration) {
 }
 
 CanRedoWithCtrlY() {
-    if not WinActive('ahk_exe Photoshop.exe') {
-        return true
-    }
+    return not WinActive('ahk_exe Photoshop.exe')
 }
 
 Zoom_MeetingWinExist(isVisible) {
