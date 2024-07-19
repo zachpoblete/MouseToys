@@ -1,4 +1,4 @@
-#HotIf CtrlBackspaceDisplaysCtrlChar()
+#HotIf not CanDeleteWithCtrlBackspace()
 ^Backspace:: DeletePriorWord()
 
 ; In some places, ^Backspace doesn't delete the previous word like it usually
@@ -23,11 +23,13 @@ DeletePriorWord() {
     }
 }
 
-CtrlBackspaceDisplaysCtrlChar() {
+CanDeleteWithCtrlBackspace() {
     if ControlClassNnFocused('A', '^Edit\d+$', true)
         or ControlClassNnFocused('ahk_exe AcroRd32.exe', '^AVL_AVView', true)
         or WinActive('ahk_exe mmc.exe')
     {
+        return false
+    } else {
         return true
     }
 }

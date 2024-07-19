@@ -1,6 +1,6 @@
 #Include swap-ctrl-y-and-ctrl-shift-z\_swap-ctrl-y-and-ctrl-shift-z.ahk
 #Include acrobat-hotkeys\_acrobat-hotkeys.ahk
-#Include ctrl-backspace-displays-ctrl-char\_ctrl-backspace-displays-ctrl-char.ahk
+#Include cant-delete-with-ctrl-backspace\_cant-delete-with-ctrl-backspace.ahk
 #Include edge-hotkeys\_edge-hotkeys.ahk
 #Include notion-hotkeys\_notion-hotkeys.ahk
 #Include launch-uniqoda-hotkey\_launch-uniqoda-hotkey.ahk
