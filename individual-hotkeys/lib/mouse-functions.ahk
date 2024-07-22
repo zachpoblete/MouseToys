@@ -1,4 +1,4 @@
-#Include ..\functions\_functions.ahk
+#Include temporary-following-tooltip.ahk
 
 MouseControlFocus(control := '', winTitle := '', winText := '', excludedTitle := '', excludedText := '') {
     MouseGetPos(, , &mouseHwnd, &mouseControlHwnd, 2)

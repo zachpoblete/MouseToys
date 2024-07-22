@@ -1,2 +1,3 @@
-#Include main-function.ahk
-#Include use-and-toggle.ahk
+#Include individual-hotkeys
+#Include accelerated-scroll-main.ahk
+#Include accelerated-scroll-setup-toggle.ahk

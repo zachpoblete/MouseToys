@@ -1,4 +1,6 @@
-#Include ..\mouse-functions.ahk
+#Include lib
+#Include mouse-functions.ahk
+#Include fix-x1.ahk
 
 /**
  * Press XButton1 + LButton
@@ -10,7 +12,7 @@
 #HotIf GetKeyState('XButton1', 'P')
 *LButton Up:: {
     MouseExitIfCantBeThisHk(thisHotkey, A_PriorHotkey)
-    
+
     if WinActive('Task Switching ahk_class XamlExplorerHostIslandWindow') {
         Click()
         return

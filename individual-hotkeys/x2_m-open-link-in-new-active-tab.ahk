@@ -1,4 +1,6 @@
-#Include ..\mouse-functions.ahk
+#Include lib
+#Include mouse-functions.ahk
+#Include fix-x2.ahk
 
 /**
  * Press XButton2 + MButton

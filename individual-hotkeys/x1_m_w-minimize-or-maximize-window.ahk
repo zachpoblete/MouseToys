@@ -1,5 +1,7 @@
-#Include ..\mouse-globals.ahk
-#Include ..\mouse-functions.ahk
+#Include lib
+#Include mouse-globals.ahk
+#Include mouse-functions.ahk
+#Include fix-x1.ahk
 
 /**
  * Press XButton1 + MButton + WheelDown

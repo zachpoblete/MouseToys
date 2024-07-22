@@ -1,4 +1,6 @@
-#Include ..\mouse-functions.ahk
+#Include lib
+#Include mouse-functions.ahk
+#Include fix-x1.ahk
 
 /**
  * Press XButton1 + MButton
@@ -63,10 +65,10 @@ MouseWinRestoreAndMove(thisHotkey) {
 
     moveWinMiddleToMouse() {
         WinGetPos(, , &winW, &winH)
-    
+
         CoordMode('Mouse')
         MouseGetPos(&mouseX, &mouseY)
-    
+
         WinMove(mouseX - (winW / 2), mouseY - (winH / 2))
     }
 }

@@ -1,4 +1,6 @@
-#Include ..\mouse-functions.ahk
+#Include lib
+#Include mouse-functions.ahk
+#Include fix-x2.ahk
 
 /**
  * Press XButton2 + RButton + WheelDown
@@ -11,7 +13,7 @@
  * Each condition has its own #HotIf
  * because if they were all under the same hotkey variant,
  * then the KeyWait under "#HotIf GetKeyState('XButton2', 'P')"
- * would prevent any further inputs from going through. 
+ * would prevent any further inputs from going through.
  */
 
 #HotIf GetKeyState('XButton2', 'P') and MouseWinActivate('ahk_exe msedge.exe')

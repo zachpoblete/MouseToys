@@ -1,4 +1,7 @@
-#Include ..\mouse-functions.ahk
+#Include lib
+#Include mouse-functions.ahk
+#Include can-redo-with-ctrl-y.ahk
+#Include fix-x1.ahk
 
 /**
  * Press XButton1 + RButton + WheelDown
@@ -12,7 +15,7 @@ RButton & WheelDown:: MouseSend('^z')
 
 RButton & WheelUp:: {
     MouseWinActivate()
-    
+
     if CanRedoWithCtrlY() {
         Send('^y')
     } else {

@@ -1,4 +1,7 @@
-#Include ..\mouse-functions.ahk
+#Include accelerated-scroll-main.ahk
+
+#Include lib
+#Include mouse-functions.ahk
 
 A_TrayMenu.insert('E&xit', 'Enable &Accelerated Scroll', ToggleAcceleratedScroll)
 UseUserAcceleratedScrollSetting()
@@ -10,7 +13,7 @@ UseUserAcceleratedScrollSetting()
 
 AcceleratedScrollIndicatorFollowMouse() {
     A_WorkingDir := RegExReplace(A_LineFile, '\\[^\\]+$')
-    acceleratedScrollIsOn := IniRead('..\..\user-settings.ini', '', 'AcceleratedScrollIsOn')
+    acceleratedScrollIsOn := IniRead('lib\user-settings.ini', '', 'AcceleratedScrollIsOn')
     acceleratedScrollSetting := acceleratedScrollIsOn ? 'ON' : 'OFF'
     TemporaryFollowingToolTip("Accelerated Scroll " . acceleratedScrollSetting, -2000)
     A_WorkingDir := A_ScriptDir
@@ -18,8 +21,8 @@ AcceleratedScrollIndicatorFollowMouse() {
 
 ToggleAcceleratedScroll(name := 'Enable &Accelerated Scroll', pos := 0, menu := {}) {
     A_WorkingDir := RegExReplace(A_LineFile, '\\[^\\]+$')
-    acceleratedScrollIsOn := IniRead('..\..\user-settings.ini', '', 'AcceleratedScrollIsOn')
-    IniWrite(not acceleratedScrollIsOn, '..\..\user-settings.ini', '', 'AcceleratedScrollIsOn')
+    acceleratedScrollIsOn := IniRead('lib\user-settings.ini', '', 'AcceleratedScrollIsOn')
+    IniWrite(not acceleratedScrollIsOn, 'lib\user-settings.ini', '', 'AcceleratedScrollIsOn')
 
     Hotkey('WheelDown', 'Toggle')
     Hotkey('WheelUp', 'Toggle')
@@ -30,7 +33,7 @@ ToggleAcceleratedScroll(name := 'Enable &Accelerated Scroll', pos := 0, menu := 
 
 UseUserAcceleratedScrollSetting() {
     A_WorkingDir := RegExReplace(A_LineFile, '\\[^\\]+$')
-    acceleratedScrollIsOn := IniRead('..\..\user-settings.ini', '', 'AcceleratedScrollIsOn')
+    acceleratedScrollIsOn := IniRead('lib\user-settings.ini', '', 'AcceleratedScrollIsOn')
     action := acceleratedScrollIsOn ? 'On' : 'Off'
     Hotkey('WheelDown', action)
     Hotkey('WheelUp', action)
