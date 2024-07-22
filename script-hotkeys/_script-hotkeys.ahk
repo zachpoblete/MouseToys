@@ -12,6 +12,7 @@
 #^e:: {
     loop files '*.code-workspace' {
         Run(A_LoopFileName)
+        break
     }
 }
 
