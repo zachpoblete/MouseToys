@@ -5,8 +5,6 @@
         ; #Requires needs to be here so that AHK doesn't ask which version I want to run.
 
 #Include default-settings.ahk
-#Include globals\_globals.ahk
-#Include constants\_constants.ahk
 #Include functions\_functions.ahk
 
 #Include keyboard-hotkeys\_keyboard-hotkeys.ahk
