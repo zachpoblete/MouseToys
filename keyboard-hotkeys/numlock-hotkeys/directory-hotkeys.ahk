@@ -13,7 +13,11 @@ WinOpenProcessDir() {
 
 ^+d:: RunSelectedAsDir()
 RunSelectedAsDir() {
-    dir := GetSelectedElseExit()
+    dir := GetSelected()
+    if not dir {
+        return
+    }
+
     while RegExMatch(dir, '%(.+?)%', &match) {
         env := EnvGet(match[1])
         dir := StrReplace(dir, match[], env)

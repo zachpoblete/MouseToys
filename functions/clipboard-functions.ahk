@@ -13,15 +13,6 @@ GetSelected() {
     return selected
 }
 
-GetSelectedElseExit() {
-    selected := GetSelected()
-    if not selected {
-        exit
-    }
-
-    return selected
-}
-
 SendInstantRaw(text) {
     savedClipboard := ClipboardAll()
     A_Clipboard := text

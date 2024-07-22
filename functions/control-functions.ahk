@@ -9,7 +9,7 @@ ControlClassNnFocused(winTitle := '', controlClassNn := '', useRegEx := false) {
     if not controlClassNn {
         return focusedControlClassNn
     }
-    
+
     if not useRegEx and (focusedControlClassNn != controlClassNn) {
         return
     } else if not RegExMatch(focusedControlClassNn, controlClassNn) {
@@ -17,19 +17,4 @@ ControlClassNnFocused(winTitle := '', controlClassNn := '', useRegEx := false) {
     }
 
     return focusedControlClassNn
-}
-
-ControlGetHwndFromClassNnAndTextElseExit(controlClassNn, controlText) {
-    try {
-        controlHwnd := ControlGetHwnd(controlClassNn)
-    } catch {
-        exit
-    }
-
-    controlTextFromClassNn := ControlGetText(controlClassNn)
-    if controlText != controlTextFromClassNn {
-        exit
-    }
-
-    return controlHwnd
 }
