@@ -3,12 +3,6 @@
 A_TrayMenu.insert('E&xit', 'Enable &Accelerated Scroll', ToggleAcceleratedScroll)
 UseUserAcceleratedScrollSetting()
 
-WheelDown::
-WheelUp::
-{
-    AcceleratedScroll()
-}
-
 #^a:: {
     ToggleAcceleratedScroll()
     AcceleratedScrollIndicatorFollowMouse()

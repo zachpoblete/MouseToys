@@ -8,6 +8,12 @@ A_MaxHotkeysPerInterval := 200
         ; I have adjusted this to my laptop touchpad
         ; which sends a lot of mouse events in a short time.
 
+WheelDown::
+WheelUp::
+{
+    AcceleratedScroll()
+}
+
 /**
  * To use effectively, make sure this function is the first line in a hotkey.
  */
