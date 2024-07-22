@@ -4,12 +4,12 @@
 
 /**
  * Press XButton2 + LButton + MButton
- * to refresh the current tab or close a window 🔄.
+ * to reload the current page or window 🔄.
  */
 
 #HotIf GetKeyState('XButton2', 'P')
-LButton & MButton Up:: MouseCtrlR()
-MouseCtrlR() {
+LButton & MButton Up:: MouseReload()
+MouseReload() {
     MouseWinActivate()
     Send('^r')
 }
