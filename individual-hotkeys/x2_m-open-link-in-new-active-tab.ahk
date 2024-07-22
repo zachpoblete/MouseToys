@@ -8,6 +8,7 @@
  */
 
 #HotIf GetKeyState('XButton2', 'P')
+MButton:: return
 MButton Up:: MouseLinkOpenInNewActiveTab(thisHotkey)
 MouseLinkOpenInNewActiveTab(thisHotkey) {
     MouseExitIfCantBeThisHk(thisHotkey, A_PriorKey)
