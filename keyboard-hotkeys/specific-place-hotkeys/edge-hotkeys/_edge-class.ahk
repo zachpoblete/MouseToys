@@ -3,20 +3,6 @@ class UI_Edge {
         return WinActive('ahk_exe msedge.exe')
     }
 
-    static closeCurrentTab() {
-        Send("^w")
-    }
-
-    static switchToAdjacentTab(leftOrRight) {
-        activationKeys := ""
-        switch leftOrRight, "Off" {
-        case "left":  activationKeys := "^{PgUp}"
-        case "right": activationKeys := "^{PgDn}"
-        default: throw ValueError("Parameter of " A_ThisFunc " should be `"left`" or `"right`".")
-        }
-        Send(activationKeys)
-    }
-
     static runVimiumcCommand(command) {
         activationKeys := ""
         switch command, "Off" {
