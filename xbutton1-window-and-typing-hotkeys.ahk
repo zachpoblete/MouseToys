@@ -5,10 +5,10 @@
  */
 
 #Include individual-hotkeys
+#Include x1_w-cycle-windows-in-used-order.ahk
 #Include x1_l-send-delete-or-backspace.ahk
 #Include x1_m_r-close-window.ahk
 #Include x1_m_w-minimize-or-maximize-window.ahk
 #Include x1_m-restore-and-move-window.ahk
 #Include x1_r_w-undo-or-redo.ahk
 #Include x1_r-send-enter-or-tab.ahk
-#Include x1_w-cycle-windows-in-used-order.ahk
