@@ -2,5 +2,5 @@
 ; it usually does because it produces a control character. This script works
 ; around that to achieve the same effect.
 
-#Include ctrl-backspace-fails-class.ahk
+#Include _ctrl-backspace-fails-class.ahk
 #Include delete-prior-word.ahk

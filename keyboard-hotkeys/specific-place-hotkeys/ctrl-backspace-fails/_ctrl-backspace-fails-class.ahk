@@ -10,11 +10,11 @@ class UI_CtrlBackspaceFails {
             Send('{Delete}')
         } else {
             Send('{Ctrl Down}{Shift Down}{Left}')
-    
+
             ; Wait the tiniest bit. For some reason, this makes the hotkey more consistent
             ; in Premiere Pro.
             Sleep(0)
-            
+
             ; Release the modifiers first then finally send Delete. For some reason, Delete
             ; has to come last; otherwise, Photoshop [sic] (did I mean Premiere Pro?)
             ; doesn't delete the word. This is despite ^+Delete [sic] (did I mean
@@ -22,5 +22,5 @@ class UI_CtrlBackspaceFails {
             ; manually.
             Send('{Shift Up}{Ctrl Up}{Delete}')
         }
-    }    
+    }
 }
