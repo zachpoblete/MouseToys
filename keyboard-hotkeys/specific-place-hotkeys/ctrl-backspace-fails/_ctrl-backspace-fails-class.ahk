@@ -1,8 +1,10 @@
 class UI_CtrlBackspaceFails {
     static hasFocus() {
-        return ControlClassNnFocused('A', '^Edit\d+$', true)
+        return Boolean(
+            ControlClassNnFocused('A', '^Edit\d+$', true)
             or ControlClassNnFocused('ahk_exe AcroRd32.exe', '^AVL_AVView', true)
             or WinActive('ahk_exe mmc.exe')
+        )
     }
 
     static deletePriorWord() {
