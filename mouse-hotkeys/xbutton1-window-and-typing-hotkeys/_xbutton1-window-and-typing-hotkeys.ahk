@@ -1,5 +1,5 @@
 /**
- * Note: The order of some of the following Include directives is very important.
+ * Note: The order of some of the following #Include directives is very important.
  * Namely, moving the X1+W hotkeys below the X1+R+W hotkeys would make X1+R+W not work.
  * See https://www.autohotkey.com/boards/viewtopic.php?f=14&t=125819
  */

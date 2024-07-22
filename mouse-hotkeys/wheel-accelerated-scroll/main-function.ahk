@@ -1,7 +1,7 @@
 /**
  * Originally by BoffinbraiN.
  * For full details, visit the forum thread:
- * https://autohotkey.com/board/topic/48426-accelerated-scrolling-script
+ * https://www.autohotkey.com/board/topic/48426-accelerated-scrolling-script
  */
 
 A_MaxHotkeysPerInterval := 200

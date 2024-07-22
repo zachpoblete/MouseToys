@@ -2,17 +2,13 @@
 #^s:: Suspend()
 #SuspendExempt false
 
-/**
- * Reload.
- */
+; Reload script:
 #^r:: Run('meta-launcher.ahk')
 
 #^p:: Pause(-1)
 #^x:: ExitApp()
 
-/**
- * Edit.
- */
+; Edit scripts:
 #^e:: {
     loop files '*.code-workspace' {
         Run(A_LoopFileName)
