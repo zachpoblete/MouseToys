@@ -3,4 +3,3 @@
 #Include edge-hotkeys\_edge-hotkeys.ahk
 #Include launch-uniqoda-hotkey\_launch-uniqoda-hotkey.ahk
 #Include vs-code-hotkeys\_vs-code-hotkeys.ahk
-#Include zoom-hotkeys\_zoom-hotkeys.ahk

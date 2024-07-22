@@ -11,14 +11,3 @@ TemporaryFollowingToolTip(text, duration) {
 CanRedoWithCtrlY() {
     return not WinActive('ahk_exe Photoshop.exe')
 }
-
-Zoom_MeetingWinExist(isVisible) {
-    try {
-        meetingWinPid := WinGetPid(K_CLASSES['ZOOM']['TOOLBAR'])
-    } catch {
-        return
-    }
-
-    winTitle := isVisible ? 'Zoom' : ''
-    return WinExist(winTitle ' ahk_pid ' meetingWinPid)
-}
