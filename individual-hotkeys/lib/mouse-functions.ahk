@@ -1,13 +1,5 @@
 #Include temporary-following-tooltip.ahk
 
-MouseThisHkIsCorrect(thisHotkey) {
-    thisKey := StrReplace(thisHotkey, " Up")
-    thisKey := LTrim(thisKey, "*")
-    thisKey := RTrim(thisKey, " ")
-
-    return thisKey = A_PriorKey
-}
-
 ; Optionally set thisHotkey to check if it is correct.
 MouseSend(keys, thisHotkey := "") {
     if thisHotkey and not MouseThisHkIsCorrect(thisHotkey) {
@@ -15,6 +7,14 @@ MouseSend(keys, thisHotkey := "") {
     }
     MouseWinActivate()
     Send('{Blind}' keys)
+}
+
+MouseThisHkIsCorrect(thisHotkey) {
+    thisKey := StrReplace(thisHotkey, " Up")
+    thisKey := LTrim(thisKey, "*")
+    thisKey := RTrim(thisKey, " ")
+
+    return thisKey = A_PriorKey
 }
 
 MouseWinActivate(winTitle := '', winText := '', excludedTitle := '', excludedText := '') {
