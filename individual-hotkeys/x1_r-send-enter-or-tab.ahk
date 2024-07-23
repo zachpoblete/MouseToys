@@ -11,7 +11,7 @@
 
 #HotIf GetKeyState('XButton1', 'P')
 *RButton Up:: {
-    MouseExitIfCantBeThisHk(thisHotkey, A_PriorHotkey)
+    MouseExitIfCantBeThisHk(thisHotkey)
     MouseSend('{Enter}')
 }
 

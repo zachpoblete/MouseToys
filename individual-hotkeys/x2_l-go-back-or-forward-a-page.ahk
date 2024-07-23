@@ -11,7 +11,7 @@
 
 #HotIf GetKeyState('XButton2', 'P')
 LButton Up:: {
-    MouseExitIfCantBeThisHk(thisHotkey, A_PriorKey)
+    MouseExitIfCantBeThisHk(thisHotkey)
     MouseGoBackOrForward('[', 'X1')
 }
 

@@ -14,7 +14,7 @@ MButton Up:: MouseOpenLinkInNewActiveTab(thisHotkey)
 MButton::    return
 
 MouseOpenLinkInNewActiveTab(thisHotkey) {
-    MouseExitIfCantBeThisHk(thisHotkey, A_PriorKey)
+    MouseExitIfCantBeThisHk(thisHotkey)
     Send('^+{Click}')
 }
 #HotIf

@@ -11,7 +11,7 @@
 
 #HotIf GetKeyState('XButton1', 'P')
 *LButton Up:: {
-    MouseExitIfCantBeThisHk(thisHotkey, A_PriorHotkey)
+    MouseExitIfCantBeThisHk(thisHotkey)
 
     if WinActive('Task Switching ahk_class XamlExplorerHostIslandWindow') {
         Click()

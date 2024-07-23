@@ -28,16 +28,17 @@ MouseControlFocus(control := '', winTitle := '', winText := '', excludedTitle :=
 ; TODO: Rework to something like ThisHkIsCorrect().
 ; Using exit like this is bad practice.
 ; Change everywhere you do this.
-MouseExitIfCantBeThisHk(thisHotkey, target, reference?) {
-    if not IsSet(reference) {
-        reference := SubStr(thisHotkey, 1 , -3)
-                ; For example, turns `LButton Up` into `LButton`
-    }
-    if target != reference {
+MouseExitIfCantBeThisHk(thisHotkey) {
+    thisKey := StrReplace(thisHotkey, " Up")
+    thisKey := LTrim(thisKey, "*")
+    thisKey := RTrim(thisKey, " ")
+
+    if thisKey != A_PriorKey {
         exit
     }
 }
 
+; Add boolean param, shouldCheckThisHk
 MouseSend(keys) {
     MouseWinActivate()
     Send('{Blind}' keys)

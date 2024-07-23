@@ -14,7 +14,7 @@ RButton Up::           MouseCloseTab(thisHotkey)
 RButton & LButton Up:: MouseReopenLastClosedTab()
 
 MouseCloseTab(thisHotkey) {
-    MouseExitIfCantBeThisHk(thisHotkey, A_PriorKey)
+    MouseExitIfCantBeThisHk(thisHotkey)
     MouseWinActivate()
     Send('^w')
 }
