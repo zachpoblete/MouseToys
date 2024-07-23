@@ -9,8 +9,8 @@
 
 #HotIf GetKeyState('XButton2', 'P')
 LButton & MButton Up:: MouseReload()
+
 MouseReload() {
-    MouseWinActivate()
-    Send('^r')
+    MouseSend('^r')
 }
 #HotIf
