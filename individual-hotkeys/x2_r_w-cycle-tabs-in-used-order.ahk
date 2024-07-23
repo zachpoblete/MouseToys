@@ -23,12 +23,6 @@
 RButton & WheelDown:: MouseSearchTabs()
 RButton & WheelUp::   Send('{Escape}')
 
-#HotIf GetKeyState('XButton2', 'P') and WinActive('ahk_exe AcroRd32.exe')
-RButton & WheelDown:: Send('^{PgDn}')
-        ; Jump one page down.
-RButton & WheelUp::   Send('^{PgUp}')
-        ; Jump one page up.
-
 #HotIf GetKeyState('XButton2', 'P') and GetKeyState('Ctrl')
 RButton & WheelDown:: Send('{Tab}')
 RButton & WheelUp::   Send('+{Tab}')
