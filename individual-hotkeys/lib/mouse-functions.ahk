@@ -1,30 +1,5 @@
 #Include temporary-following-tooltip.ahk
 
-MouseControlFocus(control := '', winTitle := '', winText := '', excludedTitle := '', excludedText := '') {
-    MouseGetPos(, , &mouseHwnd, &mouseControlHwnd, 2)
-    WinActivate(mouseHwnd)
-    if not WinActive(winTitle ' ahk_id ' mouseHwnd, winText, excludedTitle, excludedText) {
-        return
-    }
-
-    ControlFocus(mouseControlHwnd)
-    if control = '' {
-        return mouseControlHwnd
-    }
-
-    try {
-        controlHwnd := ControlGetHwnd(control)
-    } catch {
-        return
-    }
-
-    if controlHwnd != mouseControlHwnd {
-        return
-    }
-
-    return mouseControlHwnd
-}
-
 MouseThisHkIsCorrect(thisHotkey) {
     thisKey := StrReplace(thisHotkey, " Up")
     thisKey := LTrim(thisKey, "*")
