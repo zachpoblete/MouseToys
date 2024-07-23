@@ -15,5 +15,7 @@
     MouseSend('{Enter}')
 }
 
-RButton & LButton Up:: MouseSend('{Tab}')
+RButton & LButton Up:: {
+    MouseSend('{Tab}')
+}
 #HotIf

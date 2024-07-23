@@ -8,19 +8,23 @@
  */
 
 #HotIf GetKeyState('XButton1', 'P')
-; Enable closing tabs when using the X1+W hotkeys:
-!MButton Up:: {
+*MButton Up:: MouseWinRestoreAndMove(thisHotkey)
+!MButton Up:: MouseCloseTabsInAltTabMenu()
+
+; What's this hotkey for?
+; *MButton Up:: return
+
+MouseCloseTabsInAltTabMenu() {
     if WinActive('Task Switching ahk_class XamlExplorerHostIslandWindow') {
         Click('Middle')
     }
 }
 
-*MButton Up:: return
-MButton Up:: MouseWinRestoreAndMove(thisHotkey)
 MouseWinRestoreAndMove(thisHotkey) {
     global G_MouseIsMovingWin := true
 
-    MouseExitIfCantBeThisHk(thisHotkey, A_PriorHotkey, '*MButton')
+    MouseExitIfCantBeThisHk(thisHotkey, A_PriorHotkey)
+    ; ToolTip(thisHotkey ' and ' A_PriorHotkey)
 
     ; Enable closing tabs when using the X1+W hotkeys:
     if WinActive('Task Switching ahk_class XamlExplorerHostIslandWindow') {

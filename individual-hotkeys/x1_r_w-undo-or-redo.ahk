@@ -11,9 +11,14 @@
  */
 
 #HotIf GetKeyState('XButton1', 'P')
-RButton & WheelDown:: MouseSend('^z')
+RButton & WheelDown:: MouseUndo()
+RButton & WheelUp::   MouseRedo()
 
-RButton & WheelUp:: {
+MouseUndo() {
+    MouseSend('^z')
+}
+
+MouseRedo() {
     MouseWinActivate()
 
     if CanRedoWithCtrlY() {

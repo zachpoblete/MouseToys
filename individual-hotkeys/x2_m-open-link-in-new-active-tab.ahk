@@ -8,9 +8,12 @@
  */
 
 #HotIf GetKeyState('XButton2', 'P')
-MButton:: return
-MButton Up:: MouseLinkOpenInNewActiveTab(thisHotkey)
-MouseLinkOpenInNewActiveTab(thisHotkey) {
+MButton Up:: MouseOpenLinkInNewActiveTab(thisHotkey)
+
+; Stop the native function from going through.
+MButton::    return
+
+MouseOpenLinkInNewActiveTab(thisHotkey) {
     MouseExitIfCantBeThisHk(thisHotkey, A_PriorKey)
     Send('^+{Click}')
 }

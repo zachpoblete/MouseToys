@@ -20,14 +20,8 @@
 /**
  * Search tabs.
  */
-RButton & WheelDown:: {
-    if GetKeyState('Ctrl') {
-        Send('{Ctrl Up}')
-    }
-
-    Send('^+a')
-}
-RButton & WheelUp:: Send('{Escape}')
+RButton & WheelDown:: MouseSearchTabs()
+RButton & WheelUp::   Send('{Escape}')
 
 #HotIf GetKeyState('XButton2', 'P') and WinActive('ahk_exe AcroRd32.exe')
 RButton & WheelDown:: Send('^{PgDn}')
@@ -42,10 +36,18 @@ RButton & WheelUp::   Send('+{Tab}')
 #HotIf GetKeyState('XButton2', 'P')
 RButton & WheelDown:: MouseViewFirstTabInUsedOrder('{Tab}')
 RButton & WheelUp::   MouseViewFirstTabInUsedOrder('+{Tab}')
+#HotIf
+
+MouseSearchTabs() {
+    if GetKeyState('Ctrl') {
+        Send('{Ctrl Up}')
+    }
+
+    Send('^+a')
+}
 
 MouseViewFirstTabInUsedOrder(tab) {
     Send('{Ctrl Down}' tab)
     KeyWait('RButton')
     Send('{Ctrl Up}')
 }
-#HotIf

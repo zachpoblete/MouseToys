@@ -12,14 +12,14 @@
 #HotIf GetKeyState('XButton2', 'P')
 LButton Up:: {
     MouseExitIfCantBeThisHk(thisHotkey, A_PriorKey)
-    MouseGoBackAndForward('[', 'X1')
+    MouseGoBackOrForward('[', 'X1')
 }
 
 LButton & RButton Up:: {
-    MouseGoBackAndForward(']', 'X2')
+    MouseGoBackOrForward(']', 'X2')
 }
 
-MouseGoBackAndForward(states*) {
+MouseGoBackOrForward(states*) {
     MouseWinActivate()
     if WinActive('ahk_exe Notion.exe') {
         Send('^' states[1])
