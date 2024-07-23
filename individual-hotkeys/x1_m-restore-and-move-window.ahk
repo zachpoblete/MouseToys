@@ -20,10 +20,12 @@ MouseCloseTabsInAltTabMenu() {
     }
 }
 
-MouseWinRestoreAndMove(thisHotkey) {
+MouseWinRestoreAndMove(thisHotkey := "") {
     global G_MouseIsMovingWin := true
 
-    MouseExitIfCantBeThisHk(thisHotkey)
+    if thisHotkey and not MouseThisHkIsCorrect(thisHotkey) {
+        return
+    }
     ; ToolTip(thisHotkey ' and ' A_PriorHotkey)
 
     ; Enable closing tabs when using the X1+W hotkeys:

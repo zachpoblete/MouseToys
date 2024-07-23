@@ -13,8 +13,12 @@ MButton Up:: MouseOpenLinkInNewActiveTab(thisHotkey)
 ; Stop the native function from going through.
 MButton::    return
 
-MouseOpenLinkInNewActiveTab(thisHotkey) {
-    MouseExitIfCantBeThisHk(thisHotkey)
+MouseOpenLinkInNewActiveTab(thisHotkey := "") {
+    if thisHotkey and not MouseThisHkIsCorrect(thisHotkey) {
+        return
+    }
+
+    ; Don't use MouseSend because we don't need to activate the window.
     Send('^+{Click}')
 }
 #HotIf

@@ -24,7 +24,7 @@ MouseRedo() {
     if CanRedoWithCtrlY() {
         Send('^y')
     } else {
-        Send ('^+z')
+        Send('^+z')
     }
 }
 #HotIf

@@ -10,12 +10,6 @@
  */
 
 #HotIf GetKeyState('XButton1', 'P')
-*RButton Up:: {
-    MouseExitIfCantBeThisHk(thisHotkey)
-    MouseSend('{Enter}')
-}
-
-RButton & LButton Up:: {
-    MouseSend('{Tab}')
-}
+*RButton Up::          MouseSend('{Enter}', thisHotkey)
+RButton & LButton Up:: MouseSend('{Tab}')
 #HotIf

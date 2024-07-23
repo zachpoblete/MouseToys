@@ -13,14 +13,11 @@
 RButton Up::           MouseCloseTab(thisHotkey)
 RButton & LButton Up:: MouseReopenLastClosedTab()
 
-MouseCloseTab(thisHotkey) {
-    MouseExitIfCantBeThisHk(thisHotkey)
-    MouseWinActivate()
-    Send('^w')
+MouseCloseTab(thisHotkey := "") {
+    MouseSend("^w", thisHotkey)
 }
 
-MouseReopenLastClosedTab() {
-    MouseWinActivate()
-    Send('^+t')
+MouseReopenLastClosedTab(thisHotkey := "") {
+    MouseSend("^+t", thisHotkey)
 }
 #HotIf
