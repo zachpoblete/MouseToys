@@ -10,20 +10,17 @@
  */
 
 #HotIf GetKeyState('XButton2', 'P')
-RButton Up:: {
+RButton Up::           MouseCloseTab(thisHotkey)
+RButton & LButton Up:: MouseReopenLastClosedTab()
+
+MouseCloseTab(thisHotkey) {
     MouseExitIfCantBeThisHk(thisHotkey, A_PriorKey)
     MouseWinActivate()
     Send('^w')
 }
 
-RButton & LButton Up:: {
+MouseReopenLastClosedTab() {
     MouseWinActivate()
-    if WinActive('ahk_exe Adobe Premiere Pro.exe') {
-        Send('+3{F2}')
-                ; Focus on timeline,
-                ; and move playhead to cursor.
-    } else {
-        Send('^+t')
-    }
+    Send('^+t')
 }
 #HotIf
