@@ -2,6 +2,9 @@
 #Include mouse-functions.ahk
 #Include fix-x1.ahk
 
+; A low A_WinDelay is very important for MouseWinRestoreAndMove to be smooth.
+#Include default-settings.ahk
+
 /**
  * Press XButton1 + MButton
  * to restore a window and move it using the mouse 🚚.
