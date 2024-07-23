@@ -12,11 +12,27 @@ UseUserAcceleratedScrollSetting()
 }
 
 AcceleratedScrollIndicatorFollowMouse() {
+    static acceleratedScrollSetting
+
     A_WorkingDir := RegExReplace(A_LineFile, '\\[^\\]+$')
     acceleratedScrollIsOn := IniRead('lib\user-settings.ini', '', 'AcceleratedScrollIsOn')
     acceleratedScrollSetting := acceleratedScrollIsOn ? 'ON' : 'OFF'
-    TemporaryFollowingToolTip("Accelerated Scroll " . acceleratedScrollSetting, -2000)
+
+    SetTimer(tempToolTip, 0)
+    SetTimer(tempToolTip, 10)
+    SetTimer(closeTempToolTip, -3000)
+
     A_WorkingDir := A_ScriptDir
+
+    ; Make tempToolTip static so that it doesn't flicker upon toggling quickly.
+    static tempToolTip() {
+        ToolTip('Accelerated Scroll ' acceleratedScrollSetting)
+    }
+
+    closeTempToolTip() {
+        SetTimer(tempToolTip, 0)
+        ToolTip()
+    }
 }
 
 ToggleAcceleratedScroll(name := 'Enable &Accelerated Scroll', pos := 0, menu := {}) {

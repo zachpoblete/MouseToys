@@ -1,5 +1,3 @@
-#Include temporary-following-tooltip.ahk
-
 ; Optionally set thisHotkey to check if it is correct.
 MouseSend(keys, thisHotkey := "") {
     if thisHotkey and not MouseThisHkIsCorrect(thisHotkey) {
