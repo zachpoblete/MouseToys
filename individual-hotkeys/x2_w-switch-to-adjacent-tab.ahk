@@ -26,7 +26,7 @@ MouseAdjacentTabSwitch(states*) {
     } else if activeWin.processName ~= 'i)\A(POWERPNT.EXE)\z' {
         Send(states[2])
     } else if activeWin.class ~= 'i)\A(CabinetWClass)\z'
-        or activeWin.processName ~= 'i)\A(AcroRd32.exe|Notion.exe|Photoshop.exe|WindowsTerminal.exe)' {
+        or activeWin.processName ~= 'i)\A(AcroRd32.exe|Photoshop.exe|WindowsTerminal.exe)' {
         Send('^' states[3])
     } else if (activeWin.class = 'WinUIDesktopWin32WindowClass') and (activeWin.processName = 'Photos.exe') {
         Send(states[4])

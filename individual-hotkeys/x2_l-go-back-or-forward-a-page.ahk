@@ -10,18 +10,14 @@
  */
 
 #HotIf GetKeyState('XButton2', 'P')
-LButton Up::           MouseGoBackOrForward(thisHotkey, '[', 'X1')
-LButton & RButton Up:: MouseGoBackOrForward("", ']', 'X2')
+LButton Up::           MouseGoBackOrForward(thisHotkey, 'X1')
+LButton & RButton Up:: MouseGoBackOrForward("", 'X2')
 
 MouseGoBackOrForward(thisHotkey := "", states*) {
     if thisHotkey and not MouseThisHkIsCorrect(thisHotkey) {
         return
     }
     MouseWinActivate()
-    if WinActive('ahk_exe Notion.exe') {
-        Send('^' states[1])
-    } else {
-        Click(states[-1])
-    }
+    Click(states[-1])
 }
 #HotIf

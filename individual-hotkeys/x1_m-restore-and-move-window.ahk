@@ -19,7 +19,7 @@
     }
     ; ToolTip(thisHotkey ' and ' A_PriorHotkey)
 
-    ; Enable closing tabs when using the X1+W hotkeys:
+    ; Close tabs when using the X1+W hotkeys:
     if WinActive('Task Switching ahk_class XamlExplorerHostIslandWindow') {
         Click('Middle')
         return
@@ -38,6 +38,7 @@ MouseWinRestoreAndMove(thisHotkey := "") {
     global G_MouseIsMovingWin := true
 
     MouseWinActivate()
+
     if WinActive('ahk_class WorkerW ahk_exe Explorer.EXE') {
         return
     }
