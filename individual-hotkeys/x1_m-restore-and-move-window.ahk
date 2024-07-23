@@ -8,21 +8,12 @@
  */
 
 #HotIf GetKeyState('XButton1', 'P')
-*MButton Up:: MouseWinRestoreAndMove(thisHotkey)
 !MButton Up:: MouseCloseTabsInAltTabMenu()
 
 ; What's this hotkey for?
 ; *MButton Up:: return
 
-MouseCloseTabsInAltTabMenu() {
-    if WinActive('Task Switching ahk_class XamlExplorerHostIslandWindow') {
-        Click('Middle')
-    }
-}
-
-MouseWinRestoreAndMove(thisHotkey := "") {
-    global G_MouseIsMovingWin := true
-
+*MButton Up:: {
     if thisHotkey and not MouseThisHkIsCorrect(thisHotkey) {
         return
     }
@@ -33,6 +24,18 @@ MouseWinRestoreAndMove(thisHotkey := "") {
         Click('Middle')
         return
     }
+
+    MouseWinRestoreAndMove(thisHotkey)
+}
+
+MouseCloseTabsInAltTabMenu() {
+    if WinActive('Task Switching ahk_class XamlExplorerHostIslandWindow') {
+        Click('Middle')
+    }
+}
+
+MouseWinRestoreAndMove(thisHotkey := "") {
+    global G_MouseIsMovingWin := true
 
     MouseWinActivate()
     if WinActive('ahk_class WorkerW ahk_exe Explorer.EXE') {
