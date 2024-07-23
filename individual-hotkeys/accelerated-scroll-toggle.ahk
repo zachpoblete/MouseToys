@@ -5,6 +5,7 @@
 
 A_TrayMenu.insert('E&xit', 'Enable &Accelerated Scroll', ToggleAcceleratedScroll)
 UseUserAcceleratedScrollSetting()
+AcceleratedScrollIndicatorFollowMouse()
 
 #^a:: {
     ToggleAcceleratedScroll()
@@ -55,6 +56,5 @@ UseUserAcceleratedScrollSetting() {
     Hotkey('WheelUp', action)
 
     A_TrayMenu.toggleCheck('Enable &Accelerated Scroll')
-    AcceleratedScrollIndicatorFollowMouse()
     A_WorkingDir := A_ScriptDir
 }
