@@ -2,7 +2,4 @@
 .vscode
 *.code-workspace
 archive
-joystick-test.exe
-test.ahk
-test-when-testing-multiple.ahk
 versions
