@@ -2,6 +2,7 @@
 
 #Include lib
 #Include mouse-functions.ahk
+#Include get-user-settings-path.ahk
 
 A_TrayMenu.insert('E&xit', 'Enable &Accelerated Scroll', ToggleAcceleratedScroll)
 UseUserAcceleratedScrollSetting()
@@ -15,15 +16,13 @@ AcceleratedScrollIndicatorFollowMouse()
 AcceleratedScrollIndicatorFollowMouse() {
     static acceleratedScrollSetting
 
-    A_WorkingDir := RegExReplace(A_LineFile, '\\[^\\]+$')
-    acceleratedScrollIsOn := IniRead('lib\user-settings.ini', '', 'AcceleratedScrollIsOn')
+    userSettingsPath := GetUserSettingsPath()
+    acceleratedScrollIsOn := IniRead(userSettingsPath, '', 'AcceleratedScrollIsOn')
     acceleratedScrollSetting := acceleratedScrollIsOn ? 'ON' : 'OFF'
 
     SetTimer(tempToolTip, 0)
     SetTimer(tempToolTip, 10)
     SetTimer(closeTempToolTip, -3000)
-
-    A_WorkingDir := A_ScriptDir
 
     ; Make tempToolTip static so that it doesn't flicker upon toggling quickly.
     static tempToolTip() {
@@ -37,9 +36,9 @@ AcceleratedScrollIndicatorFollowMouse() {
 }
 
 ToggleAcceleratedScroll(name := 'Enable &Accelerated Scroll', pos := 0, menu := {}) {
-    A_WorkingDir := RegExReplace(A_LineFile, '\\[^\\]+$')
-    acceleratedScrollIsOn := IniRead('lib\user-settings.ini', '', 'AcceleratedScrollIsOn')
-    IniWrite(not acceleratedScrollIsOn, 'lib\user-settings.ini', '', 'AcceleratedScrollIsOn')
+    userSettingsPath := GetUserSettingsPath()
+    acceleratedScrollIsOn := IniRead(userSettingsPath, '', 'AcceleratedScrollIsOn')
+    IniWrite(not acceleratedScrollIsOn, userSettingsPath, '', 'AcceleratedScrollIsOn')
 
     Hotkey('WheelDown', 'Toggle')
     Hotkey('WheelUp', 'Toggle')
@@ -49,8 +48,8 @@ ToggleAcceleratedScroll(name := 'Enable &Accelerated Scroll', pos := 0, menu := 
 }
 
 UseUserAcceleratedScrollSetting() {
-    A_WorkingDir := RegExReplace(A_LineFile, '\\[^\\]+$')
-    acceleratedScrollIsOn := IniRead('lib\user-settings.ini', '', 'AcceleratedScrollIsOn')
+    userSettingsPath := GetUserSettingsPath()
+    acceleratedScrollIsOn := IniRead(userSettingsPath, '', 'AcceleratedScrollIsOn')
     action := acceleratedScrollIsOn ? 'On' : 'Off'
     Hotkey('WheelDown', action)
     Hotkey('WheelUp', action)
