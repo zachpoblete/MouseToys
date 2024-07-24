@@ -55,7 +55,11 @@ MouseWinRestoreAndMove(thisHotkey := "") {
 
     CoordMode('Mouse')
     MouseGetPos(&mouseStartX, &mouseStartY)
-    WinGetPos(&winOriginalX, &winOriginalY)
+
+    ; Enable per-monitor DPI awareness so that the window doesn't explode in size
+    ; when moving across displays. See
+    ; https://www.autohotkey.com/docs/v2/misc/DPIScaling.htm#Workarounds
+    originalDpiAwarenessContext := DllCall("SetThreadDpiAwarenessContext", "ptr", -3, "ptr")
 
     while GetKeyState('XButton1', 'P')
             ; A loop is used instead of SetTimer to preserve the last found window.
@@ -75,6 +79,7 @@ MouseWinRestoreAndMove(thisHotkey := "") {
     }
 
     G_MouseIsMovingWin := false
+    DllCall("SetThreadDpiAwarenessContext", "ptr", originalDpiAwarenessContext, "ptr")
 
     moveWinMiddleToMouse() {
         WinGetPos(, , &winW, &winH)
