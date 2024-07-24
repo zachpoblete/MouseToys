@@ -1,7 +1,6 @@
 #Include accelerated-scroll-main.ahk
 
 #Include lib
-#Include mouse-functions.ahk
 #Include get-user-settings-path.ahk
 
 A_TrayMenu.insert('E&xit', 'Enable &Accelerated Scroll', ToggleAcceleratedScroll)
