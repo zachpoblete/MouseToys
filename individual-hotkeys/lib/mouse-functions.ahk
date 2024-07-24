@@ -11,7 +11,6 @@ MouseThisHkIsCorrect(thisHotkey) {
     thisKey := StrReplace(thisHotkey, " Up")
     thisKey := LTrim(thisKey, "*")
     thisKey := RTrim(thisKey, " ")
-
     return thisKey = A_PriorKey
 }
 
