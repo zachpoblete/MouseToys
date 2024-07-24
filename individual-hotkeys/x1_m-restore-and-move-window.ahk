@@ -53,7 +53,7 @@ MouseWinRestoreAndMove(thisHotkey := "") {
         moveWinMiddleToMouse()
     }
 
-    CoordMode('Mouse')
+    CoordMode('Mouse', "Screen")
     MouseGetPos(&mouseStartX, &mouseStartY)
 
     ; Enable per-monitor DPI awareness so that the window doesn't explode in size
@@ -68,13 +68,16 @@ MouseWinRestoreAndMove(thisHotkey := "") {
             break
         }
 
-        MouseGetPos(&mouseX, &mouseY)
         WinGetPos(&winX, &winY)
-        WinMove(winX + (mouseX - mouseStartX), winY + (mouseY - mouseStartY))
+        MouseGetPos(&mouseX, &mouseY)
+        changeInMouseX := mouseX - mouseStartX
+        changeInMouseY := mouseY - mouseStartY
+        winX += changeInMouseX
+        winY += changeInMouseY
+        WinMove(winX, winY)
 
         mouseStartX := mouseX
         mouseStartY := mouseY
-
         Sleep(10)
     }
 
