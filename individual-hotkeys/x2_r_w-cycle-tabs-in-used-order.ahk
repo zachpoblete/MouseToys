@@ -16,7 +16,7 @@
  * would prevent any further inputs from going through.
  */
 
-#HotIf GetKeyState('XButton2', 'P') and MouseWinActivate('ahk_exe msedge.exe')
+#HotIf GetKeyState('XButton2', 'P') and MouseActivateWin('ahk_exe msedge.exe')
 /**
  * Search tabs.
  */

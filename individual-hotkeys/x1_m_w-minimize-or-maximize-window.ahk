@@ -11,14 +11,14 @@
  */
 
 #HotIf GetKeyState('XButton1', 'P')
-MButton & WheelDown:: MouseWinMinMax('Min')
-MButton & WheelUp::   MouseWinMinMax('Max')
+MButton & WheelDown:: MouseMinOrMaxWin('Min')
+MButton & WheelUp::   MouseMinOrMaxWin('Max')
 
-MouseWinMinMax(minOrMax) {
+MouseMinOrMaxWin(minOrMax) {
     if G_MouseIsMovingWin {
         WinExist('A')
     } else {
-        MouseWinActivate()
+        MouseActivateWin()
     }
     Win%minOrMax%imize()
 }

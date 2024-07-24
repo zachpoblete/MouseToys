@@ -11,7 +11,7 @@
  */
 
 #HotIf GetKeyState('XButton1', 'P')
-!MButton Up:: MouseCloseTabsInAltTabMenu()
+!MButton Up:: MouseCloseWinInAltTabMenu()
 
 ; What's this hotkey for?
 ; *MButton Up:: return
@@ -22,7 +22,7 @@
     }
     ; ToolTip(thisHotkey ' and ' A_PriorHotkey)
 
-    ; Close tabs when using the X1+W hotkeys:
+    ; Click a window to close it when using the X1+W hotkeys:
     if WinActive('Task Switching ahk_class XamlExplorerHostIslandWindow') {
         Click('Middle')
         return
@@ -31,7 +31,7 @@
     MouseWinRestoreAndMove(thisHotkey)
 }
 
-MouseCloseTabsInAltTabMenu() {
+MouseCloseWinInAltTabMenu() {
     if WinActive('Task Switching ahk_class XamlExplorerHostIslandWindow') {
         Click('Middle')
     }
@@ -40,7 +40,7 @@ MouseCloseTabsInAltTabMenu() {
 MouseWinRestoreAndMove(thisHotkey := "") {
     global G_MouseIsMovingWin := true
 
-    MouseWinActivate()
+    MouseActivateWin()
 
     if WinActive('ahk_class WorkerW ahk_exe Explorer.EXE') {
         return

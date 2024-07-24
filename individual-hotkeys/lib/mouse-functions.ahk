@@ -3,7 +3,7 @@ MouseSend(keys, thisHotkey := "") {
     if thisHotkey and not MouseThisHkIsCorrect(thisHotkey) {
         return
     }
-    MouseWinActivate()
+    MouseActivateWin()
     Send('{Blind}' keys)
 }
 
@@ -15,7 +15,7 @@ MouseThisHkIsCorrect(thisHotkey) {
     return thisKey = A_PriorKey
 }
 
-MouseWinActivate(winTitle := '', winText := '', excludedTitle := '', excludedText := '') {
+MouseActivateWin(winTitle := '', winText := '', excludedTitle := '', excludedText := '') {
     MouseGetPos(, , &mouseHwnd)
     WinActivate(mouseHwnd)
     return WinActive(winTitle ' ahk_id ' mouseHwnd, winText, excludedTitle, excludedText)

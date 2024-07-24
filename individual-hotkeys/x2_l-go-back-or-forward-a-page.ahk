@@ -17,7 +17,7 @@ MouseGoBackOrForward(thisHotkey := "", states*) {
     if thisHotkey and not MouseThisHkIsCorrect(thisHotkey) {
         return
     }
-    MouseWinActivate()
+    MouseActivateWin()
     Click(states[-1])
 }
 #HotIf

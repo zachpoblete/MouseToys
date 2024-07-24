@@ -8,10 +8,10 @@
  */
 
 #HotIf GetKeyState('XButton1', 'P')
-MButton & RButton Up:: MouseWinClose()
+MButton & RButton Up:: MouseCloseWin()
 
-MouseWinClose() {
-    MouseWinActivate()
+MouseCloseWin() {
+    MouseActivateWin()
     if WinActive('ahk_exe PowerToys.Settings.exe') {
         WinClose()
     } else {
