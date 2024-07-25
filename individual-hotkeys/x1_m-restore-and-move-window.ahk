@@ -38,10 +38,7 @@ MouseCloseWinInAltTabMenu() {
 }
 
 MouseRestoreAndMoveWin(thisHotkey := "") {
-    global G_MouseIsMovingWin := true
-
     MouseActivateWin()
-
     if WinActive('ahk_class WorkerW ahk_exe Explorer.EXE') {
         return
     }
@@ -53,44 +50,54 @@ MouseRestoreAndMoveWin(thisHotkey := "") {
         moveWinMiddleToMouse()
     }
 
-    CoordMode('Mouse', "Screen")
-    MouseGetPos(&mouseStartX, &mouseStartY)
+    moveWinToFollowMouse()
 
-    ; Enable per-monitor DPI awareness so that the window doesn't explode in size
-    ; when moving across displays with different DPI settings. See
-    ; https://www.autohotkey.com/docs/v2/misc/DPIScaling.htm#Workarounds
-    originalDpiAwarenessContext := DllCall("SetThreadDpiAwarenessContext", "ptr", -3, "ptr")
-
-    while GetKeyState('XButton1', 'P')
-            ; A loop is used instead of SetTimer to preserve the last found window.
-    {
-        if SubStr(A_ThisHotkey, 1, -2) = 'MButton & Wheel' {
-            break
-        }
-
-        WinGetPos(&winX, &winY)
-        MouseGetPos(&mouseX, &mouseY)
-        changeInMouseX := mouseX - mouseStartX
-        changeInMouseY := mouseY - mouseStartY
-        winX += changeInMouseX
-        winY += changeInMouseY
-        WinMove(winX, winY)
-
-        mouseStartX := mouseX
-        mouseStartY := mouseY
-        Sleep(10)
+    isWinStillRestored() {
+        a_thisHotkeyNoDirection := SubStr(A_ThisHotkey, 1, -2)
+        return a_thisHotkeyNoDirection != 'MButton & Wheel'
     }
 
-    G_MouseIsMovingWin := false
-    DllCall("SetThreadDpiAwarenessContext", "ptr", originalDpiAwarenessContext, "ptr")
+    moveWinToFollowMouse() {
+        CoordMode('Mouse', "Screen")
+        MouseGetPos(&mouseStartX, &mouseStartY)
+        global G_MouseIsMovingWin := true
+
+        ; Enable per-monitor DPI awareness so that the window doesn't explode in size
+        ; when moving across displays with different DPI settings. See
+        ; https://www.autohotkey.com/docs/v2/misc/DPIScaling.htm#Workarounds
+        originalDpiAwarenessContext := DllCall("SetThreadDpiAwarenessContext", "ptr", -3, "ptr")
+
+        while GetKeyState('XButton1', 'P') and isWinStillRestored()
+                ; A loop is used instead of SetTimer to preserve the last found window.
+        {
+            WinGetPos(&winX, &winY)
+            MouseGetPos(&mouseX, &mouseY)
+            changeInMouseX := mouseX - mouseStartX
+            changeInMouseY := mouseY - mouseStartY
+            winX += changeInMouseX
+            winY += changeInMouseY
+            WinMove(winX, winY)
+
+            mouseStartX := mouseX
+            mouseStartY := mouseY
+            Sleep(10)
+        }
+
+        G_MouseIsMovingWin := false
+        DllCall("SetThreadDpiAwarenessContext", "ptr", originalDpiAwarenessContext, "ptr")
+    }
 
     moveWinMiddleToMouse() {
-        WinGetPos(, , &winW, &winH)
-
-        CoordMode('Mouse')
+        CoordMode('Mouse', "Screen")
         MouseGetPos(&mouseX, &mouseY)
 
-        WinMove(mouseX - (winW / 2), mouseY - (winH / 2))
+        WinGetPos(, , &winWidth, &winHeight)
+        winHalfWidth  := winWidth / 2
+        winHalfHeight := winHeight / 2
+
+        winX := mouseX - winHalfWidth
+        winY := mouseY - winHalfHeight
+        WinMove(winX, winY)
     }
 }
 #HotIf
