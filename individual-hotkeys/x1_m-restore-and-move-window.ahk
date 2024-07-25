@@ -11,7 +11,7 @@
  */
 
 #HotIf GetKeyState('XButton1', 'P')
-!MButton Up:: MouseCloseWinInAltTabMenu()
+!MButton Up:: MouseCloseAltTabWin()
 
 ; What's this hotkey for?
 ; *MButton Up:: return
@@ -22,14 +22,14 @@
     }
     ; ToolTip(thisHotkey ' and ' A_PriorHotkey)
 
-    if MouseCloseWinInAltTabMenu() {
+    if MouseCloseAltTabWin() {
         return
     }
 
     MouseRestoreAndMoveWinToFollow(thisHotkey)
 }
 
-MouseCloseWinInAltTabMenu() {
+MouseCloseAltTabWin() {
     wasAWinClosed := false
     if WinActive('Task Switching ahk_class XamlExplorerHostIslandWindow') {
         Click('Middle')
