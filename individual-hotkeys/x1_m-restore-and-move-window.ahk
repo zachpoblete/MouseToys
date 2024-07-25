@@ -22,9 +22,7 @@
     }
     ; ToolTip(thisHotkey ' and ' A_PriorHotkey)
 
-    ; Click a window to close it when using the X1+W hotkeys:
-    if WinActive('Task Switching ahk_class XamlExplorerHostIslandWindow') {
-        Click('Middle')
+    if MouseCloseWinInAltTabMenu() {
         return
     }
 
@@ -32,9 +30,12 @@
 }
 
 MouseCloseWinInAltTabMenu() {
+    wasAWinClosed := false
     if WinActive('Task Switching ahk_class XamlExplorerHostIslandWindow') {
         Click('Middle')
+        wasAWinClosed := true
     }
+    return wasAWinClosed
 }
 
 MouseRestoreAndMoveWinToFollow(thisHotkey := "") {
