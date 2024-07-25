@@ -2,7 +2,7 @@
 #Include mouse-functions.ahk
 #Include fix-x1.ahk
 
-; A low A_WinDelay is very important for MouseWinRestoreAndMove to be smooth.
+; A low A_WinDelay is very important for MouseRestoreAndMoveWin to be smooth.
 #Include default-settings.ahk
 
 /**
@@ -28,7 +28,7 @@
         return
     }
 
-    MouseWinRestoreAndMove(thisHotkey)
+    MouseRestoreAndMoveWin(thisHotkey)
 }
 
 MouseCloseWinInAltTabMenu() {
@@ -37,7 +37,7 @@ MouseCloseWinInAltTabMenu() {
     }
 }
 
-MouseWinRestoreAndMove(thisHotkey := "") {
+MouseRestoreAndMoveWin(thisHotkey := "") {
     global G_MouseIsMovingWin := true
 
     MouseActivateWin()
