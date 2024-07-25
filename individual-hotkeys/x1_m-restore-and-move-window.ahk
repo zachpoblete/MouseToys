@@ -57,7 +57,7 @@ MouseWinRestoreAndMove(thisHotkey := "") {
     MouseGetPos(&mouseStartX, &mouseStartY)
 
     ; Enable per-monitor DPI awareness so that the window doesn't explode in size
-    ; when moving across displays. See
+    ; when moving across displays with different DPI settings. See
     ; https://www.autohotkey.com/docs/v2/misc/DPIScaling.htm#Workarounds
     originalDpiAwarenessContext := DllCall("SetThreadDpiAwarenessContext", "ptr", -3, "ptr")
 
