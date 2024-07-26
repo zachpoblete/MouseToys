@@ -5,10 +5,10 @@
  */
 
 #Include individual-hotkeys
-#Include x1_w-cycle-windows-in-used-order.ahk
-#Include x1_l-send-delete-or-enter.ahk
-#Include x1_m_r-close-window.ahk
-#Include x1_m_w-minimize-or-maximize-window.ahk
-#Include x1_m-restore-and-move-window.ahk
-#Include x1_r_w-undo-or-redo.ahk
-#Include x1_r-copy-or-paste.ahk
+#Include x1-cycle-windows-in-used-order.ahk
+#Include x1-send-delete-or-enter.ahk
+#Include x1-close-window.ahk
+#Include x1-minimize-or-maximize-window.ahk
+#Include x1-restore-and-move-window.ahk
+#Include x1-undo-or-redo.ahk
+#Include x1-copy-or-paste.ahk
