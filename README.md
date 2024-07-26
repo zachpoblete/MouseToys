@@ -12,7 +12,7 @@
 | Press this | To do this |
 | - | - |
 | <kbd>XButton1</kbd>+<kbd>WheelDown</kbd> | ⬇️ Cycle through windows in recently used order (Alt+Tab) |
-| <kbd>XButton1</kbd>+<kbd>WheelUp</kbd> | ⬆️ Cycle through windows in reverse used order (Shift+Alt+Tab) |
+| <kbd>XButton1</kbd>+<kbd>WheelUp</kbd> | ⬆️ Cycle through windows in reverse used order |
 | <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<kbd>WheelDown</kbd> | ↙️ Minimize window |
 | <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<kbd>WheelUp</kbd> | ↗ Maximize window |
 | <kbd>XButton1</kbd>+<kbd>MButton</kbd> | 🚚 Restore window and move it using the mouse |
@@ -36,7 +36,7 @@
 | <kbd>XButton2</kbd>+<kbd>RButton</kbd>+<kbd>LButton</kbd> | ↪ Reopen last closed tab |
 | <kbd>XButton2</kbd>+<kbd>LButton</kbd> | ⬅️ Go back a page |
 | <kbd>XButton2</kbd>+<kbd>LButton</kbd>+<kbd>RButton</kbd> | ➡️ Go forward a page |
-| <kbd>XButton2</kbd>+<kbd>LButton</kbd>+<kbd>MButton</kbd> | 🔄 Refresh page or reload window (Ctrl+R) |
+| <kbd>XButton2</kbd>+<kbd>LButton</kbd>+<kbd>MButton</kbd> | 🔄 Refresh page or reload window |
 | <kbd>XButton2</kbd>+<kbd>MButton</kbd> | 🔗 Open link in a new active tab |
 
 ## 🔘 Buttons guide
