@@ -1,6 +1,6 @@
 # MouseToys
 
-## 🚀 Accelerated scroll (Scrollwheel)
+## 🚀 Accelerated scroll (Scroll wheel)
 
 | Press this | To do this |
 | - | - |
