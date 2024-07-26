@@ -17,9 +17,6 @@
  */
 
 #HotIf GetKeyState('XButton2', 'P') and MouseWinActivate('ahk_exe msedge.exe')
-/**
- * Search tabs.
- */
 RButton & WheelDown:: MouseTabSearch()
 RButton & WheelUp::   Send('{Escape}')
 
