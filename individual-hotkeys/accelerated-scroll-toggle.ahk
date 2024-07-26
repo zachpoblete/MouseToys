@@ -3,7 +3,11 @@
 #Include lib
 #Include get-user-settings-path.ahk
 
-A_TrayMenu.insert('E&xit', 'Enable &Accelerated Scroll', ToggleAcceleratedScroll)
+A_TrayMenu.insert('E&xit', 'Enable &Accelerated Scroll', (*) {
+    ToggleAcceleratedScroll()
+    MouseShowAcceleratedScrollSetting()
+})
+
 UseUserAcceleratedScrollSetting()
 MouseShowAcceleratedScrollSetting()
 
@@ -34,7 +38,7 @@ MouseShowAcceleratedScrollSetting() {
     }
 }
 
-ToggleAcceleratedScroll(name := 'Enable &Accelerated Scroll', pos := 0, menu := {}) {
+ToggleAcceleratedScroll() {
     userSettingsPath := GetUserSettingsPath()
     acceleratedScrollIsOn := IniRead(userSettingsPath, '', 'AcceleratedScrollIsOn')
     IniWrite(not acceleratedScrollIsOn, userSettingsPath, '', 'AcceleratedScrollIsOn')
@@ -42,7 +46,7 @@ ToggleAcceleratedScroll(name := 'Enable &Accelerated Scroll', pos := 0, menu := 
     Hotkey('WheelDown', 'Toggle')
     Hotkey('WheelUp', 'Toggle')
 
-    A_TrayMenu.toggleCheck(name)
+    A_TrayMenu.toggleCheck('Enable &Accelerated Scroll')
     A_WorkingDir := A_ScriptDir
 }
 
