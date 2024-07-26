@@ -19,8 +19,8 @@
 | <kbd>XButton1</kbd>+<kbd>LButton</kbd>+<kbd>RButton</kbd> | ⬇️ Send Enter key |
 | <kbd>XButton1</kbd>+<kbd>RButton</kbd> | 📋 Copy to clipboard |
 | <kbd>XButton1</kbd>+<kbd>RButton</kbd>+<kbd>LButton</kbd> | 📋 Paste from clipboard |
-| <kbd>XButton1</kbd>+<kbd>LButton</kbd>+<kbd>WheelDown</kbd> | ↩️ Undo |
-| <kbd>XButton1</kbd>+<kbd>LButton</kbd>+<kbd>WheelUp</kbd> | ↪ Redo |
+| <kbd>XButton1</kbd>+<kbd>RButton</kbd>+<kbd>WheelDown</kbd> | ↩️ Undo |
+| <kbd>XButton1</kbd>+<kbd>RButton</kbd>+<kbd>WheelUp</kbd> | ↪ Redo |
 
 ## 🌐 Tab shortcuts (XButton2)
 
