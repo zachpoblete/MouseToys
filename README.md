@@ -7,7 +7,7 @@
 | <kbd>WheelDown</kbd> | 🚀 Accelerated scroll down (Scroll faster to scroll farther) |
 | <kbd>WheelUp</kbd> | 🚀 Accelerated scroll up |
 
-## 🪟 Window and typing shortcuts (XButton1)
+## 🪟 Window and general shortcuts (XButton1)
 
 | Press this | To do this |
 | - | - |
@@ -17,6 +17,7 @@
 | <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<kbd>WheelUp</kbd> | &nbsp;↗&thinsp;&hairsp; Maximize window |
 | <kbd>XButton1</kbd>+<kbd>MButton</kbd> | 🚚 Restore window and move it using the mouse |
 | <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<kbd>RButton</kbd> | ❎ Close window |
+| <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<kbd>LButton</kbd> | 📸 Screenshot |
 | <kbd>XButton1</kbd>+<kbd>LButton</kbd> | ⌦&hairsp; Send Delete key |
 | <kbd>XButton1</kbd>+<kbd>LButton</kbd>+<kbd>RButton</kbd> | &nbsp;⏎&thinsp;&hairsp; Send Enter key |
 | <kbd>XButton1</kbd>+<kbd>RButton</kbd> | 📋 Copy to clipboard |

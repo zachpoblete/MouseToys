@@ -12,3 +12,4 @@
 #Include x1-restore-and-move-window.ahk
 #Include x1-undo-or-redo.ahk
 #Include x1-copy-or-paste.ahk
+#Include x1-screenshot.ahk
