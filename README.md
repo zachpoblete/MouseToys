@@ -1,4 +1,6 @@
-# 🖱️ [Mouse shortcuts](mouse.ahk)
+# MouseToys
+
+## 🚀 Accelerated scroll (Scrollwheel)
 
 | Press this | To do this |
 | - | - |
