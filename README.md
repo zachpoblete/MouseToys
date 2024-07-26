@@ -52,7 +52,7 @@
 - ❹ is <kbd>XButton1</kbd>
 - ❺ is <kbd>XButton2</kbd>
 
-E.g., <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<kbd>RButton</kbd> means to press & hold <kbd>XButton1</kbd>, press & hold <kbd>MButton</kbd>, and press & release <kbd>RButton</kbd>
+For example, <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<kbd>RButton</kbd> means to press & hold <kbd>XButton1</kbd>, press & hold <kbd>MButton</kbd>, and press & release <kbd>RButton</kbd>.
 
 # License
 
