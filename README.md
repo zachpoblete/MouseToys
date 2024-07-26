@@ -13,9 +13,9 @@
 | - | - |
 | <kbd>XButton1</kbd>+<kbd>WheelDown</kbd> | ⬇️ Cycle through windows in recently used order (Alt+Tab) |
 | <kbd>XButton1</kbd>+<kbd>WheelUp</kbd> | ⬆️ Cycle through windows in reverse used order |
+| <kbd>XButton1</kbd>+<kbd>MButton</kbd> | 🚚 Restore window and move it using the mouse |
 | <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<kbd>WheelDown</kbd> | ↙️ Minimize window |
 | <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<kbd>WheelUp</kbd> | &nbsp;↗&thinsp;&hairsp; Maximize window |
-| <kbd>XButton1</kbd>+<kbd>MButton</kbd> | 🚚 Restore window and move it using the mouse |
 | <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<kbd>RButton</kbd> | ❎ Close window |
 | <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<kbd>LButton</kbd> | 📸 Screenshot |
 | <kbd>XButton1</kbd>+<kbd>LButton</kbd> | ⌦&hairsp; Send Delete key |
