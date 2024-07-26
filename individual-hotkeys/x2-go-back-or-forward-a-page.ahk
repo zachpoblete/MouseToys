@@ -10,10 +10,10 @@
  */
 
 #HotIf GetKeyState('XButton2', 'P')
-LButton Up::           MouseGoBackOrForward(thisHotkey, 'X1')
-LButton & RButton Up:: MouseGoBackOrForward("", 'X2')
+LButton Up::           MouseGoBackOrForwardAPage(thisHotkey, 'X1')
+LButton & RButton Up:: MouseGoBackOrForwardAPage("", 'X2')
 
-MouseGoBackOrForward(thisHotkey := "", states*) {
+MouseGoBackOrForwardAPage(thisHotkey := "", states*) {
     if thisHotkey and not MouseThisHkIsCorrect(thisHotkey) {
         return
     }
