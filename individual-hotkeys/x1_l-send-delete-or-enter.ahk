@@ -6,7 +6,7 @@
  * Press XButton1 + LButton
  * to send the Delete key ❎.
  * Press XButton1 + LButton + RButton
- * to send the Backspace key ❎.
+ * to send the Enter key ⬇️.
  */
 
 #HotIf GetKeyState('XButton1', 'P')
@@ -23,5 +23,5 @@
     MouseSend('{Delete}')
 }
 
-LButton & RButton Up:: MouseSend('{Backspace}')
+LButton & RButton Up:: MouseSend('{Enter}')
 #HotIf
