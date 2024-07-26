@@ -49,10 +49,14 @@ ToggleAcceleratedScroll(name := 'Enable &Accelerated Scroll', pos := 0, menu := 
 UseUserAcceleratedScrollSetting() {
     userSettingsPath := GetUserSettingsPath()
     acceleratedScrollIsOn := IniRead(userSettingsPath, '', 'AcceleratedScrollIsOn')
-    action := acceleratedScrollIsOn ? 'On' : 'Off'
+    if acceleratedScrollIsOn {
+        A_TrayMenu.check('Enable &Accelerated Scroll')
+        action := "On"
+    } else {
+        A_TrayMenu.uncheck('Enable &Accelerated Scroll')
+        action := "Off"
+    }
     Hotkey('WheelDown', action)
     Hotkey('WheelUp', action)
-
-    A_TrayMenu.toggleCheck('Enable &Accelerated Scroll')
     A_WorkingDir := A_ScriptDir
 }
