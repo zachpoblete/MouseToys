@@ -5,14 +5,14 @@
 
 A_TrayMenu.insert('E&xit', 'Enable &Accelerated Scroll', ToggleAcceleratedScroll)
 UseUserAcceleratedScrollSetting()
-AcceleratedScrollIndicatorFollowMouse()
+MouseShowAcceleratedScrollSetting()
 
 #^a:: {
     ToggleAcceleratedScroll()
-    AcceleratedScrollIndicatorFollowMouse()
+    MouseShowAcceleratedScrollSetting()
 }
 
-AcceleratedScrollIndicatorFollowMouse() {
+MouseShowAcceleratedScrollSetting() {
     static acceleratedScrollSetting
 
     userSettingsPath := GetUserSettingsPath()
