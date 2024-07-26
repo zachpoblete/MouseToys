@@ -16,9 +16,9 @@
 | <kbd>XButton1</kbd>+<kbd>MButton</kbd> | 🚚 Restore window and move it using the mouse |
 | <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<kbd>RButton</kbd> | ❎ Close window |
 | <kbd>XButton1</kbd>+<kbd>LButton</kbd> | ❎ Send Delete key|
-| <kbd>XButton1</kbd>+<kbd>LButton</kbd>+<kbd>RButton</kbd> | ❎ Send Backspace key |
-| <kbd>XButton1</kbd>+<kbd>RButton</kbd> | ⬇️ Send Enter key |
-| <kbd>XButton1</kbd>+<kbd>RButton</kbd>+<kbd>LButton</kbd> | ➡️ Send Tab key |
+| <kbd>XButton1</kbd>+<kbd>LButton</kbd>+<kbd>RButton</kbd> | ⬇️ Send Enter key |
+| <kbd>XButton1</kbd>+<kbd>RButton</kbd> | 📋 Copy to clipboard |
+| <kbd>XButton1</kbd>+<kbd>RButton</kbd>+<kbd>LButton</kbd> | 📋 Paste from clipboard |
 | <kbd>XButton1</kbd>+<kbd>LButton</kbd>+<kbd>WheelDown</kbd> | ↩️ Undo |
 | <kbd>XButton1</kbd>+<kbd>LButton</kbd>+<kbd>WheelUp</kbd> | ↪ Redo |
 
