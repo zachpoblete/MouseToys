@@ -10,14 +10,14 @@
  */
 
 #HotIf GetKeyState('XButton2', 'P')
-RButton Up::           MouseCloseTab(thisHotkey)
-RButton & LButton Up:: MouseReopenLastClosedTab()
+RButton Up::           MouseTabClose(thisHotkey)
+RButton & LButton Up:: MouseTabReopenLastClosed()
 
-MouseCloseTab(thisHotkey := "") {
+MouseTabClose(thisHotkey := "") {
     MouseSend("^w", thisHotkey)
 }
 
-MouseReopenLastClosedTab(thisHotkey := "") {
+MouseTabReopenLastClosed(thisHotkey := "") {
     MouseSend("^+t", thisHotkey)
 }
 #HotIf

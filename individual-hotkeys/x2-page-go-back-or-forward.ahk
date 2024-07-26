@@ -10,14 +10,14 @@
  */
 
 #HotIf GetKeyState('XButton2', 'P')
-LButton Up::           MouseGoBackOrForwardAPage(thisHotkey, 'X1')
-LButton & RButton Up:: MouseGoBackOrForwardAPage("", 'X2')
+LButton Up::           MousePageGoBackOrForward(thisHotkey, 'X1')
+LButton & RButton Up:: MousePageGoBackOrForward("", 'X2')
 
-MouseGoBackOrForwardAPage(thisHotkey := "", states*) {
+MousePageGoBackOrForward(thisHotkey := "", states*) {
     if thisHotkey and not MouseThisHkIsCorrect(thisHotkey) {
         return
     }
-    MouseActivateWin()
+    MouseWinActivate()
     Click(states[-1])
 }
 #HotIf

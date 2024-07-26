@@ -8,9 +8,9 @@
  */
 
 #HotIf GetKeyState('XButton2', 'P')
-LButton & MButton Up:: MouseRefreshPage()
+LButton & MButton Up:: MousePageRefresh()
 
-MouseRefreshPage() {
+MousePageRefresh() {
     MouseSend('^r')
 }
 #HotIf

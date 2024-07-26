@@ -10,11 +10,11 @@
  */
 
 #HotIf GetKeyState('XButton2', 'P')
-WheelDown:: MouseSwitchToAdjacentTab('{Down}', '{PgDn}', '{Tab}', '{Right}', '{PgDn}')
-WheelUp::   MouseSwitchToAdjacentTab('{Up}',   '{PgUp}', '+{Tab}', '{Left}', '{PgUp}')
+WheelDown:: MouseTabSwitchToAdjacent('{Down}', '{PgDn}', '{Tab}', '{Right}', '{PgDn}')
+WheelUp::   MouseTabSwitchToAdjacent('{Up}',   '{PgUp}', '+{Tab}', '{Left}', '{PgUp}')
 
-MouseSwitchToAdjacentTab(states*) {
-    MouseActivateWin()
+MouseTabSwitchToAdjacent(states*) {
+    MouseWinActivate()
 
     WinExist('A')
     activeWin := {}

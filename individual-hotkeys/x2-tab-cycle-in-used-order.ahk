@@ -16,11 +16,11 @@
  * would prevent any further inputs from going through.
  */
 
-#HotIf GetKeyState('XButton2', 'P') and MouseActivateWin('ahk_exe msedge.exe')
+#HotIf GetKeyState('XButton2', 'P') and MouseWinActivate('ahk_exe msedge.exe')
 /**
  * Search tabs.
  */
-RButton & WheelDown:: MouseSearchTabs()
+RButton & WheelDown:: MouseTabSearch()
 RButton & WheelUp::   Send('{Escape}')
 
 #HotIf GetKeyState('XButton2', 'P') and GetKeyState('Ctrl')
@@ -28,11 +28,11 @@ RButton & WheelDown:: Send('{Tab}')
 RButton & WheelUp::   Send('+{Tab}')
 
 #HotIf GetKeyState('XButton2', 'P')
-RButton & WheelDown:: MouseViewFirstTabInUsedOrder('{Tab}')
-RButton & WheelUp::   MouseViewFirstTabInUsedOrder('+{Tab}')
+RButton & WheelDown:: MouseTabViewFirstInUsedOrder('{Tab}')
+RButton & WheelUp::   MouseTabViewFirstInUsedOrder('+{Tab}')
 #HotIf
 
-MouseSearchTabs() {
+MouseTabSearch() {
     if GetKeyState('Ctrl') {
         Send('{Ctrl Up}')
     }
@@ -40,7 +40,7 @@ MouseSearchTabs() {
     Send('^+a')
 }
 
-MouseViewFirstTabInUsedOrder(tab) {
+MouseTabViewFirstInUsedOrder(tab) {
     Send('{Ctrl Down}' tab)
     KeyWait('RButton')
     Send('{Ctrl Up}')

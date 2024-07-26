@@ -11,7 +11,7 @@
  */
 
 #HotIf GetKeyState('XButton1', 'P')
-!MButton Up:: MouseCloseAltTabWin()
+!MButton Up:: MouseWinCloseInAltTabMenu()
 
 ; What's this hotkey for?
 ; *MButton Up:: return
@@ -22,14 +22,14 @@
     }
     ; ToolTip(thisHotkey ' and ' A_PriorHotkey)
 
-    if MouseCloseAltTabWin() {
+    if MouseWinCloseInAltTabMenu() {
         return
     }
 
-    MouseRestoreAndMoveWinToFollow(thisHotkey)
+    MouseWinRestoreAndMove(thisHotkey)
 }
 
-MouseCloseAltTabWin() {
+MouseWinCloseInAltTabMenu() {
     wasAWinClosed := false
     if WinActive('Task Switching ahk_class XamlExplorerHostIslandWindow') {
         Click('Middle')
@@ -38,8 +38,8 @@ MouseCloseAltTabWin() {
     return wasAWinClosed
 }
 
-MouseRestoreAndMoveWinToFollow(thisHotkey := "") {
-    MouseActivateWin()
+MouseWinRestoreAndMove(thisHotkey := "") {
+    MouseWinActivate()
     if WinActive('ahk_class WorkerW ahk_exe Explorer.EXE') {
         return
     }
@@ -48,19 +48,19 @@ MouseRestoreAndMoveWinToFollow(thisHotkey := "") {
     winMinMax := WinGetMinMax()
     if winMinMax = 1 {
         WinRestore()
-        MouseMoveWinMiddle()
+        MouseWinMoveMiddle()
     }
 
-    MouseMoveWinToFollow()
+    MouseWinMove()
 }
 #HotIf
 
-MouseIsWinStillRestored() {
+MouseWinIsStillRestored() {
     a_thisHotkeyNoDirection := SubStr(A_ThisHotkey, 1, -2)
     return a_thisHotkeyNoDirection != 'MButton & Wheel'
 }
 
-MouseMoveWinMiddle() {
+MouseWinMoveMiddle() {
     CoordMode('Mouse', "Screen")
     MouseGetPos(&mouseX, &mouseY)
 
@@ -73,7 +73,7 @@ MouseMoveWinMiddle() {
     WinMove(winX, winY)
 }
 
-MouseMoveWinToFollow() {
+MouseWinMove() {
     CoordMode('Mouse', "Screen")
     MouseGetPos(&mouseStartX, &mouseStartY)
     global G_MouseIsMovingWin := true
@@ -83,7 +83,7 @@ MouseMoveWinToFollow() {
     ; https://www.autohotkey.com/docs/v2/misc/DPIScaling.htm#Workarounds
     originalDpiAwarenessContext := DllCall("SetThreadDpiAwarenessContext", "ptr", -3, "ptr")
 
-    while GetKeyState('XButton1', 'P') and MouseIsWinStillRestored()
+    while GetKeyState('XButton1', 'P') and MouseWinIsStillRestored()
             ; A loop is used instead of SetTimer to preserve the last found window.
     {
         WinGetPos(&winX, &winY)

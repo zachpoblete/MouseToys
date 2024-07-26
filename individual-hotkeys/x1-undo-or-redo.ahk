@@ -19,7 +19,7 @@ MouseUndo() {
 }
 
 MouseRedo() {
-    MouseActivateWin()
+    MouseWinActivate()
 
     if CanRedoWithCtrlY() {
         Send('^y')
