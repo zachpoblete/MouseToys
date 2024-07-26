@@ -25,7 +25,7 @@
 | <kbd>XButton1</kbd>+<kbd>RButton</kbd>+<kbd>WheelDown</kbd> | ↩️ Undo |
 | <kbd>XButton1</kbd>+<kbd>RButton</kbd>+<kbd>WheelUp</kbd> | ↪ Redo |
 
-## 🌐 Tab shortcuts (XButton2)
+## 🌐 Tab and page shortcuts (XButton2)
 
 | Press this | To do this |
 | - | - |
@@ -37,7 +37,7 @@
 | <kbd>XButton2</kbd>+<kbd>RButton</kbd>+<kbd>LButton</kbd> | ↪ Reopen last closed tab |
 | <kbd>XButton2</kbd>+<kbd>LButton</kbd> | ⬅️ Go back a page |
 | <kbd>XButton2</kbd>+<kbd>LButton</kbd>+<kbd>RButton</kbd> | ➡️ Go forward a page |
-| <kbd>XButton2</kbd>+<kbd>LButton</kbd>+<kbd>MButton</kbd> | 🔄 Refresh page or reload window |
+| <kbd>XButton2</kbd>+<kbd>LButton</kbd>+<kbd>MButton</kbd> | 🔄 Refresh page |
 | <kbd>XButton2</kbd>+<kbd>MButton</kbd> | 🔗 Open link in a new active tab |
 
 ## 🔘 Buttons guide

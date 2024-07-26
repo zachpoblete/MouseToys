@@ -4,13 +4,13 @@
 
 /**
  * Press XButton2 + LButton + MButton
- * to reload the current page or window 🔄.
+ * to refresh the current page 🔄.
  */
 
 #HotIf GetKeyState('XButton2', 'P')
-LButton & MButton Up:: MouseReload()
+LButton & MButton Up:: MouseRefreshPage()
 
-MouseReload() {
+MouseRefreshPage() {
     MouseSend('^r')
 }
 #HotIf
