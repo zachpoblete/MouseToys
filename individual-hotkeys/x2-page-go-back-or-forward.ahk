@@ -14,7 +14,7 @@ LButton Up::           MousePageGoBackOrForward(thisHotkey, 'X1')
 LButton & RButton Up:: MousePageGoBackOrForward("", 'X2')
 
 MousePageGoBackOrForward(thisHotkey := "", states*) {
-    if thisHotkey and not MouseThisHkIsCorrect(thisHotkey) {
+    if thisHotkey and not MouseIsThisHotkeyCorrect(thisHotkey) {
         return
     }
     MouseWinActivate()

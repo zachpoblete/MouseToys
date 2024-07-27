@@ -14,7 +14,7 @@ MButton Up:: MouseOpenLinkInNewActiveTab(thisHotkey)
 MButton::    return
 
 MouseOpenLinkInNewActiveTab(thisHotkey := "") {
-    if thisHotkey and not MouseThisHkIsCorrect(thisHotkey) {
+    if thisHotkey and not MouseIsThisHotkeyCorrect(thisHotkey) {
         return
     }
 

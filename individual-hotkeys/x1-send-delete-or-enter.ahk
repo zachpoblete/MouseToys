@@ -11,7 +11,7 @@
 
 #HotIf GetKeyState('XButton1', 'P')
 *LButton Up:: {
-    if not MouseThisHkIsCorrect(thisHotkey) {
+    if not MouseIsThisHotkeyCorrect(thisHotkey) {
         return
     }
 

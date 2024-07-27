@@ -1,13 +1,13 @@
 ; Optionally set thisHotkey to check if it is correct.
 MouseSend(keys, thisHotkey := "") {
-    if thisHotkey and not MouseThisHkIsCorrect(thisHotkey) {
+    if thisHotkey and not MouseIsThisHotkeyCorrect(thisHotkey) {
         return
     }
     MouseWinActivate()
     Send('{Blind}' keys)
 }
 
-MouseThisHkIsCorrect(thisHotkey) {
+MouseIsThisHotkeyCorrect(thisHotkey) {
     thisKey := StrReplace(thisHotkey, " Up")
     thisKey := LTrim(thisKey, "*")
     thisKey := RTrim(thisKey, " ")

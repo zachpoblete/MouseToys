@@ -17,7 +17,7 @@
 ; *MButton Up:: return
 
 *MButton Up:: {
-    if thisHotkey and not MouseThisHkIsCorrect(thisHotkey) {
+    if thisHotkey and not MouseIsThisHotkeyCorrect(thisHotkey) {
         return
     }
     ; ToolTip(thisHotkey ' and ' A_PriorHotkey)
