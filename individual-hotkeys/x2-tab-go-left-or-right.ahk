@@ -2,13 +2,10 @@
 #Include mouse-functions.ahk
 #Include fix-x2.ahk
 
-/**
- * Press XButton2 + WheelDown
- * to go to the left tab ⬅️.
- * Press XButton2 + WheelUp
- * to go to the right tab ➡️.
- */
-
+; Press XButton2 + WheelDown
+; to go to the left tab ⬅️.
+; Press XButton2 + WheelUp
+; to go to the right tab ➡️.
 #HotIf GetKeyState('XButton2', 'P')
 WheelUp::   MouseTabGoLeft()
 WheelDown:: MouseTabGoRight()

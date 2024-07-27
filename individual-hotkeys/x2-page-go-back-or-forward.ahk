@@ -2,13 +2,10 @@
 #Include mouse-functions.ahk
 #Include fix-x2.ahk
 
-/**
- * Press XButton2 + LButton
- * to go back a page ⬅️.
- * Press XButton2 + LButton + RButton
- * to go forward a page ➡️.
- */
-
+; Press XButton2 + LButton
+; to go back a page ⬅️.
+; Press XButton2 + LButton + RButton
+; to go forward a page ➡️.
 #HotIf GetKeyState('XButton2', 'P')
 LButton Up::           MousePageGoBackOrForward(thisHotkey, 'X1')
 LButton & RButton Up:: MousePageGoBackOrForward("", 'X2')

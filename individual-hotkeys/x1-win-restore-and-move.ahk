@@ -5,11 +5,8 @@
 ; A low A_WinDelay is very important for MouseRestoreAndMoveWinToFollow to be smooth.
 #Include default-settings.ahk
 
-/**
- * Press XButton1 + MButton
- * to restore a window and move it using the mouse 🚚.
- */
-
+; Press XButton1 + MButton
+; to restore a window and move it using the mouse 🚚.
 #HotIf GetKeyState('XButton1', 'P')
 !MButton Up:: MouseWinCloseInAltTabMenu()
 

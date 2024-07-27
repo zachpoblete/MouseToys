@@ -3,13 +3,10 @@
 #Include mouse-functions.ahk
 #Include fix-x1.ahk
 
-/**
- * Press XButton1 + MButton + WheelDown
- * to minimize a window ↙️.
- * Press XButton1 + MButton + WheelUp
- * to maximize a window ↗.
- */
-
+; Press XButton1 + MButton + WheelDown
+; to minimize a window ↙️.
+; Press XButton1 + MButton + WheelUp
+; to maximize a window ↗.
 #HotIf GetKeyState('XButton1', 'P')
 MButton & WheelDown:: MouseWinMinimize()
 MButton & WheelUp::   MouseWinMaximize()

@@ -1,22 +1,18 @@
-/**
- * Originally by BoffinbraiN.
- * For full details, visit the forum thread:
- * https://www.autohotkey.com/board/topic/48426-accelerated-scrolling-script
- */
+; Originally by BoffinbraiN. For full details, visit the forum thread:
+; https://www.autohotkey.com/board/topic/48426-accelerated-scrolling-script
 
 A_MaxHotkeysPerInterval := 200
         ; I have adjusted this to my laptop touchpad
         ; which sends a lot of mouse events in a short time.
 
+; Scroll faster to scroll farther.
 WheelDown::
 WheelUp::
 {
     AcceleratedScroll()
 }
 
-/**
- * To use effectively, make sure this function is the first line in a hotkey.
- */
+; To use effectively, make sure this function is the first line in a hotkey.
 AcceleratedScroll() {
     static TIMEOUT_MS := 500
             ; Length of a scrolling session.
