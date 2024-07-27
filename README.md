@@ -12,8 +12,8 @@ Grab a mouse with extra side buttons and explore a new way to use your computer!
 
 | Press this | To do this |
 | - | - |
-| <kbd>WheelDown</kbd> | 🚀 Accelerated scroll down (Scroll faster to scroll farther) |
-| <kbd>WheelUp</kbd> | 🚀 Accelerated scroll up |
+| <kbd>WheelUp</kbd> | 🚀 Accelerated scroll up (Scroll faster to scroll farther) |
+| <kbd>WheelDown</kbd> | 🚀 Accelerated scroll down |
 
 ## 🪟 Window and general shortcuts (XButton1)
 

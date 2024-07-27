@@ -6,8 +6,8 @@ A_MaxHotkeysPerInterval := 200
         ; which sends a lot of mouse events in a short time.
 
 ; Scroll faster to scroll farther.
-WheelDown::
 WheelUp::
+WheelDown::
 {
     AcceleratedScroll()
 }
