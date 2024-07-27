@@ -10,14 +10,10 @@
 #HotIf GetKeyState('XButton1', 'P')
 !MButton Up:: MouseWinCloseInAltTabMenu()
 
-; What's this hotkey for?
-; *MButton Up:: return
-
 *MButton Up:: {
     if thisHotkey and not MouseIsThisHotkeyCorrect(thisHotkey) {
         return
     }
-    ; ToolTip(thisHotkey ' and ' A_PriorHotkey)
 
     if MouseWinCloseInAltTabMenu() {
         return
