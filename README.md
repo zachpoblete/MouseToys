@@ -64,6 +64,6 @@ Grab a mouse with extra side buttons and explore a new way to use your computer!
 
 For example, <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<kbd>RButton</kbd> means to press & hold <kbd>XButton1</kbd>, press & hold <kbd>MButton</kbd>, and press & release <kbd>RButton</kbd>.
 
-# License
+## License
 
 [MIT](https://github.com/zachpoblete/AutoHotkey/blob/main/LICENSE)
