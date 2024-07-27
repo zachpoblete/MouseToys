@@ -10,7 +10,7 @@
 #HotIf GetKeyState('XButton1', 'P')
 !MButton Up:: MouseWinCloseInAltTabMenu()
 
-*MButton Up:: {
+MButton Up:: {
     if thisHotkey and not MouseIsThisHotkeyCorrect(thisHotkey) {
         return
     }

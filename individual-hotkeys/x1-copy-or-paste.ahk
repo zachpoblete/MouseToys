@@ -7,7 +7,7 @@
 ; Press XButton1 + RButton + LButton
 ; to paste from the clipboard 📋.
 #HotIf GetKeyState('XButton1', 'P')
-*RButton Up::          MouseCopy(thisHotkey)
+RButton Up::           MouseCopy(thisHotkey)
 RButton & LButton Up:: MousePaste()
 
 MouseCopy(thisHotkey := "") {
