@@ -7,8 +7,17 @@
 ; Press XButton2 + LButton + RButton
 ; to go forward a page ➡️.
 #HotIf GetKeyState('XButton2', 'P')
-LButton Up::           MousePageGoBackOrForward(thisHotkey, 'X1')
-LButton & RButton Up:: MousePageGoBackOrForward("", 'X2')
+LButton Up::           MousePageGoBack(thisHotkey)
+LButton & RButton Up:: MousePageGoForward(thisHotkey)
+
+MousePageGoBack(thisHotkey) {
+    MousePageGoBackOrForward(thisHotkey, 'X1')
+}
+
+MousePageGoForward(thisHotkey) {
+    MousePageGoBackOrForward("", 'X2')
+}
+#HotIf
 
 MousePageGoBackOrForward(thisHotkey := "", states*) {
     if thisHotkey and not MouseIsThisHotkeyCorrect(thisHotkey) {
@@ -17,4 +26,3 @@ MousePageGoBackOrForward(thisHotkey := "", states*) {
     MouseWinActivate()
     Click(states[-1])
 }
-#HotIf
