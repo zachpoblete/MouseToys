@@ -11,11 +11,6 @@ A_TrayMenu.insert('E&xit', 'Enable &Accelerated Scroll', (*) {
 UseUserAcceleratedScrollSetting()
 MouseShowAcceleratedScrollSetting()
 
-#^a:: {
-    ToggleAcceleratedScroll()
-    MouseShowAcceleratedScrollSetting()
-}
-
 MouseShowAcceleratedScrollSetting() {
     static acceleratedScrollSetting
 
