@@ -35,8 +35,8 @@
 | <kbd>XButton2</kbd>+<kbd>RButton</kbd>+<kbd>WheelUp</kbd> | ⬆️ Cycle through tabs in reverse used order |
 | <kbd>XButton2</kbd>+<kbd>RButton</kbd> | ❎ Close tab |
 | <kbd>XButton2</kbd>+<kbd>RButton</kbd>+<kbd>LButton</kbd> | ↪ Reopen last closed tab |
-| <kbd>XButton2</kbd>+<kbd>LButton</kbd> | ⬅️ Go back a page |
-| <kbd>XButton2</kbd>+<kbd>LButton</kbd>+<kbd>RButton</kbd> | ➡️ Go forward a page |
+| <kbd>XButton2</kbd>+<kbd>LButton</kbd> | ⬅️ Go back one page |
+| <kbd>XButton2</kbd>+<kbd>LButton</kbd>+<kbd>RButton</kbd> | ➡️ Go forward one page |
 | <kbd>XButton2</kbd>+<kbd>LButton</kbd>+<kbd>MButton</kbd> | 🔄 Refresh page |
 | <kbd>XButton2</kbd>+<kbd>LButton</kbd>+<kbd>WheelUp</kbd> | 🔍 Zoom in |
 | <kbd>XButton2</kbd>+<kbd>LButton</kbd>+<kbd>WheelDown</kbd> | 🔍 Zoom out |
