@@ -1,4 +1,4 @@
-# MouseToys
+# 🖱️ MouseToys
 
 Keyboard shortcuts are awesome. But sometimes, you just have one hand on the mouse like Cueball here:
 
@@ -55,7 +55,7 @@ What if you could do the most common keyboard shortcuts from just your mouse?
 | <kbd>XButton2</kbd>+<kbd>LButton</kbd>+<kbd>WheelDown</kbd> | 🔍 Zoom out |
 | <kbd>XButton2</kbd>+<kbd>MButton</kbd> | 🔗 Open link in a new active tab |
 
-## 🔘 Buttons guide
+## 🖱️ Buttons guide
 
 ![mouse buttons](https://user-images.githubusercontent.com/92368853/218107501-85e6c04b-cbd5-4de3-9c81-cd3450da1ae7.png)
 
@@ -69,6 +69,6 @@ What if you could do the most common keyboard shortcuts from just your mouse?
 
 An example: <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<kbd>RButton</kbd> means to press & hold <kbd>XButton1</kbd>, press & hold <kbd>MButton</kbd>, and press & release <kbd>RButton</kbd>.
 
-## License
+## 📜 License
 
 [MIT](https://github.com/zachpoblete/AutoHotkey/blob/main/LICENSE)
