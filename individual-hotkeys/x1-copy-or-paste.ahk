@@ -10,11 +10,11 @@
 *RButton Up::          MouseCopy(thisHotkey)
 RButton & LButton Up:: MousePaste()
 
-MouseCopy(thisHotkey) {
+MouseCopy(thisHotkey := "") {
     MouseSend('^c', thisHotkey)
 }
 
-MousePaste() {
-    MouseSend('^v')
+MousePaste(thisHotkey := "") {
+    MouseSend('^v', thisHotkey)
 }
 #HotIf

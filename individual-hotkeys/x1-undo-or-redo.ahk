@@ -11,8 +11,8 @@
 RButton & WheelDown:: MouseUndo()
 RButton & WheelUp::   MouseRedo()
 
-MouseUndo() {
-    MouseSend('^z')
+MouseUndo(thisHotkey := "") {
+    MouseSend('^z', thisHotkey)
 }
 
 MouseRedo() {
