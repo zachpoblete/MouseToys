@@ -19,24 +19,35 @@ MouseTabGoRight() {
 }
 
 MouseTabGoToAdjacent(states*) {
-    MouseWinActivate()
-
     WinExist('A')
-    activeWin := {}
-    activeWin.class := WinGetClass()
-    activeWin.processName := WinGetProcessName()
 
-    if activeWin.processName  ~= 'i)\A(Discord.exe|Messenger.exe)\z' {
-        Send('!' states[1])
-    } else if activeWin.processName ~= 'i)\A(POWERPNT.EXE)\z' {
-        Send(states[2])
-    } else if activeWin.class ~= 'i)\A(CabinetWClass)\z'
-        or activeWin.processName ~= 'i)\A(AcroRd32.exe|Photoshop.exe|WindowsTerminal.exe)' {
-        Send('^' states[3])
-    } else if (activeWin.class = 'WinUIDesktopWin32WindowClass') and (activeWin.processName = 'Photos.exe') {
-        Send(states[4])
-    } else {
-        Send('^' states[-1])
+    winProcessName := WinGetProcessName()
+    switch winProcessName {
+        case "Discord.exe", "Messenger.exe":
+            Send('!' states[1])
+            return
+        case "POWERPNT.EXE":
+            Send(states[2])
+            return
+        case "AcroRd32.exe", "Photoshop.exe", "WindowsTerminal.exe":
+            Send('^' states[3])
+            return
     }
+
+    winClass := WinGetClass()
+    switch winClass {
+        case "CabinetWClass":
+            Send('^' states[3])
+            return
+    }
+
+    ; (In the native Photos app, you have to click one of the arrows that will go to
+    ; an adjacent photo before this hotkey works.)
+    if (winProcessName = 'Photos.exe') and (winClass = 'WinUIDesktopWin32WindowClass') {
+        Send(states[4])
+        return
+    }
+
+    Send('^' states[-1])
 }
 #HotIf
