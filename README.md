@@ -67,7 +67,7 @@ What if you could do the most common keyboard shortcuts from just your mouse?
 - ❹ is <kbd>XButton1</kbd>
 - ❺ is <kbd>XButton2</kbd>
 
-For example, <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<kbd>RButton</kbd> means to press & hold <kbd>XButton1</kbd>, press & hold <kbd>MButton</kbd>, and press & release <kbd>RButton</kbd>.
+An example: <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<kbd>RButton</kbd> means to press & hold <kbd>XButton1</kbd>, press & hold <kbd>MButton</kbd>, and press & release <kbd>RButton</kbd>.
 
 ## License
 
