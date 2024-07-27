@@ -10,6 +10,6 @@
 #Include x1-send-delete-or-enter.ahk
 #Include x1-undo-or-redo.ahk
 #Include x1-win-close.ahk
-#Include x1-win-cycle-in-used-order.ahk
+#Include x1-win-cycle-used-order.ahk
 #Include x1-win-minimize-or-maximize.ahk
 #Include x1-win-restore-and-move.ahk
