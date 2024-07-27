@@ -4,16 +4,24 @@
 
 /**
  * Press XButton2 + WheelDown
- * to switch to the left tab ⬅️.
+ * to go to the left tab ⬅️.
  * Press XButton2 + WheelUp
- * to switch to the right tab ➡️.
+ * to go to the right tab ➡️.
  */
 
 #HotIf GetKeyState('XButton2', 'P')
-WheelDown:: MouseTabSwitchToAdjacent('{Down}', '{PgDn}', '{Tab}',  '{Right}', '{PgDn}')
-WheelUp::   MouseTabSwitchToAdjacent('{Up}',   '{PgUp}', '+{Tab}', '{Left}',  '{PgUp}')
+WheelUp::   MouseTabGoLeft()
+WheelDown:: MouseTabGoRight()
 
-MouseTabSwitchToAdjacent(states*) {
+MouseTabGoLeft() {
+    MouseTabGoToAdjacent('{Up}',   '{PgUp}', '+{Tab}', '{Left}',  '{PgUp}')
+}
+
+MouseTabGoRight() {
+    MouseTabGoToAdjacent('{Down}', '{PgDn}', '{Tab}',  '{Right}', '{PgDn}')
+}
+
+MouseTabGoToAdjacent(states*) {
     MouseWinActivate()
 
     WinExist('A')

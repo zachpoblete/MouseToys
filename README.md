@@ -29,8 +29,8 @@
 
 | Press this | To do this |
 | - | - |
-| <kbd>XButton2</kbd>+<kbd>WheelDown</kbd> | ⬅️ Switch to left tab |
-| <kbd>XButton2</kbd>+<kbd>WheelUp</kbd> | ➡️ Switch to right tab |
+| <kbd>XButton2</kbd>+<kbd>WheelUp</kbd> | ➡️ Go to left tab |
+| <kbd>XButton2</kbd>+<kbd>WheelDown</kbd> | ⬅️ Go to right tab |
 | <kbd>XButton2</kbd>+<kbd>RButton</kbd>+<kbd>WheelDown</kbd> | ⬇️ Cycle through tabs in recently used order |
 | <kbd>XButton2</kbd>+<kbd>RButton</kbd>+<kbd>WheelUp</kbd> | ⬆️ Cycle through tabs in reverse used order |
 | <kbd>XButton2</kbd>+<kbd>RButton</kbd> | ❎ Close tab |

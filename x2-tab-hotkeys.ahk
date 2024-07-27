@@ -4,4 +4,4 @@
 #Include x2-open-link-in-new-active-tab.ahk
 #Include x2-tab-cycle-in-used-order.ahk
 #Include x2-tab-close-or-reopen.ahk
-#Include x2-tab-switch-to-adjacent.ahk
+#Include x2-tab-go-left-or-right.ahk
