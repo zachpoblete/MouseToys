@@ -1,5 +1,13 @@
 # MouseToys
 
+Keyboard shortcuts are awesome. But sometimes, you just have one hand on the mouse like Cueball here:
+
+<img src="https://github.com/user-attachments/assets/b3f014b5-40cb-456e-8a68-ea36c8e7355e" width="250">
+
+What if you could do the most common keyboard shortcuts from just your mouse?
+
+Grab a mouse with extra side buttons and explore a new way to use your computer!
+
 ## 🚀 Accelerated scroll (Scroll wheel)
 
 | Press this | To do this |
