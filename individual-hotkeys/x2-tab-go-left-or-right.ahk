@@ -11,11 +11,11 @@ WheelUp::   MouseTabGoLeft()
 WheelDown:: MouseTabGoRight()
 
 MouseTabGoLeft() {
-    MouseTabGoToAdjacent('{Up}',   '{PgUp}', '+{Tab}', '{Left}',  '{PgUp}')
+    MouseTabGoToAdjacent('!{Up}',   '{PgUp}', '^+{Tab}', '{Left}',  '^{PgUp}')
 }
 
 MouseTabGoRight() {
-    MouseTabGoToAdjacent('{Down}', '{PgDn}', '{Tab}',  '{Right}', '{PgDn}')
+    MouseTabGoToAdjacent('!{Down}', '{PgDn}', '^{Tab}',  '{Right}', '^{PgDn}')
 }
 
 MouseTabGoToAdjacent(states*) {
@@ -24,20 +24,20 @@ MouseTabGoToAdjacent(states*) {
     winProcessName := WinGetProcessName()
     switch winProcessName {
         case "Discord.exe", "Messenger.exe":
-            Send('!' states[1])
+            Send(states[1])
             return
         case "POWERPNT.EXE":
             Send(states[2])
             return
         case "AcroRd32.exe", "Photoshop.exe", "WindowsTerminal.exe":
-            Send('^' states[3])
+            Send(states[3])
             return
     }
 
     winClass := WinGetClass()
     switch winClass {
         case "CabinetWClass":
-            Send('^' states[3])
+            Send(states[3])
             return
     }
 
@@ -48,6 +48,6 @@ MouseTabGoToAdjacent(states*) {
         return
     }
 
-    Send('^' states[-1])
+    Send(states[-1])
 }
 #HotIf
