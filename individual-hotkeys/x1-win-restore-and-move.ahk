@@ -69,7 +69,7 @@ MouseWinMoveMiddle() {
 MouseWinMove() {
     CoordMode('Mouse', "Screen")
     MouseGetPos(&mouseStartX, &mouseStartY)
-    global G_MouseIsMovingWin := true
+    global MouseWinIsMoving := true
 
     ; Enable *thread* per-monitor DPI awareness for windows that are per-monitor DPI
     ; aware so that the system doesn't try to automatically rescale them when moving
@@ -102,7 +102,7 @@ MouseWinMove() {
         Sleep(10)
     }
 
-    G_MouseIsMovingWin := false
+    MouseWinIsMoving := false
     if isWinPerMonitorDpiAware {
         DllCall("SetThreadDpiAwarenessContext", "ptr", oldThreadDpiAwarenessContext, "ptr")
     }

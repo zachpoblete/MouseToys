@@ -21,7 +21,7 @@ MouseWinMaximize() {
 #HotIf
 
 MouseWinMinimizeOrMaximize(minOrMax) {
-    if G_MouseIsMovingWin {
+    if MouseWinIsMoving {
         WinExist('A')
     } else {
         MouseWinActivate()

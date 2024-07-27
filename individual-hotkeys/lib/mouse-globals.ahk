@@ -1,1 +1,1 @@
-G_MouseIsMovingWin := false
+MouseWinIsMoving := false
