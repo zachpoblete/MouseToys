@@ -8,7 +8,7 @@ What if you could do the most common keyboard shortcuts from just your mouse?
 
 ## 💻 How to use
 
-1. Grab a mouse with extra side buttons (see [Buttons guide](#🔘-Buttons-guide)).
+1. Grab a mouse with extra side buttons (see [Buttons guide](#%EF%B8%8F-buttons-guide)).
 2. Download [AutoHotkey v2.0](https://www.autohotkey.com/download/ahk-v2.exe) (here are the [docs](https://www.autohotkey.com/docs/v2/)).
 3. Download and extract the [ZIP of this repo](https://github.com/zachpoblete/MouseToys/archive/refs/heads/main.zip).
 4. Run `MouseToys.ahk` and try out these shortcuts!
