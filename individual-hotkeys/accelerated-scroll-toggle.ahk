@@ -2,32 +2,9 @@
 
 #Include lib
 #Include get-user-settings-path.ahk
+#Include accelerated-scroll-show-user-setting.ahk
 
 A_TrayMenu.insert('E&xit', 'Enable &Accelerated Scroll', (*) => ToggleAcceleratedScroll())
-
-UseUserAcceleratedScrollSetting()
-
-MouseShowAcceleratedScrollSetting() {
-    static acceleratedScrollSetting
-
-    userSettingsPath := GetUserSettingsPath()
-    acceleratedScrollIsOn := IniRead(userSettingsPath, '', 'AcceleratedScrollIsOn')
-    acceleratedScrollSetting := acceleratedScrollIsOn ? 'ON' : 'OFF'
-
-    SetTimer(tempToolTip, 0)
-    SetTimer(tempToolTip, 10)
-    SetTimer(closeTempToolTip, -3000)
-
-    ; Make tempToolTip static so that it doesn't flicker upon toggling quickly.
-    static tempToolTip() {
-        ToolTip('Accelerated Scroll ' acceleratedScrollSetting)
-    }
-
-    closeTempToolTip() {
-        SetTimer(tempToolTip, 0)
-        ToolTip()
-    }
-}
 
 ToggleAcceleratedScroll() {
     userSettingsPath := GetUserSettingsPath()
@@ -38,20 +15,5 @@ ToggleAcceleratedScroll() {
     Hotkey('WheelUp', 'Toggle')
 
     A_TrayMenu.toggleCheck('Enable &Accelerated Scroll')
-    MouseShowAcceleratedScrollSetting()
-}
-
-UseUserAcceleratedScrollSetting() {
-    userSettingsPath := GetUserSettingsPath()
-    acceleratedScrollIsOn := IniRead(userSettingsPath, '', 'AcceleratedScrollIsOn')
-    if acceleratedScrollIsOn {
-        A_TrayMenu.check('Enable &Accelerated Scroll')
-        action := "On"
-    } else {
-        A_TrayMenu.uncheck('Enable &Accelerated Scroll')
-        action := "Off"
-    }
-    Hotkey('WheelDown', action)
-    Hotkey('WheelUp', action)
     MouseShowAcceleratedScrollSetting()
 }
