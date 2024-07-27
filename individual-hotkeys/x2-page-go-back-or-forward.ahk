@@ -11,18 +11,23 @@ LButton Up::           MousePageGoBack(thisHotkey)
 LButton & RButton Up:: MousePageGoForward(thisHotkey)
 
 MousePageGoBack(thisHotkey) {
-    MousePageGoBackOrForward(thisHotkey, 'X1')
+    MousePageGoBackOrForward("back", thisHotkey)
 }
 
 MousePageGoForward(thisHotkey) {
-    MousePageGoBackOrForward("", 'X2')
+    MousePageGoBackOrForward("forward")
 }
 #HotIf
 
-MousePageGoBackOrForward(thisHotkey := "", states*) {
+MousePageGoBackOrForward(backOrForward, thisHotkey := "") {
+    static STATES := Map(
+        -1, {back: "X1", forward: "X2"}
+    )
+
     if thisHotkey and not MouseIsThisHotkeyCorrect(thisHotkey) {
         return
     }
+
     MouseWinActivate()
-    Click(states[-1])
+    Click(STATES[-1].%backOrForward%)
 }

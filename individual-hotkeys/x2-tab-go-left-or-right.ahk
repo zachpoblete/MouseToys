@@ -11,43 +11,51 @@ WheelUp::   MouseTabGoLeft()
 WheelDown:: MouseTabGoRight()
 
 MouseTabGoLeft() {
-    MouseTabGoToAdjacent('!{Up}',   '{PgUp}', '^+{Tab}', '{Left}',  '^{PgUp}')
+    MouseTabGoToAdjacent("left")
 }
 
 MouseTabGoRight() {
-    MouseTabGoToAdjacent('!{Down}', '{PgDn}', '^{Tab}',  '{Right}', '^{PgDn}')
+    MouseTabGoToAdjacent("right")
 }
 
-MouseTabGoToAdjacent(states*) {
+MouseTabGoToAdjacent(leftOrRight) {
+    static STATES := Map(
+        1,  {left: "!{Up}",   right: "!{Down}"},
+        2,  {left: "{PgUp}",  right: "{PgDn}"},
+        3,  {left: "^+{Tab}", right: "^{Tab}"},
+        4,  {left: "{Left}",  right: "{Right}"},
+        -1, {left: "^{PgUp}", right: "^{PgDn}"}
+    )
+
     WinExist('A')
 
     winProcessName := WinGetProcessName()
     switch winProcessName {
         case "Discord.exe", "Messenger.exe":
-            Send(states[1])
+            Send(STATES[1].%leftOrRight%)
             return
         case "POWERPNT.EXE":
-            Send(states[2])
+            Send(STATES[2].%leftOrRight%)
             return
         case "AcroRd32.exe", "Photoshop.exe", "WindowsTerminal.exe":
-            Send(states[3])
+            Send(STATES[3].%leftOrRight%)
             return
     }
 
     winClass := WinGetClass()
     switch winClass {
         case "CabinetWClass":
-            Send(states[3])
+            Send(STATES[3].%leftOrRight%)
             return
     }
 
     ; (In the native Photos app, you have to click one of the arrows that will go to
     ; an adjacent photo before this hotkey works.)
     if (winProcessName = 'Photos.exe') and (winClass = 'WinUIDesktopWin32WindowClass') {
-        Send(states[4])
+        Send(STATES[4].%leftOrRight%)
         return
     }
 
-    Send(states[-1])
+    Send(STATES[-1].%leftOrRight%)
 }
 #HotIf
