@@ -21,6 +21,7 @@ MouseWinMinimize() {
 MouseWinMaximize() {
     MouseWinMinimizeOrMaximize('Max')
 }
+#HotIf
 
 MouseWinMinimizeOrMaximize(minOrMax) {
     if G_MouseIsMovingWin {
@@ -30,4 +31,3 @@ MouseWinMinimizeOrMaximize(minOrMax) {
     }
     Win%minOrMax%imize()
 }
-#HotIf
