@@ -1,6 +1,6 @@
 # 🖱️ MouseToys
 
-Keyboard shortcuts are awesome. But sometimes, you just have one hand on the mouse like Cueball here:
+Keyboard shortcuts are awesome. But sometimes, you just have one hand on the mouse:
 
 <img src="https://github.com/user-attachments/assets/b3f014b5-40cb-456e-8a68-ea36c8e7355e" width="225">
 
