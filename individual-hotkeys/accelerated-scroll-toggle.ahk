@@ -38,7 +38,6 @@ ToggleAcceleratedScroll() {
     Hotkey('WheelUp', 'Toggle')
 
     A_TrayMenu.toggleCheck('Enable &Accelerated Scroll')
-    A_WorkingDir := A_ScriptDir
     MouseShowAcceleratedScrollSetting()
 }
 
@@ -54,6 +53,5 @@ UseUserAcceleratedScrollSetting() {
     }
     Hotkey('WheelDown', action)
     Hotkey('WheelUp', action)
-    A_WorkingDir := A_ScriptDir
     MouseShowAcceleratedScrollSetting()
 }
