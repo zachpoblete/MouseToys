@@ -69,6 +69,12 @@ What if you could do the most common keyboard shortcuts from just your mouse?
 
 An example: <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<kbd>RButton</kbd> means to press & hold <kbd>XButton1</kbd>, press & hold <kbd>MButton</kbd>, and press & release <kbd>RButton</kbd>.
 
+## 🚩 Known issues
+
+1. [Some mice don't do 3-button combinations well](https://github.com/zachpoblete/MouseToys/issues/43)
+2. [Shortcuts can be triggered twice if you click a certain way \[1 solution\]](https://github.com/zachpoblete/MouseToys/issues/8)
+3. [Lag when moving window across monitors](https://github.com/zachpoblete/MouseToys/issues/52)
+
 ## 📜 License
 
 [MIT](https://github.com/zachpoblete/AutoHotkey/blob/main/LICENSE)
