@@ -3,13 +3,9 @@
 #Include lib
 #Include get-user-settings-path.ahk
 
-A_TrayMenu.insert('E&xit', 'Enable &Accelerated Scroll', (*) {
-    ToggleAcceleratedScroll()
-    MouseShowAcceleratedScrollSetting()
-})
+A_TrayMenu.insert('E&xit', 'Enable &Accelerated Scroll', (*) => ToggleAcceleratedScroll())
 
 UseUserAcceleratedScrollSetting()
-MouseShowAcceleratedScrollSetting()
 
 MouseShowAcceleratedScrollSetting() {
     static acceleratedScrollSetting
@@ -43,6 +39,7 @@ ToggleAcceleratedScroll() {
 
     A_TrayMenu.toggleCheck('Enable &Accelerated Scroll')
     A_WorkingDir := A_ScriptDir
+    MouseShowAcceleratedScrollSetting()
 }
 
 UseUserAcceleratedScrollSetting() {
@@ -58,4 +55,5 @@ UseUserAcceleratedScrollSetting() {
     Hotkey('WheelDown', action)
     Hotkey('WheelUp', action)
     A_WorkingDir := A_ScriptDir
+    MouseShowAcceleratedScrollSetting()
 }
