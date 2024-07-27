@@ -33,9 +33,8 @@ AcceleratedScroll() {
 
     timeBetweenHotkeysMs := A_TimeSincePriorHotkey or 1
 
-    if A_ThisHotkey != A_PriorHotkey or timeBetweenHotkeysMs > TIMEOUT_MS
-            ; A new session has started.
-    {
+    isNewSession := (A_ThisHotkey != A_PriorHotkey) or (timeBetweenHotkeysMs > TIMEOUT_MS)
+    if isNewSession {
         _momentum := 0
         _highestSpeedAchieved := 1
         scrollsToSend := 1
