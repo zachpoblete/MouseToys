@@ -1,3 +1,5 @@
+#Requires AutoHotkey v2.0
+
 #Include individual-hotkeys
 #Include x2-open-link-in-new-active-tab.ahk
 #Include x2-page-go-back-or-forward.ahk

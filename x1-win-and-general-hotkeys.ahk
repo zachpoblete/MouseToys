@@ -1,3 +1,5 @@
+#Requires AutoHotkey v2.0
+
 ; Note: The order of some of the following #Include directives is very
 ; important. Namely, moving the X1+W hotkeys below the X1+R+W hotkeys would make
 ; pressing X1+R+W perform the function of X1+W. See
