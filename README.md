@@ -38,6 +38,8 @@
 | <kbd>XButton2</kbd>+<kbd>LButton</kbd> | ⬅️ Go back a page |
 | <kbd>XButton2</kbd>+<kbd>LButton</kbd>+<kbd>RButton</kbd> | ➡️ Go forward a page |
 | <kbd>XButton2</kbd>+<kbd>LButton</kbd>+<kbd>MButton</kbd> | 🔄 Refresh page |
+| <kbd>XButton2</kbd>+<kbd>LButton</kbd>+<kbd>WheelUp</kbd> | 🔍 Zoom in |
+| <kbd>XButton2</kbd>+<kbd>LButton</kbd>+<kbd>WheelDown</kbd> | 🔍 Zoom out |
 | <kbd>XButton2</kbd>+<kbd>MButton</kbd> | 🔗 Open link in a new active tab |
 
 ## 🔘 Buttons guide
