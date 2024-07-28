@@ -27,8 +27,7 @@ MouseTabGoToAdjacent(leftOrRight) {
         -1, {left: "^{PgUp}", right: "^{PgDn}"}
     )
 
-    WinExist('A')
-
+    MouseWinActivate()
     winProcessName := WinGetProcessName()
     switch winProcessName {
         case "Discord.exe", "Messenger.exe":
