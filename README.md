@@ -77,4 +77,4 @@ An example: <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<kbd>RButton</kbd> means to p
 
 ## 📜 License
 
-[MIT](https://github.com/zachpoblete/AutoHotkey/blob/main/LICENSE)
+[MIT](https://github.com/zachpoblete/MouseToys/blob/main/LICENSE)
