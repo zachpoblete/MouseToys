@@ -9,9 +9,9 @@ What if you could do the most common keyboard shortcuts from just your mouse?
 ## 💻 How to use
 
 1. Grab a mouse with extra side buttons (see [Buttons guide](#%EF%B8%8F-buttons-guide)).
-2. Download [AutoHotkey v2.0](https://www.autohotkey.com/download/ahk-v2.exe) (here are the [docs](https://www.autohotkey.com/docs/v2/)).
-3. Download and extract the [ZIP of this repo](https://github.com/zachpoblete/MouseToys/archive/refs/heads/main.zip).
-4. Run `MouseToys.ahk` and try out these shortcuts!
+1. Download [AutoHotkey v2.0](https://www.autohotkey.com/download/ahk-v2.exe) (here are the [docs](https://www.autohotkey.com/docs/v2/)).
+1. Download and extract the [ZIP of this repo](https://github.com/zachpoblete/MouseToys/archive/refs/heads/main.zip).
+1. Run `MouseToys.ahk` and try out these shortcuts!
 
 ## 🚀 Accelerated scroll (Scroll wheel)
 
@@ -72,8 +72,8 @@ An example: <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<kbd>RButton</kbd> means to p
 ## 🚩 Known issues
 
 1. [Some mice don't do 3-button combinations well](https://github.com/zachpoblete/MouseToys/issues/43)
-2. [Shortcuts can be triggered twice if you click a certain way \[1 solution\]](https://github.com/zachpoblete/MouseToys/issues/8)
-3. [Lag when moving window across monitors](https://github.com/zachpoblete/MouseToys/issues/52)
+1. [Shortcuts can be triggered twice if you click a certain way \[1 solution\]](https://github.com/zachpoblete/MouseToys/issues/8)
+1. [Lag when moving window across monitors](https://github.com/zachpoblete/MouseToys/issues/52)
 
 ## 📜 License
 
