@@ -49,8 +49,16 @@ MouseWinRestoreAndMove(thisHotkey := "") {
 #HotIf
 
 MouseWinIsStillRestored() {
-    a_thisHotkeyNoDirection := SubStr(A_ThisHotkey, 1, -2)
-    return a_thisHotkeyNoDirection != 'MButton & Wheel'
+    try {
+        winMinMax := WinGetMinMax()
+    } catch {
+        return false
+    }
+    if winMinMax {
+        return false
+    }
+
+    return true
 }
 
 MouseWinMoveMiddle() {
