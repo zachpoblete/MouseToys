@@ -57,7 +57,7 @@ What if you could do the most common keyboard shortcuts from just your mouse?
 
 ## 🖱️ Buttons guide
 
-![mouse buttons](https://user-images.githubusercontent.com/92368853/218107501-85e6c04b-cbd5-4de3-9c81-cd3450da1ae7.png)
+![mouse buttons](https://github.com/user-attachments/assets/74860fd1-2f78-48b3-94dd-f499ada45ed3)
 
 - ❶ is <kbd>LButton</kbd>
 - ❷ is <kbd>RButton</kbd>
