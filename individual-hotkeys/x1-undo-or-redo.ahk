@@ -1,10 +1,10 @@
 #Include lib
 #Include mouse-functions.ahk
-#Include can-redo-with-ctrl-y.ahk
 #Include fix-x1.ahk
 
 #Include common-lib
 #Include default-settings.ahk
+#Include can-redo-with-ctrl-y.ahk
 
 ; Press XButton1 + RButton + WheelDown
 ; to send the undo command ↩️.
