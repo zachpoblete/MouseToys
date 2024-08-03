@@ -2,6 +2,9 @@
 #Include mouse-functions.ahk
 #Include fix-x1.ahk
 
+#Include common-lib
+#Include default-settings.ahk
+
 ; Press XButton1 + LButton
 ; to send the Delete key ❎.
 ; Press XButton1 + LButton + RButton

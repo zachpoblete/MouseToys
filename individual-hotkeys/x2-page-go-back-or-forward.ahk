@@ -2,6 +2,9 @@
 #Include mouse-functions.ahk
 #Include fix-x2.ahk
 
+#Include common-lib
+#Include default-settings.ahk
+
 ; Press XButton2 + LButton
 ; to go back a page ⬅️.
 ; Press XButton2 + LButton + RButton

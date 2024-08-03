@@ -2,6 +2,9 @@
 #Include mouse-functions.ahk
 #Include fix-x1.ahk
 
+#Include common-lib
+#Include default-settings.ahk
+
 ; Press XButton1 + RButton
 ; to copy to the clipboard 📋.
 ; Press XButton1 + RButton + LButton

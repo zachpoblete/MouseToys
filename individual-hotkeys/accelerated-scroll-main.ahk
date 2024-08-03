@@ -1,3 +1,8 @@
+#Include lib
+
+#Include common-lib
+#Include default-settings.ahk
+
 ; Originally by BoffinbraiN. For full details, visit the forum thread:
 ; https://www.autohotkey.com/board/topic/48426-accelerated-scrolling-script
 

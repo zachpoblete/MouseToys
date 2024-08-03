@@ -4,6 +4,9 @@
 #Include get-user-settings-path.ahk
 #Include accelerated-scroll-show-user-setting.ahk
 
+#Include common-lib
+#Include default-settings.ahk
+
 A_TrayMenu.insert('E&xit', 'Enable &Accelerated Scroll', (*) => ToggleAcceleratedScroll())
 
 ToggleAcceleratedScroll() {

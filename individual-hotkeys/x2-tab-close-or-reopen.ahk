@@ -2,6 +2,9 @@
 #Include mouse-functions.ahk
 #Include fix-x2.ahk
 
+#Include common-lib
+#Include default-settings.ahk
+
 ; Press XButton2 + RButton
 ; to close the current tab ❎.
 ; Press XButton2 + RButton + LButton
