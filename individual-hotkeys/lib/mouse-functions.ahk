@@ -17,7 +17,10 @@ MouseIsThisHotkeyCorrect(thisHotkey) {
 MouseWinActivate(winTitle := '', winText := '', excludedTitle := '', excludedText := '') {
     MouseGetPos(, , &mouseHwnd)
     WinActivate(mouseHwnd)
-    return WinActive(winTitle ' ahk_id ' mouseHwnd, winText, excludedTitle, excludedText)
+    activeMouseWin := WinActive(winTitle ' ahk_id ' mouseHwnd, winText, excludedTitle, excludedText)
         ; mouseHwnd is there for the case
         ; when all the parameters are blank and there is no last found window.
+    if not activeMouseWin {
+        throw TargetError("Did not activate the window under the mouse.")
+    }
 }
