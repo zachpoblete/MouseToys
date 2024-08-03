@@ -84,6 +84,8 @@ MouseWinMove() {
     ; across monitors with different DPI settings because these per-monitor DPI
     ; aware windows can already do that themselves. See
     ; https://www.autohotkey.com/docs/v2/misc/DPIScaling.htm
+    ; For an explanation of the -3 and -4 arguments, see
+    ; https://learn.microsoft.com/en-us/windows/win32/hidpi/dpi-awareness-context
     hwnd := WinActive()
     winDpiAwarenessContext := DllCall("GetWindowDpiAwarenessContext", "ptr", hwnd, "ptr")
     isWinPerMonitorDpiAware :=
