@@ -1,5 +1,3 @@
-#Include lib
-
 #Include ahk-utils
 #Include default-settings.ahk
 

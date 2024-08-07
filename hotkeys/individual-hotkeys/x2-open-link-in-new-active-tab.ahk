@@ -1,9 +1,9 @@
-#Include lib
-#Include mouse-functions.ahk
-#Include fix-x2.ahk
-
 #Include ahk-utils
 #Include default-settings.ahk
+
+#Include ..\mouse-lib
+#Include mouse-functions.ahk
+#Include fix-x2.ahk
 
 ; Press XButton2 + MButton
 ; to open a link in a new active tab 🔗.

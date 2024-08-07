@@ -1,11 +1,11 @@
 #Include accelerated-scroll-main.ahk
 
-#Include lib
-#Include get-user-settings-path.ahk
-#Include accelerated-scroll-show-user-setting.ahk
-
 #Include ahk-utils
 #Include default-settings.ahk
+
+#Include ..\mouse-lib
+#Include get-user-settings-path.ahk
+#Include accelerated-scroll-show-user-setting.ahk
 
 UseUserAcceleratedScrollSetting()
 

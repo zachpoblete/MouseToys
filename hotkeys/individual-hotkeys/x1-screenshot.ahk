@@ -1,8 +1,8 @@
-#Include lib
-#Include fix-x1.ahk
-
 #Include ahk-utils
 #Include default-settings.ahk
+
+#Include ..\mouse-lib
+#Include fix-x1.ahk
 
 ; Press XButton1 + MButton + LButton
 ; to take a screenshot 📸.
