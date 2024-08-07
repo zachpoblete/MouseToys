@@ -1,7 +1,7 @@
 #Include lib
 #Include fix-x1.ahk
 
-#Include common-lib
+#Include ahk-utils
 #Include default-settings.ahk
 
 ; Press XButton1 + MButton + LButton

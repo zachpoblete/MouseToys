@@ -1,5 +1,7 @@
 ; Warning: Some mice don't do the 3-button combination hotkeys well.
 
+#Module MouseModule
+
 #Requires AutoHotkey v2.0
 
 #Include hotkeys

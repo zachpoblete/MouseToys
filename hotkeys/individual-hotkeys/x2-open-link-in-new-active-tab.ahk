@@ -2,7 +2,7 @@
 #Include mouse-functions.ahk
 #Include fix-x2.ahk
 
-#Include common-lib
+#Include ahk-utils
 #Include default-settings.ahk
 
 ; Press XButton2 + MButton

@@ -4,7 +4,7 @@
 #Include get-user-settings-path.ahk
 #Include accelerated-scroll-show-user-setting.ahk
 
-#Include common-lib
+#Include ahk-utils
 #Include default-settings.ahk
 
 UseUserAcceleratedScrollSetting()

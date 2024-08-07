@@ -1,6 +1,6 @@
 #Include lib
 
-#Include common-lib
+#Include ahk-utils
 #Include default-settings.ahk
 
 ; Press XButton1 + WheelDown

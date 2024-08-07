@@ -1,6 +1,6 @@
 #Include lib
 
-#Include common-lib
+#Include ahk-utils
 #Include default-settings.ahk
 
 ; Originally by BoffinbraiN. For full details, visit the forum thread:
