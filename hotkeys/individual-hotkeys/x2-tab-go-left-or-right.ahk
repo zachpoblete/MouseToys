@@ -10,8 +10,8 @@
 ; Press XButton2 + WheelUp
 ; to go to the right tab ➡️.
 #HotIf GetKeyState('XButton2', 'P')
-WheelUp::   MouseTabGoLeft()
-WheelDown:: MouseTabGoRight()
+    WheelUp::   MouseTabGoLeft()
+    WheelDown:: MouseTabGoRight()
 #HotIf
 
 MouseTabGoLeft() {

@@ -8,7 +8,7 @@
 ; Press XButton2 + LButton + MButton
 ; to refresh the current page 🔄.
 #HotIf GetKeyState('XButton2', 'P')
-LButton & MButton Up:: MousePageRefresh()
+    LButton & MButton Up:: MousePageRefresh()
 #HotIf
 
 MousePageRefresh() {

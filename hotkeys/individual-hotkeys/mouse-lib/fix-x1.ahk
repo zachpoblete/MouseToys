@@ -5,7 +5,7 @@
 ; See https://www.autohotkey.com/boards/viewtopic.php?f=82&t=125851
 ; which may mean this is a bug:
 #HotIf GetKeyState('XButton1', 'P')
-*MButton:: return
-*LButton:: return
-*RButton:: return
+    *MButton:: return
+    *LButton:: return
+    *RButton:: return
 #HotIf

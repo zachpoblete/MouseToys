@@ -10,8 +10,8 @@
 ; Press XButton2 + LButton + RButton
 ; to go forward a page ➡️.
 #HotIf GetKeyState('XButton2', 'P')
-LButton Up::           MousePageGoBack(thisHotkey)
-LButton & RButton Up:: MousePageGoForward(thisHotkey)
+    LButton Up::           MousePageGoBack(thisHotkey)
+    LButton & RButton Up:: MousePageGoForward(thisHotkey)
 #HotIf
 
 MousePageGoBack(thisHotkey) {

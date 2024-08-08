@@ -11,14 +11,14 @@
 ; hotkey is the default 1.
 #MaxThreadsPerHotkey 2
 
-; Press XButton2 + RButton + WheelDown
-; to cycle through tabs in recently used order ⬇️.
-; Press XButton2 + RButton + WheelUp
-; to cycle through tabs in reverse used order ⬆️.
-#HotIf GetKeyState('XButton2', 'P')
-RButton & WheelDown:: MouseTabCycleRecentlyUsed()
-RButton & WheelUp::   MouseTabCycleReverseUsed()
-#HotIf
+    ; Press XButton2 + RButton + WheelDown
+    ; to cycle through tabs in recently used order ⬇️.
+    ; Press XButton2 + RButton + WheelUp
+    ; to cycle through tabs in reverse used order ⬆️.
+    #HotIf GetKeyState('XButton2', 'P')
+        RButton & WheelDown:: MouseTabCycleRecentlyUsed()
+        RButton & WheelUp::   MouseTabCycleReverseUsed()
+    #HotIf
 
 #MaxThreadsPerHotkey 1
 

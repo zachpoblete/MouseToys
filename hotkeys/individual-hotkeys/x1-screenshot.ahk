@@ -7,7 +7,7 @@
 ; Press XButton1 + MButton + LButton
 ; to take a screenshot 📸.
 #HotIf GetKeyState('XButton1', 'P')
-MButton & LButton Up:: MouseScreenshot()
+    MButton & LButton Up:: MouseScreenshot()
 #HotIf
 
 MouseScreenshot() {

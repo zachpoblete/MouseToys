@@ -11,8 +11,8 @@
 ; Press XButton1 + RButton + WheelUp
 ; to send the redo command ↪.
 #HotIf GetKeyState('XButton1', 'P')
-RButton & WheelDown:: MouseUndo()
-RButton & WheelUp::   MouseRedo()
+    RButton & WheelDown:: MouseUndo()
+    RButton & WheelUp::   MouseRedo()
 #HotIf
 
 MouseUndo(thisHotkey := "") {

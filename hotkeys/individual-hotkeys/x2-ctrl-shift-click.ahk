@@ -8,10 +8,10 @@
 ; Press XButton2 + MButton
 ; to open a link in a new active tab 🔗.
 #HotIf GetKeyState('XButton2', 'P')
-MButton Up:: CtrlShiftClick(thisHotkey)
+    MButton Up:: CtrlShiftClick(thisHotkey)
 
-; Stop the native function from going through.
-MButton::    return
+    ; Stop the native function from going through.
+    MButton::    return
 #HotIf
 
 CtrlShiftClick(thisHotkey := "") {
