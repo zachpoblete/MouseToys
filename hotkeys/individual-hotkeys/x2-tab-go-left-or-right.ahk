@@ -12,6 +12,7 @@
 #HotIf GetKeyState('XButton2', 'P')
 WheelUp::   MouseTabGoLeft()
 WheelDown:: MouseTabGoRight()
+#HotIf
 
 MouseTabGoLeft() {
     MouseTabGoToAdjacent("left")
@@ -60,4 +61,3 @@ MouseTabGoToAdjacent(leftOrRight) {
 
     Send(STATES[-1].%leftOrRight%)
 }
-#HotIf

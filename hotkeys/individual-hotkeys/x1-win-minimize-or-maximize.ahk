@@ -13,6 +13,7 @@
 #HotIf GetKeyState('XButton1', 'P')
 MButton & WheelDown:: MouseWinMinimize()
 MButton & WheelUp::   MouseWinMaximize()
+#HotIf
 
 MouseWinMinimize() {
     MouseWinMinimizeOrMaximize('Min')
@@ -21,7 +22,6 @@ MouseWinMinimize() {
 MouseWinMaximize() {
     MouseWinMinimizeOrMaximize('Max')
 }
-#HotIf
 
 MouseWinMinimizeOrMaximize(minOrMax) {
     if MouseWinIsMoving {

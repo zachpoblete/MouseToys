@@ -13,6 +13,7 @@
 #HotIf GetKeyState('XButton1', 'P')
 RButton & WheelDown:: MouseUndo()
 RButton & WheelUp::   MouseRedo()
+#HotIf
 
 MouseUndo(thisHotkey := "") {
     MouseSend('^z', thisHotkey)
@@ -27,4 +28,3 @@ MouseRedo() {
         Send('^+z')
     }
 }
-#HotIf

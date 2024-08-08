@@ -19,6 +19,7 @@ MButton Up:: {
 
     MouseWinRestoreAndMove(thisHotkey)
 }
+#HotIf
 
 MouseWinRestoreAndMove(thisHotkey := "") {
     MouseWinActivate()
@@ -35,7 +36,6 @@ MouseWinRestoreAndMove(thisHotkey := "") {
 
     MouseWinMove()
 }
-#HotIf
 
 MouseWinIsStillRestored() {
     try {

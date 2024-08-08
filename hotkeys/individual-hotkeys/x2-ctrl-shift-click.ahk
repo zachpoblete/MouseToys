@@ -12,6 +12,7 @@ MButton Up:: CtrlShiftClick(thisHotkey)
 
 ; Stop the native function from going through.
 MButton::    return
+#HotIf
 
 CtrlShiftClick(thisHotkey := "") {
     if thisHotkey and not MouseIsThisHotkeyCorrect(thisHotkey) {
@@ -21,4 +22,3 @@ CtrlShiftClick(thisHotkey := "") {
     ; Don't use MouseSend because we don't need to activate the window.
     Send('^+{Click}')
 }
-#HotIf

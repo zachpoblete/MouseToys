@@ -12,6 +12,7 @@
 #HotIf GetKeyState('XButton2', 'P')
 LButton Up::           MousePageGoBack(thisHotkey)
 LButton & RButton Up:: MousePageGoForward(thisHotkey)
+#HotIf
 
 MousePageGoBack(thisHotkey) {
     MousePageGoBackOrForward("back", thisHotkey)
@@ -20,7 +21,6 @@ MousePageGoBack(thisHotkey) {
 MousePageGoForward(thisHotkey) {
     MousePageGoBackOrForward("forward")
 }
-#HotIf
 
 MousePageGoBackOrForward(backOrForward, thisHotkey := "") {
     static STATES := Map(
