@@ -24,3 +24,12 @@ MouseWinActivate(winTitle := '', winText := '', excludedTitle := '', excludedTex
         throw TargetError("Did not activate the window under the mouse.")
     }
 }
+
+MouseWinCloseInAltTabMenu() {
+    wasAWinClosed := false
+    if WinActive('Task Switching ahk_class XamlExplorerHostIslandWindow') {
+        Click('Middle')
+        wasAWinClosed := true
+    }
+    return wasAWinClosed
+}

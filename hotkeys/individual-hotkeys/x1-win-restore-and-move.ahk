@@ -8,8 +8,6 @@
 ; Press XButton1 + MButton
 ; to restore a window and move it using the mouse 🚚.
 #HotIf GetKeyState('XButton1', 'P')
-!MButton Up:: MouseWinCloseInAltTabMenu()
-
 MButton Up:: {
     if not MouseIsThisHotkeyCorrect(thisHotkey) {
         return
@@ -20,15 +18,6 @@ MButton Up:: {
     }
 
     MouseWinRestoreAndMove(thisHotkey)
-}
-
-MouseWinCloseInAltTabMenu() {
-    wasAWinClosed := false
-    if WinActive('Task Switching ahk_class XamlExplorerHostIslandWindow') {
-        Click('Middle')
-        wasAWinClosed := true
-    }
-    return wasAWinClosed
 }
 
 MouseWinRestoreAndMove(thisHotkey := "") {
