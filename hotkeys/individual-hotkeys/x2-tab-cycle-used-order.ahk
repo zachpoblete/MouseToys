@@ -5,20 +5,22 @@
 #Include mouse-functions.ahk
 #Include fix-x2.ahk
 
-; Press XButton2 + RButton + WheelDown
-; to cycle through tabs in recently used order ⬇️.
-; Press XButton2 + RButton + WheelUp
-; to cycle through tabs in reverse used order ⬆️.
-#HotIf GetKeyState('XButton2', 'P')
-
 ; Set the max threads per hotkey to 2 because these hotkeys use KeyWait to wait
-; for the release of the modifier, but KeyWait prevents the hotkeys from firing
-; again if the max threads per hotkey is the default 1.
+; for the release of a prefix key (RButton in this case) to work continuously,
+; but KeyWait prevents the hotkeys from firing again if the max threads per
+; hotkey is the default 1.
 #MaxThreadsPerHotkey 2
-RButton & WheelDown:: MouseTabCycleRecentlyUsed()
-RButton & WheelUp::   MouseTabCycleReverseUsed()
+
+    ; Press XButton2 + RButton + WheelDown
+    ; to cycle through tabs in recently used order ⬇️.
+    ; Press XButton2 + RButton + WheelUp
+    ; to cycle through tabs in reverse used order ⬆️.
+    #HotIf GetKeyState('XButton2', 'P')
+        RButton & WheelDown:: MouseTabCycleRecentlyUsed()
+        RButton & WheelUp::   MouseTabCycleReverseUsed()
+    #HotIf
+
 #MaxThreadsPerHotkey 1
-#HotIf
 
 MouseTabCycleRecentlyUsed() {
     MouseTabCycleUsedOrder("RButton", "{Tab}")

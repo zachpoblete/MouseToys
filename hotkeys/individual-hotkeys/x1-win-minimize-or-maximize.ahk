@@ -11,8 +11,9 @@
 ; Press XButton1 + MButton + WheelUp
 ; to maximize a window ↗.
 #HotIf GetKeyState('XButton1', 'P')
-MButton & WheelDown:: MouseWinMinimize()
-MButton & WheelUp::   MouseWinMaximize()
+    MButton & WheelDown:: MouseWinMinimize()
+    MButton & WheelUp::   MouseWinMaximize()
+#HotIf
 
 MouseWinMinimize() {
     MouseWinMinimizeOrMaximize('Min')
@@ -21,7 +22,6 @@ MouseWinMinimize() {
 MouseWinMaximize() {
     MouseWinMinimizeOrMaximize('Max')
 }
-#HotIf
 
 MouseWinMinimizeOrMaximize(minOrMax) {
     if MouseWinIsMoving {

@@ -8,17 +8,18 @@
 ; Press XButton1 + MButton
 ; to restore a window and move it using the mouse 🚚.
 #HotIf GetKeyState('XButton1', 'P')
-MButton Up:: {
-    if not MouseIsThisHotkeyCorrect(thisHotkey) {
-        return
-    }
+    MButton Up:: {
+        if not MouseIsThisHotkeyCorrect(thisHotkey) {
+            return
+        }
 
-    if MouseWinCloseInAltTabMenu() {
-        return
-    }
+        if MouseWinCloseInAltTabMenu() {
+            return
+        }
 
-    MouseWinRestoreAndMove(thisHotkey)
-}
+        MouseWinRestoreAndMove(thisHotkey)
+    }
+#HotIf
 
 MouseWinRestoreAndMove(thisHotkey := "") {
     MouseWinActivate()
@@ -35,7 +36,6 @@ MouseWinRestoreAndMove(thisHotkey := "") {
 
     MouseWinMove()
 }
-#HotIf
 
 MouseWinIsStillRestored() {
     try {
