@@ -11,7 +11,7 @@
 !MButton Up:: MouseWinCloseInAltTabMenu()
 
 MButton Up:: {
-    if thisHotkey and not MouseIsThisHotkeyCorrect(thisHotkey) {
+    if not MouseIsThisHotkeyCorrect(thisHotkey) {
         return
     }
 
