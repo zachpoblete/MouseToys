@@ -53,7 +53,7 @@ What if you could do the most common keyboard shortcuts from just your mouse?
 | <kbd>XButton2</kbd>+<kbd>LButton</kbd>+<kbd>MButton</kbd> | 🔄 Refresh page |
 | <kbd>XButton2</kbd>+<kbd>LButton</kbd>+<kbd>WheelUp</kbd> | 🔍 Zoom in |
 | <kbd>XButton2</kbd>+<kbd>LButton</kbd>+<kbd>WheelDown</kbd> | 🔍 Zoom out |
-| <kbd>XButton2</kbd>+<kbd>MButton</kbd> | 🔗 Open link in a new active tab |
+| <kbd>XButton2</kbd>+<kbd>MButton</kbd> | 🔗 <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Click</kbd> <br> Use to open a link in a new active tab <br> or select multiple tabs |
 
 ## 🖱️ Buttons guide
 
