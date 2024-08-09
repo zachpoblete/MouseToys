@@ -18,5 +18,5 @@ ToggleAcceleratedScroll() {
     Hotkey('WheelUp', 'Toggle')
 
     A_TrayMenu.toggleCheck('Enable &Accelerated Scroll')
-    MouseShowAcceleratedScrollSetting()
+    ShowAcceleratedScrollSettingAtMouse()
 }

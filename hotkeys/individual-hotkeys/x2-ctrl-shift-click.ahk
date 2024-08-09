@@ -15,7 +15,7 @@
 #HotIf
 
 CtrlShiftClick(thisHotkey := "") {
-    if thisHotkey and not MouseIsThisHotkeyCorrect(thisHotkey) {
+    if thisHotkey and not IsThisMouseHotkeyCorrect(thisHotkey) {
         return
     }
 

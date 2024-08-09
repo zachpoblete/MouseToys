@@ -16,21 +16,21 @@
     ; Press XButton2 + RButton + WheelUp
     ; to cycle through tabs in reverse used order ⬆️.
     #HotIf GetKeyState('XButton2', 'P')
-        RButton & WheelDown:: MouseTabCycleRecentlyUsed()
-        RButton & WheelUp::   MouseTabCycleReverseUsed()
+        RButton & WheelDown:: CycleTabsRecentlyUsedAtMouse()
+        RButton & WheelUp::   CycleTabsReverseUsedAtMouse()
     #HotIf
 
 #MaxThreadsPerHotkey 1
 
-MouseTabCycleRecentlyUsed() {
-    MouseTabCycleUsedOrder("RButton", "{Tab}")
+CycleTabsRecentlyUsedAtMouse() {
+    CycleTabsOrderUsedAtMouse("RButton", "{Tab}")
 }
 
-MouseTabCycleReverseUsed() {
-    MouseTabCycleUsedOrder("RButton", "+{Tab}")
+CycleTabsReverseUsedAtMouse() {
+    CycleTabsOrderUsedAtMouse("RButton", "+{Tab}")
 }
 
-MouseTabCycleUsedOrder(modifier, tab) {
+CycleTabsOrderUsedAtMouse(modifier, tab) {
     static _isCycling := false
 
     ; Turn on Critical so that even when scrolling fast, a new session is properly
@@ -45,7 +45,7 @@ MouseTabCycleUsedOrder(modifier, tab) {
     ; condition below is not meant to be a feature but is just supposed to fix a
     ; bug.
     if not _isCycling {
-        MouseWinActivate()
+        ActivateWinAtMouse()
     }
 
     if WinActive('ahk_exe msedge.exe') {

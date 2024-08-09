@@ -10,14 +10,14 @@
 ; Press XButton2 + LButton + WheelDown
 ; to zoom out 🔍.
 #HotIf GetKeyState('XButton2', 'P')
-    LButton & WheelUp::   MouseZoomIn()
-    LButton & WheelDown:: MouseZoomOut()
+    LButton & WheelUp::   ZoomInAtMouse()
+    LButton & WheelDown:: ZoomOutAtMouse()
 #HotIf
 
-MouseZoomIn(thisHotkey := "") {
-    MouseSend("^=", thisHotkey)
+ZoomInAtMouse(thisHotkey := "") {
+    SendAtMouse("^=", thisHotkey)
 }
 
-MouseZoomOut(thisHotkey := "") {
-    MouseSend("^-", thisHotkey)
+ZoomOutAtMouse(thisHotkey := "") {
+    SendAtMouse("^-", thisHotkey)
 }

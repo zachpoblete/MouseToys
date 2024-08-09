@@ -11,7 +11,7 @@
 ; to send the Enter key ⬇️.
 #HotIf GetKeyState('XButton1', 'P')
     *LButton Up:: {
-        if not MouseIsThisHotkeyCorrect(thisHotkey) {
+        if not IsThisMouseHotkeyCorrect(thisHotkey) {
             return
         }
 
@@ -20,8 +20,8 @@
             return
         }
 
-        MouseSend('{Delete}')
+        SendAtMouse('{Delete}')
     }
 
-    LButton & RButton Up:: MouseSend('{Enter}')
+    LButton & RButton Up:: SendAtMouse('{Enter}')
 #HotIf

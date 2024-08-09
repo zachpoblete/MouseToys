@@ -21,5 +21,5 @@ UseUserAcceleratedScrollSetting() {
     }
     Hotkey('WheelDown', action)
     Hotkey('WheelUp', action)
-    MouseShowAcceleratedScrollSetting()
+    ShowAcceleratedScrollSettingAtMouse()
 }

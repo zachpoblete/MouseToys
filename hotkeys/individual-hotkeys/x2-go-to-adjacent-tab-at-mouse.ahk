@@ -10,19 +10,19 @@
 ; Press XButton2 + WheelUp
 ; to go to the right tab ➡️.
 #HotIf GetKeyState('XButton2', 'P')
-    WheelUp::   MouseTabGoLeft()
-    WheelDown:: MouseTabGoRight()
+    WheelUp::   GoToLeftTabAtMouse()
+    WheelDown:: GoToRightTabAtMouse()
 #HotIf
 
-MouseTabGoLeft() {
-    MouseTabGoToAdjacent("left")
+GoToLeftTabAtMouse() {
+    GoToAdjacentTabAtMouse("left")
 }
 
-MouseTabGoRight() {
-    MouseTabGoToAdjacent("right")
+GoToRightTabAtMouse() {
+    GoToAdjacentTabAtMouse("right")
 }
 
-MouseTabGoToAdjacent(leftOrRight) {
+GoToAdjacentTabAtMouse(leftOrRight) {
     static STATES := Map(
         1,  {left: "!{Up}",   right: "!{Down}"},
         2,  {left: "{PgUp}",  right: "{PgDn}"},
@@ -31,7 +31,7 @@ MouseTabGoToAdjacent(leftOrRight) {
         -1, {left: "^{PgUp}", right: "^{PgDn}"}
     )
 
-    MouseWinActivate()
+    ActivateWinAtMouse()
     winProcessName := WinGetProcessName()
     switch winProcessName {
         case "Discord.exe", "Messenger.exe":

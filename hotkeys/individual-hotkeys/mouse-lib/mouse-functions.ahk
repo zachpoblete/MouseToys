@@ -1,20 +1,20 @@
 ; Optionally set thisHotkey to check if it is correct.
-MouseSend(keys, thisHotkey := "") {
-    if thisHotkey and not MouseIsThisHotkeyCorrect(thisHotkey) {
+SendAtMouse(keys, thisHotkey := "") {
+    if thisHotkey and not IsThisMouseHotkeyCorrect(thisHotkey) {
         return
     }
-    MouseWinActivate()
+    ActivateWinAtMouse()
     Send('{Blind}' keys)
 }
 
-MouseIsThisHotkeyCorrect(thisHotkey) {
+IsThisMouseHotkeyCorrect(thisHotkey) {
     thisKey := StrReplace(thisHotkey, " Up")
     thisKey := LTrim(thisKey, "*")
     thisKey := RTrim(thisKey, " ")
     return thisKey = A_PriorKey
 }
 
-MouseWinActivate(winTitle := '', winText := '', excludedTitle := '', excludedText := '') {
+ActivateWinAtMouse(winTitle := '', winText := '', excludedTitle := '', excludedText := '') {
     MouseGetPos(, , &mouseHwnd)
     WinActivate(mouseHwnd)
     activeMouseWin := WinActive(winTitle ' ahk_id ' mouseHwnd, winText, excludedTitle, excludedText)
@@ -25,7 +25,7 @@ MouseWinActivate(winTitle := '', winText := '', excludedTitle := '', excludedTex
     }
 }
 
-MouseWinCloseInAltTabMenu() {
+CloseCyclingWinAtMouse() {
     wasAWinClosed := false
     if WinActive('Task Switching ahk_class XamlExplorerHostIslandWindow') {
         Click('Middle')

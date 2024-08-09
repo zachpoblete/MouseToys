@@ -9,20 +9,20 @@
 ; to restore a window and move it using the mouse 🚚.
 #HotIf GetKeyState('XButton1', 'P')
     MButton Up:: {
-        if not MouseIsThisHotkeyCorrect(thisHotkey) {
+        if not IsThisMouseHotkeyCorrect(thisHotkey) {
             return
         }
 
-        if MouseWinCloseInAltTabMenu() {
+        if CloseCyclingWinAtMouse() {
             return
         }
 
-        MouseWinRestoreAndMove(thisHotkey)
+        RestoreAndDragWinAtMouse(thisHotkey)
     }
 #HotIf
 
-MouseWinRestoreAndMove(thisHotkey := "") {
-    MouseWinActivate()
+RestoreAndDragWinAtMouse(thisHotkey := "") {
+    ActivateWinAtMouse()
     if WinActive('ahk_class WorkerW ahk_exe Explorer.EXE') {
         return
     }
@@ -31,13 +31,13 @@ MouseWinRestoreAndMove(thisHotkey := "") {
     winMinMax := WinGetMinMax()
     if winMinMax = 1 {
         WinRestore()
-        MouseWinMoveMiddle()
+        MoveWinMiddleToMouse()
     }
 
-    MouseWinMove()
+    DragWinAtMouse()
 }
 
-MouseWinIsStillRestored() {
+IsWinAtMouseStillRestored() {
     try {
         winMinMax := WinGetMinMax()
     } catch {
@@ -50,7 +50,7 @@ MouseWinIsStillRestored() {
     return true
 }
 
-MouseWinMoveMiddle() {
+MoveWinMiddleToMouse() {
     CoordMode('Mouse', "Screen")
     MouseGetPos(&mouseX, &mouseY)
 
@@ -63,7 +63,7 @@ MouseWinMoveMiddle() {
     WinMove(winX, winY)
 }
 
-MouseWinMove() {
+DragWinAtMouse() {
     CoordMode('Mouse', "Screen")
     MouseGetPos(&mouseStartX, &mouseStartY)
     global MouseWinIsMoving := true
@@ -85,7 +85,7 @@ MouseWinMove() {
         DllCall("SetThreadDpiAwarenessContext", "ptr", -3, "ptr")
     }
 
-    while GetKeyState('XButton1', 'P') and MouseWinIsStillRestored()
+    while GetKeyState('XButton1', 'P') and IsWinAtMouseStillRestored()
             ; A loop is used instead of SetTimer to preserve the last found window.
     {
         WinGetPos(&winX, &winY)

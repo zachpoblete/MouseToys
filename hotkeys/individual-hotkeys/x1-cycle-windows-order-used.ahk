@@ -13,4 +13,4 @@ XButton1 & WheelUp::   ShiftAltTab
 
 ; Press XButton1 + MButton
 ; to close a window while cycling through windows in recently used order ❎.
-!MButton Up:: MouseWinCloseInAltTabMenu()
+!MButton Up:: CloseCyclingWinAtMouse()

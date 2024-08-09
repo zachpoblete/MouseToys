@@ -1,6 +1,6 @@
 #Include get-user-settings-path.ahk
 
-MouseShowAcceleratedScrollSetting() {
+ShowAcceleratedScrollSettingAtMouse() {
     static acceleratedScrollSetting
 
     userSettingsPath := GetUserSettingsPath()

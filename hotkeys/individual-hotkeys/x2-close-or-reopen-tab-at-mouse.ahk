@@ -10,14 +10,14 @@
 ; Press XButton2 + RButton + LButton
 ; to reopen the last closed tab ↪.
 #HotIf GetKeyState('XButton2', 'P')
-    RButton Up::           MouseTabClose(thisHotkey)
-    RButton & LButton Up:: MouseTabReopenLastClosed()
+    RButton Up::           CloseTabAtMouse(thisHotkey)
+    RButton & LButton Up:: ReopenClosedTabAtMouse()
 #HotIf
 
-MouseTabClose(thisHotkey := "") {
-    MouseSend("^w", thisHotkey)
+CloseTabAtMouse(thisHotkey := "") {
+    SendAtMouse("^w", thisHotkey)
 }
 
-MouseTabReopenLastClosed(thisHotkey := "") {
-    MouseSend("^+t", thisHotkey)
+ReopenClosedTabAtMouse(thisHotkey := "") {
+    SendAtMouse("^+t", thisHotkey)
 }

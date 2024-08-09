@@ -11,16 +11,16 @@
 ; Press XButton1 + RButton + WheelUp
 ; to send the redo command ↪.
 #HotIf GetKeyState('XButton1', 'P')
-    RButton & WheelDown:: MouseUndo()
-    RButton & WheelUp::   MouseRedo()
+    RButton & WheelDown:: UndoAtMouse()
+    RButton & WheelUp::   RedoAtMouse()
 #HotIf
 
-MouseUndo(thisHotkey := "") {
-    MouseSend('^z', thisHotkey)
+UndoAtMouse(thisHotkey := "") {
+    SendAtMouse('^z', thisHotkey)
 }
 
-MouseRedo() {
-    MouseWinActivate()
+RedoAtMouse() {
+    ActivateWinAtMouse()
 
     if CanRedoWithCtrlY() {
         Send('^y')
