@@ -11,6 +11,14 @@ IsWinAtMouseStillRestored() {
     return true
 }
 
+IsWinPerMonitorDpiAware(hwnd) {
+    winDpiAwarenessContext := DllCall("GetWindowDpiAwarenessContext", "ptr", hwnd, "ptr")
+    return (
+        DllCall("AreDpiAwarenessContextsEqual", "ptr", winDpiAwarenessContext, "ptr", -3)
+        or DllCall("AreDpiAwarenessContextsEqual", "ptr", winDpiAwarenessContext, "ptr", -4)
+    )
+}
+
 MoveWinMiddleToMouse() {
     CoordMode('Mouse', "Screen")
     MouseGetPos(&mouseX, &mouseY)
@@ -34,16 +42,12 @@ DragWinAtMouse() {
     ; across monitors with different DPI settings because these per-monitor DPI
     ; aware windows can already do that themselves. See
     ; https://www.autohotkey.com/docs/v2/misc/DPIScaling.htm
-    ; For an explanation of the -3 and -4 arguments, see
+    ; For an explanation of the -3 (and -4) arguments, see
     ; https://learn.microsoft.com/en-us/windows/win32/hidpi/dpi-awareness-context
-    hwnd := WinActive()
-    winDpiAwarenessContext := DllCall("GetWindowDpiAwarenessContext", "ptr", hwnd, "ptr")
-    isWinPerMonitorDpiAware :=
-           DllCall("AreDpiAwarenessContextsEqual", "ptr", winDpiAwarenessContext, "ptr", -3)
-        or DllCall("AreDpiAwarenessContextsEqual", "ptr", winDpiAwarenessContext, "ptr", -4)
-    if isWinPerMonitorDpiAware {
-        oldThreadDpiAwarenessContext := DllCall("GetThreadDpiAwarenessContext", "ptr")
-        DllCall("SetThreadDpiAwarenessContext", "ptr", -3, "ptr")
+    existingHwnd := WinExist()
+    winIsPerMonitorDpiAware := IsWinPerMonitorDpiAware(existingHwnd)
+    if winIsPerMonitorDpiAware {
+        oldThreadDpiAwarenessContext := DllCall("SetThreadDpiAwarenessContext", "ptr", -3, "ptr")
     }
 
     while GetKeyState('XButton1', 'P') and IsWinAtMouseStillRestored()
@@ -63,7 +67,7 @@ DragWinAtMouse() {
     }
 
     MouseWinIsMoving := false
-    if isWinPerMonitorDpiAware {
+    if winIsPerMonitorDpiAware {
         DllCall("SetThreadDpiAwarenessContext", "ptr", oldThreadDpiAwarenessContext, "ptr")
     }
 }
