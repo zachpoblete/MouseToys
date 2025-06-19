@@ -20,7 +20,12 @@
             return
         }
 
-        SendAtMouse('{Enter}')
+        ; We're not using SendAtMouse because I've found it more useful to not ActivateWinAtMouse:
+
+        if thisHotkey and not IsThisMouseHotkeyCorrect(thisHotkey) {
+            return
+        }
+        Send('{Blind}{Enter}')
     }
 
     LButton & RButton:: {
@@ -31,6 +36,11 @@
             return
         }
         KeyWait("RButton")
-        SendAtMouse('{Delete}')
+
+        ; We're not using SendAtMouse because I've found it more useful to not ActivateWinAtMouse:
+        if thisHotkey and not IsThisMouseHotkeyCorrect(thisHotkey) {
+            return
+        }
+        Send('{Blind}{Delete}')
     }
 #HotIf
