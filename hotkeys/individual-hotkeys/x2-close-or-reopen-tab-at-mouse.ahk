@@ -10,12 +10,33 @@
 ; Press XButton2 + RButton + LButton
 ; to reopen the last closed tab ↪.
 #HotIf GetKeyState('XButton2', 'P')
-    RButton Up::           CloseTabAtMouse(thisHotkey)
+    RButton:: {
+        ; Ignore the case where the mouse presses RButton back down after I release it;
+        ; debounce:
+        if A_PriorKey = "RButton" and A_TimeSincePriorHotkey < 50 {
+            return
+        }
+
+        ; This hotkey will always be triggered when RButton is released after performing the X2+R+L shortcut.
+        ; Ignore this case:
+        if A_PriorKey = "LButton" {
+            return
+        }
+
+        if GetKeyState("LButton", "P") {
+            return
+        }
+
+        KeyWait("RButton")
+        CloseTabAtMouse(thisHotkey)
+    }
+
     RButton & LButton Up:: ReopenClosedTabAtMouse()
 #HotIf
 
 CloseTabAtMouse(thisHotkey := "") {
-    SendAtMouse("^w", thisHotkey)
+    ActivateWinAtMouse()
+    Send('{Blind}^w')
 }
 
 ReopenClosedTabAtMouse(thisHotkey := "") {

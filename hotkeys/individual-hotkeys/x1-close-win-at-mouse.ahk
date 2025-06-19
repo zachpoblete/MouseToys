@@ -8,7 +8,13 @@
 ; Press XButton1 + MButton + RButton
 ; to close a window ❎.
 #HotIf GetKeyState('XButton1', 'P')
-    MButton & RButton Up:: CloseWinAtMouse()
+    MButton & RButton:: {
+        if A_PriorKey = "RButton" and A_TimesincePriorHotkey < 50 {
+            return
+        }
+        KeyWait("RButton")
+        CloseWinAtMouse()
+    }
 #HotIf
 
 CloseWinAtMouse() {

@@ -6,3 +6,5 @@ A_IconTip := "MouseToys"
 #Include accelerated-scroll-hotkeys.ahk
 #Include x1-win-and-general-hotkeys.ahk
 #Include x2-tab-and-page-hotkeys.ahk
+
+~*RButton:: return

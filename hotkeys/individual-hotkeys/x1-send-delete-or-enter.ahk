@@ -23,5 +23,14 @@
         SendAtMouse('{Delete}')
     }
 
-    LButton & RButton Up:: SendAtMouse('{Enter}')
+    LButton & RButton:: {
+        ; There might be something broken in my mouse because when I sometimes release RButton,
+        ; it gets pressed down again and activates the hotkey a second time.
+        ; So we need to catch when that happens:
+        if A_PriorKey = "RButton" and A_TimesincePriorHotkey < 50 {
+            return
+        }
+        KeyWait("RButton")
+        SendAtMouse('{Enter}')
+    }
 #HotIf
