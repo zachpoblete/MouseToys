@@ -39,6 +39,8 @@ What if you could do the most common keyboard shortcuts from just your mouse?
 
 ## 🌐 Tab and page shortcuts (XButton2)
 
+If a shortcut doesn't work on a particular window, you can edit the source code :D
+
 | Press this | To do this |
 | - | - |
 | <kbd>XButton2</kbd>+<kbd>WheelUp</kbd> | ⬅️ Go to left tab (in a browser for example)|
