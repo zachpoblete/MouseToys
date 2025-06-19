@@ -9,9 +9,8 @@ What if you could do the most common keyboard shortcuts from just your mouse?
 ## 💻 How to use
 
 1. Grab a mouse with extra side buttons (see [Buttons guide](#%EF%B8%8F-buttons-guide)).
-1. Download [AutoHotkey v2.0](https://www.autohotkey.com/download/ahk-v2.exe) (here are the [docs](https://www.autohotkey.com/docs/v2/)).
-1. Download and extract the [ZIP of this repo](https://github.com/zachpoblete/MouseToys/archive/refs/heads/main.zip).
-1. Run `MouseToys.ahk` and try out these shortcuts!
+1. [Download MouseToys](https://github.com/zachpoblete/MouseToys/archive/main.zip) (make sure you have [AutoHotkey](https://www.autohotkey.com/download/ahk-v2.exe) installed first).
+1. Run MouseToys.ahk (keep it in the folder) and try out these shortcuts!
 
 ## 🚀 Accelerated scroll (Scroll wheel)
 
