@@ -20,7 +20,7 @@
             return
         }
 
-        SendAtMouse('{Delete}')
+        SendAtMouse('{Enter}')
     }
 
     LButton & RButton:: {
@@ -31,6 +31,6 @@
             return
         }
         KeyWait("RButton")
-        SendAtMouse('{Enter}')
+        SendAtMouse('{Delete}')
     }
 #HotIf
