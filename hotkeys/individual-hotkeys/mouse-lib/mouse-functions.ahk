@@ -1,19 +1,3 @@
-; Optionally set thisHotkey to check if it is correct.
-SendAtMouse(keys, thisHotkey := "") {
-    if thisHotkey and not IsThisMouseHotkeyCorrect(thisHotkey) {
-        return
-    }
-    ActivateWinAtMouse()
-    Send('{Blind}' keys)
-}
-
-IsThisMouseHotkeyCorrect(thisHotkey) {
-    thisKey := StrReplace(thisHotkey, " Up")
-    thisKey := LTrim(thisKey, "*")
-    thisKey := RTrim(thisKey, " ")
-    return thisKey = A_PriorKey
-}
-
 ActivateWinAtMouse(winTitle := '', winText := '', excludedTitle := '', excludedText := '') {
     MouseGetPos(, , &mouseHwnd)
     WinActivate(mouseHwnd)
@@ -32,4 +16,20 @@ CloseCyclingWinAtMouse() {
         wasAWinClosed := true
     }
     return wasAWinClosed
+}
+
+IsThisMouseHotkeyCorrect(thisHotkey) {
+    thisKey := StrReplace(thisHotkey, " Up")
+    thisKey := LTrim(thisKey, "*")
+    thisKey := RTrim(thisKey, " ")
+    return thisKey = A_PriorKey
+}
+
+; Optionally set thisHotkey to check if it is correct.
+SendAtMouse(keys, thisHotkey := "") {
+    if thisHotkey and not IsThisMouseHotkeyCorrect(thisHotkey) {
+        return
+    }
+    ActivateWinAtMouse()
+    Send('{Blind}' keys)
 }

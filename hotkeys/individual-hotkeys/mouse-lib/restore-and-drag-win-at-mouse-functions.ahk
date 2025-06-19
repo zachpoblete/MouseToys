@@ -1,37 +1,3 @@
-IsWinAtMouseStillRestored() {
-    try {
-        winMinMax := WinGetMinMax()
-    } catch {
-        return false
-    }
-    if winMinMax {
-        return false
-    }
-
-    return true
-}
-
-IsWinPerMonitorDpiAware(hwnd) {
-    winDpiAwarenessContext := DllCall("GetWindowDpiAwarenessContext", "ptr", hwnd, "ptr")
-    return (
-        DllCall("AreDpiAwarenessContextsEqual", "ptr", winDpiAwarenessContext, "ptr", -3)
-        or DllCall("AreDpiAwarenessContextsEqual", "ptr", winDpiAwarenessContext, "ptr", -4)
-    )
-}
-
-MoveWinMiddleToMouse() {
-    CoordMode('Mouse', "Screen")
-    MouseGetPos(&mouseX, &mouseY)
-
-    WinGetPos(, , &winWidth, &winHeight)
-    winHalfWidth  := winWidth / 2
-    winHalfHeight := winHeight / 2
-
-    winX := mouseX - winHalfWidth
-    winY := mouseY - winHalfHeight
-    WinMove(winX, winY)
-}
-
 DragWinAtMouse() {
     CoordMode('Mouse', "Screen")
     MouseGetPos(&mouseStartX, &mouseStartY)
@@ -70,4 +36,38 @@ DragWinAtMouse() {
     if winIsPerMonitorDpiAware {
         DllCall("SetThreadDpiAwarenessContext", "ptr", oldThreadDpiAwarenessContext, "ptr")
     }
+}
+
+IsWinAtMouseStillRestored() {
+    try {
+        winMinMax := WinGetMinMax()
+    } catch {
+        return false
+    }
+    if winMinMax {
+        return false
+    }
+
+    return true
+}
+
+IsWinPerMonitorDpiAware(hwnd) {
+    winDpiAwarenessContext := DllCall("GetWindowDpiAwarenessContext", "ptr", hwnd, "ptr")
+    return (
+        DllCall("AreDpiAwarenessContextsEqual", "ptr", winDpiAwarenessContext, "ptr", -3)
+        or DllCall("AreDpiAwarenessContextsEqual", "ptr", winDpiAwarenessContext, "ptr", -4)
+    )
+}
+
+MoveWinMiddleToMouse() {
+    CoordMode('Mouse', "Screen")
+    MouseGetPos(&mouseX, &mouseY)
+
+    WinGetPos(, , &winWidth, &winHeight)
+    winHalfWidth  := winWidth / 2
+    winHalfHeight := winHeight / 2
+
+    winX := mouseX - winHalfWidth
+    winY := mouseY - winHalfHeight
+    WinMove(winX, winY)
 }
