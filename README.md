@@ -19,6 +19,8 @@ What if you could do the most common keyboard shortcuts from just your mouse? (w
 | <kbd>WheelUp</kbd> | 🚀 Accelerated scroll up (scroll faster to scroll farther) |
 | <kbd>WheelDown</kbd> | 🚀 Accelerated scroll down |
 
+You can enable or disable Accelerated Scroll by right-clicking the AutoHotkey tray icon. This opens the tray menu where you can toggle the checkmark next to "Enable Accelerated Scroll".
+
 ## 🪟 Window and general shortcuts (XButton1)
 
 | Press this | To do this |
