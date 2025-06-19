@@ -7,4 +7,5 @@ A_IconTip := "MouseToys"
 #Include x1-win-and-general-hotkeys.ahk
 #Include x2-tab-and-page-hotkeys.ahk
 
+; Allow RButton to perform its native function.
 ~*RButton:: return
