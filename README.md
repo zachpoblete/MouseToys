@@ -17,7 +17,7 @@ What if you could do the most common keyboard shortcuts from just your mouse?
 
 | Press this | To do this |
 | - | - |
-| <kbd>WheelUp</kbd> | 🚀 Accelerated scroll up (Scroll faster to scroll farther) |
+| <kbd>WheelUp</kbd> | 🚀 Accelerated scroll up (scroll faster to scroll farther) |
 | <kbd>WheelDown</kbd> | 🚀 Accelerated scroll down |
 
 ## 🪟 Window and general shortcuts (XButton1)
