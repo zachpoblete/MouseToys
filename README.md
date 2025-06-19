@@ -72,7 +72,6 @@ An example of a 3-button combination is <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<
 ## 🚩 Known issues
 
 1. [Some mice don't do 3-button combinations well](https://github.com/zachpoblete/MouseToys/issues/43)
-1. [Shortcuts can be triggered twice if you click a certain way \[1 mitigation\]](https://github.com/zachpoblete/MouseToys/issues/8)
 1. [Lag when moving window across monitors](https://github.com/zachpoblete/MouseToys/issues/52)
 
 ## 📜 License
