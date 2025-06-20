@@ -15,22 +15,18 @@
 #HotIf
 
 GoBack1PageAtMouse(thisHotkey) {
-    GoBackOrForwardAtMouse("back", thisHotkey)
+    GoBackOrForwardAtMouse(true, thisHotkey)
 }
 
 GoForward1PageAtMouse(thisHotkey) {
-    GoBackOrForwardAtMouse("forward")
+    GoBackOrForwardAtMouse(false)
 }
 
-GoBackOrForwardAtMouse(backOrForward, thisHotkey := "") {
-    static STATES := Map(
-        -1, {back: "X1", forward: "X2"}
-    )
-
+GoBackOrForwardAtMouse(shouldGoBack, thisHotkey := "") {
     if thisHotkey and not IsThisMouseHotkeyCorrect(thisHotkey) {
         return
     }
 
     ActivateWinAtMouse()
-    Click(STATES[-1].%backOrForward%)
+    Click(shouldGoBack ? "X1" : "X2")
 }
