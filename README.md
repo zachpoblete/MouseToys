@@ -4,12 +4,12 @@ Keyboard shortcuts are awesome. But sometimes, you just have one hand on the mou
 
 ![cueball](https://github.com/user-attachments/assets/ce6a629f-bac2-4a87-80c5-a8bf4e34033b)
 
-What if you could do the most common keyboard shortcuts from just your mouse?
+What if you could do the most common keyboard shortcuts from just your mouse? (without moving it!)
 
 ## 💻 How to use
 
 1. Grab a mouse with extra side buttons (see [Buttons guide](#%EF%B8%8F-buttons-guide)).
-1. [Download MouseToys](https://github.com/zachpoblete/MouseToys/archive/main.zip) (make sure you have [AutoHotkey](https://www.autohotkey.com/download/ahk-v2.exe) installed first).
+1. [Download MouseToys](https://github.com/zachpoblete/MouseToys/archive/main.zip) (make sure you have [AutoHotkey v2](https://www.autohotkey.com/download/ahk-v2.exe) installed first).
 1. Run MouseToys.ahk (keep it in the folder) and try out these shortcuts!
 
 ## 🚀 Accelerated scroll (Scroll wheel)
@@ -18,6 +18,8 @@ What if you could do the most common keyboard shortcuts from just your mouse?
 | - | - |
 | <kbd>WheelUp</kbd> | 🚀 Accelerated scroll up (scroll faster to scroll farther) |
 | <kbd>WheelDown</kbd> | 🚀 Accelerated scroll down |
+
+You can enable or disable Accelerated Scroll by right-clicking the AutoHotkey tray icon. This opens the tray menu where you can toggle the checkmark next to "Enable Accelerated Scroll".
 
 ## 🪟 Window and general shortcuts (XButton1)
 
