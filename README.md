@@ -32,12 +32,12 @@ You can enable or disable Accelerated Scroll by right-clicking the AutoHotkey tr
 | <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<kbd>WheelUp</kbd> | &nbsp;↗&thinsp;&hairsp; Maximize window |
 | <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<kbd>RButton</kbd> | ❎ Close window |
 | <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<kbd>LButton</kbd> | 📸 Screenshot |
-| <kbd>XButton1</kbd>+<kbd>LButton</kbd> | &nbsp;⏎&thinsp;&hairsp; Send Enter key |
-| <kbd>XButton1</kbd>+<kbd>LButton</kbd>+<kbd>RButton</kbd> | ⌦&hairsp; Send Delete key |
+| <kbd>XButton1</kbd>+<kbd>RButton</kbd>+<kbd>WheelUp</kbd> | 🔊 Increase volume |
+| <kbd>XButton1</kbd>+<kbd>RButton</kbd>+<kbd>WheelDown</kbd> | 🔈 Decrease volume |
 | <kbd>XButton1</kbd>+<kbd>RButton</kbd> | 📋 Copy to clipboard |
 | <kbd>XButton1</kbd>+<kbd>RButton</kbd>+<kbd>LButton</kbd> | 📋 Paste from clipboard |
-| <kbd>XButton1</kbd>+<kbd>RButton</kbd>+<kbd>WheelDown</kbd> | ↩️ Undo |
-| <kbd>XButton1</kbd>+<kbd>RButton</kbd>+<kbd>WheelUp</kbd> | ↪ Redo |
+| <kbd>XButton1</kbd>+<kbd>LButton</kbd> | &nbsp;⏎&thinsp;&hairsp; Send Enter key |
+| <kbd>XButton1</kbd>+<kbd>LButton</kbd>+<kbd>RButton</kbd> | ⌦&hairsp; Send Delete key |
 
 ## 🌐 Tab and page shortcuts (XButton2)
 

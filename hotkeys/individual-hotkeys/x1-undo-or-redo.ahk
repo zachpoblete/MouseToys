@@ -1,30 +1,15 @@
 #Include ahk-utils
 #Include default-settings.ahk
-#Include can-redo-with-ctrl-y.ahk
 
 #Include ..\mouse-lib
 #Include mouse-functions.ahk
 #Include fix-x1.ahk
 
-; Press XButton1 + RButton + WheelDown
-; to send the undo command ↩️.
 ; Press XButton1 + RButton + WheelUp
-; to send the redo command ↪.
+; to increase the volume 🔊.
+; Press XButton1 + RButton + WheelDown
+; to decrease the volume 🔈.
 #HotIf GetKeyState('XButton1', 'P')
-    RButton & WheelDown:: UndoAtMouse()
-    RButton & WheelUp::   RedoAtMouse()
+    RButton & WheelUp::   Send("{Volume_Up}")
+    RButton & WheelDown:: Send("{Volume_Down}")
 #HotIf
-
-UndoAtMouse(thisHotkey := "") {
-    SendAtMouse('^z', thisHotkey)
-}
-
-RedoAtMouse() {
-    ActivateWinAtMouse()
-
-    if CanRedoWithCtrlY() {
-        Send('^y')
-    } else {
-        Send('^+z')
-    }
-}
