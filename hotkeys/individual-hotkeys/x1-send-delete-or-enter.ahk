@@ -21,10 +21,6 @@
         }
 
         ; We're not using SendAtMouse because I've found it more useful to not ActivateWinAtMouse:
-
-        if thisHotkey and not IsThisMouseHotkeyCorrect(thisHotkey) {
-            return
-        }
         Send('{Blind}{Enter}')
     }
 
@@ -38,9 +34,6 @@
         KeyWait("RButton")
 
         ; We're not using SendAtMouse because I've found it more useful to not ActivateWinAtMouse:
-        if thisHotkey and not IsThisMouseHotkeyCorrect(thisHotkey) {
-            return
-        }
         Send('{Blind}{Delete}')
     }
 #HotIf
