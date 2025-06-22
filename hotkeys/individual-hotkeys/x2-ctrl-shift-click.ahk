@@ -8,17 +8,14 @@
 ; Press XButton2 + MButton
 ; to open a link in a new active tab 🔗.
 #HotIf GetKeyState('XButton2', 'P')
-    MButton Up:: CtrlShiftClick(thisHotkey)
+    MButton Up:: {
+        if A_PriorKey != "MButton" {
+            return
+        }
+
+        Send('^+{Click}')
+    }
 
     ; Stop the native function from going through.
     MButton::    return
 #HotIf
-
-CtrlShiftClick(thisHotkey := "") {
-    if thisHotkey and not IsThisMouseHotkeyCorrect(thisHotkey) {
-        return
-    }
-
-    ; Don't use MouseSend because we don't need to activate the window.
-    Send('^+{Click}')
-}

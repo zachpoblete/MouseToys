@@ -10,14 +10,21 @@
 ; Press XButton1 + RButton + LButton
 ; to paste from the clipboard 📋.
 #HotIf GetKeyState('XButton1', 'P')
-    RButton Up::           CopyAtMouse(thisHotkey)
+    RButton Up:: {
+        if A_PriorKey != "RButton" {
+            return
+        }
+
+        CopyAtMouse()
+    }
+
     RButton & LButton Up:: PasteAtMouse()
 #HotIf
 
-CopyAtMouse(thisHotkey := "") {
-    SendAtMouse('^c', thisHotkey)
+CopyAtMouse() {
+    SendAtMouse('^c')
 }
 
-PasteAtMouse(thisHotkey := "") {
-    SendAtMouse('^v', thisHotkey)
+PasteAtMouse() {
+    SendAtMouse('^v')
 }

@@ -11,7 +11,7 @@
 ; to send the Enter key ⬇️.
 #HotIf GetKeyState('XButton1', 'P')
     *LButton Up:: {
-        if not IsThisMouseHotkeyCorrect(thisHotkey) {
+        if A_PriorKey != "LButton" {
             return
         }
 

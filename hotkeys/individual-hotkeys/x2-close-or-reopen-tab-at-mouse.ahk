@@ -17,28 +17,21 @@
             return
         }
 
-        ; This hotkey will always be triggered when RButton is released after performing the X2+R+L shortcut.
-        ; Ignore this case:
-        if A_PriorKey = "LButton" {
-            return
-        }
-
-        if GetKeyState("LButton", "P") {
+        if A_PriorKey != "RButton" {
             return
         }
 
         KeyWait("RButton")
-        CloseTabAtMouse(thisHotkey)
+        CloseTabAtMouse()
     }
 
     RButton & LButton Up:: ReopenClosedTabAtMouse()
 #HotIf
 
-CloseTabAtMouse(thisHotkey := "") {
-    ActivateWinAtMouse()
-    Send('{Blind}^w')
+CloseTabAtMouse() {
+    SendAtMouse('^w')
 }
 
-ReopenClosedTabAtMouse(thisHotkey := "") {
-    SendAtMouse("^+t", thisHotkey)
+ReopenClosedTabAtMouse() {
+    SendAtMouse("^+t")
 }

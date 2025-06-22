@@ -18,18 +18,7 @@ CloseCyclingWinAtMouse() {
     return wasAWinClosed
 }
 
-IsThisMouseHotkeyCorrect(thisHotkey) {
-    thisKey := StrReplace(thisHotkey, " Up")
-    thisKey := LTrim(thisKey, "*")
-    thisKey := RTrim(thisKey, " ")
-    return thisKey = A_PriorKey
-}
-
-; Optionally set thisHotkey to check if it is correct.
-SendAtMouse(keys, thisHotkey := "") {
-    if thisHotkey and not IsThisMouseHotkeyCorrect(thisHotkey) {
-        return
-    }
+SendAtMouse(keys) {
     ActivateWinAtMouse()
     Send('{Blind}' keys)
 }

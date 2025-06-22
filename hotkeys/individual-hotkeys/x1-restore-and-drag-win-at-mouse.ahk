@@ -10,7 +10,7 @@
 ; to restore a window and move it using the mouse 🚚.
 #HotIf GetKeyState('XButton1', 'P')
     MButton Up:: {
-        if not IsThisMouseHotkeyCorrect(thisHotkey) {
+        if A_PriorKey != "MButton" {
             return
         }
 
@@ -18,11 +18,11 @@
             return
         }
 
-        RestoreAndDragWinAtMouse(thisHotkey)
+        RestoreAndDragWinAtMouse()
     }
 #HotIf
 
-RestoreAndDragWinAtMouse(thisHotkey := "") {
+RestoreAndDragWinAtMouse() {
     ActivateWinAtMouse()
     if WinActive('ahk_class WorkerW ahk_exe Explorer.EXE') {
         return

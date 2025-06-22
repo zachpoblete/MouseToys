@@ -14,10 +14,10 @@
     LButton & WheelDown:: ZoomOutAtMouse()
 #HotIf
 
-ZoomInAtMouse(thisHotkey := "") {
-    SendAtMouse("^=", thisHotkey)
+ZoomInAtMouse() {
+    SendAtMouse("^=")
 }
 
-ZoomOutAtMouse(thisHotkey := "") {
-    SendAtMouse("^-", thisHotkey)
+ZoomOutAtMouse() {
+    SendAtMouse("^-")
 }

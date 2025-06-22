@@ -10,23 +10,24 @@
 ; Press XButton2 + LButton + RButton
 ; to go forward a page ➡️.
 #HotIf GetKeyState('XButton2', 'P')
-    LButton Up::           GoBack1PageAtMouse(thisHotkey)
-    LButton & RButton Up:: GoForward1PageAtMouse(thisHotkey)
+    LButton Up:: {
+        if A_PriorKey != "LButton" {
+            return
+        }
+        GoBack1PageAtMouse()
+    }
+    LButton & RButton Up:: GoForward1PageAtMouse()
 #HotIf
 
-GoBack1PageAtMouse(thisHotkey) {
-    GoBackOrForwardAtMouse(true, thisHotkey)
+GoBack1PageAtMouse() {
+    GoBackOrForwardAtMouse(true)
 }
 
-GoForward1PageAtMouse(thisHotkey) {
+GoForward1PageAtMouse() {
     GoBackOrForwardAtMouse(false)
 }
 
-GoBackOrForwardAtMouse(shouldGoBack, thisHotkey := "") {
-    if thisHotkey and not IsThisMouseHotkeyCorrect(thisHotkey) {
-        return
-    }
-
+GoBackOrForwardAtMouse(shouldGoBack) {
     ActivateWinAtMouse()
     Click(shouldGoBack ? "X1" : "X2")
 }
