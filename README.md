@@ -76,6 +76,7 @@ An example of a 3-button combination is <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<
 
 1. [Some mice don't do 3-button combinations well](https://github.com/zachpoblete/MouseToys/issues/43)
 1. [Lag when moving window across monitors](https://github.com/zachpoblete/MouseToys/issues/52)
+1. [Accelerated Scroll lag / suddenly too fast on sites like Google Docs](https://github.com/zachpoblete/MouseToys/issues/102)
 
 ## 📜 License
 
