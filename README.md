@@ -80,3 +80,7 @@ An example of a 3-button combination is <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<
 ## 📜 License
 
 [MIT](https://github.com/zachpoblete/MouseToys/blob/main/LICENSE) - You can use my code in your projects. Just credit me.
+
+## 📖 Wiki
+
+The MouseToys wiki can be found [here](https://github.com/zachpoblete/MouseToys/wiki).
