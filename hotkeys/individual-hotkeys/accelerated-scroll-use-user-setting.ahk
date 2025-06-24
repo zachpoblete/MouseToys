@@ -4,14 +4,13 @@
 #Include default-settings.ahk
 
 #Include ..\mouse-lib
-#Include get-user-settings-path.ahk
+#Include user-settings-path.ahk
 #Include accelerated-scroll-show-user-setting.ahk
 
 UseUserAcceleratedScrollSetting()
 
 UseUserAcceleratedScrollSetting() {
-    userSettingsPath := GetUserSettingsPath()
-    acceleratedScrollIsOn := IniRead(userSettingsPath, '', 'AcceleratedScrollIsOn')
+    acceleratedScrollIsOn := IniRead(UserSettingsPath, '', 'AcceleratedScrollIsOn')
     if acceleratedScrollIsOn {
         A_TrayMenu.check('Enable &Accelerated Scroll')
         action := "On"

@@ -1,10 +1,9 @@
-#Include get-user-settings-path.ahk
+#Include user-settings-path.ahk
 
 ShowAcceleratedScrollSettingAtMouse() {
     static acceleratedScrollSetting
 
-    userSettingsPath := GetUserSettingsPath()
-    acceleratedScrollIsOn := IniRead(userSettingsPath, '', 'AcceleratedScrollIsOn')
+    acceleratedScrollIsOn := IniRead(UserSettingsPath, '', 'AcceleratedScrollIsOn')
     acceleratedScrollSetting := acceleratedScrollIsOn ? 'ON' : 'OFF'
 
     SetTimer(tempToolTip, 0)
