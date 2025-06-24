@@ -3,7 +3,7 @@
 
 #Include ..\mouse-lib
 #Include mouse-functions.ahk
-#Include fix-x1.ahk
+#Include fix-x1-shortcuts.ahk
 
 ; Press XButton1 + LButton
 ; to send the Delete key ❎.

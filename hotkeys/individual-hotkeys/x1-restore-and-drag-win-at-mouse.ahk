@@ -3,7 +3,7 @@
 
 #Include ..\mouse-lib
 #Include mouse-functions.ahk
-#Include fix-x1.ahk
+#Include fix-x1-shortcuts.ahk
 #Include restore-and-drag-win-at-mouse-functions.ahk
 
 ; Press XButton1 + MButton

@@ -3,7 +3,7 @@
 
 #Include ..\mouse-lib
 #Include mouse-functions.ahk
-#Include fix-x2.ahk
+#Include fix-x2-shortcuts.ahk
 
 ; Press XButton2 + WheelDown
 ; to go to the left tab ⬅️.

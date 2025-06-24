@@ -3,7 +3,7 @@
 
 #Include ..\mouse-lib
 #Include mouse-functions.ahk
-#Include fix-x2.ahk
+#Include fix-x2-shortcuts.ahk
 
 ; Set the max threads per hotkey to 2 because these hotkeys use KeyWait to wait
 ; for the release of a prefix key (RButton in this case) to work continuously,
