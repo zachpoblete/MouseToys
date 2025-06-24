@@ -15,6 +15,9 @@
             return
         }
 
+        ; Don't send Enter if the intention of activating this hotkey was actually
+        ; to click a window in the Task Switcher because the X1+W::AltTab hotkey was
+        ; used.
         if WinActive('Task Switching ahk_class XamlExplorerHostIslandWindow') {
             Click()
             return
