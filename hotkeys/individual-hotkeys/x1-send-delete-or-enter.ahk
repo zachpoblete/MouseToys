@@ -24,14 +24,8 @@
         Send('{Blind}{Enter}')
     }
 
-    LButton & RButton:: {
-        ; There might be something broken in my mouse because when I sometimes release RButton,
-        ; it gets pressed down again and activates the hotkey a second time.
-        ; So we need to catch when that happens:
-        if A_PriorKey = "RButton" and (A_PriorHotkey and A_TimeSincePriorHotkey < 50) {
-            return
-        }
-        KeyWait("RButton")
+    LButton & RButton Up:: {
+        Debounce("RButton")
 
         ; We're not using SendAtMouse because I've found it more useful to not ActivateWinAtMouse:
         Send('{Blind}{Delete}')

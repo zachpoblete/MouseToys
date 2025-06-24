@@ -1,3 +1,8 @@
+#Include user-settings-path.ahk
+
+#Include ../ahk-utils
+#Include get-time-since-prior-key.ahk
+
 ActivateWinAtMouse(winTitle := '', winText := '', excludedTitle := '', excludedText := '') {
     MouseGetPos(, , &mouseHwnd)
     WinActivate(mouseHwnd)
@@ -22,6 +27,26 @@ CloseCyclingWinAtMouse() {
         wasAWinClosed := true
     }
     return wasAWinClosed
+}
+
+; Using this means there's a hardware issue with the button.
+Debounce(button) {
+    debouncesIsOn := IniRead(UserSettingsPath, '', 'DebounceIsOn')
+    if not debouncesIsOn {
+        return
+    }
+
+    ; If this is the first hotkey to ever be activated, don't debounce
+    ; because A_TimeSincePriorHotkey would be empty.
+    ; (A_TimeSincePriorHotkey is needed later.):
+    if not A_PriorHotkey {
+        return
+    }
+
+    timeSincePriorKeyMs := GetTimeSincePriorKeyMs()
+    if A_PriorKey = button and timeSincePriorKeyMs < 50 {
+        exit
+    }
 }
 
 SendAtMouse(keys) {

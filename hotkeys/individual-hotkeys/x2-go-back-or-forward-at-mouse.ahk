@@ -16,7 +16,11 @@
         }
         GoBack1PageAtMouse()
     }
-    LButton & RButton Up:: GoForward1PageAtMouse()
+    LButton & RButton Up:: {
+        Debounce("RButton")
+        GoForward1PageAtMouse()
+    }
+
 #HotIf
 
 GoBack1PageAtMouse() {

@@ -10,18 +10,13 @@
 ; Press XButton2 + RButton + LButton
 ; to reopen the last closed tab ↪.
 #HotIf GetKeyState('XButton2', 'P')
-    RButton:: {
-        ; Ignore the case where the mouse presses RButton back down after I release it;
-        ; debounce:
-        if A_PriorKey = "RButton" and (A_PriorHotkey and A_TimeSincePriorHotkey < 50) {
-            return
-        }
-
+    RButton Up:: {
         if A_PriorKey != "RButton" {
             return
         }
 
-        KeyWait("RButton")
+        Debounce("RButton")
+
         CloseTabAtMouse()
     }
 
