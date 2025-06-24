@@ -15,7 +15,4 @@
 
         Send('^+{Click}')
     }
-
-    ; Stop the native function from going through.
-    MButton::    return
 #HotIf
