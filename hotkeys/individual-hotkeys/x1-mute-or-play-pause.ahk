@@ -15,16 +15,8 @@
             return
         }
 
-        CopyAtMouse()
+        Send("{Volume_Mute}")
     }
 
-    RButton & LButton Up:: PasteAtMouse()
+    RButton & LButton Up:: Send("{Media_Play_Pause}")
 #HotIf
-
-CopyAtMouse() {
-    SendAtMouse('^c')
-}
-
-PasteAtMouse() {
-    SendAtMouse('^v')
-}

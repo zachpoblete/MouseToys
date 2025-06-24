@@ -9,7 +9,7 @@
 #Include x1-cycle-windows-order-used.ahk
 
 #Include x1-close-win-at-mouse.ahk
-#Include x1-copy-or-paste.ahk
+#Include x1-mute-or-play-pause.ahk
 #Include x1-min-or-maximize-win-at-mouse.ahk
 #Include x1-restore-and-drag-win-at-mouse.ahk
 #Include x1-screenshot.ahk
