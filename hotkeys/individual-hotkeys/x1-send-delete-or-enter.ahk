@@ -11,7 +11,11 @@
 ; to send the Enter key ⬇️.
 #HotIf GetKeyState('XButton1', 'P')
     *LButton Up:: {
-        if A_PriorKey != "LButton" {
+        ; The condition isn't `if A_PriorKey = "LButton"` because if a standard modifier
+        ; were down, it would keep triggering a down press and A_PriorKey would be the
+        ; standard modifier most of the time. By checking if A_PriorHotkey contains
+        ; "LButton", we check if it's either LButton or *LButton:
+        if not InStr(A_PriorHotkey, "LButton") {
             return
         }
 
