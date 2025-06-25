@@ -20,13 +20,15 @@ ActivateWinAtMouse(winTitle := '', winText := '', excludedTitle := '', excludedT
     }
 }
 
-CloseCyclingWinAtMouse() {
-    wasAWinClosed := false
+CloseCyclingWinAtMouse(&wasAWinClosed?) {
+    if not IsSet(wasAWinClosed) {
+        wasAWinClosed := false
+    }
+
     if WinActive('Task Switching ahk_class XamlExplorerHostIslandWindow') {
         Click('Middle')
         wasAWinClosed := true
     }
-    return wasAWinClosed
 }
 
 ; Using this means there's a hardware issue with the button.
