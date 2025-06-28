@@ -34,7 +34,6 @@ RestoreAndDragWinAtMouse() {
         return
     }
 
-    WinExist('A')
     winMinMax := WinGetMinMax()
     if winMinMax = 1 {
         WinRestore()
