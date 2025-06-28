@@ -29,5 +29,11 @@ MinOrMaximizeWinAtMouse(minOrMax) {
     } else {
         ActivateWinAtMouse()
     }
+
+    ; If the Desktop is active, don't proceed because there will be buggy behavior.
+    if WinActive('ahk_class WorkerW ahk_exe Explorer.EXE') || WinActive("ahk_class Progman ahk_exe explorer.exe") {
+        return
+    }
+
     Win%minOrMax%imize()
 }
