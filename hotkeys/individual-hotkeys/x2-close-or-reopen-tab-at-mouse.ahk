@@ -15,7 +15,7 @@
             return
         }
 
-        Debounce("RButton")
+        Debounce("RButton", 70)
 
         CloseTabAtMouse()
     }

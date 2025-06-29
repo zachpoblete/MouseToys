@@ -1,7 +1,7 @@
 #Include user-settings-path.ahk
 
 #Include ../ahk-utils
-#Include get-time-since-prior-key.ahk
+#Include script-info.ahk
 
 ActivateWinAtMouse(winTitle := '', winText := '', excludedTitle := '', excludedText := '') {
     MouseGetPos(, , &mouseHwnd)
@@ -32,23 +32,43 @@ CloseCyclingWinAtMouse(&wasAWinClosed?) {
 }
 
 ; Using this means there's a hardware issue with the button.
-Debounce(button) {
+; Note that we're assuming that the last key "pressed" was the release of the
+; button. We could make the function more general, but we don't need to; don't
+; generalize a function for cases you haven't experienced yet.
+Debounce(button, minimumTimeToPressButtonMs) {
     debouncesIsOn := IniRead(UserSettingsPath, '', 'DebounceIsOn')
     if not debouncesIsOn {
         return
     }
 
-    ; If this is the first hotkey to ever be activated, don't debounce
-    ; because A_TimeSincePriorHotkey would be empty.
-    ; (A_TimeSincePriorHotkey is needed later.):
-    if not A_PriorHotkey {
-        return
-    }
-
-    timeSincePriorKeyMs := GetTimeSincePriorKeyMs()
-    if A_PriorKey = button and timeSincePriorKeyMs < 50 {
+    timeToPressButtonMs := GetTimeToPressButtonMs(button)
+    if timeToPressButtonMs <= minimumTimeToPressButtonMs {
         exit
     }
+}
+
+; Note that we're assuming that the last key "pressed" was the release of the
+; button. We could make the function more general, but we don't need to; don't
+; generalize a function for cases you haven't experienced yet.
+GetTimeToPressButtonMs(button) {
+    keyHistoryText := ScriptInfo("KeyHistory")
+
+    ; Let n be the line number of the last line.
+    ; Line n is text like "Press [F5] to refresh." that isn't part of the KeyHistory table.
+    ; Line n-1 is the time to release the button.
+    ; Line n-2 is the time to press the button. This is why we get last3LinesPos.
+    last3LinesPos := InStr(keyHistoryText, "`n", , , -3)
+    ; To get the actual contents of the last 3 lines, the starting position is
+    ; last3LinesPos + 1 to not include the new line (`n).
+    last3Lines := SubStr(keyHistoryText, last3LinesPos + 1)
+
+    RegExMatch(last3Lines, "^.+[du]\s+(\S+)\s+(\S+)", &match)
+    timeToPressButtonMs := match[1] * 1000
+    matchedButton := match[2]
+    if matchedButton != button {
+        throw TargetError("button was " button " but matchedButton was " matchedButton)
+    }
+    return timeToPressButtonMs
 }
 
 SendAtMouse(keys) {

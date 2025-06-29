@@ -1,12 +1,3 @@
-GetTimeSincePriorKeyMs() {
-    keyHistoryText := ScriptInfo("KeyHistory")
-    last2LinesPos := InStr(keyHistoryText, "`n", , , -2)
-    last2Lines := SubStr(keyHistoryText, last2LinesPos + 1)
-    RegExMatch(last2Lines, "^.+[du]\s+(\S+)", &match)
-    timeSincePriorKeyMs := match[1] * 1000
-    return timeSincePriorKeyMs
-}
-
 ; ScriptInfo.
 ; Originally by Lexikos: https://www.autohotkey.com/boards/viewtopic.php?f=6&t=9656
 ; Converted to AHK v2 by Descolada: https://www.autohotkey.com/boards/viewtopic.php?p=486018#p486018
