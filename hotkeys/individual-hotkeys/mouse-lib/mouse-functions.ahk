@@ -31,7 +31,8 @@ CloseCyclingWinAtMouse(&wasAWinClosed?) {
     }
 }
 
-; Using this means there's a hardware issue with the button.
+; For why some hotkeys use Debounce(), see
+; https://github.com/zachpoblete/MouseToys/wiki/Why-some-hotkeys-use-Debounce()
 ; Note that we're assuming that the last key "pressed" was the release of the
 ; button. We could make the function more general, but we don't need to; don't
 ; generalize a function for cases you haven't experienced yet.
