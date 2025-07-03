@@ -5,37 +5,27 @@
 #Include mouse-functions.ahk
 #Include fix-x2-shortcuts.ahk
 
+#MaxThreadsPerHotkey 2
 ; Set the max threads per hotkey to 2 because these hotkeys use KeyWait to wait
 ; for the release of a prefix key (RButton in this case) to work continuously,
 ; but KeyWait prevents the hotkeys from firing again if the max threads per
 ; hotkey is the default 1.
-#MaxThreadsPerHotkey 2
-
-    ; Press XButton2 + RButton + WheelDown
-    ; to cycle through tabs in recently used order ⬇️.
-    ; Press XButton2 + RButton + WheelUp
-    ; to cycle through tabs in reverse used order ⬆️.
     #HotIf GetKeyState('XButton2', 'P')
-        RButton & WheelDown:: CycleTabsRecentlyUsedAtMouse()
-        RButton & WheelUp::   CycleTabsReverseUsedAtMouse()
+        RButton & WheelDown:: CycleTabsRecentlyUsedAtMouse("RButton")
+        RButton & WheelUp::   CycleTabsReverseUsedAtMouse("RButton")
     #HotIf
-
 #MaxThreadsPerHotkey 1
 
-CycleTabsRecentlyUsedAtMouse() {
-    CycleTabsOrderUsedAtMouse("RButton", "{Tab}")
+CycleTabsRecentlyUsedAtMouse(prefixKey) {
+    CycleTabsOrderUsedAtMouse(prefixKey, "{Tab}")
 }
 
-CycleTabsReverseUsedAtMouse() {
-    CycleTabsOrderUsedAtMouse("RButton", "+{Tab}")
+CycleTabsReverseUsedAtMouse(prefixKey) {
+    CycleTabsOrderUsedAtMouse(prefixKey, "+{Tab}")
 }
 
-CycleTabsOrderUsedAtMouse(modifier, tab) {
+CycleTabsOrderUsedAtMouse(prefixKey, tab) {
     static _isCycling := false
-
-    ; Turn on Critical so that even when scrolling fast, a new session is properly
-    ; started.
-    Critical("On")
 
     ; Activate the window under the mouse only if we're not currently in a cycling
     ; session. If I did want to start a new cycling session when the mouse is over a
@@ -61,25 +51,20 @@ CycleTabsOrderUsedAtMouse(modifier, tab) {
         ; Turn off Critical right before waiting for the hotkey to be released because
         ; that is when it is safest to do so.
         Critical("Off")
-        KeyWait(modifier)
+        KeyWait(prefixKey)
         _isCycling := false
         return
     }
 
     if _isCycling {
-        ; Send ^{Tab} instead of just {Tab} so that there is no chance of sending a lone
-        ; tab.
-        Send("^" . tab)
+        Send(tab)
         return
     }
 
     _isCycling := true
     Send('{Ctrl Down}' . tab)
 
-    ; Turn off Critical right before waiting for the hotkey to be released because
-    ; that is when it is safest to do so.
-    Critical("Off")
-    KeyWait(modifier)
+    KeyWait(prefixKey)
     Send('{Ctrl Up}')
     _isCycling := false
 }
