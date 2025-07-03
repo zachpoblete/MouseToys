@@ -30,7 +30,7 @@ RestoreAndDragWinAtMouse() {
     ActivateWinAtMouse()
 
     ; If the Desktop is active, don't proceed:
-    if WinActive("ahk_class Progman ahk_exe explorer.exe") || WinActive('ahk_class WorkerW ahk_exe Explorer.EXE') {
+    if WinActive("ahk_class Progman ahk_exe explorer.exe") || WinActive('ahk_class WorkerW ahk_exe explorer.exe') {
         return
     }
 
