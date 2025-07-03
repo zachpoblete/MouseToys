@@ -3,13 +3,22 @@
 
 #Include ..\mouse-lib
 #Include mouse-functions.ahk
+#Include fix-x1-shortcuts.ahk
 
-; Press XButton1 + WheelDown
-; to cycle through windows in recently used order ⬇️.
-; Press XButton1 + WheelUp
-; to cycle through windows in reverse used order ⬆️.
-XButton1 & WheelDown:: AltTab
-XButton1 & WheelUp::   ShiftAltTab
+#HotIf GetKeyState('XButton1', 'P')
+    WheelDown:: {
+        Send('{Alt Down}{Tab}')
+        KeyWait("XButton1")
+        Send('{Alt Up}')
+    }
+    WheelUp:: {
+        Send('{Alt Down}+{Tab}')
+        KeyWait("XButton1")
+        Send('{Alt Up}')
+    }
+    !WheelDown:: Send("{Tab}")
+    !WheelUp::   Send("+{Tab}")
+#HotIf
 
 ; Press XButton1 + MButton
 ; to close a window while cycling through windows in recently used order ❎.
