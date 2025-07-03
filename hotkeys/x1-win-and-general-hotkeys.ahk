@@ -13,5 +13,5 @@
 #Include x1-min-or-maximize-win-at-mouse.ahk
 #Include x1-restore-and-drag-win-at-mouse.ahk
 #Include x1-screenshot.ahk
-#Include x1-send-delete-or-enter.ahk
+#Include x1-send-enter-or-delete.ahk
 #Include x1-change-volume.ahk
