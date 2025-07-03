@@ -23,7 +23,7 @@ MinimizeWinAtMouse() {
     }
 
     ; If the Desktop is active, don't proceed because there will be buggy behavior.
-    if WinActive('ahk_class WorkerW ahk_exe explorer.exe') || WinActive("ahk_class Progman ahk_exe explorer.exe") {
+    if WinActive('ahk_class WorkerW ahk_exe explorer.exe') or WinActive("ahk_class Progman ahk_exe explorer.exe") {
         return
     }
 
@@ -38,7 +38,7 @@ MaximizeWinAtMouse() {
     }
 
     ; If the Desktop is active, don't proceed because there will be buggy behavior.
-    if WinActive('ahk_class WorkerW ahk_exe explorer.exe') || WinActive("ahk_class Progman ahk_exe explorer.exe") {
+    if WinActive('ahk_class WorkerW ahk_exe explorer.exe') or WinActive("ahk_class Progman ahk_exe explorer.exe") {
         return
     }
 
