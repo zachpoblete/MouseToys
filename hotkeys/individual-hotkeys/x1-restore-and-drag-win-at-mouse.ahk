@@ -14,14 +14,6 @@
             return
         }
 
-        ; Don't restore and drag if the intention of activating this hotkey was actually
-        ; to close a cycling window at the mouse because the because the X1+W hotkey was
-        ; used.
-        CloseCyclingWinAtMouse(&wasAWinClosed)
-        if wasAWinClosed {
-            return
-        }
-
         RestoreAndDragWinAtMouse()
     }
 #HotIf

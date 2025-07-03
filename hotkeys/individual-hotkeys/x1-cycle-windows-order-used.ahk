@@ -20,6 +20,6 @@
     !WheelUp::   Send("+{Tab}")
 #HotIf
 
-; Press XButton1 + MButton
-; to close a window while cycling through windows in recently used order ❎.
-!MButton Up:: CloseCyclingWinAtMouse()
+; Allow closing a window while cycling. This solution retains the native function of !MButton:
+~!MButton::    return
+~!MButton Up:: return

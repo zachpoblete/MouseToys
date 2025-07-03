@@ -20,17 +20,6 @@ ActivateWinAtMouse(winTitle := '', winText := '', excludedTitle := '', excludedT
     }
 }
 
-CloseCyclingWinAtMouse(&wasAWinClosed?) {
-    if not IsSet(wasAWinClosed) {
-        wasAWinClosed := false
-    }
-
-    if WinActive('Task Switching ahk_class XamlExplorerHostIslandWindow') {
-        Click('Middle')
-        wasAWinClosed := true
-    }
-}
-
 ; For why some hotkeys use Debounce(), see
 ; https://github.com/zachpoblete/MouseToys/wiki/Why-some-hotkeys-use-Debounce()
 ; Note that we're assuming that the last key "pressed" was the release of the
