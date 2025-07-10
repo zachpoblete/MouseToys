@@ -17,7 +17,7 @@
         GoBack1PageAtMouse()
     }
     LButton & RButton Up:: {
-        Debounce("RButton", 70)
+        Debounce("RButton", 110)
         GoForward1PageAtMouse()
     }
 

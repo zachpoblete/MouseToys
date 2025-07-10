@@ -25,14 +25,21 @@ ActivateWinAtMouse(winTitle := '', winText := '', excludedTitle := '', excludedT
 ; Note that we're assuming that the last key "pressed" was the release of the
 ; button. We could make the function more general, but we don't need to; don't
 ; generalize a function for cases you haven't experienced yet.
-Debounce(button, minimumTimeToPressButtonMs) {
+Debounce(button, minimumTimeToReleaseButtonMs) {
     debouncesIsOn := IniRead(UserSettingsPath, '', 'DebounceIsOn')
     if not debouncesIsOn {
         return
     }
 
-    timeToPressButtonMs := GetTimeToPressButtonMs(button)
-    if timeToPressButtonMs <= minimumTimeToPressButtonMs {
+    try {
+        timeToPressButtonMs := GetTimeToReleaseButtonMs(button)
+    } catch TargetError as e {
+        if e.message != "matchedButton" {
+            throw e
+        }
+        return
+    }
+    if timeToPressButtonMs <= minimumTimeToReleaseButtonMs {
         exit
     }
 }
@@ -40,25 +47,25 @@ Debounce(button, minimumTimeToPressButtonMs) {
 ; Note that we're assuming that the last key "pressed" was the release of the
 ; button. We could make the function more general, but we don't need to; don't
 ; generalize a function for cases you haven't experienced yet.
-GetTimeToPressButtonMs(button) {
+GetTimeToReleaseButtonMs(button) {
     keyHistoryText := ScriptInfo("KeyHistory")
 
     ; Let n be the line number of the last line.
     ; Line n is text like "Press [F5] to refresh." that isn't part of the KeyHistory table.
     ; Line n-1 is the time to release the button.
     ; Line n-2 is the time to press the button. This is why we get last3LinesPos.
-    last3LinesPos := InStr(keyHistoryText, "`n", , , -3)
+    last3LinesPos := InStr(keyHistoryText, "`n", , , -2)
     ; To get the actual contents of the last 3 lines, the starting position is
     ; last3LinesPos + 1 to not include the new line (`n).
     last3Lines := SubStr(keyHistoryText, last3LinesPos + 1)
 
     RegExMatch(last3Lines, "^.+[du]\s+(\S+)\s+(\S+)", &match)
-    timeToPressButtonMs := match[1] * 1000
+    timeToReleaseButtonMs := match[1] * 1000
     matchedButton := match[2]
     if matchedButton != button {
-        throw TargetError("button was " button " but matchedButton was " matchedButton)
+        throw TargetError("matchedButton", , "``button`` was " button " but ``matchedButton`` was " matchedButton)
     }
-    return timeToPressButtonMs
+    return timeToReleaseButtonMs
 }
 
 SendAtMouse(keys) {

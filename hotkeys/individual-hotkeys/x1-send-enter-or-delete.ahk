@@ -58,7 +58,7 @@ CameFrom3ButtonCombo := false
         ; not get set.
         CameFrom3ButtonCombo := true
 
-        Debounce("RButton", 70)
+        Debounce("RButton", 110)
 
         ; We're not using SendAtMouse because I've found it more useful to not ActivateWinAtMouse:
         Send('{Blind}{Delete}')

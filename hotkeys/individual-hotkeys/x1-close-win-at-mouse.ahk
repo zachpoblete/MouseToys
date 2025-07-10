@@ -9,7 +9,7 @@
 ; to close a window ❎.
 #HotIf GetKeyState('XButton1', 'P')
     MButton & RButton Up:: {
-        Debounce("RButton", 70)
+        Debounce("RButton", 110)
         CloseWinAtMouse()
     }
 #HotIf
