@@ -34,7 +34,6 @@ You can enable or disable Accelerated Scroll by right-clicking the AutoHotkey tr
 | <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<kbd>LButton</kbd> | 📸 Screenshot |
 | <kbd>XButton1</kbd>+<kbd>RButton</kbd>+<kbd>WheelUp</kbd> | 🔊 Increase volume |
 | <kbd>XButton1</kbd>+<kbd>RButton</kbd>+<kbd>WheelDown</kbd> | 🔈 Decrease volume |
-| <kbd>XButton1</kbd>+<kbd>RButton</kbd> | 🔇 Mute/unmute volume |
 | <kbd>XButton1</kbd>+<kbd>RButton</kbd>+<kbd>LButton</kbd> | ⏯️ Play/pause media |
 | <kbd>XButton1</kbd>+<kbd>LButton</kbd> | &nbsp;⏎&thinsp;&hairsp; Send Enter key |
 | <kbd>XButton1</kbd>+<kbd>LButton</kbd>+<kbd>RButton</kbd> | ⌦&hairsp; Send Delete key |
