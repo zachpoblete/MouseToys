@@ -5,7 +5,6 @@
 
 #HotIf GetKeyState('XButton1', 'P')
     MButton::  return
-    LButton::  return
     RButton::  return
     *MButton:: return
     *LButton:: return
