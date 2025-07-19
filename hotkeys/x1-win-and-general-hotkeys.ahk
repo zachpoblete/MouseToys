@@ -8,10 +8,10 @@
 #Include individual-hotkeys
 #Include x1w-cycle-windows-order-used.ahk
 
-#Include x1mr-close-win-at-mouse.ahk
+#Include x1mr-close-win.ahk
 #Include x1rl-play-pause.ahk
-#Include x1mw-min-or-maximize-win-at-mouse.ahk
-#Include x1m-restore-and-drag-win-at-mouse.ahk
+#Include x1mw-min-or-maximize-win.ahk
+#Include x1m-restore-and-drag-win.ahk
 #Include x1ml-screenshot.ahk
 #Include x1l-send-enter-or-delete.ahk
 #Include x1rw-change-volume.ahk

@@ -4,7 +4,7 @@
 #Include ..\mouse-lib
 #Include mouse-functions.ahk
 #Include fix-x1-shortcuts.ahk
-#Include restore-and-drag-win-at-mouse-functions.ahk
+#Include restore-and-drag-win-functions.ahk
 
 ; Press XButton1 + MButton
 ; to restore a window and move it using the mouse 🚚.
