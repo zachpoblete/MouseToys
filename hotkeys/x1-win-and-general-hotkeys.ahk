@@ -6,12 +6,12 @@
 ; https://www.autohotkey.com/boards/viewtopic.php?f=14&t=125819
 
 #Include individual-hotkeys
-#Include x1-cycle-windows-order-used.ahk
+#Include x1w-cycle-windows-order-used.ahk
 
-#Include x1-close-win-at-mouse.ahk
-#Include x1-play-pause.ahk
-#Include x1-min-or-maximize-win-at-mouse.ahk
-#Include x1-restore-and-drag-win-at-mouse.ahk
-#Include x1-screenshot.ahk
-#Include x1-send-enter-or-delete.ahk
-#Include x1-change-volume.ahk
+#Include x1mr-close-win-at-mouse.ahk
+#Include x1rl-play-pause.ahk
+#Include x1mw-min-or-maximize-win-at-mouse.ahk
+#Include x1m-restore-and-drag-win-at-mouse.ahk
+#Include x1ml-screenshot.ahk
+#Include x1l-send-enter-or-delete.ahk
+#Include x1rw-change-volume.ahk
