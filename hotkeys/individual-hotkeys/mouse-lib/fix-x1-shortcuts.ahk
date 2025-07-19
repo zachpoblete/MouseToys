@@ -4,9 +4,7 @@
 *XButton1 Up:: return
 
 #HotIf GetKeyState('XButton1', 'P')
+    *LButton:: return
     MButton::  return
     RButton::  return
-    *MButton:: return
-    *LButton:: return
-    *RButton:: return
 #HotIf
