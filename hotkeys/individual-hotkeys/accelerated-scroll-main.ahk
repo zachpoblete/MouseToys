@@ -8,7 +8,6 @@ A_MaxHotkeysPerInterval := 200
         ; I have adjusted this to my laptop touchpad
         ; which sends a lot of mouse events in a short time.
 
-; Scroll faster to scroll farther.
 WheelUp::
 WheelDown::
 {

@@ -6,8 +6,6 @@
 #Include fix-x1-shortcuts.ahk
 #Include restore-and-drag-win-functions.ahk
 
-; Press XButton1 + MButton
-; to restore a window and move it using the mouse 🚚.
 #HotIf GetKeyState('XButton1', 'P')
     MButton Up:: {
         if A_PriorKey != "MButton" {

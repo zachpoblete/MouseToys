@@ -5,8 +5,6 @@
 #Include mouse-functions.ahk
 #Include fix-x1-shortcuts.ahk
 
-; Press XButton2 + LButton + MButton
-; to refresh the current page 🔄.
 #HotIf GetKeyState('XButton2', 'P')
     LButton & MButton Up:: RefreshPageAtMouse()
 #HotIf

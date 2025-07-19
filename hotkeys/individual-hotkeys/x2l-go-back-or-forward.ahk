@@ -5,10 +5,6 @@
 #Include mouse-functions.ahk
 #Include fix-x2-shortcuts.ahk
 
-; Press XButton2 + LButton
-; to go back a page ⬅️.
-; Press XButton2 + LButton + RButton
-; to go forward a page ➡️.
 #HotIf GetKeyState('XButton2', 'P')
     LButton Up:: {
         if A_PriorKey != "LButton" {

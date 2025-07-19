@@ -9,10 +9,6 @@
 ; CameFrom3ButtonCombo if-condition below.
 CameFrom3ButtonCombo := false
 
-; Press XButton1 + LButton
-; to send the Delete key ❎.
-; Press XButton1 + LButton + RButton
-; to send the Enter key ⬇️.
 #HotIf GetKeyState('XButton1', 'P')
     *LButton Up:: {
         global CameFrom3ButtonCombo

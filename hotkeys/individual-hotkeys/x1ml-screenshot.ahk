@@ -4,8 +4,6 @@
 #Include ..\mouse-lib
 #Include fix-x1-shortcuts.ahk
 
-; Press XButton1 + MButton + LButton
-; to take a screenshot 📸.
 #HotIf GetKeyState('XButton1', 'P')
     MButton & LButton Up:: Screenshot()
 #HotIf
