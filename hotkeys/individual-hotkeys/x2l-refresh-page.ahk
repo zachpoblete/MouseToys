@@ -3,10 +3,15 @@
 
 #Include ..\mouse-lib
 #Include mouse-functions.ahk
-#Include fix-x1-shortcuts.ahk
+#Include fix-x2-shortcuts.ahk
 
 #HotIf GetKeyState('XButton2', 'P')
-    LButton & MButton Up:: RefreshPageAtMouse()
+    LButton Up:: {
+        if A_PriorKey != "LButton" {
+            return
+        }
+        RefreshPageAtMouse()
+    }
 #HotIf
 
 RefreshPageAtMouse() {

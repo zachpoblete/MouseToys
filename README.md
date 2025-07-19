@@ -25,18 +25,19 @@ You can enable or disable Accelerated Scroll by right-clicking the AutoHotkey tr
 
 | Press this | To do this |
 | - | - |
+| <kbd>Xbutton1</kbd> | ⬅️ Go back one page |
 | <kbd>XButton1</kbd>+<kbd>WheelDown</kbd> | ⬇️ Cycle through windows in recently used order (<kbd>Alt</kbd>+<kbd>Tab</kbd>) |
 | <kbd>XButton1</kbd>+<kbd>WheelUp</kbd> | ⬆️ Cycle through windows in reverse used order |
 | <kbd>XButton1</kbd>+<kbd>MButton</kbd> | 🚚 Restore window and move it using the mouse |
 | <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<kbd>WheelDown</kbd> | ↙️ Restore/minimize window |
 | <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<kbd>WheelUp</kbd> | &nbsp;↗&thinsp;&hairsp; Maximize window |
 | <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<kbd>RButton</kbd> | ❎ Close window |
-| <kbd>XButton1</kbd>+<kbd>MButton</kbd>+<kbd>LButton</kbd> | 📸 Screenshot |
 | <kbd>XButton1</kbd>+<kbd>RButton</kbd>+<kbd>WheelUp</kbd> | 🔊 Increase volume |
 | <kbd>XButton1</kbd>+<kbd>RButton</kbd>+<kbd>WheelDown</kbd> | 🔈 Decrease volume |
 | <kbd>XButton1</kbd>+<kbd>RButton</kbd>+<kbd>LButton</kbd> | ⏯️ Play/pause media |
 | <kbd>XButton1</kbd>+<kbd>LButton</kbd> | &nbsp;⏎&thinsp;&hairsp; Send Enter key |
 | <kbd>XButton1</kbd>+<kbd>LButton</kbd>+<kbd>RButton</kbd> | ⌦&hairsp; Send Delete key |
+| <kbd>XButton1</kbd>+<kbd>LButton</kbd>+<kbd>MButton</kbd> | 📸 Screenshot |
 
 ## 🌐 Tab and page shortcuts (XButton2)
 
@@ -44,15 +45,16 @@ If a shortcut doesn't work on a particular window, you can edit the source code 
 
 | Press this | To do this |
 | - | - |
+| <kbd>Xbutton2</kbd> | ➡️ Go forward one page |
 | <kbd>XButton2</kbd>+<kbd>WheelUp</kbd> | ⬅️ Go to left tab (in a browser for example)|
 | <kbd>XButton2</kbd>+<kbd>WheelDown</kbd> | ➡️ Go to right tab |
 | <kbd>XButton2</kbd>+<kbd>RButton</kbd>+<kbd>WheelDown</kbd> | ⬇️ Cycle through tabs in recently used order |
 | <kbd>XButton2</kbd>+<kbd>RButton</kbd>+<kbd>WheelUp</kbd> | ⬆️ Cycle through tabs in reverse used order |
 | <kbd>XButton2</kbd>+<kbd>RButton</kbd> | ❎ Close tab |
 | <kbd>XButton2</kbd>+<kbd>RButton</kbd>+<kbd>LButton</kbd> | ↪ Reopen last closed tab |
-| <kbd>XButton2</kbd>+<kbd>LButton</kbd> | ⬅️ Go back one page |
-| <kbd>XButton2</kbd>+<kbd>LButton</kbd>+<kbd>RButton</kbd> | ➡️ Go forward one page |
-| <kbd>XButton2</kbd>+<kbd>LButton</kbd>+<kbd>MButton</kbd> | 🔄 Refresh page |
+| <kbd>XButton2</kbd>+<kbd>LButton</kbd> | 🔄 Refresh page |
+| <kbd>XButton2</kbd>+<kbd>LButton</kbd>+<kbd>MButton</kbd> | 📋 Duplicate page |
+| <kbd>XButton2</kbd>+<kbd>LButton</kbd>+<kbd>RButton</kbd> | 🔍 Paste and search or Paste and go (if it's a URL) |
 | <kbd>XButton2</kbd>+<kbd>LButton</kbd>+<kbd>WheelUp</kbd> | 🔍 Zoom in |
 | <kbd>XButton2</kbd>+<kbd>LButton</kbd>+<kbd>WheelDown</kbd> | 🔍 Zoom out |
 | <kbd>XButton2</kbd>+<kbd>MButton</kbd> | 🔗 Click a link to open it in a new active tab |
