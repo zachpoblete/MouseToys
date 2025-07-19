@@ -16,13 +16,12 @@ CameFrom3ButtonCombo := false
         ; The condition isn't `if A_PriorKey = "LButton"` because if a standard modifier
         ; were down, it would keep triggering a down press and A_PriorKey would be the
         ; standard modifier most of the time. We don't check if `A_PriorHotkey =
-        ; "LButton"` (and `A_PriorHotkey = "*LButton"`) because this is always true
-        ; because the LButton hotkey always fires on release along with LButton Up. And
-        ; not only does the LButton hotkey fire along with the LButton Up hotkey, the
-        ; LButton hotkey fires before the LButton Up hotkey. This possibly has something
-        ; to do with the LButton & RButton Up hotkey firing before both those hotkeys.
-        ; I think this whole thing is a bug. See
-        ; https://www.autohotkey.com/boards/viewtopic.php?f=14&t=137956
+        ; "*LButton"` because this is always true because the LButton hotkey always
+        ; fires on release along with LButton Up. And not only does the LButton hotkey
+        ; fire along with the LButton Up hotkey, the LButton hotkey fires before the
+        ; LButton Up hotkey. This possibly has something to do with the LButton &
+        ; RButton Up hotkey firing before both those hotkeys. I think this whole thing
+        ; is a bug. See https://www.autohotkey.com/boards/viewtopic.php?f=14&t=137956
         ; CameFrom3ButtonCombo and the CameFrom3ButtonCombo if-condition is a temporary
         ; solution.
         if CameFrom3ButtonCombo {
