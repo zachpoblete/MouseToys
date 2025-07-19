@@ -7,11 +7,11 @@
 #Include fix-x1-shortcuts.ahk
 
 #HotIf GetKeyState('XButton1', 'P')
-    MButton & WheelDown:: MinimizeWinAtMouse()
+    MButton & WheelDown:: RestoreMinimizeWinAtMouse()
     MButton & WheelUp::   MaximizeWinAtMouse()
 #HotIf
 
-MinimizeWinAtMouse() {
+RestoreMinimizeWinAtMouse() {
     if MouseWinIsMoving {
         WinExist('A')
     } else {
@@ -23,7 +23,12 @@ MinimizeWinAtMouse() {
         return
     }
 
-    WinMinimize()
+    winMinMax := WinGetMinMax()
+    if winMinMax = 1 {
+        WinRestore()
+    } else {
+        WinMinimize()
+    }
 }
 
 MaximizeWinAtMouse() {
@@ -95,7 +100,6 @@ MaximizeWinAtMouse() {
         ; The window correctly thinks it's maximized.
         return
     }
-
 
     ; Best solution I've come up with:
     WinRestore()
