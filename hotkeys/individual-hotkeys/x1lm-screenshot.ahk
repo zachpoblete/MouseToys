@@ -6,6 +6,7 @@
 
 #HotIf GetKeyState('XButton1', 'P')
     LButton & MButton Up:: {
+        ; For why CameFrom3ButtonCombo is needed, see x1l-send-enter-or-delete.ahk
         global CameFrom3ButtonCombo
 
         ; We set CameFrom3ButtonCombo at the start of the hotkey because Debounce could exit
