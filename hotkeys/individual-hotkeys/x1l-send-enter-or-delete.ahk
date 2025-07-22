@@ -31,16 +31,6 @@ CameFrom3ButtonCombo := false
 
         CameFrom3ButtonCombo := false
 
-        ; Don't send Enter if the intention of activating this hotkey was actually to
-        ; click a window in the Task Switcher because the X1+W::AltTab hotkey was used.
-        ; Another way of solving this is making `~!LButton:: return`, but `~!LButton Up:
-        ; return` would be needed, which would disable Alt+X1+L, making Alt+Enter not
-        ; possible.
-        if WinActive('Task Switching ahk_class XamlExplorerHostIslandWindow') {
-            Click()
-            return
-        }
-
         ; We're not using SendAtMouse because I've found it more useful to not ActivateWinAtMouse:
         Send('{Blind}{Enter}')
     }

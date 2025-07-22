@@ -16,10 +16,12 @@
         KeyWait("XButton1")
         Send('{Alt Up}')
     }
+
     !WheelDown:: Send("{Tab}")
     !WheelUp::   Send("+{Tab}")
-#HotIf
 
-; Allow closing a window while cycling. This solution retains the native function of !MButton:
-~!MButton::    return
-~!MButton Up:: return
+    ; The hotkeys below have to be Up hotkeys to take over X1+L and X1+M,
+    ; respectively.
+    !LButton Up:: Click()
+    !MButton Up:: Click("M")
+#HotIf
